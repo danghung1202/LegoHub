@@ -3,5 +3,5 @@ src/MyBrickset.WebApi/bin/
 src/MyBrickset.WebApi/obj/
 src/MyBrickset.Data/bin/
 src/MyBrickset.Data/obj/
-src/MyBrickset.WebApi/wwwroot/
 src/MyBrickset.WebApp/dist/
+src/MyBrickset.WebApi/wwwroot/dist/
