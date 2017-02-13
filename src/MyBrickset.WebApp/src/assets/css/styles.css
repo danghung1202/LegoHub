@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
-@import 'nav.scss';
+
 .spacer {
     -webkit-box-flex: 1;
     -ms-flex: 1 1 auto;
@@ -13,12 +13,6 @@
 
 .md-slider-horizontal {
     width:100%;
-}
-
-label {
-    font-weight:bold;
-    margin:1.5em 0;
-    display:block;
 }
 
 #page-padding {
