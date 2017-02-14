@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import {Store} from '@ngrx/store';
+
+import {AppState} from './reducers';
+import {ThemeActions} from './actions';
 
 @Component({
     //moduleId: module.id,
@@ -9,4 +13,14 @@ import { Component } from '@angular/core';
     //styleUrls: ['./app.component.css']
 })
  
-export class AppComponent { }
+export class AppComponent implements OnInit { 
+
+    constructor(
+        private store: Store<AppState>,
+        private themeActions: ThemeActions
+    ) {}
+
+    ngOnInit() {
+        this.store.dispatch(this.themeActions.loadThemes());
+    }
+}
