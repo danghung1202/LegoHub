@@ -1,4 +1,4 @@
-import {ThemeEffects} from './theme';
+import {ThemeEffects} from './theme.effect';
 
 export{
     ThemeEffects

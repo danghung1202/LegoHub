@@ -1,16 +1,14 @@
 import { Component,OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
 
-import {AppState} from './reducers';
-import {ThemeActions} from './actions';
+import {AppState} from './state-management/states';
+import {ThemeActions} from './state-management/actions';
 
 @Component({
     //moduleId: module.id,
     selector: 'my-app',
     template: require('./app.component.html'),
     styles: [require('./app.component.scss')]
-    //templateUrl: './app.component.html',
-    //styleUrls: ['./app.component.css']
 })
  
 export class AppComponent implements OnInit { 

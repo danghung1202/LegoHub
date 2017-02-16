@@ -1,0 +1,38 @@
+<!--<button md-icon-button (click)="openDialog()">
+    <md-icon>filter_list</md-icon>
+  </button>-->
+<button mdl-button (click)="card.toggle($event)" mdl-button-type="icon" mdl-ripple>
+  <mdl-icon>more_vert</mdl-icon>
+</button>
+<mdl-popover #card>
+  <mdl-card mdl-shadow="6">
+    <mdl-card-title>
+      <h2 mdl-card-title-text>Filter</h2>
+    </mdl-card-title>
+    <div>
+      <md-list>
+        <md-list-item>
+          <mdl-select floating-label placeholder="Country">
+            <mdl-option *ngFor="let theme of (themes | async)" [value]="theme">
+              {{theme.theme}}
+            </mdl-option>
+          </mdl-select>
+        </md-list-item>
+        <md-list-item>
+          <md-select placeholder="Select subtheme">
+            <md-option [value]="theme1">
+              theme1
+            </md-option>
+            <md-option [value]="theme2">
+              theme2
+            </md-option>
+          </md-select>
+        </md-list-item>
+      </md-list>
+    </div>
+    <div>
+      <button md-button>Cancel</button>
+      <button md-button>Apply</button>
+    </div>
+  </mdl-card>
+</mdl-popover>

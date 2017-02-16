@@ -1,4 +1,4 @@
-import {ThemeActions} from './theme';
+import {ThemeActions} from './theme.action';
 
 export {
     ThemeActions

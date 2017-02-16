@@ -8,7 +8,7 @@ import {Theme} from '../models';
 export class ThemeService {
     constructor (private http: Http) {}
 
-    url:string = 'api/brickset/';
+    private url:string = 'api/brickset/';
 
     getThemes(): Observable<Theme[]> {
         return this.http.get(this.url + 'getthemes')

@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Effect, Actions} from '@ngrx/effects';
 
-import {AppState} from '../reducers';
 import {ThemeActions} from '../actions';
-import {ThemeService} from '../services';
+import {ThemeService} from '../../services';
 
 @Injectable()
 export class ThemeEffects {
