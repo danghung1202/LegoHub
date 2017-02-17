@@ -1,3 +1,4 @@
+# Build result and npm
 src/MyBrickset.WebApp/node_modules/
 src/MyBrickset.WebApi/bin/
 src/MyBrickset.WebApi/obj/
@@ -5,3 +6,25 @@ src/MyBrickset.Data/bin/
 src/MyBrickset.Data/obj/
 src/MyBrickset.WebApp/dist/
 src/MyBrickset.WebApi/wwwroot/dist/
+
+# ReSharper is a .NET coding add-in
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# =========================
+# Windows detritus
+# =========================
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Visual Studio 2015 settings folder
+.vs/
+.vscode/
