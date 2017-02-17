@@ -2,16 +2,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BricksetService;
+using Microsoft.Extensions.Options;
+using MyBrickset.Data.Config;
+using MyBrickset.Data.Constant;
 
 namespace MyBrickset.Data.Repositories
 {
     public class BricksetRepository : IBricksetRepository
     {
         private readonly BricksetAPIv2Soap _service;
-        private const string APIKEY = "D8uJ-7wDP-54pZ";
-        public BricksetRepository(BricksetAPIv2Soap service)
+        private readonly BricksetConfig _config;
+        public BricksetRepository(BricksetAPIv2Soap service, IOptions<BricksetConfig> config)
         {
             _service = service;
+            _config = config.Value;
         }
 
         public async Task<List<themes>> GetThemesAsync()
@@ -20,7 +24,7 @@ namespace MyBrickset.Data.Repositories
             {
                 Body = new getThemesRequestBody()
                 {
-                    apiKey = APIKEY
+                    apiKey = _config.ApiKey
                 }
             });
 
@@ -33,7 +37,7 @@ namespace MyBrickset.Data.Repositories
             {
                 Body = new getSubthemesRequestBody()
                 {
-                    apiKey = APIKEY,
+                    apiKey = _config.ApiKey,
                     theme = theme
                 }
             });
@@ -47,14 +51,34 @@ namespace MyBrickset.Data.Repositories
             {
                 Body = new getYearsRequestBody()
                 {
-                    apiKey = APIKEY,
+                    apiKey = _config.ApiKey,
                     theme = theme
                 }
             });
 
-            return yearsResponse.Body.getYearsResult.ToList();
+            return yearsResponse?.Body?.getYearsResult?.ToList();
         }
 
+        public async Task<object> GetSubthemesAndYears(string theme)
+        {
+            var years = await GetYearsAsync(theme);
+            var subthemes = await GetSubthemesAsync(theme);
+            return new {years = years, subthemes = subthemes};
+        }
+
+        public async Task<List<sets>> GetSetsAsync(string theme, string subtheme, string year)
+        {
+            return
+                await GetSetsAsync(theme, subtheme, year, SetOrderBy.Name, _config.PageSize.ToString(),_config.PageNumber.ToString());
+        }
+
+        public async Task<List<sets>> GetSetsAsync(string theme, string subtheme, string year, string orderBy, string pageSize,
+            string pageNumber)
+        {
+            return
+                await GetSetsAsync(string.Empty, theme, subtheme, string.Empty, year, string.Empty, string.Empty, orderBy,
+                        pageSize, pageNumber, string.Empty, string.Empty);
+        }
         public async Task<List<sets>> GetSetsAsync(string query, string theme, string subtheme, string setNumber, string year, string owned,
             string wanted, string orderBy, string pageSize, string pageNumber, string userName,string userHash)
         {
@@ -62,7 +86,7 @@ namespace MyBrickset.Data.Repositories
             {
                 Body = new getSetsRequestBody()
                 {
-                    apiKey = APIKEY,
+                    apiKey = _config.ApiKey,
                     query = query,
                     theme = theme,
                     subtheme = subtheme,
@@ -87,7 +111,7 @@ namespace MyBrickset.Data.Repositories
             {
                 Body = new getSetRequestBody()
                 {
-                    apiKey = APIKEY,
+                    apiKey = _config.ApiKey,
                     SetID = setId
                 }
             });
@@ -101,7 +125,7 @@ namespace MyBrickset.Data.Repositories
             {
                 Body = new getReviewsRequestBody()
                 {
-                    apiKey = APIKEY,
+                    apiKey = _config.ApiKey,
                     setID = setId
                 }
             });
@@ -115,7 +139,7 @@ namespace MyBrickset.Data.Repositories
             {
                 Body = new getInstructionsRequestBody()
                 {
-                    apiKey = APIKEY,
+                    apiKey = _config.ApiKey,
                     setID = setId
                 }
             });
@@ -129,7 +153,7 @@ namespace MyBrickset.Data.Repositories
             {
                 Body = new getAdditionalImagesRequestBody()
                 {
-                    apiKey = APIKEY,
+                    apiKey = _config.ApiKey,
                     setID = setId
                 }
             });
@@ -143,7 +167,7 @@ namespace MyBrickset.Data.Repositories
             {
                 Body = new getRecentlyUpdatedSetsRequestBody()
                 {
-                    apiKey = APIKEY,
+                    apiKey = _config.ApiKey,
                     minutesAgo = minutesAgo
                 }
             });
@@ -157,7 +181,7 @@ namespace MyBrickset.Data.Repositories
             {
                 Body = new getMinifigCollectionRequestBody()
                 {
-                    apiKey = APIKEY,
+                    apiKey = _config.ApiKey,
                     query = query,
                     owned = owned,
                     wanted = wanted,

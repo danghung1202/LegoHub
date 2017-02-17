@@ -13,6 +13,9 @@ namespace MyBrickset.Data.Repositories
         Task<List<themes>> GetThemesAsync();
         Task<List<subthemes>> GetSubthemesAsync(string theme);
         Task<List<years>> GetYearsAsync(string theme);
+        Task<object> GetSubthemesAndYears(string theme);
+        Task<List<sets>> GetSetsAsync(string theme, string subtheme, string year);
+        Task<List<sets>> GetSetsAsync(string theme, string subtheme, string year, string orderBy, string pageSize, string pageNumber);
         Task<List<sets>> GetSetsAsync(string query, string theme, string subtheme, string setNumber, string year, string owned, string wanted,
             string orderBy, string pageSize, string pageNumber, string userName, string userHash);
         Task<sets> GetSetAsync(string setId);
