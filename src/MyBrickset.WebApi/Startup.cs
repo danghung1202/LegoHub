@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using BricksetService;
 using MyBrickset.Data.Repositories;
+using MyBrickset.Data.Config;
 
 namespace MyBrickset.WebApi
 {
@@ -33,10 +34,14 @@ namespace MyBrickset.WebApi
         // This method gets called by the runtime. Use this method to add services to the container
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOptions();
+
             services.Configure<IISOptions>(options =>
             {
 
             });
+
+            services.Configure<BricksetConfig>(Configuration.GetSection("Brickset"));
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
