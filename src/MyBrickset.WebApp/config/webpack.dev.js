@@ -10,8 +10,8 @@ console.log(rootDir);
 
 module.exports = webpackMerge(commonConfig, {
 
-    //devtool: 'cheap-module-eval-source-map',
-    devtool: 'source-map',
+    devtool: 'cheap-module-eval-source-map',
+    //devtool: 'source-map',
 
     output: {
         //path: path.resolve(rootDir, 'MyBrickset.WebApi/wwwroot/scripts'),

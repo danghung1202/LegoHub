@@ -1,4 +1,4 @@
-import {ThemeService} from './theme';
+import {ThemeService} from './theme.service';
 
 export {
     ThemeService

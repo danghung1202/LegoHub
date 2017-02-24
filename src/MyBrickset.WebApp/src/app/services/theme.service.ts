@@ -11,7 +11,7 @@ export class ThemeService {
     private url:string = 'api/brickset/';
 
     getThemes(): Observable<Theme[]> {
-        return this.http.get(this.url + 'getthemes')
+        return this.http.get(this.url + 'themes')
         .map(res => res.json());
     }
 }

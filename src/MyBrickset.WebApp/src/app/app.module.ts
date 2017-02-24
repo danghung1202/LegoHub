@@ -16,7 +16,7 @@ import { ThemeService } from './services';
 import { AppComponent } from './app.component';
 import { TdSearchBoxComponent } from './components/search/search-box/search-box.component';
 import { TdSearchInputComponent } from './components/search/search-input/search-input.component';
-import { FilterButton} from './components/filter/filter-button.component';
+//import { FilterButton} from './components/filter/filter-button.component';
 
 
 
@@ -34,7 +34,7 @@ import { FilterButton} from './components/filter/filter-button.component';
         AppComponent,
         TdSearchBoxComponent,
         TdSearchInputComponent,
-        FilterButton,
+        //FilterButton,
         //FilterPanel
     ],
     providers: [state.ThemeActions, ThemeService],

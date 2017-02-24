@@ -1,0 +1,52 @@
+<md-card>
+    <md-chip-list>
+        <md-chip color="accent" selected="true">
+            The LEGO Ninjago Movie
+            <button md-icon-button type="button">
+          <md-icon>cancel</md-icon>
+          </button>
+        </md-chip>
+        <md-chip color="accent" selected="true">Promotional
+            <md-icon>cancel</md-icon>
+        </md-chip>
+        <md-chip color="accent" selected="true">2017
+            <button md-icon-button type="button">
+          <md-icon>cancel</md-icon>
+          </button>
+        </md-chip>
+    </md-chip-list>
+</md-card>
+<md-card>
+    <md-card-content>
+        <p>
+            <md-select placeholder="Select theme">
+                <md-option [value]="theme1">
+                    theme1
+                </md-option>
+                <md-option [value]="theme2">
+                    theme2
+                </md-option>
+            </md-select>
+            <button md-icon-button type="button">
+          <md-icon>cancel</md-icon>
+          </button>
+        </p>
+        <p>
+            <md-select placeholder="Select subtheme">
+                <md-option [value]="theme1">
+                    theme1
+                </md-option>
+                <md-option [value]="theme2">
+                    theme2
+                </md-option>
+            </md-select>
+            <button md-icon-button type="button">
+          <md-icon>cancel</md-icon>
+          </button>
+        </p>
+    </md-card-content>
+    <md-card-actions>
+        <button md-button>Close</button>
+        <button md-button>Filter</button>
+    </md-card-actions>
+</md-card>
