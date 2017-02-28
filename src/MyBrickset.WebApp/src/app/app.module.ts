@@ -14,10 +14,9 @@ import * as state from './state-management';
 import { ThemeService } from './services';
 
 import { AppComponent } from './app.component';
-import { TdSearchBoxComponent } from './components/search/search-box/search-box.component';
-import { TdSearchInputComponent } from './components/search/search-input/search-input.component';
-//import { FilterButton} from './components/filter/filter-button.component';
-
+import { AppRoutingModule } from './app.router';
+import { SetListModule } from './components';
+import { HomeComponent, SetDetailComponent, SearchComponent, LoginComponent, PageNotFoundComponent } from './components';
 
 
 @NgModule({
@@ -27,15 +26,18 @@ import { TdSearchInputComponent } from './components/search/search-input/search-
         HttpModule,
         MaterialModule.forRoot(),
         StoreModule.provideStore(state.Reducer),
-        EffectsModule.run(state.ThemeEffects)
+        EffectsModule.run(state.ThemeEffects),
+        SetListModule,
+        AppRoutingModule
     ],
     //entryComponents: [FilterPanel],
     declarations: [
         AppComponent,
-        TdSearchBoxComponent,
-        TdSearchInputComponent,
-        //FilterButton,
-        //FilterPanel
+        HomeComponent,
+        SearchComponent,
+        SetDetailComponent,
+        PageNotFoundComponent,
+        LoginComponent
     ],
     providers: [state.ThemeActions, ThemeService],
     bootstrap: [AppComponent]

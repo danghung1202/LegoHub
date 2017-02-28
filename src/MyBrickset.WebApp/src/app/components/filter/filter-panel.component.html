@@ -1,24 +1,2 @@
-<h1 md-dialog-title>Filter</h1>
-<div md-dialog-content><md-list>
-    <md-list-item>
-        <md-select placeholder="Select theme">
-            <md-option *ngFor="let theme of (themes | async)" [value]="theme">
-                {{theme.theme}}
-            </md-option>
-        </md-select>
-    </md-list-item>
-    <md-list-item>
-        <md-select placeholder="Select subtheme">
-            <md-option [value]="theme1">
-                theme1
-            </md-option>
-            <md-option [value]="theme2">
-                theme2
-            </md-option>
-        </md-select>
-    </md-list-item>
-</md-list></div>
-<div md-dialog-actions>
-  <button md-button (click)="dialogRef.close('Option 1')">Cancel</button>
-  <button md-button (click)="dialogRef.close('Option 2')">Apply</button>
-</div>
+<div>This is Filter Panel</div>
+<router-outlet></router-outlet>
