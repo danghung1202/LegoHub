@@ -1,0 +1,46 @@
+<md-sidenav-container>
+    <md-sidenav #sidenav>
+        <h3 md-subheader>Themes this year</h3>
+        <md-nav-list>
+            <a md-list-item *ngFor="let theme of themes" (click)="sidenav.close()" [routerLink]="['/sets']" [queryParams]="{ themes: theme.theme }"> {{ theme.theme }} </a>
+        </md-nav-list>
+        <md-divider></md-divider>
+        <h3 md-subheader>Years</h3>
+        <md-nav-list>
+            <a md-list-item *ngFor="let year of years" (click)="sidenav.close()" [routerLink]="['/sets']" [queryParams]="{ years: year.year }"> {{ year.year }} </a>
+        </md-nav-list>
+    </md-sidenav>
+    <div class="sidenav-content">
+        <md-toolbar color="primary">
+            <button md-icon-button type="button" (click)="sidenav.open()">
+                <md-icon>menu</md-icon>
+            </button>
+            
+            <span>Brickset</span>
+            <span class="spacer"></span>
+
+            <button md-icon-button type="button">
+                <md-icon>search</md-icon>
+            </button>
+
+            <button md-icon-button type="button" [mdMenuTriggerFor]="menu">
+                <md-icon>more_vert</md-icon>
+            </button>
+            <md-menu #menu="mdMenu">
+                <button md-menu-item>
+                <md-icon>fingerprint</md-icon>
+                <span>Login</span>
+            </button>
+                <button md-menu-item disabled>
+                <md-icon>announcement</md-icon>
+                <span>Issues</span>
+            </button>
+                <button md-menu-item>
+                <md-icon>notifications_off</md-icon>
+                <span>Disable alerts</span>
+            </button>
+            </md-menu>
+        </md-toolbar>
+        <ng-content></ng-content>
+    </div>
+</md-sidenav-container>

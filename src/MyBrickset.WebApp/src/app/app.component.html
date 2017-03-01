@@ -1,40 +1,4 @@
-<md-sidenav-container>
-  <mb-sidenav [themes]="themesNav | async" [open]="showSidenav">
-  </mb-sidenav>
-  <div class="example-sidenav-content">
-    <md-toolbar color="primary">
-      <button md-icon-button type="button" (click)="openSidenav()">
-        <md-icon>menu</md-icon>
-      </button>
-      <!--<md-button-toggle>
-        <md-icon>filter_list</md-icon>
-      </md-button-toggle>-->
-      <span>Brickset</span>
-      <span class="spacer"></span>
-      <!--<td-search-box backIcon="arrow_back" placeholder="Search here" flex></td-search-box>-->
-      <button md-icon-button type="button">
-        <md-icon>search</md-icon>
-      </button>
-      <button md-icon-button type="button" [mdMenuTriggerFor]="menu">
-        <md-icon>more_vert</md-icon>
-      </button>
-      <md-menu #menu="mdMenu">
-        <button md-menu-item>
-        <md-icon>fingerprint</md-icon>
-        <span>Login</span>
-      </button>
-        <button md-menu-item disabled>
-        <md-icon>announcement</md-icon>
-        <span>Issues</span>
-      </button>
-        <button md-menu-item>
-        <md-icon>notifications_off</md-icon>
-        <span>Disable alerts</span>
-      </button>
-      </md-menu>
-
-    </md-toolbar>
-  </div>
+<b-layout [themes]="themes | async" [years]="years | async">
   <router-outlet></router-outlet>
   <router-outlet name="popup"></router-outlet>
-</md-sidenav-container>
+</b-layout>

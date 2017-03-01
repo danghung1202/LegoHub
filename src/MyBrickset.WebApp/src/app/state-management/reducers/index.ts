@@ -15,11 +15,6 @@ export interface AppState {
     filter: fromFilter.FilterState;
 };
 
-export class StoreSelect {
-    static NAVIGATION = 'navigation';
-    static FILTER = 'filter';
-}
-
 /**
  * Because metareducers take a reducer function and return a new reducer,
  * we can use our compose helper to chain them together. Here we are

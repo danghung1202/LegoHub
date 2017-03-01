@@ -15,7 +15,7 @@ import { ThemeService } from './services';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.router';
-import { HomeComponent, SetListModule, SetDetailComponent, SearchComponent, LoginComponent, SideNavComponent, PageNotFoundComponent } from './components';
+import { HomeComponent, SetListModule, SetDetailComponent, SearchComponent, LoginComponent, LayoutComponent, PageNotFoundComponent } from './components';
 
 
 @NgModule({
@@ -36,7 +36,7 @@ import { HomeComponent, SetListModule, SetDetailComponent, SearchComponent, Logi
         SearchComponent,
         SetDetailComponent,
         PageNotFoundComponent,
-        SideNavComponent,
+        LayoutComponent,
         LoginComponent
     ],
     providers: [state.ThemeActions, ThemeService],
