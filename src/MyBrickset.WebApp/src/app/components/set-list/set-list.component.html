@@ -1,3 +1,4 @@
+<md-progress-bar mode="indeterminate" [class.show]="loading | async"></md-progress-bar>
 <md-card>
     <md-chip-list>
         <md-chip color="accent" selected="true">
@@ -50,4 +51,22 @@
         <button md-button>Filter</button>
     </md-card-actions>
 </md-card>
+<md-card *ngFor="let set of sets | async">
+    <md-card-header>
+        <div md-card-avatar class="example-header-image"></div>
+        <md-card-title>{{set.number}}: {{set.name}}</md-card-title>
+        <md-card-subtitle>Dog Breed</md-card-subtitle>
+    </md-card-header>
+    <img md-card-image [src]="set.imageURL">
+    <md-card-content>
+        <p>
+            
+        </p>
+    </md-card-content>
+    <md-card-actions>
+        <button md-button>LIKE</button>
+        <button md-button>SHARE</button>
+    </md-card-actions>
+</md-card>
+
 <router-outlet></router-outlet>

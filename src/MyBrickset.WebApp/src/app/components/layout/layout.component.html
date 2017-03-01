@@ -2,7 +2,7 @@
     <md-sidenav #sidenav>
         <h3 md-subheader>Themes this year</h3>
         <md-nav-list>
-            <a md-list-item *ngFor="let theme of themes" (click)="sidenav.close()" [routerLink]="['/sets']" [queryParams]="{ themes: theme.theme }"> {{ theme.theme }} </a>
+            <a md-list-item *ngFor="let theme of themes" (click)="sidenav.close()" [routerLink]="['/sets']" [queryParams]="{ themes: theme.theme, years: thisYear }"> {{ theme.theme }} </a>
         </md-nav-list>
         <md-divider></md-divider>
         <h3 md-subheader>Years</h3>

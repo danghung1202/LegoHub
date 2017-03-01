@@ -1,9 +1,9 @@
-import {ThemeService} from './theme.service';
+import { AppService } from './app.service';
 
 export {
-    ThemeService
+    AppService
 };
 
 export default [
-    ThemeService
+    AppService
 ];

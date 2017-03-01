@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 
 import { ThemeActions } from '../actions';
-import { ThemeService } from '../../services';
+import { AppService } from '../../services';
 
 @Injectable()
 export class ThemeEffects {
     constructor(
         private update$: Actions,
         private themeActions: ThemeActions,
-        private svc: ThemeService,
+        private svc: AppService,
     ) { }
 
     @Effect() loadThemes$ = this.update$

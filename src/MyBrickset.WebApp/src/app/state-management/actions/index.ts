@@ -1,7 +1,9 @@
-import {ThemeActions} from './theme.action';
+import { ThemeActions } from './theme.action';
+import { SetActions } from './set.action';
 
 export {
-    ThemeActions
+    ThemeActions,
+    SetActions
 };
 
 export default [

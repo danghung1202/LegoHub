@@ -11,7 +11,7 @@ import 'hammerjs';
 
 import * as state from './state-management';
 
-import { ThemeService } from './services';
+import { AppService } from './services';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.router';
@@ -26,6 +26,7 @@ import { HomeComponent, SetListModule, SetDetailComponent, SearchComponent, Logi
         MaterialModule.forRoot(),
         StoreModule.provideStore(state.reducer),
         EffectsModule.run(state.ThemeEffects),
+        EffectsModule.run(state.SetEffects),
         SetListModule,
         AppRoutingModule
     ],
@@ -39,7 +40,7 @@ import { HomeComponent, SetListModule, SetDetailComponent, SearchComponent, Logi
         LayoutComponent,
         LoginComponent
     ],
-    providers: [state.ThemeActions, ThemeService],
+    providers: [state.ThemeActions, state.SetActions, AppService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

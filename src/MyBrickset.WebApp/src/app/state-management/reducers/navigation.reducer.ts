@@ -51,7 +51,3 @@ export function reducer(state = initialState, action: Action): NavigationState {
         }
     }
 }
-
-// export const geThemes = (state: ThemesState) => state.themes;
-
-// export const getLoading = (state: ThemesState) => state.loading;

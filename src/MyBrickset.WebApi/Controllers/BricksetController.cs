@@ -17,7 +17,7 @@ namespace MyBrickset.WebApi.Controllers
         [Route("themes")]
         public IActionResult GetThemes()
         {
-            var themes =(_bricksetRepo.GetThemesAsync().Result);
+            var themes = (_bricksetRepo.GetThemesAsync().Result);
             if (themes == null)
             {
                 return NotFound();
@@ -29,13 +29,13 @@ namespace MyBrickset.WebApi.Controllers
         public IActionResult GetThemesThisYear()
         {
             var thisYear = DateTime.Now.Year;
-            var themes =(_bricksetRepo.GetThemesAsync().Result);
+            var themes = (_bricksetRepo.GetThemesAsync().Result);
             if (themes == null)
             {
                 return NotFound();
             }
 
-            var themesThisYear = themes.Where(x=>x.yearTo == thisYear && x.theme != "{Undefined}").OrderBy(x=>x.theme).ToList();
+            var themesThisYear = themes.Where(x => x.yearTo == thisYear && x.theme != "{Undefined}").OrderBy(x => x.theme).ToList();
             return new ObjectResult(themesThisYear);
         }
 
@@ -51,9 +51,9 @@ namespace MyBrickset.WebApi.Controllers
         }
 
         [Route("sets")]
-        public IActionResult GetSets(string theme, string subtheme, string year)
+        public IActionResult GetSets(string themes, string subthemes, string years)
         {
-            var sets = (_bricksetRepo.GetSetsAsync(theme, subtheme, year).Result);
+            var sets = (_bricksetRepo.GetSetsAsync(themes ?? string.Empty, subthemes ?? string.Empty, years ?? string.Empty).Result);
             if (sets == null)
             {
                 return NotFound();

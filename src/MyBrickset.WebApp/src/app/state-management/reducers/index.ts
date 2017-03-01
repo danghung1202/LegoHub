@@ -6,13 +6,16 @@ import { ActionReducer } from '@ngrx/store';
 
 import * as fromNavigation from './navigation.reducer';
 import * as fromFilter from './filter.reducer';
+import * as fromSetList from './set-list.reducer';
 
 export type NavigationState = fromNavigation.NavigationState;
 export type FilterState = fromFilter.FilterState;
+export type SetListState = fromSetList.SetListState;
 
 export interface AppState {
     navigation: fromNavigation.NavigationState;
     filter: fromFilter.FilterState;
+    sets: fromSetList.SetListState;
 };
 
 /**
@@ -24,7 +27,8 @@ export interface AppState {
  */
 const reducers = {
     navigation: fromNavigation.reducer,
-    filter: fromFilter.reducer
+    filter: fromFilter.reducer,
+    sets: fromSetList.reducer
 };
 
 const developmentReducer: ActionReducer<AppState> = compose(combineReducers)(reducers);
