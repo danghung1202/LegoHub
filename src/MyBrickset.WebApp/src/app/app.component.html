@@ -1,26 +1,14 @@
 <md-sidenav-container>
-  <md-sidenav #sidenav class="example-sidenav">
-    <md-nav-list>
-      <h3 md-subheader>Themes this year</h3>
-      <a md-list-item href="#"> Technic </a>
-      <a md-list-item href="#"> Ninjago </a>
-      <a md-list-item href="#"> Batman </a>
-
-      <md-divider></md-divider>
-      <h3 md-subheader>Years</h3>
-      <a md-list-item href="#"> 2017 </a>
-      <a md-list-item href="#"> 2016 </a>
-      <a md-list-item href="#"> 2015 </a>
-    </md-nav-list>
-  </md-sidenav>
+  <mb-sidenav [themes]="themesNav | async" [open]="showSidenav">
+  </mb-sidenav>
   <div class="example-sidenav-content">
     <md-toolbar color="primary">
-      <button md-icon-button type="button" (click)="sidenav.open()">
+      <button md-icon-button type="button" (click)="openSidenav()">
         <md-icon>menu</md-icon>
       </button>
-      <md-button-toggle>
+      <!--<md-button-toggle>
         <md-icon>filter_list</md-icon>
-      </md-button-toggle>
+      </md-button-toggle>-->
       <span>Brickset</span>
       <span class="spacer"></span>
       <!--<td-search-box backIcon="arrow_back" placeholder="Search here" flex></td-search-box>-->

@@ -1,20 +1,41 @@
 //import {createSelector } from 'reselect';
 import '@ngrx/core/add/operator/select';
-import {compose} from '@ngrx/core/compose';
-import {combineReducers} from '@ngrx/store';
+import { compose } from '@ngrx/core/compose';
+import { combineReducers } from '@ngrx/store';
+import { ActionReducer } from '@ngrx/store';
 
-import themeReducer from './theme.reducer';
+import * as fromNavigation from './navigation.reducer';
+import * as fromFilter from './filter.reducer';
 
-//uncomment the storeLogger import and this line
-//and comment out the other export default line to turn on
-//the store logger to see the actions as they flow through the store
-//turned this off by default as i found the logger kinda noisy
+export type NavigationState = fromNavigation.NavigationState;
+export type FilterState = fromFilter.FilterState;
 
-//export default compose(storeLogger(), combineReducers)({
-export default compose(combineReducers)({
-   themes: themeReducer
-});
+export interface AppState {
+    navigation: fromNavigation.NavigationState;
+    filter: fromFilter.FilterState;
+};
 
-// const getThemesState = (state: AppState) => state.themes;
-// export const getThemes = createSelector(getThemesState, fromThemes.geThemes);
-// export const getLoading = createSelector(getThemesState, fromThemes.getLoading);
+export class StoreSelect {
+    static NAVIGATION = 'navigation';
+    static FILTER = 'filter';
+}
+
+/**
+ * Because metareducers take a reducer function and return a new reducer,
+ * we can use our compose helper to chain them together. Here we are
+ * using combineReducers to make our top level reducer, and then
+ * wrapping that in storeLogger. Remember that compose applies
+ * the result from right to left.
+ */
+const reducers = {
+    navigation: fromNavigation.reducer,
+    filter: fromFilter.reducer
+};
+
+const developmentReducer: ActionReducer<AppState> = compose(combineReducers)(reducers);
+
+export function reducer(state: any, action: any) {
+    return developmentReducer(state, action);
+}
+
+export default compose(combineReducers)(reducers);

@@ -1,0 +1,15 @@
+<md-sidenav #sidenav class="example-sidenav" [opened]="open">
+    <md-nav-list>
+        <h3 md-subheader>Themes this year</h3>
+       
+        <a md-list-item *ngFor="let theme of themes" > {{ theme.theme }} </a>
+        <a md-list-item href="#"> Ninjago </a>
+        <a md-list-item href="#"> Batman </a>
+
+        <md-divider></md-divider>
+        <h3 md-subheader>Years</h3>
+        <a md-list-item href="#"> 2017 </a>
+        <a md-list-item href="#"> 2016 </a>
+        <a md-list-item href="#"> 2015 </a>
+    </md-nav-list>
+</md-sidenav>

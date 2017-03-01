@@ -15,8 +15,7 @@ import { ThemeService } from './services';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.router';
-import { SetListModule } from './components';
-import { HomeComponent, SetDetailComponent, SearchComponent, LoginComponent, PageNotFoundComponent } from './components';
+import { HomeComponent, SetListModule, SetDetailComponent, SearchComponent, LoginComponent, SideNavComponent, PageNotFoundComponent } from './components';
 
 
 @NgModule({
@@ -25,7 +24,7 @@ import { HomeComponent, SetDetailComponent, SearchComponent, LoginComponent, Pag
         FormsModule,
         HttpModule,
         MaterialModule.forRoot(),
-        StoreModule.provideStore(state.Reducer),
+        StoreModule.provideStore(state.reducer),
         EffectsModule.run(state.ThemeEffects),
         SetListModule,
         AppRoutingModule
@@ -37,6 +36,7 @@ import { HomeComponent, SetDetailComponent, SearchComponent, LoginComponent, Pag
         SearchComponent,
         SetDetailComponent,
         PageNotFoundComponent,
+        SideNavComponent,
         LoginComponent
     ],
     providers: [state.ThemeActions, ThemeService],

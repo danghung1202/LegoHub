@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using MyBrickset.Data.Repositories;
-using MyBrickset.Data.Constant;
 
 namespace MyBrickset.WebApi.Controllers
 {
@@ -27,6 +23,20 @@ namespace MyBrickset.WebApi.Controllers
                 return NotFound();
             }
             return new ObjectResult(themes);
+        }
+
+        [Route("theme-nav")]
+        public IActionResult GetThemesThisYear()
+        {
+            var thisYear = DateTime.Now.Year;
+            var themes =(_bricksetRepo.GetThemesAsync().Result);
+            if (themes == null)
+            {
+                return NotFound();
+            }
+
+            var themesThisYear = themes.Where(x=>x.yearTo == thisYear && x.theme != "{Undefined}").OrderBy(x=>x.theme).ToList();
+            return new ObjectResult(themesThisYear);
         }
 
         [Route("subthemes")]
@@ -51,7 +61,7 @@ namespace MyBrickset.WebApi.Controllers
             return new ObjectResult(sets);
         }
 
-        [Route("sets")]
+        [Route("set")]
         public IActionResult GetSet(string setId)
         {
             var set = (_bricksetRepo.GetSetAsync(setId).Result);
