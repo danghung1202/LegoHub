@@ -11,6 +11,20 @@ html, body, material-app, md-sidenav-container, .sidenav-content {
     height: 100%;
 }
 
+/*
+ * The /deep/ selector is simply to overcome view encapsulation
+ * and be able to select the div.md-sidenav-content generated at runtime
+*/
+md-sidenav-container .md-sidenav-content {
+  overflow: hidden;
+}
+
+.app-content {
+  padding: 10px 20px;
+  height: calc(100% - 64px);
+  overflow: auto;
+}
+
 .spacer {
     -webkit-box-flex: 1;
     -ms-flex: 1 1 auto;
