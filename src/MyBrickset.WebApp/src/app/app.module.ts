@@ -15,7 +15,7 @@ import { AppService } from './services';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.router';
-import { HomeComponent, SetListModule, SetDetailComponent, SearchComponent, LoginComponent, LayoutComponent, PageNotFoundComponent } from './components';
+import { HomeComponent, SetListModule, SetDetailComponent, SearchComponent, LoginComponent, LayoutComponent, ModalComponent, ErrorDialogComponent, PageNotFoundComponent } from './components';
 
 
 @NgModule({
@@ -38,9 +38,11 @@ import { HomeComponent, SetListModule, SetDetailComponent, SearchComponent, Logi
         SetDetailComponent,
         PageNotFoundComponent,
         LayoutComponent,
+        ModalComponent,
+        ErrorDialogComponent,
         LoginComponent
     ],
-    providers: [state.ThemeActions, state.SetActions, AppService],
+    providers: [state.ThemeActions, state.SetActions, state.ErrorActions, AppService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

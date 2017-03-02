@@ -7,17 +7,17 @@ import { AppService } from '../../services';
 @Injectable()
 export class ThemeEffects {
     constructor(
-        private update$: Actions,
+        private action$: Actions,
         private themeActions: ThemeActions,
         private svc: AppService,
     ) { }
 
-    @Effect() loadThemes$ = this.update$
+    @Effect() loadThemes$ = this.action$
         .ofType(ThemeActions.LOAD_THEMES)
         .switchMap(() => this.svc.getThemes())
         .map(themes => this.themeActions.loadThemesSuccess(themes));
 
-    @Effect() loadThemesInThisYear$ = this.update$
+    @Effect() loadThemesInThisYear$ = this.action$
         .ofType(ThemeActions.LOAD_THEMES_THIS_YEAR)
         .switchMap(() => this.svc.getThemesInThisYear())
         .map(themes => this.themeActions.loadThemesInThisYearSuccess(themes));
