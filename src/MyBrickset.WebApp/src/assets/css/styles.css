@@ -20,7 +20,7 @@ md-sidenav-container .md-sidenav-content {
 }
 
 .app-content {
-  padding: 10px 20px;
+  padding: 15px;
   height: calc(100% - 64px);
   overflow: auto;
 }

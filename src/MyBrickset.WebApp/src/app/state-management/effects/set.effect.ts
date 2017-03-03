@@ -20,5 +20,5 @@ export class SetEffects {
             return this.svc.getSets(params.themes, params.subthemes, params.years)
             .map(sets => this.setActions.loadSetsSuccess(sets))
             .catch(() => of(this.setActions.loadSetsSuccess([])));
-        })
+        });
 }

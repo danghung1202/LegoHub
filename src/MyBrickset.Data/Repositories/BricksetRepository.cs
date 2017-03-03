@@ -69,7 +69,7 @@ namespace MyBrickset.Data.Repositories
         public async Task<List<sets>> GetSetsAsync(string theme, string subtheme, string year)
         {
             return
-                await GetSetsAsync(theme, subtheme, year, SetOrderBy.Name, _config.PageSize.ToString(),_config.PageNumber.ToString());
+                await GetSetsAsync(theme, subtheme, year, SetOrderBy.Number, _config.PageSize.ToString(),_config.PageNumber.ToString());
         }
 
         public async Task<List<sets>> GetSetsAsync(string theme, string subtheme, string year, string orderBy, string pageSize,

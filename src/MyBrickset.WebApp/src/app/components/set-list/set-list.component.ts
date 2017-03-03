@@ -14,11 +14,19 @@ import { AppState, NavigationState, SetActions } from '../../state-management';
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: require('./set-list.component.html'),
     styles: [`
-        md-progress-bar {
-            display:none;
+        md-card {
+            margin-bottom: 15px;
+            background-color: #F5F5F5;
         }
 
-        md-progress-bar.show {
+        md-spinner {
+            display:none;
+            height:30px;
+            width:30px;
+            margin: auto;
+        }
+
+        md-spinner.show {
             display:block;
         }
     `]

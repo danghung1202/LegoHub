@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
+import { of } from 'rxjs/observable/of';
 
 import { ThemeActions } from '../actions';
 import { AppService } from '../../services';
@@ -14,12 +15,18 @@ export class ThemeEffects {
 
     @Effect() loadThemes$ = this.action$
         .ofType(ThemeActions.LOAD_THEMES)
-        .switchMap(() => this.svc.getThemes())
-        .map(themes => this.themeActions.loadThemesSuccess(themes));
+        .switchMap(() => {
+            return this.svc.getThemes()
+            .map(themes => this.themeActions.loadThemesSuccess(themes))
+            .catch(() => of(this.themeActions.loadThemesSuccess([])));
+        });
 
     @Effect() loadThemesInThisYear$ = this.action$
         .ofType(ThemeActions.LOAD_THEMES_THIS_YEAR)
-        .switchMap(() => this.svc.getThemesInThisYear())
-        .map(themes => this.themeActions.loadThemesInThisYearSuccess(themes));
+        .switchMap(() => {
+            return this.svc.getThemesInThisYear()
+            .map(themes => this.themeActions.loadThemesInThisYearSuccess(themes))
+            .catch(() => of(this.themeActions.loadThemesInThisYearSuccess([])));
+        });
 
 }

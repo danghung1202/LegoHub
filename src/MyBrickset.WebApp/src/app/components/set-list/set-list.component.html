@@ -1,4 +1,3 @@
-<md-progress-bar mode="indeterminate" [class.show]="loading | async"></md-progress-bar>
 <md-card>
     <md-chip-list>
         <md-chip color="accent" selected="true">
@@ -17,56 +16,17 @@
         </md-chip>
     </md-chip-list>
 </md-card>
-<md-card>
-    <md-card-content>
-        <p>
-            <md-select placeholder="Select theme">
-                <md-option [value]="theme1">
-                    theme1
-                </md-option>
-                <md-option [value]="theme2">
-                    theme2
-                </md-option>
-            </md-select>
-            <button md-icon-button type="button">
-          <md-icon>cancel</md-icon>
-          </button>
-        </p>
-        <p>
-            <md-select placeholder="Select subtheme">
-                <md-option [value]="theme1">
-                    theme1
-                </md-option>
-                <md-option [value]="theme2">
-                    theme2
-                </md-option>
-            </md-select>
-            <button md-icon-button type="button">
-          <md-icon>cancel</md-icon>
-          </button>
-        </p>
-    </md-card-content>
-    <md-card-actions>
-        <button md-button>Close</button>
-        <button md-button>Filter</button>
-    </md-card-actions>
-</md-card>
 <md-card *ngFor="let set of sets | async">
-    <md-card-header>
-        <div md-card-avatar class="example-header-image"></div>
-        <md-card-title>{{set.number}}: {{set.name}}</md-card-title>
-        <md-card-subtitle>Dog Breed</md-card-subtitle>
-    </md-card-header>
     <img md-card-image [src]="set.imageURL">
+    <md-card-title md-subheader>{{set.number}}: {{set.name}}</md-card-title>
     <md-card-content>
-        <p>
-            
-        </p>
+
     </md-card-content>
     <md-card-actions>
         <button md-button>LIKE</button>
         <button md-button>SHARE</button>
     </md-card-actions>
 </md-card>
+<md-spinner [class.show]="loading | async"></md-spinner>
 
 <router-outlet></router-outlet>
