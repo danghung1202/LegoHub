@@ -31,21 +31,17 @@ md-sidenav-container .md-sidenav-content {
     flex: 1 1 auto;
 }
 
-.example-container {
-  width: 500px;
-  height: 300px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+.full-width {
+  width: 100%;
 }
 
-.example-sidenav {
-  padding: 20px;
+.toolbar-title{
+    margin-left: 24px;
 }
-
-
 
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
+    display: block; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     padding-top: 100px; /* Location of the box */
@@ -68,10 +64,6 @@ md-sidenav-container .md-sidenav-content {
     border: 1px solid #888;
     width: 100%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s
 }
 
 /* Add Animation */
@@ -85,15 +77,46 @@ md-sidenav-container .md-sidenav-content {
     to {top:0; opacity:1}
 }
 
+.top-animation {
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
 /* Add Animation */
-@-webkit-keyframes slideIn {
+@-webkit-keyframes animationbottom {
     from {bottom: -300px; opacity: 0} 
     to {bottom: 0; opacity: 1}
 }
 
-@keyframes slideIn {
+@keyframes animationbottom {
     from {bottom: -300px; opacity: 0}
     to {bottom: 0; opacity: 1}
+}
+
+.bottom-animation {
+    -webkit-animation-name: animationbottom;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animationbottom;
+    animation-duration: 0.4s
+}
+
+@-webkit-keyframes animationright {
+    from {right: -300px; opacity: 0} 
+    to {right: 0; opacity: 1}
+}
+
+@keyframes animationright {
+    from {right: -300px; opacity: 0}
+    to {right: 0; opacity: 1}
+}
+
+.right-animation {
+    -webkit-animation-name: animationright;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animationright;
+    animation-duration: 0.4s
 }
 
 /* The Close Button */
@@ -129,7 +152,3 @@ md-sidenav-container .md-sidenav-content {
 .error-template {padding: 40px 15px;text-align: center;}
 .error-actions {margin-top:15px;margin-bottom:15px;}
 .error-actions .btn { margin-right:10px; }
-
-.full-width {
-  width: 100%;
-}

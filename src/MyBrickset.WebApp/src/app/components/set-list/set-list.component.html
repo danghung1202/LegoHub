@@ -1,18 +1,34 @@
+<div class="button-row">
+    <!--<button md-raised-button [mdMenuTriggerFor]="sortMenu">Sort By</button>
+    <md-menu #sortMenu="mdMenu">
+        <button md-menu-item *ngFor="let criteria of sortCriterias | async">
+            <span>{{criteria.title}}</span>
+        </button>
+    </md-menu>-->
+
+    <md-select placeholder="Sort By" [(ngModel)]="selectedCriteria" (change)="sortChange()">
+        <md-option *ngFor="let criteria of sortCriterias | async" [value]="criteria.value">{{criteria.title}}</md-option>
+    </md-select>
+
+    <button md-raised-button (click)="openFilter()">Filter</button>
+</div>
 <md-card>
     <md-chip-list>
-        <md-chip color="accent" selected="true">
-            The LEGO Ninjago Movie
+        <md-chip color="accent" selected="true" *ngFor="let theme of selectedThemes | async">
+            {{theme.theme}}
             <button md-icon-button type="button">
-          <md-icon>cancel</md-icon>
-          </button>
+                <md-icon>cancel</md-icon>
+            </button>
         </md-chip>
-        <md-chip color="accent" selected="true">Promotional
-            <md-icon>cancel</md-icon>
-        </md-chip>
-        <md-chip color="accent" selected="true">2017
+        <md-chip color="accent" selected="true" *ngFor="let subtheme of selectedSubthemes | async"> {{subtheme.subtheme}}
             <button md-icon-button type="button">
-          <md-icon>cancel</md-icon>
-          </button>
+                <md-icon>cancel</md-icon>
+            </button>
+        </md-chip>
+        <md-chip color="accent" selected="true" *ngFor="let year of selectedYears | async"> {{year.year}}
+            <button md-icon-button type="button">
+                <md-icon>cancel</md-icon>
+            </button>
         </md-chip>
     </md-chip-list>
 </md-card>
@@ -28,5 +44,5 @@
     </md-card-actions>
 </md-card>
 <md-spinner [class.show]="loading | async"></md-spinner>
-
+<router-outlet name="child"></router-outlet>
 <router-outlet></router-outlet>

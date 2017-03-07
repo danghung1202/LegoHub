@@ -2,12 +2,12 @@
     <md-sidenav #sidenav>
         <h3 md-subheader>Themes this year</h3>
         <md-nav-list>
-            <a md-list-item *ngFor="let theme of themes" (click)="sidenav.close()" [routerLink]="['/sets']" [queryParams]="{ themes: theme.theme, years: thisYear }"> {{ theme.theme }} </a>
+            <a md-list-item *ngFor="let theme of themes" (click)="sidenav.close()" [routerLink]="['/sets', theme.theme,' ', thisYear]"> {{ theme.theme }} </a>
         </md-nav-list>
         <md-divider></md-divider>
         <h3 md-subheader>Years</h3>
         <md-nav-list>
-            <a md-list-item *ngFor="let year of years" (click)="sidenav.close()" [routerLink]="['/sets']" [queryParams]="{ years: year.year }"> {{ year.year }} </a>
+            <a md-list-item *ngFor="let year of years" (click)="sidenav.close()" [routerLink]="['/sets', ' ',' ', year.year]" [queryParams]="{ years: year.year }"> {{ year.year }} </a>
         </md-nav-list>
     </md-sidenav>
     <div class="sidenav-content">
@@ -16,7 +16,7 @@
                 <md-icon>menu</md-icon>
             </button>
             
-            <span>Brickset</span>
+            <span class="toolbar-title">Brickset</span>
             <span class="spacer"></span>
 
             <button md-icon-button type="button">
@@ -28,17 +28,17 @@
             </button>
             <md-menu #menu="mdMenu">
                 <button md-menu-item>
-                <md-icon>fingerprint</md-icon>
-                <span>Login</span>
-            </button>
+                    <md-icon>fingerprint</md-icon>
+                    <span>Login</span>
+                </button>
                 <button md-menu-item disabled>
-                <md-icon>announcement</md-icon>
-                <span>Issues</span>
-            </button>
+                    <md-icon>announcement</md-icon>
+                    <span>Issues</span>
+                </button>
                 <button md-menu-item>
-                <md-icon>notifications_off</md-icon>
-                <span>Disable alerts</span>
-            </button>
+                    <md-icon>notifications_off</md-icon>
+                    <span>Disable alerts</span>
+                </button>
             </md-menu>
         </md-toolbar>
         

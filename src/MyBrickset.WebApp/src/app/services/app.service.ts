@@ -7,11 +7,14 @@ import { Store } from '@ngrx/store';
 import { Theme, Set } from '../models';
 import { AppState, ErrorActions } from '../state-management';
 
+import sortCriterias from '../data/sort-criterias';
+
 class Url {
     static GetThemes = 'api/brickset/themes';
     static GetThemesInThisYear = 'api/brickset/theme-nav';
     static GetSubthemes = 'api/brickset/subthemes';
     static GetSets = 'api/brickset/sets';
+    static GetSortCriterias = '../data/sort-criterias.json';
 }
 
 @Injectable()
@@ -40,6 +43,15 @@ export class AppService {
             .catch(error => {
                 return this.handleError(error);
             });
+    }
+
+    getSortCriterias(): Observable<any> {
+        // return this.http.get(Url.GetSortCriterias)
+        //     .map(res => res.json())
+        //     .catch(error => {
+        //         return this.handleError(error);
+        //     });
+        return Observable.of(sortCriterias);
     }
 
     private handleError(error: Response | any) {

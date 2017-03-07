@@ -18,7 +18,16 @@ export class SetEffects {
         .map(action => action.payload)
         .switchMap(params => {
             return this.svc.getSets(params.themes, params.subthemes, params.years)
-            .map(sets => this.setActions.loadSetsSuccess(sets))
-            .catch(() => of(this.setActions.loadSetsSuccess([])));
+                .map(sets => this.setActions.loadSetsSuccess(sets))
+                .catch(() => of(this.setActions.loadSetsSuccess([])));
+        });
+
+    @Effect() getSortCriterias$ = this.action$
+        .ofType(SetActions.LOAD_SORT_CRITERIAS)
+        .map(action => action.payload)
+        .switchMap(() => {
+            return this.svc.getSortCriterias()
+                .map(criterias => this.setActions.loadSortCriteriasSuccess(criterias))
+                .catch(() => of(this.setActions.loadSortCriteriasSuccess([])));
         });
 }
