@@ -3,6 +3,7 @@
 
 body{
     margin: 0px;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 
 html, body, material-app, md-sidenav-container, .sidenav-content {
@@ -21,7 +22,7 @@ md-sidenav-container .md-sidenav-content {
 
 .app-content {
   padding: 15px;
-  height: calc(100% - 64px);
+  height: calc(100% - 86px);
   overflow: auto;
 }
 

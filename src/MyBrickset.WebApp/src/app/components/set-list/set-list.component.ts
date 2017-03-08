@@ -30,7 +30,7 @@ import { AppState, NavigationState, SetActions } from '../../state-management';
             display:block;
         }
 
-        .mat-icon-button {
+        .mini-button {
             padding: 0;
             flex-shrink: 0;
             line-height: 0px;

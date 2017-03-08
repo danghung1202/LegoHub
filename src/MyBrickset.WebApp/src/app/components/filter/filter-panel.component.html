@@ -1,7 +1,67 @@
 <div class="modal">
     <!-- Modal content -->
     <div class="modal-content right-animation">
-        This is Filter
+        <md-toolbar>
+            <button md-icon-button type="button" (click)="goBack()">
+                <md-icon>arrow_back</md-icon>
+            </button>
+            <span class="filter-title">Filter</span>
+        </md-toolbar>
+        <div class="filter-button-container">
+            <button class="filter-button" md-raised-button (click)="clearFilter()">Clear all</button>
+            <button class="filter-button" md-raised-button (click)="applyFilter()">Apply</button>
+        </div>
+        <div class="filter-row" [routerLink]="['theme']">
+            <span >Themes</span>
+            <span class="spacer"></span>
+            <button md-icon-button type="button">
+                <md-icon>chevron_right</md-icon>
+            </button>
+        </div>
+        <div>
+            <md-chip-list>
+                <md-chip color="accent" selected="true" *ngFor="let theme of selectedThemes | async">
+                    {{theme.theme}}
+                    <button md-icon-button type="button" class="mini-button">
+                        <md-icon>cancel</md-icon>
+                    </button>
+                </md-chip>
+            </md-chip-list>
+        </div>
+        <div class="filter-row" [routerLink]="['subtheme']">
+            <span >Subthemes</span>
+            <span class="spacer"></span>
+            <button md-icon-button type="button" >
+                <md-icon>chevron_right</md-icon>
+            </button>
+        </div>
+        <div>
+            <md-chip-list>
+                <md-chip color="accent" selected="true" *ngFor="let subtheme of selectedSubthemes | async"> 
+                    {{subtheme.subtheme}}
+                    <button md-icon-button type="button" class="mini-button">
+                        <md-icon>cancel</md-icon>
+                    </button>
+                </md-chip>
+            </md-chip-list>
+        </div>
+        <div class="filter-row" [routerLink]="['year']">
+            <span >Years</span>
+            <span class="spacer"></span>
+            <button md-icon-button type="button">
+                <md-icon>chevron_right</md-icon>
+            </button>
+        </div>
+        <div>
+            <md-chip-list>
+                <md-chip color="accent" selected="true" *ngFor="let year of selectedYears | async"> 
+                    {{year.year}}
+                    <button md-icon-button type="button" class="mini-button">
+                        <md-icon>cancel</md-icon>
+                    </button>
+                </md-chip>
+            </md-chip-list>
+        </div>
     </div>
+    <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>

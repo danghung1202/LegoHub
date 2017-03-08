@@ -4,6 +4,9 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
     selector: 'b-layout',
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: require('./layout.component.html'),
+    styles: [`
+       
+    `]
 })
 export class LayoutComponent { 
     @Input() themes;

@@ -19,14 +19,21 @@ class Url {
 
 @Injectable()
 export class AppService {
+    _themes: any = null;
     constructor(private http: Http, private store: Store<AppState>, private errorActions: ErrorActions) { }
     
+
     getThemes(): Observable<Theme[]> {
-        return this.http.get(Url.GetThemes)
+        if(!this._themes){
+            this._themes = this.http.get(Url.GetThemes)
             .map(res => res.json())
+            .publishReplay(1)
+            .refCount()
             .catch(error => {
                 return this.handleError(error);
             });
+        }
+        return this._themes;
     }
 
     getThemesInThisYear(): Observable<Theme[]> {

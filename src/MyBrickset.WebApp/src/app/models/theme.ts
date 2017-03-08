@@ -4,6 +4,7 @@ export interface Theme {
     subthemeCount?: number;
     yearFrom?: number;
     yearTo?: number;
+    isSelected?: boolean;
 }
 
 export interface Subtheme {
@@ -12,10 +13,12 @@ export interface Subtheme {
     setCount: number;
     yearFrom: number;
     yearTo: number;
+    isSelected?: boolean;
 }
 
 export interface Year {
     theme: string;
     year: string;
     setCount: number;
+    isSelected?: boolean;
 }

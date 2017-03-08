@@ -7,7 +7,7 @@ import { FilterPanelComponent, FilterCriteriaComponent } from '../filter';
 
 const setListRoutes: Routes = [
     {
-        path: 'sets/:themes/:subthemes/:years',
+        path: 'sets/:years/:themes/:subthemes',
         component: SetListComponent,
         children: [
             {
@@ -23,17 +23,6 @@ const setListRoutes: Routes = [
             }
         ]
     },
-    // {
-    //     path: 'filter',
-    //     component: FilterPanelComponent,
-    //     outlet: 'popup',
-    //     children: [
-    //         {
-    //             path: ':id',
-    //             component: FilterCriteriaComponent
-    //         }
-    //     ]
-    // }
 ];
 
 @NgModule({
