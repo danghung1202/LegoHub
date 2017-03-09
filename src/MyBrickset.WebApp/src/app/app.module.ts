@@ -25,7 +25,7 @@ import { HomeComponent, SetListModule, SetDetailComponent, SearchComponent, Logi
         HttpModule,
         MaterialModule.forRoot(),
         StoreModule.provideStore(state.reducer),
-        EffectsModule.run(state.ThemeEffects),
+        EffectsModule.run(state.FilterEffects),
         EffectsModule.run(state.SetEffects),
         SetListModule,
         AppRoutingModule
@@ -42,7 +42,7 @@ import { HomeComponent, SetListModule, SetDetailComponent, SearchComponent, Logi
         ErrorDialogComponent,
         LoginComponent
     ],
-    providers: [state.ThemeActions, state.SetActions, state.ErrorActions, AppService],
+    providers: [state.FilterActions, state.SetActions, state.ErrorActions, AppService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

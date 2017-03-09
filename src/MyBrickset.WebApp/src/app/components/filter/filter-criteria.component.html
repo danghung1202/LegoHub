@@ -3,14 +3,23 @@
         <button md-icon-button type="button" (click)="goBack()">
             <md-icon>arrow_back</md-icon>
         </button>
-        <span>Criteria</span>
+        <span>{{criteriaName}} ({{selectedCount}} selected)</span>
+        <span class="spacer"></span>
+
+        <button md-icon-button type="button" (click)="clearCriterias()">
+            <md-icon>clear</md-icon>
+        </button>
+
+        <button md-icon-button type="button" (click)="applyCriterias()">
+            <md-icon>done</md-icon>
+        </button>
     </md-toolbar>
     <md-list>
-        <md-list-item *ngFor="let criteria of criterias | async">
+        <md-list-item *ngFor="let criteria of criterias | async" [class.selected]="criteria.isSelected" (click)="selectCriteria(criteria)">
             <!--<md-checkbox class="example-margin" [checked]="criteria.isSelected">
                 {{criteria.theme}}
             </md-checkbox>-->
-            {{criteria.lable}}
+            {{criteria.value}}
         </md-list-item>
     </md-list>
 </div>

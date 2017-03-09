@@ -1,13 +1,13 @@
-import { ThemeActions } from './theme.action';
+import { FilterActions } from './filter.action';
 import { SetActions } from './set.action';
 import { ErrorActions } from './error.action';
 
 export {
-    ThemeActions,
+    FilterActions,
     SetActions,
     ErrorActions
 };
 
 export default [
-    ThemeActions
+    FilterActions
 ];

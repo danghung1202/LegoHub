@@ -1,8 +1,8 @@
-import { ThemeEffects } from './theme.effect';
+import { FilterEffects } from './filter.effect';
 import { SetEffects } from './set.effect';
 
 export {
-    ThemeEffects, SetEffects
+    FilterEffects, SetEffects
 };
 
-export default [ThemeEffects];
+export default [FilterEffects];

@@ -2,31 +2,30 @@ import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
 
-import { ThemeActions } from '../actions';
+import { FilterActions } from '../actions';
 import { AppService } from '../../services';
 
 @Injectable()
-export class ThemeEffects {
+export class FilterEffects {
     constructor(
         private action$: Actions,
-        private themeActions: ThemeActions,
+        private filterActions: FilterActions,
         private svc: AppService,
     ) { }
 
     @Effect() loadThemes$ = this.action$
-        .ofType(ThemeActions.LOAD_THEMES)
+        .ofType(FilterActions.LOAD_THEMES)
         .switchMap(() => {
             return this.svc.getThemes()
-            .map(themes => this.themeActions.loadThemesSuccess(themes))
-            .catch(() => of(this.themeActions.loadThemesSuccess([])));
+                .map(themes => this.filterActions.loadThemesSuccess(themes))
+                .catch(() => of(this.filterActions.loadThemesSuccess([])));
         });
 
     @Effect() loadThemesInThisYear$ = this.action$
-        .ofType(ThemeActions.LOAD_THEMES_THIS_YEAR)
+        .ofType(FilterActions.LOAD_THEMES_THIS_YEAR)
         .switchMap(() => {
             return this.svc.getThemesInThisYear()
-            .map(themes => this.themeActions.loadThemesInThisYearSuccess(themes))
-            .catch(() => of(this.themeActions.loadThemesInThisYearSuccess([])));
+                .map(themes => this.filterActions.loadThemesInThisYearSuccess(themes))
+                .catch(() => of(this.filterActions.loadThemesInThisYearSuccess([])));
         });
-
 }

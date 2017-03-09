@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import { ThemeActions } from '../actions';
+import { FilterActions } from '../actions';
 import { Theme, Year } from '../../models';
 
 export interface NavigationState 
@@ -29,14 +29,14 @@ function initYearNavigation(): Year[] {
 
 export function reducer(state = initialState, action: Action): NavigationState {
     switch (action.type) {
-        case ThemeActions.LOAD_THEMES_THIS_YEAR: {
+        case FilterActions.LOAD_THEMES_THIS_YEAR: {
             return {
                 themeNav: state.themeNav,
                 yearNav: state.yearNav,
                 loading: true
             };
         }
-        case ThemeActions.LOAD_THEMES_THIS_YEAR_SUCCESS: {
+        case FilterActions.LOAD_THEMES_THIS_YEAR_SUCCESS: {
             const themes = action.payload;
 
             return {
