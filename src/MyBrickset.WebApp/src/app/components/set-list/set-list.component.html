@@ -14,18 +14,18 @@
 </div>
 <md-card>
     <md-chip-list>
-        <md-chip color="accent" selected="true" *ngFor="let theme of selectedThemes | async">
+        <md-chip color="accent" selected="true" *ngFor="let theme of selectedThemes">
             {{theme.theme}}
             <button md-icon-button type="button" class="mini-button">
                 <md-icon>cancel</md-icon>
             </button>
         </md-chip>
-        <md-chip color="accent" selected="true" *ngFor="let subtheme of selectedSubthemes | async"> {{subtheme.subtheme}}
+        <md-chip color="accent" selected="true" *ngFor="let subtheme of selectedSubthemes"> {{subtheme.subtheme}}
             <button md-icon-button type="button" class="mini-button">
                 <md-icon>cancel</md-icon>
             </button>
         </md-chip>
-        <md-chip color="accent" selected="true" *ngFor="let year of selectedYears | async"> {{year.year}}
+        <md-chip color="accent" selected="true" *ngFor="let year of selectedYears"> {{year.year}}
             <button md-icon-button type="button" class="mini-button">
                 <md-icon>cancel</md-icon>
             </button>

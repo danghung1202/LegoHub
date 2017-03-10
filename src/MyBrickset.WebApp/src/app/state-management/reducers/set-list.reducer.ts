@@ -17,7 +17,6 @@ const initialState: SetListState = {
     loading: false
 };
 
-
 export function reducer(state = initialState, action: Action): SetListState {
     switch (action.type) {
         case SetActions.LOAD_SETS: {

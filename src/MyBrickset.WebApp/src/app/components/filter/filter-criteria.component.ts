@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { Set, Theme, Subtheme, Year } from '../../models';
 
 import { AppState, NavigationState, SetActions, FilterActions } from '../../state-management';
+import { CriteriaType } from '../../data';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,6 +27,16 @@ import { AppState, NavigationState, SetActions, FilterActions } from '../../stat
         .selected {
             background-color: #eee;
         }
+        md-spinner {
+            display:none;
+            height:30px;
+            width:30px;
+            margin: auto;
+        }
+
+        md-spinner.show {
+            display:block;
+        }
         
     `]
 })
@@ -36,6 +47,8 @@ export class FilterCriteriaComponent {
     selectedCount: number;
 
     criterias: Observable<any>;
+    testThemes: Observable<Theme[]>;
+    loading: Observable<boolean>;
 
     constructor(
         private location: Location,
@@ -43,6 +56,8 @@ export class FilterCriteriaComponent {
         private router: Router,
         private store: Store<AppState>,
         private filterActions: FilterActions) {
+        this.loading = this.store.select(s => s.filter).select(s => s.loading);
+        this.store.select(s => s.filter).select(s => s.themes).do(themes=> console.log(themes)).subscribe();
     }
 
     ngOnInit() {
@@ -50,19 +65,30 @@ export class FilterCriteriaComponent {
             .params
             .subscribe(params => {
                 let criteria = params['id'] || '';
-                if (criteria == "theme") {
+                switch (criteria) {
+                    case "theme": {
+                        this.store.dispatch(this.filterActions.loadThemes());
 
-                    this.criteriaName = "Themes";
-                    this.store.dispatch(this.filterActions.loadThemes());
-                    this.criterias = this.store.select(s => s.filter).select(s => s.themes)
-                        .map(themes => {
-                            this.selectedCount = themes.filter(x=>x.isSelected).length;
-                            return themes.map(x => {
-                                return { isSelected: x.isSelected, value: x.theme }
-                            })
-                        });
-
+                        this.criteriaName = CriteriaType.Theme;
+                        this.criterias = this.store.select(s => s.filter).select(s => s.themes.map(item => ({ isSelected: item.isSelected, value: item.theme })))
+                            .do(themes => {this.selectedCount = themes.filter(x => x.isSelected).length;})
+                        break;
+                        
+                    }
+                    case "subtheme": {
+                        this.criteriaName = CriteriaType.Subtheme;
+                        this.criterias = this.store.select(s => s.filter).select(s => s.subthemes.map(item => ({ isSelected: item.isSelected, value: item.subtheme })))
+                            .do(subthemes => this.selectedCount = subthemes.filter(x => x.isSelected).length)
+                        break;
+                    }
+                    case "year": {
+                        this.criteriaName = CriteriaType.Years;
+                        this.criterias = this.store.select(s => s.filter).select(s => s.years.map(item => ({ isSelected: item.isSelected, value: item.year })))
+                            .do(years => this.selectedCount = years.filter(x => x.isSelected).length)
+                        break;
+                    }
                 }
+
             });
     }
 
@@ -73,8 +99,8 @@ export class FilterCriteriaComponent {
     selectCriteria(criteria) {
         criteria.isSelected = !criteria.isSelected;
         this.store.dispatch(this.filterActions.setCriteriaSelected(criteria.value, this.criteriaName));
-        if(criteria.isSelected) {
-            this.selectedCount += 1; 
+        if (criteria.isSelected) {
+            this.selectedCount += 1;
         } else {
             this.selectedCount -= 1;
         }

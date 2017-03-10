@@ -35,6 +35,14 @@ export class FilterActions {
         };
     }
 
+    static LOAD_SUBTHEMES_WITH_YEARS_SUCCESS = '[Filter] Load Subthemes With Years Success';
+    loadSubthemesWithYearsSuccess(result): Action {
+        return {
+            type: FilterActions.LOAD_SUBTHEMES_WITH_YEARS_SUCCESS,
+            payload: result
+        };
+    }
+
     static SET_CRITERIA_SELECTED = '[Filter] Set Criteria Selected';
     setCriteriaSelected(selectedCriteria, criteriaType): Action {
         return {
@@ -56,6 +64,14 @@ export class FilterActions {
         return {
             type: FilterActions.CLEAR_CRITERIA_SELECTED,
             payload: criteriaType
+        };
+    }
+
+    static SET_FILTER = '[Filter] Set filter';
+    setFilter(themes?: string, subthemes?: string, years?: string): Action {
+        return {
+            type: FilterActions.SET_FILTER,
+            payload: { themes: themes, subthemes: subthemes, years: years }
         };
     }
 

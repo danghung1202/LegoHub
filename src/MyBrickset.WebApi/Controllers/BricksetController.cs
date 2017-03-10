@@ -40,14 +40,14 @@ namespace MyBrickset.WebApi.Controllers
         }
 
         [Route("subthemes")]
-        public IActionResult GetSubthemesWithYears(string theme)
+        public IActionResult GetSubthemesWithYears(string themes)
         {
-            var subthemes = (_bricksetRepo.GetSubthemesAndYears(theme).Result);
-            if (subthemes == null)
+            var subthemesWithYears = (_bricksetRepo.GetSubthemesAndYears(themes).Result);
+            if (subthemesWithYears == null)
             {
                 return NotFound();
             }
-            return new ObjectResult(subthemes);
+            return new ObjectResult(subthemesWithYears);
         }
 
         [Route("sets")]

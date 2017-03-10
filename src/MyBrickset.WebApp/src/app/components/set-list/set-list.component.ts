@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 
 import { Set, Theme, Subtheme, Year } from '../../models';
 
-import { AppState, NavigationState, SetActions } from '../../state-management';
+import { AppState, NavigationState, SetActions, FilterActions } from '../../state-management';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -50,9 +50,9 @@ export class SetListComponent implements OnInit {
     sortCriterias: Observable<any>;
     loading: Observable<boolean>;
 
-    selectedThemes: Observable<Theme[]>;
-    selectedSubthemes: Observable<Subtheme[]>;
-    selectedYears: Observable<Year[]>;
+    selectedThemes: Theme[];
+    selectedSubthemes: Subtheme[];
+    selectedYears: Year[];
 
     selectedCriteria: string;
     params: any = {
@@ -66,15 +66,16 @@ export class SetListComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private store: Store<AppState>,
-        private setActions: SetActions) {
+        private setActions: SetActions,
+        private filterActions: FilterActions) {
 
         this.sets = this.store.select(s => s.sets).select(s => s.sets);
         this.sortCriterias = this.store.select(s => s.sets).select(s => s.sortCriterias);
         this.loading = this.store.select(s => s.sets).select(s => s.loading);
 
-        this.selectedThemes = this.store.select(s => s.filter).select(s => s.selectedThemes);
-        this.selectedSubthemes = this.store.select(s => s.filter).select(s => s.selectedSubthems);
-        this.selectedYears = this.store.select(s => s.filter).select(s => s.selectedYear);
+        // this.selectedThemes = this.store.select(s => s.filter).select(s => s.selectedThemes.filter(x=>x.isApplied));
+        // this.selectedSubthemes = this.store.select(s => s.filter).select(s => s.selectedSubthems.filter(x=>x.isApplied));
+        // this.selectedYears = this.store.select(s => s.filter).select(s => s.selectedYear.filter(x=>x.isApplied));
     }
 
     ngOnInit() {
@@ -86,8 +87,14 @@ export class SetListComponent implements OnInit {
                 let subthemes = params['subthemes'] || '';
                 let years = params['years'] || '';
 
+                this.selectedThemes = themes.split(',').filter(item => item.trim() != '').map((theme) =>({theme: theme, isSelected: true }));
+
+                this.selectedSubthemes = subthemes.split(',').filter(item => item.trim() != '').map(subtheme => ({ subtheme: subtheme, isSelected: true }));
+
+                this.selectedYears = years.split(',').filter(item => item.trim() != '').map(year => ({ year: year, isSelected: true }));
+
                 this.store.dispatch(this.setActions.loadSets(themes, subthemes, years));
-                this.store.dispatch(this.setActions.setFilter(themes, subthemes, years));
+                this.store.dispatch(this.filterActions.setFilter(themes, subthemes, years));
                 console.log(`${themes}/${subthemes}/${years}`);
             });
 
@@ -106,6 +113,7 @@ export class SetListComponent implements OnInit {
         let themes = this.params['themes'] || '';
         let subthemes = this.params['subthemes'] || '';
         let years = this.params['years'] || '';
+        this.store.dispatch(this.filterActions.setFilter(themes, subthemes, years));
 
         let navigationExtras: NavigationExtras = {
             //queryParams: { themes: themes, subthemes: subthemes, years: years },

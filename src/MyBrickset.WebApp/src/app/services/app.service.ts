@@ -7,33 +7,39 @@ import { Store } from '@ngrx/store';
 import { Theme, Set } from '../models';
 import { AppState, ErrorActions } from '../state-management';
 
-import sortCriterias from '../data/sort-criterias';
+import { sortCriterias } from '../data';
 
 class Url {
     static GetThemes = 'api/brickset/themes';
     static GetThemesInThisYear = 'api/brickset/theme-nav';
-    static GetSubthemes = 'api/brickset/subthemes';
+    static GetSubthemesWithYears = 'api/brickset/subthemes';
     static GetSets = 'api/brickset/sets';
-    static GetSortCriterias = '../data/sort-criterias.json';
 }
 
 @Injectable()
 export class AppService {
     _themes: any = null;
     constructor(private http: Http, private store: Store<AppState>, private errorActions: ErrorActions) { }
-    
 
     getThemes(): Observable<Theme[]> {
-        if(!this._themes){
+        if (!this._themes) {
             this._themes = this.http.get(Url.GetThemes)
+                .map(res => res.json())
+                .publishReplay(1)
+                .refCount()
+                .catch(error => {
+                    return this.handleError(error);
+                });
+        }
+        return this._themes;
+    }
+
+    getSubthemesWithYears(themes): Observable<any> {
+        return this.http.get(`${Url.GetSubthemesWithYears}?themes=${themes}`)
             .map(res => res.json())
-            .publishReplay(1)
-            .refCount()
             .catch(error => {
                 return this.handleError(error);
             });
-        }
-        return this._themes;
     }
 
     getThemesInThisYear(): Observable<Theme[]> {
@@ -53,11 +59,6 @@ export class AppService {
     }
 
     getSortCriterias(): Observable<any> {
-        // return this.http.get(Url.GetSortCriterias)
-        //     .map(res => res.json())
-        //     .catch(error => {
-        //         return this.handleError(error);
-        //     });
         return Observable.of(sortCriterias);
     }
 

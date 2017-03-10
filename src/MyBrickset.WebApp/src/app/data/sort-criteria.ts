@@ -41,4 +41,6 @@ let sortCriterias = [
     }
 ]
 
-export default sortCriterias;
+export {
+   sortCriterias 
+}

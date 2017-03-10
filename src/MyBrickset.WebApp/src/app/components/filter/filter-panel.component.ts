@@ -64,6 +64,9 @@ export class FilterPanelComponent {
     selectedSubthemes: Observable<Subtheme[]>;
     selectedYears: Observable<Year[]>;
 
+    subParams: Subscription;
+    params: any;
+
     constructor(
         private location: Location,
         private route: ActivatedRoute,
@@ -76,13 +79,32 @@ export class FilterPanelComponent {
         this.selectedYears = this.store.select(s => s.filter).select(s => s.selectedYear);
     }
 
+    ngOnInit() {
+        this.subParams = Observable.combineLatest(this.selectedThemes, this.selectedSubthemes, this.selectedYears,
+            (themes, subthemes, years) => ({ themes: themes.map(x=>x.theme).join(','), subthemes: subthemes.map(x=>x.subtheme).join(','), years: years.map(x=>x.year).join(',') }))
+            .subscribe(result => {
+                    if(result.themes == '') result.themes = ' ';
+                    if(result.subthemes == '') result.subthemes = ' ';
+                    if(result.years == '') result.years = ' ';
+
+                    this.params = result;
+                });
+    }
+
     goBack() {
         this.location.back();
     }
 
     applyFilter() {
+
+        this.router.navigate(['/sets', this.params["years"], this.params["themes"], this.params["subthemes"]])
     }
 
     clearFilter() {
+
+    }
+
+    ngOnDestroy() {
+        this.subParams.unsubscribe();
     }
 }

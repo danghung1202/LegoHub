@@ -33,12 +33,4 @@ export class SetActions {
             payload: criterias
         };
     }
-
-    static SET_FILTER = '[Set] Set filter';
-    setFilter(themes?: string, subthemes?: string, years?: string): Action {
-        return {
-            type: SetActions.SET_FILTER,
-            payload: { themes: themes, subthemes: subthemes, years: years }
-        };
-    }
 }

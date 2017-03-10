@@ -59,17 +59,33 @@ namespace MyBrickset.Data.Repositories
             return yearsResponse?.Body?.getYearsResult?.ToList();
         }
 
-        public async Task<object> GetSubthemesAndYears(string theme)
+        public async Task<object> GetSubthemesAndYears(string themes)
         {
-            var years = await GetYearsAsync(theme);
-            var subthemes = await GetSubthemesAsync(theme);
-            return new {years = years, subthemes = subthemes};
+            var themeArray = themes.Split(',');
+            var years = new List<years>();
+            var subthemes = new List<subthemes>();
+            foreach (var theme in themeArray)
+            {
+                if (!string.IsNullOrWhiteSpace(theme))
+                {
+                    years.AddRange(await GetYearsAsync(theme));
+                    subthemes.AddRange(await GetSubthemesAsync(theme));
+                }
+            }
+
+            years = years.GroupBy(x => x.year).Select(g => new years
+            {
+                year = g.Key,
+                setCount = g.Sum(x=>x.setCount)
+            }).ToList();
+
+            return new { years = years, subthemes = subthemes };
         }
 
         public async Task<List<sets>> GetSetsAsync(string theme, string subtheme, string year)
         {
             return
-                await GetSetsAsync(theme, subtheme, year, SetOrderBy.Number, _config.PageSize.ToString(),_config.PageNumber.ToString());
+                await GetSetsAsync(theme, subtheme, year, SetOrderBy.Number, _config.PageSize.ToString(), _config.PageNumber.ToString());
         }
 
         public async Task<List<sets>> GetSetsAsync(string theme, string subtheme, string year, string orderBy, string pageSize,
@@ -80,7 +96,7 @@ namespace MyBrickset.Data.Repositories
                         pageSize, pageNumber, string.Empty, string.Empty);
         }
         public async Task<List<sets>> GetSetsAsync(string query, string theme, string subtheme, string setNumber, string year, string owned,
-            string wanted, string orderBy, string pageSize, string pageNumber, string userName,string userHash)
+            string wanted, string orderBy, string pageSize, string pageNumber, string userName, string userHash)
         {
             var setsResponse = await _service.getSetsAsync(new getSetsRequest()
             {

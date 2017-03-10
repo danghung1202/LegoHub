@@ -24,7 +24,6 @@ export class SetEffects {
 
     @Effect() getSortCriterias$ = this.action$
         .ofType(SetActions.LOAD_SORT_CRITERIAS)
-        .map(action => action.payload)
         .switchMap(() => {
             return this.svc.getSortCriterias()
                 .map(criterias => this.setActions.loadSortCriteriasSuccess(criterias))
