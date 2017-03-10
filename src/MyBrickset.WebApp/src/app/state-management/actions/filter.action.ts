@@ -67,11 +67,19 @@ export class FilterActions {
         };
     }
 
-    static SET_FILTER = '[Filter] Set filter';
+    static SET_FILTER = '[Filter] Set Filter';
     setFilter(themes?: string, subthemes?: string, years?: string): Action {
         return {
             type: FilterActions.SET_FILTER,
             payload: { themes: themes, subthemes: subthemes, years: years }
+        };
+    }
+
+    static RESET_FILTER = '[Filter] Reset Filter';
+    resetFilter(criteriaType): Action {
+        return {
+            type: FilterActions.RESET_FILTER,
+            payload: criteriaType
         };
     }
 

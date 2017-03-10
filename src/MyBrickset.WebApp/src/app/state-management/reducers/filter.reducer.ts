@@ -15,7 +15,7 @@ export interface FilterState {
     selectedYear: Year[];
 
     loading: boolean;
-    isDirty?: boolean;    
+    isDirty?: boolean;
 };
 
 const initialState: FilterState = {
@@ -148,7 +148,7 @@ export function reducer(state = initialState, action: Action): FilterState {
 
             switch (criteriaType) {
                 case CriteriaType.Theme: {
-                    state.themes.forEach((theme,index) => {
+                    state.themes.forEach((theme, index) => {
                         theme.isSelected = false
                     });
                     break;
@@ -231,6 +231,44 @@ export function reducer(state = initialState, action: Action): FilterState {
                 themes: state.themes,
                 subthemes: result.subthemes,
                 years: result.years,
+
+                selectedThemes: state.selectedThemes,
+                selectedSubthems: state.selectedSubthems,
+                selectedYear: state.selectedYear,
+
+                loading: false
+            };
+        }
+
+        case FilterActions.RESET_FILTER: {
+            const criteriaType = action.payload;
+            switch (criteriaType) {
+                case CriteriaType.Subtheme: {
+                    state.subthemes.forEach(element => {
+                        if (state.selectedSubthems.findIndex(x => x.subtheme == element.subtheme) >= 0) {
+                            element.isSelected = true;
+                        } else {
+                            element.isSelected = false;
+                        }
+                    });
+                    break;
+                }
+                case CriteriaType.Years: {
+                    state.years.forEach(element => {
+                        if (state.selectedYear.findIndex(x => x.year == element.year) >= 0) {
+                            element.isSelected = true;
+                        } else {
+                            element.isSelected = false;
+                        }
+                    });
+                    break;
+                }
+            }
+
+            return {
+                themes: state.themes,
+                subthemes: state.subthemes,
+                years: state.years,
 
                 selectedThemes: state.selectedThemes,
                 selectedSubthems: state.selectedSubthems,

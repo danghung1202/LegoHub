@@ -47,7 +47,6 @@ export class FilterCriteriaComponent {
     selectedCount: number;
 
     criterias: Observable<any>;
-    testThemes: Observable<Theme[]>;
     loading: Observable<boolean>;
 
     constructor(
@@ -57,7 +56,6 @@ export class FilterCriteriaComponent {
         private store: Store<AppState>,
         private filterActions: FilterActions) {
         this.loading = this.store.select(s => s.filter).select(s => s.loading);
-        this.store.select(s => s.filter).select(s => s.themes).do(themes=> console.log(themes)).subscribe();
     }
 
     ngOnInit() {
@@ -71,17 +69,21 @@ export class FilterCriteriaComponent {
 
                         this.criteriaName = CriteriaType.Theme;
                         this.criterias = this.store.select(s => s.filter).select(s => s.themes.map(item => ({ isSelected: item.isSelected, value: item.theme })))
-                            .do(themes => {this.selectedCount = themes.filter(x => x.isSelected).length;})
+                            .do(themes => { this.selectedCount = themes.filter(x => x.isSelected).length; })
                         break;
-                        
+
                     }
                     case "subtheme": {
+                        this.store.dispatch(this.filterActions.resetFilter(CriteriaType.Subtheme));
+
                         this.criteriaName = CriteriaType.Subtheme;
                         this.criterias = this.store.select(s => s.filter).select(s => s.subthemes.map(item => ({ isSelected: item.isSelected, value: item.subtheme })))
                             .do(subthemes => this.selectedCount = subthemes.filter(x => x.isSelected).length)
                         break;
                     }
                     case "year": {
+                        this.store.dispatch(this.filterActions.resetFilter(CriteriaType.Years));
+
                         this.criteriaName = CriteriaType.Years;
                         this.criterias = this.store.select(s => s.filter).select(s => s.years.map(item => ({ isSelected: item.isSelected, value: item.year })))
                             .do(years => this.selectedCount = years.filter(x => x.isSelected).length)
