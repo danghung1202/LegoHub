@@ -38,21 +38,17 @@ export function reducer(state = initialState, action: Action): FilterState {
 
             let selectedThemes: Theme[] = [];
             if (filter.themes) {
-                selectedThemes = filter.themes.split(',').filter(item => item.trim() != '').map((theme) => ({ theme: theme, isSelected: true }));
+                selectedThemes = filter.themes.split(',').filter(item => item.trim() != '').map((theme) => ({ theme: theme }));
             }
 
             let selectedSubthemes: Subtheme[] = [];
             if (filter.subthemes) {
-                selectedSubthemes = filter.subthemes.split(',').filter(item => item.trim() != '').map(function (subtheme) {
-                    return { subtheme: subtheme, isSelected: true }
-                });
+                selectedSubthemes = filter.subthemes.split(',').filter(item => item.trim() != '').map((subtheme) =>({ subtheme: subtheme}));
             }
 
             let selectedYears: Year[] = [];
             if (filter.years) {
-                selectedYears = filter.years.split(',').filter(item => item.trim() != '').map(function (year) {
-                    return { year: year, isSelected: true }
-                });
+                selectedYears = filter.years.split(',').filter(item => item.trim() != '').map((year) =>({ year: year}));
             }
 
             return {
@@ -191,7 +187,8 @@ export function reducer(state = initialState, action: Action): FilterState {
                     state.selectedThemes = state.themes.filter(item => item.isSelected);
                     state.subthemes = [];
                     state.years = [];
-                    state.loading = true;
+                    if(state.selectedThemes.length > 0)
+                        state.loading = true;
                     break;
                 }
                 case CriteriaType.Subtheme: {
@@ -247,42 +244,47 @@ export function reducer(state = initialState, action: Action): FilterState {
         }
 
         case FilterActions.RESET_FILTER: {
-            const criteriaType = action.payload;
-            switch (criteriaType) {
-                case CriteriaType.Subtheme: {
-                    state.subthemes.forEach(element => {
-                        if (state.selectedSubthems.findIndex(x => x.subtheme == element.subtheme) >= 0) {
-                            element.isSelected = true;
-                        } else {
-                            element.isSelected = false;
-                        }
-                    });
-                    break;
+            
+            if (!state.loading) {
+                const criteriaType = action.payload;
+                switch (criteriaType) {
+                    case CriteriaType.Subtheme: {
+                        state.subthemes.forEach(element => {
+                            if (state.selectedSubthems.findIndex(x => x.subtheme == element.subtheme) >= 0) {
+                                element.isSelected = true;
+                            } else {
+                                element.isSelected = false;
+                            }
+                        });
+                        break;
+                    }
+                    case CriteriaType.Years: {
+                        state.years.forEach(element => {
+                            if (state.selectedYear.findIndex(x => x.year == element.year) >= 0) {
+                                element.isSelected = true;
+                            } else {
+                                element.isSelected = false;
+                            }
+                        });
+                        break;
+                    }
                 }
-                case CriteriaType.Years: {
-                    state.years.forEach(element => {
-                        if (state.selectedYear.findIndex(x => x.year == element.year) >= 0) {
-                            element.isSelected = true;
-                        } else {
-                            element.isSelected = false;
-                        }
-                    });
-                    break;
-                }
+
+                return {
+                    themes: state.themes,
+                    subthemes: state.subthemes,
+                    years: state.years,
+
+                    selectedThemes: state.selectedThemes,
+                    selectedSubthems: state.selectedSubthems,
+                    selectedYear: state.selectedYear,
+
+                    loading: state.loading,
+                    isDirty: state.isDirty
+                };
             }
 
-            return {
-                themes: state.themes,
-                subthemes: state.subthemes,
-                years: state.years,
-
-                selectedThemes: state.selectedThemes,
-                selectedSubthems: state.selectedSubthems,
-                selectedYear: state.selectedYear,
-
-                loading: false,
-                isDirty: false
-            };
+            return state;
         }
 
         default: {

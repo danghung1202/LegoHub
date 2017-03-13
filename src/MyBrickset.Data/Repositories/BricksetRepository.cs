@@ -85,7 +85,14 @@ namespace MyBrickset.Data.Repositories
                 {
                     year = g.Key,
                     setCount = g.Sum(x => x.setCount)
-                }).ToList();
+                }).OrderBy(y => y.year).ToList();
+
+                subthemes = subthemes.GroupBy(x => x.subtheme).Select(g => new subthemes
+                {
+                    subtheme = g.Key,
+                    setCount = g.Sum(x => x.setCount)
+                }).OrderBy(y => y.subtheme).ToList();
+
             }
 
             return new { years = years, subthemes = subthemes };
@@ -94,14 +101,22 @@ namespace MyBrickset.Data.Repositories
         public async Task<List<sets>> GetSetsAsync(string theme, string subtheme, string year)
         {
             return
-                await GetSetsAsync(theme, subtheme, year, SetOrderBy.Number, _config.PageSize.ToString(), _config.PageNumber.ToString());
+                await GetSetsAsync(string.Empty, theme, subtheme, year, SetOrderBy.Number, _config.PageSize.ToString(), _config.PageNumber.ToString());
         }
 
-        public async Task<List<sets>> GetSetsAsync(string theme, string subtheme, string year, string orderBy, string pageSize,
+        public async Task<List<sets>> GetSetsAsync(string q, string theme, string subtheme, string year, string orderBy, string pageSize,
             string pageNumber)
         {
+            q = string.IsNullOrWhiteSpace(q) ? string.Empty : q;
+            theme = string.IsNullOrWhiteSpace(theme) ? string.Empty : theme;
+            subtheme = string.IsNullOrWhiteSpace(subtheme) ? string.Empty : subtheme;
+            year = string.IsNullOrWhiteSpace(year) ? string.Empty : year;
+            orderBy = string.IsNullOrWhiteSpace(orderBy) ? SetOrderBy.Number : orderBy;
+            pageNumber = string.IsNullOrWhiteSpace(pageNumber) ? _config.PageNumber.ToString() : pageNumber;
+            pageSize = string.IsNullOrWhiteSpace(pageSize) ? _config.PageSize.ToString() : pageSize;
+
             return
-                await GetSetsAsync(string.Empty, theme, subtheme, string.Empty, year, string.Empty, string.Empty, orderBy,
+                await GetSetsAsync(q, theme, subtheme, string.Empty, year, string.Empty, string.Empty, orderBy,
                         pageSize, pageNumber, string.Empty, string.Empty);
         }
         public async Task<List<sets>> GetSetsAsync(string query, string theme, string subtheme, string setNumber, string year, string owned,

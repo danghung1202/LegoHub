@@ -40,6 +40,14 @@ md-sidenav-container .md-sidenav-content {
     margin-left: 24px;
 }
 
+.show {
+    display:block;
+}
+
+.hide {
+    display:none;
+}
+
 /* The Modal (background) */
 .modal {
     display: block; /* Hidden by default */

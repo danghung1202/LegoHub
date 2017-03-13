@@ -19,6 +19,22 @@ export class SetActions {
         };
     }
 
+    static LOAD_MORE_SETS = '[Set] Load More Sets';
+    loadMoreSets(themes?: string, subthemes?: string, years?: string, query?: string, page?: string, order?: string, show?: string): Action {
+        return {
+            type: SetActions.LOAD_MORE_SETS,
+            payload: { themes: themes, subthemes: subthemes, years: years, query: query, page: page, order: order, show: show }
+        };
+    }
+
+    static LOAD_MORE_SETS_SUCCESS = '[Set] Load More Sets Success';
+    loadMoreSetsSuccess(sets): Action {
+        return {
+            type: SetActions.LOAD_MORE_SETS_SUCCESS,
+            payload: sets
+        };
+    }
+
     static LOAD_SORT_CRITERIAS = '[Set] Load Sort Criterias';
     loadSortCriterias(): Action {
         return {

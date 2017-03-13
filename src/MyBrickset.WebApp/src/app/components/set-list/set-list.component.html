@@ -43,6 +43,6 @@
         <button md-button>SHARE</button>
     </md-card-actions>
 </md-card>
+<button id="loadMoreBtn" md-raised-button (click)="loadMore()" [class.show]="showMore | async" class="full-width">Load more</button>
 <md-spinner [class.show]="loading | async"></md-spinner>
-<router-outlet name="child"></router-outlet>
 <router-outlet></router-outlet>

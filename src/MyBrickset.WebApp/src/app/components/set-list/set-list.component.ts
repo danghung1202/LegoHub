@@ -27,7 +27,15 @@ import { AppState, NavigationState, SetActions, FilterActions } from '../../stat
         }
 
         md-spinner.show {
-            display:block;
+            display: block;
+        }
+
+        #loadMoreBtn {
+            display: none;
+        }
+
+        #loadMoreBtn.show {
+            display: block;
         }
 
         .mini-button {
@@ -45,10 +53,12 @@ import { AppState, NavigationState, SetActions, FilterActions } from '../../stat
 })
 export class SetListComponent implements OnInit {
     subParams: Subscription;
+    subFilter: Subscription;
 
     sets: Observable<Set[]>;
     sortCriterias: Observable<any>;
     loading: Observable<boolean>;
+    showMore: Observable<boolean>;
 
     selectedThemes: Theme[];
     selectedSubthemes: Subtheme[];
@@ -62,7 +72,7 @@ export class SetListComponent implements OnInit {
     };
 
     isFilterDirty: boolean = false;
-    subFilter: Subscription;
+    pageNumber: number = 1;
 
     constructor(
         private route: ActivatedRoute,
@@ -74,6 +84,7 @@ export class SetListComponent implements OnInit {
         this.sets = this.store.select(s => s.sets).select(s => s.sets);
         this.sortCriterias = this.store.select(s => s.sets).select(s => s.sortCriterias);
         this.loading = this.store.select(s => s.sets).select(s => s.loading);
+        this.showMore =  this.store.select(s => s.sets).select(s => s.showMore);
         this.subFilter = this.store.select(s => s.filter).subscribe(filter => this.isFilterDirty = filter.isDirty);
     }
 
@@ -81,6 +92,7 @@ export class SetListComponent implements OnInit {
         this.subParams = this.route
             .params
             .subscribe(params => {
+                this.pageNumber = 1;
                 this.params = params;
                 let themes = params['themes'] || '';
                 let subthemes = params['subthemes'] || '';
@@ -123,5 +135,13 @@ export class SetListComponent implements OnInit {
 
         //this.router.navigate([{ outlets: { child: "filter" }}], navigationExtras);
         this.router.navigate(["filter"], navigationExtras);
+    }
+
+    loadMore() {
+        let themes = this.params['themes'];
+        let subthemes = this.params['subthemes'];
+        let years = this.params['years'];
+        this.pageNumber = this.pageNumber + 1;
+        this.store.dispatch(this.setActions.loadMoreSets(themes, subthemes, years,'', this.pageNumber.toString()));
     }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Store } from '@ngrx/store';
@@ -50,8 +50,17 @@ export class AppService {
             });
     }
 
-    getSets(themes?: string, subthemes?: string, years?: string): Observable<Set[]> {
-        return this.http.get(`${Url.GetSets}?themes=${themes}&subthemes=${subthemes}&years=${years}`)
+    getSets(themes?: string, subthemes?: string, years?: string, query?: string, page?: string, order?: string, show?: string): Observable<Set[]> {
+        let params: URLSearchParams = new URLSearchParams();
+        if (themes && themes != ' ') params.set('themes', themes);
+        if (subthemes && subthemes != ' ') params.set('subthemes', subthemes);
+        if (years && years != ' ') params.set('years', years);
+        if (query && query != ' ') params.set('q', query);
+        if (page && page != ' ') params.set('page', page);
+        if (order && order != ' ') params.set('order', order);
+        if (show && show != ' ') params.set('show', show);
+
+        return this.http.get(Url.GetSets, { search: params })
             .map(res => res.json())
             .catch(error => {
                 return this.handleError(error);

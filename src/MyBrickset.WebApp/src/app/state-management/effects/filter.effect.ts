@@ -45,7 +45,7 @@ export class FilterEffects {
         .ofType(FilterActions.APPLY_CRITERIAS_SELECTED)
         .map(action => action.payload)
         .switchMap(criteriaType => {
-            if (criteriaType == CriteriaType.Theme) {
+            if (criteriaType == CriteriaType.Theme && this.selectedThemes && this.selectedThemes.trim()) {
                 return this.svc.getSubthemesWithYears(this.selectedThemes)
                     .map(result => this.filterActions.loadSubthemesWithYearsSuccess(result))
                     .catch(() => of(this.filterActions.loadSubthemesWithYearsSuccess({ years: [], subthemes: [] })));
@@ -56,8 +56,11 @@ export class FilterEffects {
     @Effect() setFilter$ = this.action$
         .ofType(FilterActions.SET_FILTER)
         .switchMap(() => {
-            return this.svc.getSubthemesWithYears(this.selectedThemes)
-                .map(result => this.filterActions.loadSubthemesWithYearsSuccess(result))
-                .catch(() => of(this.filterActions.loadSubthemesWithYearsSuccess({ years: [], subthemes: [] })));
+            if (this.selectedThemes && this.selectedThemes.trim()) {
+                return this.svc.getSubthemesWithYears(this.selectedThemes)
+                    .map(result => this.filterActions.loadSubthemesWithYearsSuccess(result))
+                    .catch(() => of(this.filterActions.loadSubthemesWithYearsSuccess({ years: [], subthemes: [] })));
+            }
+            return empty();
         });
 }

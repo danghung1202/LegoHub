@@ -83,9 +83,9 @@ export class FilterPanelComponent {
         this.subParams = Observable.combineLatest(this.selectedThemes, this.selectedSubthemes, this.selectedYears,
             (themes, subthemes, years) => ({ themes: themes.map(x=>x.theme).join(','), subthemes: subthemes.map(x=>x.subtheme).join(','), years: years.map(x=>x.year).join(',') }))
             .subscribe(result => {
-                    if(result.themes == '') result.themes = ' ';
-                    if(result.subthemes == '') result.subthemes = ' ';
-                    if(result.years == '') result.years = ' ';
+                    if(!result.themes) result.themes = ' ';
+                    if(!result.subthemes) result.subthemes = ' ';
+                    if(!result.years) result.years = ' ';
 
                     this.params = result;
                 });

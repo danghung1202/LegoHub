@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using MyBrickset.Data.Repositories;
@@ -32,7 +33,7 @@ namespace MyBrickset.WebApi.Controllers
             var themes = (_bricksetRepo.GetThemesAsync().Result);
             if (themes == null)
             {
-                return NotFound();
+                return new ObjectResult(new List<BricksetService.themes>());
             }
 
             var themesThisYear = themes.Where(x => x.yearTo == thisYear && x.theme != "{Undefined}").OrderBy(x => x.theme).ToList();
@@ -45,18 +46,18 @@ namespace MyBrickset.WebApi.Controllers
             var subthemesWithYears = (_bricksetRepo.GetSubthemesAndYears(themes).Result);
             if (subthemesWithYears == null)
             {
-                return new EmptyResult();
+                return new ObjectResult(new List<BricksetService.subthemes>());
             }
             return new ObjectResult(subthemesWithYears);
         }
 
         [Route("sets")]
-        public IActionResult GetSets(string themes, string subthemes, string years)
+        public IActionResult GetSets(string q, string themes, string subthemes, string years, string page, string order,string show)
         {
-            var sets = (_bricksetRepo.GetSetsAsync(themes ?? string.Empty, subthemes ?? string.Empty, years ?? string.Empty).Result);
+            var sets = (_bricksetRepo.GetSetsAsync(q, themes, subthemes, years, order, show, page).Result) ;
             if (sets == null)
             {
-                return new EmptyResult();
+                return new ObjectResult(new List<BricksetService.sets>());
             }
             return new ObjectResult(sets);
         }

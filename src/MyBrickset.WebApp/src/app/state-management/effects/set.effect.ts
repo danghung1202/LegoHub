@@ -29,4 +29,14 @@ export class SetEffects {
                 .map(criterias => this.setActions.loadSortCriteriasSuccess(criterias))
                 .catch(() => of(this.setActions.loadSortCriteriasSuccess([])));
         });
+
+
+    @Effect() getMoreSets$ = this.action$
+        .ofType(SetActions.LOAD_MORE_SETS)
+        .map(action => action.payload)
+        .switchMap(params => {
+            return this.svc.getSets(params.themes, params.subthemes, params.years, params.query, params.page, params.order, params.show)
+                .map(sets => this.setActions.loadMoreSetsSuccess(sets))
+                .catch(() => of(this.setActions.loadMoreSetsSuccess([])));
+        });
 }
