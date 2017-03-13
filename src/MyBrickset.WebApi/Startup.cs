@@ -1,12 +1,15 @@
 ﻿using System.IO;
+using System.Net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using BricksetService;
+using Microsoft.AspNetCore.Diagnostics;
 using MyBrickset.Data.Repositories;
 using MyBrickset.Data.Config;
+using Microsoft.AspNetCore.Http;
 
 namespace MyBrickset.WebApi
 {
@@ -58,19 +61,42 @@ namespace MyBrickset.WebApi
             loggerFactory.AddDebug();
 
             app.UseApplicationInsightsRequestTelemetry();
-
             app.UseApplicationInsightsExceptionTelemetry();
+
+            //http://www.talkingdotnet.com/global-exception-handling-in-aspnet-core-webapi/
+            app.UseExceptionHandler(
+                        options =>
+                        {
+                            options.Run(
+                                async context =>
+                                {
+                                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                                    context.Response.ContentType = "application/json"; //  "text/html"; 
+                                    var ex = context.Features.Get<IExceptionHandlerFeature>();
+                                    if (ex != null)
+                                    {
+                                        var err = $"<h1>Error: {ex.Error.Message}</h1>{ex.Error.StackTrace}";
+                                        await context.Response.WriteAsync(err).ConfigureAwait(false);
+                                    }
+                                });
+                        }
+                    );
+
+            if (env.IsDevelopment())
+            {
+                //app.UseDeveloperExceptionPage();
+            }
+
             app.Use(async (context, next) =>
             {
                 await next();
-
-                if (context.Response.StatusCode == 404
-                    && !Path.HasExtension(context.Request.Path.Value))
+                if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value))
                 {
                     context.Request.Path = "/index.html";
                     await next();
                 }
             });
+
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {

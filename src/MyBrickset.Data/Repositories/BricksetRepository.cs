@@ -28,7 +28,7 @@ namespace MyBrickset.Data.Repositories
                 }
             });
 
-            return themesResponse.Body.getThemesResult.ToList();
+            return themesResponse?.Body?.getThemesResult?.ToList();
         }
 
         public async Task<List<subthemes>> GetSubthemesAsync(string theme)
@@ -42,7 +42,7 @@ namespace MyBrickset.Data.Repositories
                 }
             });
 
-            return subthemesResponse.Body.getSubthemesResult.ToList();
+            return subthemesResponse?.Body?.getSubthemesResult?.ToList();
         }
 
         public async Task<List<years>> GetYearsAsync(string theme)
@@ -61,23 +61,32 @@ namespace MyBrickset.Data.Repositories
 
         public async Task<object> GetSubthemesAndYears(string themes)
         {
-            var themeArray = themes.Split(',');
             var years = new List<years>();
             var subthemes = new List<subthemes>();
-            foreach (var theme in themeArray)
-            {
-                if (!string.IsNullOrWhiteSpace(theme))
-                {
-                    years.AddRange(await GetYearsAsync(theme));
-                    subthemes.AddRange(await GetSubthemesAsync(theme));
-                }
-            }
 
-            years = years.GroupBy(x => x.year).Select(g => new years
+            if (!string.IsNullOrWhiteSpace(themes))
             {
-                year = g.Key,
-                setCount = g.Sum(x=>x.setCount)
-            }).ToList();
+                var themeArray = themes.Split(',');
+                foreach (var theme in themeArray)
+                {
+                    if (!string.IsNullOrWhiteSpace(theme))
+                    {
+                        var newYears = await GetYearsAsync(theme);
+                        if (newYears != null && newYears.Count > 0)
+                            years.AddRange(newYears);
+
+                        var newSubthemes = await GetSubthemesAsync(theme);
+                        if (newSubthemes != null && newSubthemes.Count > 0)
+                            subthemes.AddRange(newSubthemes);
+                    }
+                }
+
+                years = years.GroupBy(x => x.year).Select(g => new years
+                {
+                    year = g.Key,
+                    setCount = g.Sum(x => x.setCount)
+                }).ToList();
+            }
 
             return new { years = years, subthemes = subthemes };
         }
@@ -118,7 +127,7 @@ namespace MyBrickset.Data.Repositories
                 }
             });
 
-            return setsResponse.Body.getSetsResult.ToList();
+            return setsResponse?.Body?.getSetsResult?.ToList();
         }
 
         public async Task<sets> GetSetAsync(string setId)
@@ -132,7 +141,7 @@ namespace MyBrickset.Data.Repositories
                 }
             });
 
-            return setResponse.Body.getSetResult.FirstOrDefault();
+            return setResponse?.Body?.getSetResult?.FirstOrDefault();
         }
 
         public async Task<List<reviews>> GetReviewsAsync(int setId)
@@ -146,7 +155,7 @@ namespace MyBrickset.Data.Repositories
                 }
             });
 
-            return reviewsResponse.Body.getReviewsResult.ToList();
+            return reviewsResponse?.Body?.getReviewsResult?.ToList();
         }
 
         public async Task<List<instructions>> GetInstructionsAsync(int setId)
@@ -160,7 +169,7 @@ namespace MyBrickset.Data.Repositories
                 }
             });
 
-            return instructionsResponse.Body.getInstructionsResult.ToList();
+            return instructionsResponse?.Body?.getInstructionsResult?.ToList();
         }
 
         public async Task<List<additionalImages>> GetAdditionalImagesAsync(int setId)
@@ -174,7 +183,7 @@ namespace MyBrickset.Data.Repositories
                 }
             });
 
-            return imagesResponse.Body.getAdditionalImagesResult.ToList();
+            return imagesResponse?.Body?.getAdditionalImagesResult?.ToList();
         }
 
         public async Task<List<sets>> GetRecentlyUpdatedSetsAsync(int minutesAgo)
@@ -188,7 +197,7 @@ namespace MyBrickset.Data.Repositories
                 }
             });
 
-            return recentlyUpdatedSetsResponse.Body.getRecentlyUpdatedSetsResult.ToList();
+            return recentlyUpdatedSetsResponse?.Body?.getRecentlyUpdatedSetsResult?.ToList();
         }
 
         public async Task<List<minifigCollection>> GetMinifigCollectionAsync(string query, string owned, string wanted, string userHash)
@@ -205,7 +214,7 @@ namespace MyBrickset.Data.Repositories
                 }
             });
 
-            return minifigCollectionResponse.Body.getMinifigCollectionResult.ToList();
+            return minifigCollectionResponse?.Body?.getMinifigCollectionResult?.ToList();
         }
     }
 }

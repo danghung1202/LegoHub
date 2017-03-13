@@ -17,9 +17,9 @@ const initialState: ErrorState = {
 export function reducer(state = initialState, action: Action): ErrorState {
     switch (action.type) {
         case ErrorActions.SHOW_ERROR: {
-            let errorMessage = action.payload;
+            let errorMessage = action.payload ;
             return {
-                message: errorMessage,
+                message: state.message + errorMessage + '<br/>',
                 visible: true
             };
         }

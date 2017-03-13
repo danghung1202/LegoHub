@@ -45,7 +45,7 @@ namespace MyBrickset.WebApi.Controllers
             var subthemesWithYears = (_bricksetRepo.GetSubthemesAndYears(themes).Result);
             if (subthemesWithYears == null)
             {
-                return NotFound();
+                return new EmptyResult();
             }
             return new ObjectResult(subthemesWithYears);
         }
@@ -56,7 +56,7 @@ namespace MyBrickset.WebApi.Controllers
             var sets = (_bricksetRepo.GetSetsAsync(themes ?? string.Empty, subthemes ?? string.Empty, years ?? string.Empty).Result);
             if (sets == null)
             {
-                return NotFound();
+                return new EmptyResult();
             }
             return new ObjectResult(sets);
         }

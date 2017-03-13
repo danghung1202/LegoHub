@@ -9,9 +9,7 @@
 
 namespace BricksetService
 {
-    using System.Runtime.Serialization;
-    
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfSets", Namespace="http://brickset.com/api/", ItemName="sets")]

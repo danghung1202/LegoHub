@@ -14,8 +14,7 @@ import { AppState, ErrorActions } from '../../state-management';
     template: `
   <div class="error-dialog"  [class.show]="visible | async">
     <span class="error-close" (click)="hide()">&times;</span>
-    <div class="error-content">
-        {{message | async}}
+    <div class="error-content" [innerHTML]="message | async">
     </div>
   <div>
   `,
