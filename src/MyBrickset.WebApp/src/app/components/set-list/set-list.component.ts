@@ -59,8 +59,10 @@ export class SetListComponent implements OnInit {
         themes: '',
         subthemes: '',
         years: ''
-    }
+    };
 
+    isFilterDirty: boolean = false;
+    subFilter: Subscription;
 
     constructor(
         private route: ActivatedRoute,
@@ -72,10 +74,7 @@ export class SetListComponent implements OnInit {
         this.sets = this.store.select(s => s.sets).select(s => s.sets);
         this.sortCriterias = this.store.select(s => s.sets).select(s => s.sortCriterias);
         this.loading = this.store.select(s => s.sets).select(s => s.loading);
-
-        // this.selectedThemes = this.store.select(s => s.filter).select(s => s.selectedThemes.filter(x=>x.isApplied));
-        // this.selectedSubthemes = this.store.select(s => s.filter).select(s => s.selectedSubthems.filter(x=>x.isApplied));
-        // this.selectedYears = this.store.select(s => s.filter).select(s => s.selectedYear.filter(x=>x.isApplied));
+        this.subFilter = this.store.select(s => s.filter).subscribe(filter => this.isFilterDirty = filter.isDirty);
     }
 
     ngOnInit() {
@@ -87,7 +86,7 @@ export class SetListComponent implements OnInit {
                 let subthemes = params['subthemes'] || '';
                 let years = params['years'] || '';
 
-                this.selectedThemes = themes.split(',').filter(item => item.trim() != '').map((theme) =>({theme: theme, isSelected: true }));
+                this.selectedThemes = themes.split(',').filter(item => item.trim() != '').map((theme) => ({ theme: theme, isSelected: true }));
 
                 this.selectedSubthemes = subthemes.split(',').filter(item => item.trim() != '').map(subtheme => ({ subtheme: subtheme, isSelected: true }));
 
@@ -95,7 +94,6 @@ export class SetListComponent implements OnInit {
 
                 this.store.dispatch(this.setActions.loadSets(themes, subthemes, years));
                 this.store.dispatch(this.filterActions.setFilter(themes, subthemes, years));
-                console.log(`${themes}/${subthemes}/${years}`);
             });
 
         this.store.dispatch(this.setActions.loadSortCriterias());
@@ -103,6 +101,7 @@ export class SetListComponent implements OnInit {
 
     ngOnDestroy() {
         this.subParams.unsubscribe();
+        this.subFilter.unsubscribe();
     }
 
     sortChange() {
@@ -110,10 +109,12 @@ export class SetListComponent implements OnInit {
     }
 
     openFilter() {
-        let themes = this.params['themes'] || '';
-        let subthemes = this.params['subthemes'] || '';
-        let years = this.params['years'] || '';
-        this.store.dispatch(this.filterActions.setFilter(themes, subthemes, years));
+        if (this.isFilterDirty) {
+            let themes = this.params['themes'] || '';
+            let subthemes = this.params['subthemes'] || '';
+            let years = this.params['years'] || '';
+            this.store.dispatch(this.filterActions.setFilter(themes, subthemes, years));
+        }
 
         let navigationExtras: NavigationExtras = {
             //queryParams: { themes: themes, subthemes: subthemes, years: years },

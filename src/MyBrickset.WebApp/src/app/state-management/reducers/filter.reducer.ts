@@ -64,7 +64,8 @@ export function reducer(state = initialState, action: Action): FilterState {
                 selectedSubthems: selectedSubthemes,
                 selectedYear: selectedYears,
 
-                loading: false
+                loading: false,
+                isDirty: false
             };
         }
 
@@ -79,7 +80,8 @@ export function reducer(state = initialState, action: Action): FilterState {
                 selectedSubthems: state.selectedSubthems,
                 selectedYear: state.selectedYear,
 
-                loading: true
+                loading: true,
+                isDirty: state.isDirty
             };
         }
 
@@ -104,7 +106,8 @@ export function reducer(state = initialState, action: Action): FilterState {
                 selectedSubthems: state.selectedSubthems,
                 selectedYear: state.selectedYear,
 
-                loading: false
+                loading: false,
+                isDirty: state.isDirty
             };
         }
 
@@ -176,7 +179,8 @@ export function reducer(state = initialState, action: Action): FilterState {
                 selectedSubthems: state.selectedSubthems,
                 selectedYear: state.selectedYear,
 
-                loading: false
+                loading: false,
+                isDirty: state.isDirty
             };
         }
 
@@ -209,7 +213,8 @@ export function reducer(state = initialState, action: Action): FilterState {
                 selectedSubthems: state.selectedSubthems,
                 selectedYear: state.selectedYear,
 
-                loading: state.loading
+                loading: state.loading,
+                isDirty: true
             };
         }
 
@@ -236,7 +241,8 @@ export function reducer(state = initialState, action: Action): FilterState {
                 selectedSubthems: state.selectedSubthems,
                 selectedYear: state.selectedYear,
 
-                loading: false
+                loading: false,
+                isDirty: false
             };
         }
 
@@ -274,7 +280,8 @@ export function reducer(state = initialState, action: Action): FilterState {
                 selectedSubthems: state.selectedSubthems,
                 selectedYear: state.selectedYear,
 
-                loading: false
+                loading: false,
+                isDirty: false
             };
         }
 
