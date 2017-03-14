@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store';
 
 import { Set, Theme, Subtheme, Year } from '../../models';
 
-import { AppState, NavigationState, SetActions } from '../../state-management';
+import { AppState, NavigationState, SetActions, FilterActions } from '../../state-management';
 
 
 @Component({
@@ -65,6 +65,7 @@ export class FilterPanelComponent {
     selectedYears: Observable<Year[]>;
 
     subParams: Subscription;
+    subSelectedFilter: Subscription;
     params: any;
 
     constructor(
@@ -72,7 +73,7 @@ export class FilterPanelComponent {
         private route: ActivatedRoute,
         private router: Router,
         private store: Store<AppState>,
-        private setActions: SetActions) {
+        private filterActions: FilterActions) {
 
         this.selectedThemes = this.store.select(s => s.filter).select(s => s.selectedThemes);
         this.selectedSubthemes = this.store.select(s => s.filter).select(s => s.selectedSubthems);
@@ -80,15 +81,24 @@ export class FilterPanelComponent {
     }
 
     ngOnInit() {
-        this.subParams = Observable.combineLatest(this.selectedThemes, this.selectedSubthemes, this.selectedYears,
-            (themes, subthemes, years) => ({ themes: themes.map(x=>x.theme).join(','), subthemes: subthemes.map(x=>x.subtheme).join(','), years: years.map(x=>x.year).join(',') }))
+        this.subSelectedFilter = Observable.combineLatest(this.selectedThemes, this.selectedSubthemes, this.selectedYears,
+            (themes, subthemes, years) => ({ themes: themes.map(x => x.theme).join(','), subthemes: subthemes.map(x => x.subtheme).join(','), years: years.map(x => x.year).join(',') }))
             .subscribe(result => {
-                    if(!result.themes) result.themes = ' ';
-                    if(!result.subthemes) result.subthemes = ' ';
-                    if(!result.years) result.years = ' ';
 
-                    this.params = result;
-                });
+                this.params = result;
+            });
+
+        this.subParams = this.route
+            .queryParams
+            .subscribe(params => {
+                this.params = params;
+                let themes = params['themes'] || '';
+                let subthemes = params['subthemes'] || '';
+                let years = params['years'] || '';
+                
+                this.store.dispatch(this.filterActions.loadSubthemesWithYears(themes, subthemes, years));
+            });
+
     }
 
     goBack() {
@@ -96,8 +106,12 @@ export class FilterPanelComponent {
     }
 
     applyFilter() {
+        let queryParams: any = {};
+        if(this.params.themes) queryParams["themes"] = this.params.themes;
+        if(this.params.subthemes) queryParams["subthemes"] = this.params.subthemes;
+        if(this.params.years) queryParams["years"] = this.params.years;
 
-        this.router.navigate(['/sets', this.params["years"], this.params["themes"], this.params["subthemes"]])
+        this.router.navigate(['/sets'], {queryParams: queryParams})
     }
 
     clearFilter() {
@@ -106,5 +120,6 @@ export class FilterPanelComponent {
 
     ngOnDestroy() {
         this.subParams.unsubscribe();
+        this.subSelectedFilter.unsubscribe();
     }
 }

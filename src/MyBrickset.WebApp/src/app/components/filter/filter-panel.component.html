@@ -20,7 +20,7 @@
             <button class="filter-button" md-raised-button (click)="clearFilter()">Clear all</button>
             <button class="filter-button" md-raised-button (click)="applyFilter()">Apply</button>
         </div>-->
-        <div class="filter-row" [routerLink]="['theme']">
+        <div class="filter-row" [routerLink]="['theme']" [preserveQueryParams]="true">
             <span>Themes</span>
             <span class="spacer"></span>
             <button md-icon-button type="button">
@@ -37,7 +37,7 @@
                 </md-chip>
             </md-chip-list>
         </div>
-        <div class="filter-row" [routerLink]="['subtheme']">
+        <div class="filter-row" [routerLink]="['subtheme']" [preserveQueryParams]="true">
             <span>Subthemes</span>
             <span class="spacer"></span>
             <button md-icon-button type="button">
@@ -54,7 +54,7 @@
                 </md-chip>
             </md-chip-list>
         </div>
-        <div class="filter-row" [routerLink]="['year']">
+        <div class="filter-row" [routerLink]="['year']" [preserveQueryParams]="true">
             <span>Years</span>
             <span class="spacer"></span>
             <button md-icon-button type="button">

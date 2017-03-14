@@ -12,17 +12,20 @@ import { AppState } from '../reducers';
 @Injectable()
 export class FilterEffects {
     private selectedThemes: any;
+    private mustToReloadSubthemes: boolean;
+    
     constructor(
         private action$: Actions,
         private store: Store<AppState>,
         private filterActions: FilterActions,
         private svc: AppService,
     ) {
-        this.store.select(s => s.filter).select(s => s.selectedThemes)
-            .do(x => {
-                this.selectedThemes = x.map(i => i.theme).join(',');
+        this.store.select(s => s.filter)
+            .subscribe(x => {
+                this.selectedThemes = x.selectedThemes.map(i => i.theme).join(',');
+                this.mustToReloadSubthemes = x.mustToReloadSubthemes;
                 console.log(this.selectedThemes);
-            }).subscribe();
+            });
     }
 
     @Effect() loadThemes$ = this.action$
@@ -41,7 +44,7 @@ export class FilterEffects {
                 .catch(() => of(this.filterActions.loadThemesInThisYearSuccess([])));
         });
 
-    @Effect() loadSubthemesAndYears$ = this.action$
+    @Effect() applyCriteriasSelected$ = this.action$
         .ofType(FilterActions.APPLY_CRITERIAS_SELECTED)
         .map(action => action.payload)
         .switchMap(criteriaType => {
@@ -53,10 +56,12 @@ export class FilterEffects {
             return empty();
         });
 
-    @Effect() setFilter$ = this.action$
-        .ofType(FilterActions.SET_FILTER)
-        .switchMap(() => {
-            if (this.selectedThemes && this.selectedThemes.trim()) {
+    @Effect() loadSubthemesWithYears$ = this.action$
+        .ofType(FilterActions.LOAD_SUBTHEMES_WITH_YEARS)
+        .map(action => action.payload)
+        .switchMap((payload) => {
+
+            if (this.selectedThemes && this.selectedThemes.trim() && this.mustToReloadSubthemes) {
                 return this.svc.getSubthemesWithYears(this.selectedThemes)
                     .map(result => this.filterActions.loadSubthemesWithYearsSuccess(result))
                     .catch(() => of(this.filterActions.loadSubthemesWithYearsSuccess({ years: [], subthemes: [] })));

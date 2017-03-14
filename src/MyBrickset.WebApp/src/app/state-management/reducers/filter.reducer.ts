@@ -15,7 +15,7 @@ export interface FilterState {
     selectedYear: Year[];
 
     loading: boolean;
-    isDirty?: boolean;
+    mustToReloadSubthemes?: boolean;
 };
 
 const initialState: FilterState = {
@@ -28,57 +28,14 @@ const initialState: FilterState = {
     selectedYear: [],
 
     loading: false,
-    isDirty: false
+    mustToReloadSubthemes: false
 };
 
 export function reducer(state = initialState, action: Action): FilterState {
     switch (action.type) {
-        case FilterActions.SET_FILTER: {
-            const filter = action.payload;
-
-            let selectedThemes: Theme[] = [];
-            if (filter.themes) {
-                selectedThemes = filter.themes.split(',').filter(item => item.trim() != '').map((theme) => ({ theme: theme }));
-            }
-
-            let selectedSubthemes: Subtheme[] = [];
-            if (filter.subthemes) {
-                selectedSubthemes = filter.subthemes.split(',').filter(item => item.trim() != '').map((subtheme) =>({ subtheme: subtheme}));
-            }
-
-            let selectedYears: Year[] = [];
-            if (filter.years) {
-                selectedYears = filter.years.split(',').filter(item => item.trim() != '').map((year) =>({ year: year}));
-            }
-
-            return {
-                themes: state.themes,
-                subthemes: state.subthemes,
-                years: state.years,
-
-                selectedThemes: selectedThemes,
-                selectedSubthems: selectedSubthemes,
-                selectedYear: selectedYears,
-
-                loading: false,
-                isDirty: false
-            };
-        }
 
         case FilterActions.LOAD_THEMES: {
-
-            return {
-                themes: state.themes,
-                subthemes: state.subthemes,
-                years: state.years,
-
-                selectedThemes: state.selectedThemes,
-                selectedSubthems: state.selectedSubthems,
-                selectedYear: state.selectedYear,
-
-                loading: true,
-                isDirty: state.isDirty
-            };
+            return Object.assign({}, state, { loading: true });
         }
 
         case FilterActions.LOAD_THEMES_SUCCESS: {
@@ -93,18 +50,7 @@ export function reducer(state = initialState, action: Action): FilterState {
                 return element;
             });
 
-            return {
-                themes: newThemes,
-                subthemes: state.subthemes,
-                years: state.years,
-
-                selectedThemes: state.selectedThemes,
-                selectedSubthems: state.selectedSubthems,
-                selectedYear: state.selectedYear,
-
-                loading: false,
-                isDirty: state.isDirty
-            };
+            return Object.assign({}, state, { themes: newThemes, loading: false });
         }
 
         case FilterActions.SET_CRITERIA_SELECTED: {
@@ -165,29 +111,20 @@ export function reducer(state = initialState, action: Action): FilterState {
                     break;
                 }
             }
-
-            return {
-                themes: state.themes,
-                subthemes: state.subthemes,
-                years: state.years,
-
-                selectedThemes: state.selectedThemes,
-                selectedSubthems: state.selectedSubthems,
-                selectedYear: state.selectedYear,
-
-                loading: false,
-                isDirty: state.isDirty
-            };
+            return Object.assign({}, state);
         }
 
         case FilterActions.APPLY_CRITERIAS_SELECTED: {
             const criteriaType = action.payload;
             switch (criteriaType) {
                 case CriteriaType.Theme: {
-                    state.selectedThemes = state.themes.filter(item => item.isSelected);
+                    state.selectedThemes = state.themes.filter(item => item.isSelected).sort();
                     state.subthemes = [];
+                    state.selectedSubthems = [];
                     state.years = [];
-                    if(state.selectedThemes.length > 0)
+                    state.selectedYear = [];
+
+                    if (state.selectedThemes.length > 0)
                         state.loading = true;
                     break;
                 }
@@ -201,18 +138,34 @@ export function reducer(state = initialState, action: Action): FilterState {
                 }
             }
 
-            return {
-                themes: state.themes,
-                subthemes: state.subthemes,
-                years: state.years,
+            return Object.assign({}, state);
+        }
 
-                selectedThemes: state.selectedThemes,
-                selectedSubthems: state.selectedSubthems,
-                selectedYear: state.selectedYear,
+        case FilterActions.LOAD_SUBTHEMES_WITH_YEARS: {
+            const params = action.payload;
 
-                loading: state.loading,
-                isDirty: true
-            };
+            let selectedThemes: Theme[] = [];
+            if (params.themes) {
+                selectedThemes = params.themes.split(',').filter(item => item.trim() != '').map((theme) => ({ theme: theme }));
+                var oldSelectedThemesStr = state.selectedThemes.map(x=>x.theme).sort().join(',');
+                state.mustToReloadSubthemes = state.loading =  oldSelectedThemesStr !== params.themes;
+            }
+
+            let selectedSubthemes: Subtheme[] = [];
+            if (params.subthemes) {
+                selectedSubthemes = params.subthemes.split(',').filter(item => item.trim() != '').map((subtheme) => ({ subtheme: subtheme }));
+            }
+
+            let selectedYears: Year[] = [];
+            if (params.years) {
+                selectedYears = params.years.split(',').filter(item => item.trim() != '').map((year) => ({ year: year }));
+            }
+
+            return Object.assign({}, state, {
+                selectedThemes: selectedThemes,
+                selectedSubthems: selectedSubthemes,
+                selectedYear: selectedYears,
+            });
         }
 
         case FilterActions.LOAD_SUBTHEMES_WITH_YEARS_SUCCESS: {
@@ -228,23 +181,16 @@ export function reducer(state = initialState, action: Action): FilterState {
                 if (index >= 0) result.years[index].isSelected = true;
                 return index >= 0;
             })
-
-            return {
-                themes: state.themes,
+            return Object.assign({}, state, {
                 subthemes: result.subthemes,
                 years: result.years,
 
-                selectedThemes: state.selectedThemes,
-                selectedSubthems: state.selectedSubthems,
-                selectedYear: state.selectedYear,
-
                 loading: false,
-                isDirty: false
-            };
+            });
         }
 
         case FilterActions.RESET_FILTER: {
-            
+
             if (!state.loading) {
                 const criteriaType = action.payload;
                 switch (criteriaType) {
@@ -270,18 +216,7 @@ export function reducer(state = initialState, action: Action): FilterState {
                     }
                 }
 
-                return {
-                    themes: state.themes,
-                    subthemes: state.subthemes,
-                    years: state.years,
-
-                    selectedThemes: state.selectedThemes,
-                    selectedSubthems: state.selectedSubthems,
-                    selectedYear: state.selectedYear,
-
-                    loading: state.loading,
-                    isDirty: state.isDirty
-                };
+                return Object.assign({}, state);
             }
 
             return state;

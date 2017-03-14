@@ -7,7 +7,7 @@ import { FilterPanelComponent, FilterCriteriaComponent } from '../filter';
 
 const setListRoutes: Routes = [
     {
-        path: 'sets/:years/:themes/:subthemes',
+        path: 'sets',
         component: SetListComponent,
         children: [
             {

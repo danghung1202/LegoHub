@@ -53,7 +53,6 @@ import { AppState, NavigationState, SetActions, FilterActions } from '../../stat
 })
 export class SetListComponent implements OnInit {
     subParams: Subscription;
-    subFilter: Subscription;
 
     sets: Observable<Set[]>;
     sortCriterias: Observable<any>;
@@ -71,7 +70,6 @@ export class SetListComponent implements OnInit {
         years: ''
     };
 
-    isFilterDirty: boolean = false;
     pageNumber: number = 1;
 
     constructor(
@@ -85,12 +83,11 @@ export class SetListComponent implements OnInit {
         this.sortCriterias = this.store.select(s => s.sets).select(s => s.sortCriterias);
         this.loading = this.store.select(s => s.sets).select(s => s.loading);
         this.showMore =  this.store.select(s => s.sets).select(s => s.showMore);
-        this.subFilter = this.store.select(s => s.filter).subscribe(filter => this.isFilterDirty = filter.isDirty);
     }
 
     ngOnInit() {
         this.subParams = this.route
-            .params
+            .queryParams
             .subscribe(params => {
                 this.pageNumber = 1;
                 this.params = params;
@@ -105,7 +102,6 @@ export class SetListComponent implements OnInit {
                 this.selectedYears = years.split(',').filter(item => item.trim() != '').map(year => ({ year: year, isSelected: true }));
 
                 this.store.dispatch(this.setActions.loadSets(themes, subthemes, years));
-                this.store.dispatch(this.filterActions.setFilter(themes, subthemes, years));
             });
 
         this.store.dispatch(this.setActions.loadSortCriterias());
@@ -113,7 +109,6 @@ export class SetListComponent implements OnInit {
 
     ngOnDestroy() {
         this.subParams.unsubscribe();
-        this.subFilter.unsubscribe();
     }
 
     sortChange() {
@@ -121,16 +116,11 @@ export class SetListComponent implements OnInit {
     }
 
     openFilter() {
-        if (this.isFilterDirty) {
-            let themes = this.params['themes'] || '';
-            let subthemes = this.params['subthemes'] || '';
-            let years = this.params['years'] || '';
-            this.store.dispatch(this.filterActions.setFilter(themes, subthemes, years));
-        }
-
+        
         let navigationExtras: NavigationExtras = {
             //queryParams: { themes: themes, subthemes: subthemes, years: years },
-            relativeTo: this.route
+            relativeTo: this.route,
+            preserveQueryParams: true
         };
 
         //this.router.navigate([{ outlets: { child: "filter" }}], navigationExtras);
