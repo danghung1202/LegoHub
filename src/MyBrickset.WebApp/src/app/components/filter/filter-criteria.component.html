@@ -17,9 +17,6 @@
     <md-spinner [class.show]="loading | async"></md-spinner>
     <md-list>
         <md-list-item *ngFor="let criteria of criterias | async" [class.selected]="criteria.isSelected" (click)="selectCriteria(criteria)">
-            <!--<md-checkbox class="example-margin" [checked]="criteria.isSelected">
-                {{criteria.theme}}
-            </md-checkbox>-->
             {{criteria.value}}
         </md-list-item>
     </md-list>

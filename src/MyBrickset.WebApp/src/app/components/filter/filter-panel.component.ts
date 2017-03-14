@@ -82,9 +82,13 @@ export class FilterPanelComponent {
 
     ngOnInit() {
         this.subSelectedFilter = Observable.combineLatest(this.selectedThemes, this.selectedSubthemes, this.selectedYears,
-            (themes, subthemes, years) => ({ themes: themes.map(x => x.theme).join(','), subthemes: subthemes.map(x => x.subtheme).join(','), years: years.map(x => x.year).join(',') }))
+            (themes, subthemes, years) =>
+                ({
+                    themes: themes.map(x => x.theme).join(','),
+                    subthemes: subthemes.map(x => x.subtheme).join(','),
+                    years: years.map(x => x.year).join(',')
+                }))
             .subscribe(result => {
-
                 this.params = result;
             });
 
@@ -95,7 +99,7 @@ export class FilterPanelComponent {
                 let themes = params['themes'] || '';
                 let subthemes = params['subthemes'] || '';
                 let years = params['years'] || '';
-                
+
                 this.store.dispatch(this.filterActions.loadSubthemesWithYears(themes, subthemes, years));
             });
 
@@ -106,12 +110,13 @@ export class FilterPanelComponent {
     }
 
     applyFilter() {
-        let queryParams: any = {};
-        if(this.params.themes) queryParams["themes"] = this.params.themes;
-        if(this.params.subthemes) queryParams["subthemes"] = this.params.subthemes;
-        if(this.params.years) queryParams["years"] = this.params.years;
 
-        this.router.navigate(['/sets'], {queryParams: queryParams})
+        let queryParams: any = {};
+        if (this.params.themes) queryParams["themes"] = this.params.themes;
+        if (this.params.subthemes) queryParams["subthemes"] = this.params.subthemes;
+        if (this.params.years) queryParams["years"] = this.params.years;
+
+        this.router.navigate(['/sets'], { queryParams: queryParams, replaceUrl: true })
     }
 
     clearFilter() {
