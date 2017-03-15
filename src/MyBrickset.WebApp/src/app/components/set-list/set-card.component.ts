@@ -6,7 +6,7 @@ import { Set } from '../../models';
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: require('./set-card.component.html'),
     styles: [`
-        .card-lable {
+        .card-label {
             text-transform: uppercase;
             margin-right: 5px;
         }
