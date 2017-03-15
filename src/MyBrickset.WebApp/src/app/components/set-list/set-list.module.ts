@@ -6,7 +6,9 @@ import { MaterialModule } from '@angular/material';
 import { SetListComponent } from './set-list.component';
 import { FilterPanelComponent, FilterCriteriaComponent } from '../filter';
 
+import { SetCardComponent } from './set-card.component';
 import { SetListRoutingModule } from './set-list-routing.module';
+import { StarPipe } from '../../pipes';
 
 @NgModule({
     imports: [
@@ -18,7 +20,9 @@ import { SetListRoutingModule } from './set-list-routing.module';
     declarations: [
         FilterPanelComponent,
         FilterCriteriaComponent,
-        SetListComponent
+        SetListComponent,
+        SetCardComponent,
+        StarPipe
     ]
 })
 export class SetListModule { }

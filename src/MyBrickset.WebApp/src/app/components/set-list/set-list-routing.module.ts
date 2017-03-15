@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { SetDetailComponent } from '../set-detail/set-detail.component';
 import { SetListComponent } from './set-list.component';
 import { FilterPanelComponent, FilterCriteriaComponent } from '../filter';
 
@@ -13,14 +14,17 @@ const setListRoutes: Routes = [
             {
                 path: 'filter',
                 component: FilterPanelComponent,
-                //outlet: 'child',
                 children: [
                     {
                         path: ':id',
                         component: FilterCriteriaComponent
                     }
                 ]
-            }
+            },
+            {
+                path: ':id',
+                component: SetDetailComponent,
+            },
         ]
     },
 ];

@@ -40,7 +40,7 @@ import { HomeComponent, SetListModule, SetDetailComponent, SearchComponent, Logi
         LayoutComponent,
         ModalComponent,
         ErrorDialogComponent,
-        LoginComponent
+        LoginComponent,
     ],
     providers: [state.FilterActions, state.SetActions, state.ErrorActions, AppService],
     bootstrap: [AppComponent]

@@ -14,11 +14,7 @@ import { AppState, NavigationState, SetActions, FilterActions } from '../../stat
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: require('./set-list.component.html'),
     styles: [`
-        md-card {
-            margin-bottom: 15px;
-            background-color: #F5F5F5;
-        }
-
+        
         md-spinner {
             display:none;
             height:30px;
@@ -118,7 +114,6 @@ export class SetListComponent implements OnInit {
     openFilter() {
         
         let navigationExtras: NavigationExtras = {
-            //queryParams: { themes: themes, subthemes: subthemes, years: years },
             relativeTo: this.route,
             preserveQueryParams: true
         };

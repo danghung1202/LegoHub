@@ -6,7 +6,7 @@ import { HomeComponent, SetDetailComponent, SearchComponent, LoginComponent, Pag
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, },
-  { path: 'set/:id', component: SetDetailComponent, outlet: 'popup' },
+  { path: 'set/:id', component: SetDetailComponent },
   { path: 'search', component: SearchComponent, outlet: 'popup' },
   { path: 'login', component: LoginComponent, outlet: 'popup' },
   { path: '**', component: PageNotFoundComponent }
