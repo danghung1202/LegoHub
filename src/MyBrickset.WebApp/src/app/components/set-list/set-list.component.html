@@ -34,7 +34,7 @@
     </md-chip-list>
 </md-card>
 
-<set-card *ngFor="let set of sets | async" [set]="set"></set-card>
+<set-card *ngFor="let set of sets | async" [set]="set" [routerLink]="['./',set.setID]" [preserveQueryParams]="true"></set-card>
 
 <button id="loadMoreBtn" md-raised-button (click)="loadMore()" [class.show]="showMore | async" class="full-width">Load more</button>
 <md-spinner [class.show]="loading | async"></md-spinner>

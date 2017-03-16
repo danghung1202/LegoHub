@@ -7,6 +7,7 @@ import { ActionReducer } from '@ngrx/store';
 import * as fromNavigation from './navigation.reducer';
 import * as fromFilter from './filter.reducer';
 import * as fromSetList from './set-list.reducer';
+import * as fromSetDetail from './set.reducer';
 import * as fromError from './error.reducer';
 
 export type NavigationState = fromNavigation.NavigationState;
@@ -17,6 +18,7 @@ export interface AppState {
     navigation: fromNavigation.NavigationState;
     filter: fromFilter.FilterState;
     sets: fromSetList.SetListState;
+    set: fromSetDetail.SetDetailState;
     error: fromError.ErrorState;
 };
 
@@ -31,6 +33,7 @@ const reducers = {
     navigation: fromNavigation.reducer,
     filter: fromFilter.reducer,
     sets: fromSetList.reducer,
+    set: fromSetDetail.reducer,
     error: fromError.reducer
 };
 

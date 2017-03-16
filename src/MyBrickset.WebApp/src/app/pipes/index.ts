@@ -1,1 +1,1 @@
-export * from './star.pipe';
+export * from './pipe.module';

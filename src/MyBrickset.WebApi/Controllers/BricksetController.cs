@@ -52,9 +52,9 @@ namespace MyBrickset.WebApi.Controllers
         }
 
         [Route("sets")]
-        public IActionResult GetSets(string q, string themes, string subthemes, string years, string page, string order,string show)
+        public IActionResult GetSets(string q, string themes, string subthemes, string years, string page, string order, string show)
         {
-            var sets = (_bricksetRepo.GetSetsAsync(q, themes, subthemes, years, order, show, page).Result) ;
+            var sets = (_bricksetRepo.GetSetsAsync(q, themes, subthemes, years, order, show, page).Result);
             if (sets == null)
             {
                 return new ObjectResult(new List<BricksetService.sets>());
@@ -66,11 +66,31 @@ namespace MyBrickset.WebApi.Controllers
         public IActionResult GetSet(string setId)
         {
             var set = (_bricksetRepo.GetSetAsync(setId).Result);
+            int id = 0;
+            var additionalImages = new List<BricksetService.additionalImages>();
+            var instructions = new List<BricksetService.instructions>();
+
+            if (int.TryParse(setId, out id))
+            {
+                additionalImages = (_bricksetRepo.GetAdditionalImagesAsync(id).Result);
+                instructions = (_bricksetRepo.GetInstructionsAsync(id).Result);
+            }
+
             if (set == null)
             {
-                return NotFound();
+                return new ObjectResult(new
+                {
+                    set = new BricksetService.sets(),
+                    additionalImages = additionalImages,
+                    instructions = instructions
+                });
             }
-            return new ObjectResult(set);
+            return new ObjectResult(new
+            {
+                set = set,
+                additionalImages = additionalImages,
+                instructions = instructions
+            });
         }
     }
 }

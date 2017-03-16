@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { SetDetailComponent } from '../set-detail/set-detail.component';
+import { ViewSetComponent } from '../set-detail/view-set.component';
 import { SetListComponent } from './set-list.component';
 import { FilterPanelComponent, ViewFilterCriteriaComponent } from '../filter';
 
@@ -23,7 +23,7 @@ const setListRoutes: Routes = [
             },
             {
                 path: ':id',
-                component: SetDetailComponent,
+                component: ViewSetComponent,
             },
         ]
     },

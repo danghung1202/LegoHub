@@ -47,3 +47,27 @@ export interface Set {
     description: string;
     lastUpdated: string;
 }
+
+export interface SetImage {
+    thumbnailURL: string;
+    largeThumbnailURL: string;
+    imageURL: string;
+}
+
+export interface Review {
+    author: string;
+    datePosted: string;
+    overallRating: number;
+    parts: number;
+    buildingExperience: number;
+    playability: number;
+    valueForMoney: number;
+    title: string;
+    review: string;
+    HTML: boolean;
+}
+
+export interface Instruction {
+    URL: string;
+    description: string;
+}

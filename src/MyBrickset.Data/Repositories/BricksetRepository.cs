@@ -152,6 +152,7 @@ namespace MyBrickset.Data.Repositories
                 Body = new getSetRequestBody()
                 {
                     apiKey = _config.ApiKey,
+                    userHash = string.Empty,
                     SetID = setId
                 }
             });

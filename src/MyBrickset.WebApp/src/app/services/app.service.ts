@@ -14,6 +14,7 @@ class Url {
     static GetThemesInThisYear = 'api/brickset/theme-nav';
     static GetSubthemesWithYears = 'api/brickset/subthemes';
     static GetSets = 'api/brickset/sets';
+    static GetSetDetails = 'api/brickset/set';
 }
 
 @Injectable()
@@ -67,6 +68,15 @@ export class AppService {
                 return this.handleError(error);
             });
     }
+
+    getSetDetails(setId: string): Observable<any> {
+        return this.http.get(`${Url.GetSetDetails}?setId=${setId}`)
+            .map(res => res.json())
+            .catch(error => {
+                return this.handleError(error);
+            });
+    }
+
 
     getSortCriterias(): Observable<any> {
         return Observable.of(sortCriterias);

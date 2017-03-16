@@ -1,18 +1,60 @@
-<md-card class="example-card">
-    <md-card-header>
-        <div md-card-avatar class="example-header-image"></div>
-        <md-card-title>Shiba Inu</md-card-title>
-        <md-card-subtitle>Dog Breed</md-card-subtitle>
-    </md-card-header>
-    <img md-card-image src="http://images.brickset.com/sets/images/42044-1.jpg">
-    <md-card-content>
-        <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
-            very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
-        </p>
-    </md-card-content>
-    <md-card-actions>
-        <button md-button>LIKE</button>
-        <button md-button>SHARE</button>
-    </md-card-actions>
-</md-card>
+<div class="modal">
+    <!-- Modal content -->
+    <div class="modal-content right-animation">
+        <md-toolbar>
+            <button md-icon-button type="button" (click)="goBack.emit()">
+                <md-icon>arrow_back</md-icon>
+            </button>
+            <span>{{set?.number}}: {{set?.name == '{?}' ? 'Unknown' : set?.name }}</span>
+            <span class="spacer"></span>
+        </md-toolbar>
+        <md-tab-group *ngIf="set">
+            <md-tab label="DETAILS">
+                <md-card>
+                    <img *ngIf="set?.imageURL" md-card-image [src]="set?.imageURL">
+                    <md-card-content>
+                        <div>
+                            <md-chip-list>
+                                <md-chip *ngIf="set?.year != ''">{{set?.year}}</md-chip>
+                                <md-chip *ngIf="set?.themeGroup != ''">{{set?.themeGroup}}</md-chip>
+                                <md-chip *ngIf="set?.theme != ''">{{set?.theme}}</md-chip>
+                                <md-chip *ngIf="set?.subtheme != ''">{{set?.subtheme}}</md-chip>
+                            </md-chip-list>
+                            <div *ngIf="set?.rating != 0 || set?.reviewCount != 0">
+                                <div *ngIf="set?.rating != 0">
+                                    <md-icon *ngFor="let star of set?.rating | star">star</md-icon>
+                                    <md-icon *ngFor="let star of set?.rating | star:5">star_border</md-icon>
+                                </div>
+                                <span *ngIf="set?.reviewCount != 0">{{set?.reviewCount}} reviews</span>
+                            </div>
+                            <p *ngIf="set?.pieces != ''"><span class="card-label">Pieces</span> {{set?.pieces}}</p>
+                            <p *ngIf="set?.minifigs != ''"><span class="card-label">Minifigs</span> {{set?.minifigs}}</p>
+                            <p *ngIf="set?.USRetailPrice"><span class="card-label">RRP</span> {{'$' + set?.USRetailPrice}}</p>
+                            <p *ngIf="set?.USRetailPrice"><span class="card-label">PPP</span> </p>
+                            <p *ngIf="set?.packagingType != '' && set?.packagingType != '{Not specified}'"><span class="card-label">Packaging</span> {{set?.packagingType}}</p>
+                            <p *ngIf="set?.availability != '' && set?.availability != '{Not specified}'"><span class="card-label">Availability</span> {{set?.availability}}</p>
+                            <p><span class="card-label">Instructions</span> {{set?.instructionsCount > 0 ? 'Yes' : 'No'}}</p>
+                            <p *ngIf="set?.userNotes"><span class="card-label">Notes</span> {{set?.userNotes}}</p>
+                            <div *ngIf="set?.ownedByTotal > 0 || set?.wantedByTotal > 0">
+                                <p><span class="card-label">Our Community</span></p>
+                                <p><span *ngIf="set?.ownedByTotal > 0">{{set?.ownedByTotal}} own this set</span><span *ngIf="set?.wantedByTotal > 0">, {{set?.wantedByTotal}} want it</span></p>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+            </md-tab>
+            <md-tab label="IMAGES">
+                <md-list>
+                    <img *ngFor="let image of additionalImages" md-card-image [src]="image.imageURL" />
+                </md-list>
+            </md-tab>
+            <md-tab label="PARTS">
+
+            </md-tab>
+            <md-tab label="ALT BUILDS">
+
+            </md-tab>
+            
+        </md-tab-group>
+    </div>
+</div>

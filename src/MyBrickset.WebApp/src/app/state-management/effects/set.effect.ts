@@ -2,41 +2,51 @@ import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
 
-import { SetActions } from '../actions';
+import { SetListActions, SetActions } from '../actions';
 import { AppService } from '../../services';
 
 @Injectable()
 export class SetEffects {
     constructor(
         private action$: Actions,
+        private setListActions: SetListActions,
         private setActions: SetActions,
         private svc: AppService,
     ) { }
 
     @Effect() getSets$ = this.action$
-        .ofType(SetActions.LOAD_SETS)
+        .ofType(SetListActions.LOAD_SETS)
         .map(action => action.payload)
         .switchMap(params => {
             return this.svc.getSets(params.themes, params.subthemes, params.years)
-                .map(sets => this.setActions.loadSetsSuccess(sets))
-                .catch(() => of(this.setActions.loadSetsSuccess([])));
+                .map(sets => this.setListActions.loadSetsSuccess(sets))
+                .catch(() => of(this.setListActions.loadSetsSuccess([])));
         });
 
     @Effect() getSortCriterias$ = this.action$
-        .ofType(SetActions.LOAD_SORT_CRITERIAS)
+        .ofType(SetListActions.LOAD_SORT_CRITERIAS)
         .switchMap(() => {
             return this.svc.getSortCriterias()
-                .map(criterias => this.setActions.loadSortCriteriasSuccess(criterias))
-                .catch(() => of(this.setActions.loadSortCriteriasSuccess([])));
+                .map(criterias => this.setListActions.loadSortCriteriasSuccess(criterias))
+                .catch(() => of(this.setListActions.loadSortCriteriasSuccess([])));
         });
 
 
     @Effect() getMoreSets$ = this.action$
-        .ofType(SetActions.LOAD_MORE_SETS)
+        .ofType(SetListActions.LOAD_MORE_SETS)
         .map(action => action.payload)
         .switchMap(params => {
             return this.svc.getSets(params.themes, params.subthemes, params.years, params.query, params.page, params.order, params.show)
-                .map(sets => this.setActions.loadMoreSetsSuccess(sets))
-                .catch(() => of(this.setActions.loadMoreSetsSuccess([])));
+                .map(sets => this.setListActions.loadMoreSetsSuccess(sets))
+                .catch(() => of(this.setListActions.loadMoreSetsSuccess([])));
         });
+
+    @Effect() getDetailSet$ = this.action$
+        .ofType(SetActions.GET_SET)
+        .map(action => action.payload)
+        .switchMap(setId => {
+            return this.svc.getSetDetails(setId)
+                .map(result => this.setActions.getSetSuccess(result))
+                .catch(() => of(this.setActions.getSetSuccess(null)));
+        });    
 }

@@ -8,14 +8,15 @@ import { FilterPanelComponent, FilterCriteriaComponent, ViewFilterCriteriaCompon
 
 import { SetCardComponent } from './set-card.component';
 import { SetListRoutingModule } from './set-list-routing.module';
-import { StarPipe } from '../../pipes';
+import { PipeModule } from '../../pipes';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         MaterialModule.forRoot(),
-        SetListRoutingModule
+        SetListRoutingModule,
+        PipeModule.forRoot()
     ],
     declarations: [
         FilterPanelComponent,
@@ -23,7 +24,7 @@ import { StarPipe } from '../../pipes';
         ViewFilterCriteriaComponent,
         SetListComponent,
         SetCardComponent,
-        StarPipe
+        //StarPipe
     ]
 })
 export class SetListModule { }
