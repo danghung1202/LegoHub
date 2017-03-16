@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { SetDetailComponent } from '../set-detail/set-detail.component';
 import { SetListComponent } from './set-list.component';
-import { FilterPanelComponent, FilterCriteriaComponent } from '../filter';
+import { FilterPanelComponent, ViewFilterCriteriaComponent } from '../filter';
 
 const setListRoutes: Routes = [
     {
@@ -17,7 +17,7 @@ const setListRoutes: Routes = [
                 children: [
                     {
                         path: ':id',
-                        component: FilterCriteriaComponent
+                        component: ViewFilterCriteriaComponent
                     }
                 ]
             },

@@ -51,35 +51,11 @@ export class FilterActions {
         };
     }
 
-    static SET_CRITERIA_SELECTED = '[Filter] Set Criteria Selected';
-    setCriteriaSelected(selectedCriteria, criteriaType): Action {
-        return {
-            type: FilterActions.SET_CRITERIA_SELECTED,
-            payload: { value: selectedCriteria, type: criteriaType }
-        };
-    }
-
     static APPLY_CRITERIAS_SELECTED = '[Filter] Apply Criterias Selected';
-    applyCriteriasSelected(criteriaType): Action {
+    applyCriteriasSelected(criteriaType, selectedCriterias): Action {
         return {
             type: FilterActions.APPLY_CRITERIAS_SELECTED,
-            payload: criteriaType
-        };
-    }
-
-    static CLEAR_CRITERIA_SELECTED = '[Filter] Clear Criteria Selected';
-    clearCriteriaSelected(criteriaType): Action {
-        return {
-            type: FilterActions.CLEAR_CRITERIA_SELECTED,
-            payload: criteriaType
-        };
-    }
-
-    static RESET_FILTER = '[Filter] Reset Filter';
-    resetFilter(criteriaType): Action {
-        return {
-            type: FilterActions.RESET_FILTER,
-            payload: criteriaType
+            payload: {criteriaType: criteriaType, selectedCriterias: selectedCriterias }
         };
     }
 

@@ -1,52 +1,88 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
+import { Set } from '../../models';
 
 @Injectable()
 export class SetActions {
-    static LOAD_SETS = '[Set] Load Sets';
-    loadSets(themes?: string, subthemes?: string, years?: string): Action {
+    static GET_SET = '[Set] Get Set';
+    getSet(id: string): Action {
         return {
-            type: SetActions.LOAD_SETS,
-            payload: { themes: themes, subthemes: subthemes, years: years }
+            type: SetActions.GET_SET,
+            payload: id
         };
     }
 
-    static LOAD_SETS_SUCCESS = '[Set] Load Sets Success';
-    loadSetsSuccess(sets): Action {
+    static GET_SET_SUCCESS = '[Set] Get Set Success';
+    getSetSuccess(set: Set): Action {
         return {
-            type: SetActions.LOAD_SETS_SUCCESS,
-            payload: sets
+            type: SetActions.GET_SET_SUCCESS,
+            payload: set
         };
     }
 
-    static LOAD_MORE_SETS = '[Set] Load More Sets';
-    loadMoreSets(themes?: string, subthemes?: string, years?: string, query?: string, page?: string, order?: string, show?: string): Action {
+    static GET_PARTS = '[Set] Get Parts Of Set';
+    getParts(setId: string): Action {
         return {
-            type: SetActions.LOAD_MORE_SETS,
-            payload: { themes: themes, subthemes: subthemes, years: years, query: query, page: page, order: order, show: show }
+            type: SetActions.GET_PARTS,
+            payload: setId
         };
     }
 
-    static LOAD_MORE_SETS_SUCCESS = '[Set] Load More Sets Success';
-    loadMoreSetsSuccess(sets): Action {
+    static GET_PARTS_SUCCESS = '[Set] Get Parts Of Set Success';
+    getPartsSuccess(parts: any): Action {
         return {
-            type: SetActions.LOAD_MORE_SETS_SUCCESS,
-            payload: sets
+            type: SetActions.GET_PARTS_SUCCESS,
+            payload: parts
         };
     }
 
-    static LOAD_SORT_CRITERIAS = '[Set] Load Sort Criterias';
-    loadSortCriterias(): Action {
+    static GET_INSTRUCTIONS = '[Set] Get Instructions Of Set';
+    getInstructions(setId: string): Action {
         return {
-            type: SetActions.LOAD_SORT_CRITERIAS
+            type: SetActions.GET_INSTRUCTIONS,
+            payload: setId
         };
     }
 
-    static LOAD_SORT_CRITERIAS_SUCCESS = '[Set] Load Sort Criterias Success';
-    loadSortCriteriasSuccess(criterias): Action {
+    static GET_INSTRUCTIONS_SUCCESS = '[Set] Get Instructions Of Set Success';
+    getInstructionsSuccess(setId: string): Action {
         return {
-            type: SetActions.LOAD_SORT_CRITERIAS_SUCCESS,
-            payload: criterias
+            type: SetActions.GET_INSTRUCTIONS_SUCCESS,
+            payload: setId
         };
     }
+
+    static GET_REVIEWS = '[Set] Get Reviews Of Set';
+    getReviews(setId: string): Action {
+        return {
+            type: SetActions.GET_REVIEWS,
+            payload: setId
+        };
+    }
+
+    static GET_REVIEWS_SUCCESS = '[Set] Get Reviews Of Set Success';
+    getReviewsSuccess(setId: string): Action {
+        return {
+            type: SetActions.GET_REVIEWS_SUCCESS,
+            payload: setId
+        };
+    }
+
+    static GET_ALTERNATE_BUILDS = '[Set] Get Alternate Builds Of Set';
+    getAlternateBuilds(setId: string): Action {
+        return {
+            type: SetActions.GET_ALTERNATE_BUILDS,
+            payload: setId
+        };
+    }
+
+    static GET_ALTERNATE_BUILDS_SUCCESS = '[Set] Get Alternate Builds Of Set Success';
+    getAlternateBuildsSuccess(setId: string): Action {
+        return {
+            type: SetActions.GET_ALTERNATE_BUILDS_SUCCESS,
+            payload: setId
+        };
+    }
+
+
 }

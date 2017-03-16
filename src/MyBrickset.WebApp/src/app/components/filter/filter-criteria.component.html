@@ -1,6 +1,6 @@
 <div class="modal-content right-animation">
     <md-toolbar>
-        <button md-icon-button type="button" (click)="goBack()">
+        <button md-icon-button type="button" (click)="goBack.emit()">
             <md-icon>arrow_back</md-icon>
         </button>
         <span>{{criteriaName}} ({{selectedCount}} selected)</span>
@@ -14,9 +14,9 @@
             <md-icon>done</md-icon>
         </button>
     </md-toolbar>
-    <md-spinner [class.show]="loading | async"></md-spinner>
+    <md-spinner [class.show]="loading"></md-spinner>
     <md-list>
-        <md-list-item *ngFor="let criteria of criterias | async" [class.selected]="criteria.isSelected" (click)="selectCriteria(criteria)">
+        <md-list-item *ngFor="let criteria of criterias" [class.selected]="criteria.isSelected" (click)="selectCriteria(criteria)">
             {{criteria.value}}
         </md-list-item>
     </md-list>

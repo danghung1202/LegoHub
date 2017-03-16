@@ -21,6 +21,7 @@ export class AppService {
     _themes: any = null;
     constructor(private http: Http, private store: Store<AppState>, private errorActions: ErrorActions) { }
 
+    //using cache in Observable
     getThemes(): Observable<Theme[]> {
         if (!this._themes) {
             this._themes = this.http.get(Url.GetThemes)
@@ -52,13 +53,13 @@ export class AppService {
 
     getSets(themes?: string, subthemes?: string, years?: string, query?: string, page?: string, order?: string, show?: string): Observable<Set[]> {
         let params: URLSearchParams = new URLSearchParams();
-        if (themes && themes != ' ') params.set('themes', themes);
-        if (subthemes && subthemes != ' ') params.set('subthemes', subthemes);
-        if (years && years != ' ') params.set('years', years);
-        if (query && query != ' ') params.set('q', query);
-        if (page && page != ' ') params.set('page', page);
-        if (order && order != ' ') params.set('order', order);
-        if (show && show != ' ') params.set('show', show);
+        if (themes) params.set('themes', themes);
+        if (subthemes) params.set('subthemes', subthemes);
+        if (years) params.set('years', years);
+        if (query) params.set('q', query);
+        if (page) params.set('page', page);
+        if (order) params.set('order', order);
+        if (show) params.set('show', show);
 
         return this.http.get(Url.GetSets, { search: params })
             .map(res => res.json())

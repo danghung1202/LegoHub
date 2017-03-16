@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store';
 
 import { Set, Theme, Subtheme, Year } from '../../models';
 
-import { AppState, NavigationState, SetActions, FilterActions } from '../../state-management';
+import { AppState, NavigationState, SetListActions, FilterActions } from '../../state-management';
 
 
 @Component({

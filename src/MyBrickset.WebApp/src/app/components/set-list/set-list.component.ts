@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 
 import { Set, Theme, Subtheme, Year } from '../../models';
 
-import { AppState, NavigationState, SetActions, FilterActions } from '../../state-management';
+import { AppState, NavigationState, SetListActions, FilterActions } from '../../state-management';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -72,7 +72,7 @@ export class SetListComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private store: Store<AppState>,
-        private setActions: SetActions,
+        private setActions: SetListActions,
         private filterActions: FilterActions) {
 
         this.sets = this.store.select(s => s.sets).select(s => s.sets);

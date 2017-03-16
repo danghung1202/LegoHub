@@ -47,8 +47,8 @@ export class FilterEffects {
     @Effect() applyCriteriasSelected$ = this.action$
         .ofType(FilterActions.APPLY_CRITERIAS_SELECTED)
         .map(action => action.payload)
-        .switchMap(criteriaType => {
-            if (criteriaType == CriteriaType.Theme && this.selectedThemes && this.selectedThemes.trim()) {
+        .switchMap(payload => {
+            if (payload.criteriaType == CriteriaType.Theme && this.selectedThemes && this.selectedThemes.trim()) {
                 return this.svc.getSubthemesWithYears(this.selectedThemes)
                     .map(result => this.filterActions.loadSubthemesWithYearsSuccess(result))
                     .catch(() => of(this.filterActions.loadSubthemesWithYearsSuccess({ years: [], subthemes: [] })));

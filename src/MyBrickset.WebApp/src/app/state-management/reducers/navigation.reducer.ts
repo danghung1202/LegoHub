@@ -4,8 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { FilterActions } from '../actions';
 import { Theme, Year } from '../../models';
 
-export interface NavigationState 
-{
+export interface NavigationState {
     themeNav: Theme[];
     yearNav: Year[];
     loading: boolean;
@@ -30,20 +29,16 @@ function initYearNavigation(): Year[] {
 export function reducer(state = initialState, action: Action): NavigationState {
     switch (action.type) {
         case FilterActions.LOAD_THEMES_THIS_YEAR: {
-            return {
-                themeNav: state.themeNav,
-                yearNav: state.yearNav,
-                loading: true
-            };
+            return Object.assign({}, state, {
+                loading: true,
+            });
         }
         case FilterActions.LOAD_THEMES_THIS_YEAR_SUCCESS: {
             const themes = action.payload;
-
-            return {
+            return Object.assign({}, state, {
                 themeNav: themes,
-                yearNav: state.yearNav,
                 loading: false
-            };
+            });
         }
 
         default: {

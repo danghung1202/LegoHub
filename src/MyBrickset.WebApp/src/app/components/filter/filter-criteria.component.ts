@@ -1,18 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Location } from "@angular/common";
-import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-
-import { Store } from '@ngrx/store';
-
-import { Set, Theme, Subtheme, Year } from '../../models';
-
-import { AppState, NavigationState, SetActions, FilterActions } from '../../state-management';
-import { CriteriaType } from '../../data';
+export interface Criteria {
+    value: string,
+    isSelected: boolean
+};
 
 @Component({
+    selector: 'filter-criteria',
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: require('./filter-criteria.component.html'),
     styles: [`
@@ -20,13 +14,16 @@ import { CriteriaType } from '../../data';
             height:100%;
             z-index:3
         }
+
         md-list{
             height: calc(100% - 64px);
             overflow: auto;
         }
+
         .selected {
             background-color: #eee;
         }
+
         md-spinner {
             display:none;
             height:30px;
@@ -37,70 +34,35 @@ import { CriteriaType } from '../../data';
         md-spinner.show {
             display:block;
         }
-        
     `]
 })
 export class FilterCriteriaComponent {
-    subParams: Subscription;
-
-    criteriaName: string;
     selectedCount: number;
 
-    criterias: Observable<any>;
-    loading: Observable<boolean>;
+    private _criterias: Criteria[];
 
-    constructor(
-        private location: Location,
-        private route: ActivatedRoute,
-        private router: Router,
-        private store: Store<AppState>,
-        private filterActions: FilterActions) {
-        this.loading = this.store.select(s => s.filter).select(s => s.loading);
+    @Input()
+    set criterias(criterias: Criteria[]) {
+        this.selectedCount = criterias ? criterias.filter(x => x.isSelected).length : 0;
+        this._criterias = criterias;
+    }
+    get criterias(): Criteria[] {
+        return this._criterias;
     }
 
-    ngOnInit() {
-        this.subParams = this.route
-            .params
-            .subscribe(params => {
-                let criteria = params['id'] || '';
-                switch (criteria) {
-                    case "theme": {
-                        this.store.dispatch(this.filterActions.loadThemes());
+    @Input() criteriaName: string;
+    @Input() loading: boolean;
 
-                        this.criteriaName = CriteriaType.Theme;
-                        this.criterias = this.store.select(s => s.filter).select(s => s.themes.map(item => ({ isSelected: item.isSelected, value: item.theme })))
-                            .do(themes => { this.selectedCount = themes.filter(x => x.isSelected).length; })
-                        break;
+    @Output() goBack = new EventEmitter();
+    @Output() applyClick = new EventEmitter<Criteria[]>();
 
-                    }
-                    case "subtheme": {
-                        this.store.dispatch(this.filterActions.resetFilter(CriteriaType.Subtheme));
-
-                        this.criteriaName = CriteriaType.Subtheme;
-                        this.criterias = this.store.select(s => s.filter).select(s => s.subthemes.map(item => ({ isSelected: item.isSelected, value: item.subtheme })))
-                            .do(subthemes => this.selectedCount = subthemes.filter(x => x.isSelected).length)
-                        break;
-                    }
-                    case "year": {
-                        this.store.dispatch(this.filterActions.resetFilter(CriteriaType.Years));
-
-                        this.criteriaName = CriteriaType.Years;
-                        this.criterias = this.store.select(s => s.filter).select(s => s.years.map(item => ({ isSelected: item.isSelected, value: item.year })))
-                            .do(years => this.selectedCount = years.filter(x => x.isSelected).length)
-                        break;
-                    }
-                }
-
-            });
-    }
-
-    goBack() {
-        this.location.back();
-    }
+    // ngOnChanges(changes: SimpleChanges) {
+    //     var criterias = changes["criterias"].currentValue;
+    //     this.selectedCount =criterias ? criterias.filter(x=>x.isSelected).length : 0;
+    // }
 
     selectCriteria(criteria) {
         criteria.isSelected = !criteria.isSelected;
-        this.store.dispatch(this.filterActions.setCriteriaSelected(criteria.value, this.criteriaName));
         if (criteria.isSelected) {
             this.selectedCount += 1;
         } else {
@@ -109,15 +71,11 @@ export class FilterCriteriaComponent {
     }
 
     clearCriterias() {
-        this.store.dispatch(this.filterActions.clearCriteriaSelected(this.criteriaName));
+        this.criterias.forEach(criteria => { criteria.isSelected = false; })
+        this.selectedCount = 0;
     }
 
     applyCriterias() {
-        this.store.dispatch(this.filterActions.applyCriteriasSelected(this.criteriaName));
-        this.location.back();
-    }
-
-    ngOnDestroy() {
-        this.subParams.unsubscribe();
+        this.applyClick.emit(this.criterias.filter(x => x.isSelected));
     }
 }

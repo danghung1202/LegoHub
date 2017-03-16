@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 
 import { SetListComponent } from './set-list.component';
-import { FilterPanelComponent, FilterCriteriaComponent } from '../filter';
+import { FilterPanelComponent, FilterCriteriaComponent, ViewFilterCriteriaComponent } from '../filter';
 
 import { SetCardComponent } from './set-card.component';
 import { SetListRoutingModule } from './set-list-routing.module';
@@ -20,6 +20,7 @@ import { StarPipe } from '../../pipes';
     declarations: [
         FilterPanelComponent,
         FilterCriteriaComponent,
+        ViewFilterCriteriaComponent,
         SetListComponent,
         SetCardComponent,
         StarPipe
