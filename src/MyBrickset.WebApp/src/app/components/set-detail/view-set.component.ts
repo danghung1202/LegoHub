@@ -22,6 +22,8 @@ import { AppState, SetListActions, SetActions } from '../../state-management';
             [parts]="parts | async"
             [alternateBuilds]="alternateBuilds | async"
             (goBack)="goBack()"
+            (getPartsOfSet)="getParts($event)"
+            (getAltBuildsOfSet)="getBuilds($event)"
             >
         </set-detail>
     `
@@ -57,6 +59,14 @@ export class ViewSetComponent {
                 let setId = params['id'] || '';
                 this.store.dispatch(this.setActions.getSet(setId));
             });
+    }
+
+    getParts(setNumber) {
+        this.store.dispatch(this.setActions.getParts(setNumber));
+    }
+
+    getBuilds(setNumber) {
+        this.store.dispatch(this.setActions.getAlternateBuilds(setNumber));
     }
 
     goBack() {

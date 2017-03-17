@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, URLSearchParams } from '@angular/http';
+import { Http, Response, URLSearchParams, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Store } from '@ngrx/store';
@@ -21,6 +21,7 @@ class Url {
 export class AppService {
     _themes: any = null;
     constructor(private http: Http, private store: Store<AppState>, private errorActions: ErrorActions) { }
+
 
     //using cache in Observable
     getThemes(): Observable<Theme[]> {
@@ -77,6 +78,47 @@ export class AppService {
             });
     }
 
+    getPartsOfSet(setNumber: string): Observable<any> {
+        let headers = new Headers({ 'Authorization': 'key dgMeiknO47' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.get(`https://rebrickable.com/api/v3/lego/sets/${setNumber}-1/parts/?key=dgMeiknO47`)
+            .map(res => {
+                var results = res.json().results;
+                return results.map(item => ({
+                    partId: item.element_id,
+                    partNumber: item.part.part_num,
+                    name: item.part.name,
+                    image: item.part.part_img_url,
+                    quantity: item.quantity,
+                    numSets: item.num_sets,
+                }))
+            })
+            .catch(error => {
+                return this.handleError(error);
+            });
+    }
+
+    getAlternateBuildsOfSet(setNumber: string): Observable<any> {
+        let headers = new Headers({ 'Authorization': 'key dgMeiknO47' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.get(`https://rebrickable.com/api/v3/lego/sets/${setNumber}-1/alternates/?key=dgMeiknO47`)
+            .map(res => {
+                var results = res.json().results;
+                return results.map(item => ({
+                    designerName: item.designer_name,
+                    setNum: item.set_num,
+                    name: item.name,
+                    image: item.moc_img_url,
+                    numParts: item.num_parts,
+                    year: item.year,
+                }))
+            })
+            .catch(error => {
+                return this.handleError(error);
+            });
+    }
 
     getSortCriterias(): Observable<any> {
         return Observable.of(sortCriterias);

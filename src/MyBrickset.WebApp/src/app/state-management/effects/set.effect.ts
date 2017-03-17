@@ -48,5 +48,23 @@ export class SetEffects {
             return this.svc.getSetDetails(setId)
                 .map(result => this.setActions.getSetSuccess(result))
                 .catch(() => of(this.setActions.getSetSuccess(null)));
-        });    
+        });
+
+    @Effect() getPartsOfSet$ = this.action$
+        .ofType(SetActions.GET_PARTS)
+        .map(action => action.payload)
+        .switchMap(setNumber => {
+            return this.svc.getPartsOfSet(setNumber)
+                .map(result => this.setActions.getPartsSuccess(result))
+                .catch(() => of(this.setActions.getPartsSuccess(null)));
+        }); 
+
+        @Effect() getAltBuildssOfSet$ = this.action$
+        .ofType(SetActions.GET_ALTERNATE_BUILDS)
+        .map(action => action.payload)
+        .switchMap(setNumber => {
+            return this.svc.getAlternateBuildsOfSet(setNumber)
+                .map(result => this.setActions.getAlternateBuildsSuccess(result))
+                .catch(() => of(this.setActions.getAlternateBuildsSuccess(null)));
+        }); 
 }

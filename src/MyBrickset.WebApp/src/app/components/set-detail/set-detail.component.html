@@ -5,10 +5,10 @@
             <button md-icon-button type="button" (click)="goBack.emit()">
                 <md-icon>arrow_back</md-icon>
             </button>
-            <span>{{set?.number}}: {{set?.name == '{?}' ? 'Unknown' : set?.name }}</span>
+            <span>{{set?.number}}{{': ' + set?.name == '{?}' ? 'Unknown' : set?.name }}</span>
             <span class="spacer"></span>
         </md-toolbar>
-        <md-tab-group *ngIf="set">
+        <md-tab-group *ngIf="set" (selectChange)="tabSelectChange($event)">
             <md-tab label="DETAILS">
                 <md-card>
                     <img *ngIf="set?.imageURL" md-card-image [src]="set?.imageURL">
@@ -43,18 +43,33 @@
                     </md-card-content>
                 </md-card>
             </md-tab>
-            <md-tab label="IMAGES">
+            <md-tab label="IMAGES {{set?.additionalImageCount}}">
                 <md-list>
                     <img *ngFor="let image of additionalImages" md-card-image [src]="image.imageURL" />
                 </md-list>
             </md-tab>
-            <md-tab label="PARTS">
-
+            <md-tab label="PARTS {{set?.pieces}}">
+                <md-list class="part-list">
+                    <div *ngFor="let part of parts" class="part-detail">
+                        <p>{{part.quantity}}x</p>
+                        <div><img [src]="part.image" [alt]="part.name" /></div>
+                        <p>{{part.partId}}</p>
+                        <p>In {{part.numSets}} sets</p>
+                    </div>
+                </md-list>
             </md-tab>
             <md-tab label="ALT BUILDS">
+                <md-list class="moc-list">
+                    <md-card *ngFor="let moc of alternateBuilds" class="moc-detail">
+                        <img  md-card-image [src]="moc.image">
+                        <md-card-title md-subheader>{{moc.setNum}}: {{moc.name}}</md-card-title>
+                        <md-card-content>
 
+                        </md-card-content>
+                    </md-card>
+                </md-list>
             </md-tab>
-            
+
         </md-tab-group>
     </div>
 </div>

@@ -16,7 +16,7 @@ import { Set, SetImage, Instruction, Review } from '../../models';
             height: calc(100% - 56px);
             overflow: auto;
         }
-        
+
         .selected {
             background-color: #eee;
         }
@@ -31,18 +31,53 @@ import { Set, SetImage, Instruction, Review } from '../../models';
         md-spinner.show {
             display:block;
         }
+
+        .part-list {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-around;
+        }
+
+        .part-detail {
+            width:100px;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .part-detail img{
+            width:85px;
+        }
+
+        .moc-list {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-around;
+        }
+
+        .moc-detail {
+            width:350px;
+        }
     `]
 
 })
 export class SetDetailComponent {
 
+
     @Input() set: any;
     @Input() additionalImages: SetImage[];
     @Input() intructions: Instruction[];
     @Input() reviews: Review[];
-    @Input() parts: any;
+    @Input() parts: any = null;
     @Input() alternateBuilds: any;
 
     @Output() goBack = new EventEmitter();
+    @Output() getPartsOfSet = new EventEmitter<string>();
+    @Output() getAltBuildsOfSet = new EventEmitter<string>();
 
+    tabSelectChange(event) {
+        if(event.tab.textLabel.startsWith('PARTS') && this.parts && this.parts.length == 0){
+            this.getPartsOfSet.emit(this.set.number);
+        } else if(event.tab.textLabel.startsWith('ALT BUILDS') && this.alternateBuilds && this.alternateBuilds.length == 0){
+            this.getAltBuildsOfSet.emit(this.set.number);
+        }
+    }
 }
