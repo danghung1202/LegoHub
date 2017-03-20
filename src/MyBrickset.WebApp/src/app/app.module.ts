@@ -9,6 +9,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 
+import { MasonryModule } from 'angular2-masonry';
+
 import * as state from './state-management';
 
 import { AppService } from './services';
@@ -25,6 +27,7 @@ import { HomeComponent, SetListModule, SetDetailModule, SearchComponent, LoginCo
         FormsModule,
         HttpModule,
         MaterialModule,
+        MasonryModule,
         StoreModule.provideStore(state.reducer),
         EffectsModule.run(state.FilterEffects),
         EffectsModule.run(state.SetEffects),

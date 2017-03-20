@@ -9,12 +9,14 @@ import { FilterPanelComponent, FilterCriteriaComponent, ViewFilterCriteriaCompon
 import { SetCardComponent } from './set-card.component';
 import { SetListRoutingModule } from './set-list-routing.module';
 import { PipeModule } from '../../pipes';
+import { MasonryModule } from 'angular2-masonry';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         MaterialModule,
+        MasonryModule,
         SetListRoutingModule,
         PipeModule.forRoot()
     ],

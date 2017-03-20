@@ -34,11 +34,17 @@
     </md-chip-list>
 </div>
 
-<div class="columns">
+<!--<div class="columns">
     <div class="item" *ngFor="let set of sets | async">
-        <set-card  [set]="set" [routerLink]="['./',set.setID]" [preserveQueryParams]="true"></set-card>
+        <set-card [set]="set" [routerLink]="['./',set.setID]" [preserveQueryParams]="true"></set-card>
     </div>
-</div>
+</div>-->
+
+<masonry [useImagesLoaded]="true">
+    <masonry-brick class="brick" *ngFor="let set of sets | async">
+        <set-card [set]="set" [routerLink]="['./',set.setID]" [preserveQueryParams]="true"></set-card>
+    </masonry-brick>
+</masonry>
 
 <button id="loadMoreBtn" md-raised-button (click)="loadMore()" [class.show]="showMore | async" class="full-width">Load more</button>
 <md-spinner [class.show]="loading | async"></md-spinner>

@@ -31,6 +31,8 @@ import { Set } from '../../models';
             margin-bottom: 2px;
             padding: 5px 8px 5px 8px !important;
         }
+
+        
     `]
 })
 export class SetCardComponent {

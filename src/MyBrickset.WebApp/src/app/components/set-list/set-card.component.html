@@ -1,37 +1,38 @@
-<md-card>
-    <img *ngIf="set.imageURL" md-card-image [src]="set.imageURL">
-    <md-card-title md-subheader>{{set.number}}: {{set.name == '{?}' ? 'Unknown' : set.name }}</md-card-title>
-    <md-card-content>
-        <div>
-            <md-chip-list>
-                <md-chip *ngIf="set.year != ''">{{set.year}}</md-chip>
-                <md-chip *ngIf="set.themeGroup != ''">{{set.themeGroup}}</md-chip>
-                <md-chip *ngIf="set.theme != ''">{{set.theme}}</md-chip>
-                <md-chip *ngIf="set.subtheme != ''">{{set.subtheme}}</md-chip>
-            </md-chip-list>
-            <div *ngIf="set.rating != 0 || set.reviewCount != 0">
-                <div *ngIf="set.rating != 0">
-                    <md-icon *ngFor="let star of set.rating | star">star</md-icon>
-                    <md-icon *ngFor="let star of set.rating | star:5">star_border</md-icon>
+<div class="card-container">
+    <md-card>
+        <img *ngIf="set.largeThumbnailURL" md-card-image [src]="set.largeThumbnailURL">
+        <md-card-title md-subheader>{{set.number}}: {{set.name == '{?}' ? 'Unknown' : set.name }}</md-card-title>
+        <md-card-content>
+            <div>
+                <md-chip-list>
+                    <md-chip *ngIf="set.year != ''">{{set.year}}</md-chip>
+                    <md-chip *ngIf="set.theme != ''">{{set.theme}}</md-chip>
+                    <md-chip *ngIf="set.subtheme != ''">{{set.subtheme}}</md-chip>
+                </md-chip-list>
+                <div *ngIf="set.rating != 0 || set.reviewCount != 0">
+                    <div *ngIf="set.rating != 0">
+                        <md-icon *ngFor="let star of set.rating | star">star</md-icon>
+                        <md-icon *ngFor="let star of set.rating | star:5">star_border</md-icon>
+                    </div>
+                    <span *ngIf="set.reviewCount != 0">{{set.reviewCount}} reviews</span>
                 </div>
-                <span *ngIf="set.reviewCount != 0">{{set.reviewCount}} reviews</span>
+                <p *ngIf="set.pieces != ''"><span class="card-label">Pieces</span> {{set.pieces}}</p>
+                <p *ngIf="set.minifigs != ''"><span class="card-label">Minifigs</span> {{set.minifigs}}</p>
+                <p *ngIf="set.USRetailPrice"><span class="card-label">RRP</span> {{'$' + set.USRetailPrice}}</p>
+                <p *ngIf="set.USRetailPrice"><span class="card-label">PPP</span> </p>
+                <p *ngIf="set.packagingType != '' && set.packagingType != '{Not specified}'"><span class="card-label">Packaging</span> {{set.packagingType}}</p>
+                <p *ngIf="set.availability != '' && set.availability != '{Not specified}'"><span class="card-label">Availability</span> {{set.availability}}</p>
+                <p><span class="card-label">Instructions</span> {{set.instructionsCount > 0 ? 'Yes' : 'No'}}</p>
+                <p *ngIf="set.userNotes"><span class="card-label">Notes</span> {{set.userNotes}}</p>
+                <div *ngIf="set.ownedByTotal > 0 || set.wantedByTotal > 0">
+                    <p><span class="card-label">Our Community</span></p>
+                    <p><span *ngIf="set.ownedByTotal > 0">{{set.ownedByTotal}} own this set</span><span *ngIf="set.wantedByTotal > 0">, {{set.wantedByTotal}} want it</span></p>
+                </div>
             </div>
-            <p *ngIf="set.pieces != ''"><span class="card-label">Pieces</span> {{set.pieces}}</p>
-            <p *ngIf="set.minifigs != ''"><span class="card-label">Minifigs</span> {{set.minifigs}}</p>
-            <p *ngIf="set.USRetailPrice"><span class="card-label">RRP</span> {{'$' + set.USRetailPrice}}</p>
-            <p *ngIf="set.USRetailPrice"><span class="card-label">PPP</span> </p>
-            <p *ngIf="set.packagingType != '' && set.packagingType != '{Not specified}'"><span class="card-label">Packaging</span> {{set.packagingType}}</p>
-            <p *ngIf="set.availability != '' && set.availability != '{Not specified}'"><span class="card-label">Availability</span> {{set.availability}}</p>
-            <p><span class="card-label">Instructions</span> {{set.instructionsCount > 0 ? 'Yes' : 'No'}}</p>
-            <p *ngIf="set.userNotes"><span class="card-label">Notes</span> {{set.userNotes}}</p>
-            <div *ngIf="set.ownedByTotal > 0 || set.wantedByTotal > 0">
-                <p><span class="card-label">Our Community</span></p>
-                <p><span *ngIf="set.ownedByTotal > 0">{{set.ownedByTotal}} own this set</span><span *ngIf="set.wantedByTotal > 0">, {{set.wantedByTotal}} want it</span></p>
-            </div>
-        </div>
-    </md-card-content>
-    <md-card-actions>
-        <button md-button>LIKE</button>
-        <button md-button>SHARE</button>
-    </md-card-actions>
-</md-card>
+        </md-card-content>
+        <md-card-actions>
+            <button md-button>LIKE</button>
+            <button md-button>SHARE</button>
+        </md-card-actions>
+    </md-card>
+</div>
