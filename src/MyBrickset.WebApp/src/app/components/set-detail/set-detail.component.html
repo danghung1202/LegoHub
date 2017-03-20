@@ -5,7 +5,7 @@
             <button md-icon-button type="button" (click)="goBack.emit()">
                 <md-icon>arrow_back</md-icon>
             </button>
-            <span>{{set?.number}}{{': ' + set?.name == '{?}' ? 'Unknown' : set?.name }}</span>
+            <span>{{set?.number}}{{set?.name == '{?}' ? ': Unknown' : ': ' + set?.name }}</span>
             <span class="spacer"></span>
         </md-toolbar>
         <md-tab-group *ngIf="set" (selectChange)="tabSelectChange($event)">

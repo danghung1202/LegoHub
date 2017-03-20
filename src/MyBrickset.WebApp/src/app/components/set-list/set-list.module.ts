@@ -14,7 +14,7 @@ import { PipeModule } from '../../pipes';
     imports: [
         CommonModule,
         FormsModule,
-        MaterialModule.forRoot(),
+        MaterialModule,
         SetListRoutingModule,
         PipeModule.forRoot()
     ],

@@ -24,7 +24,7 @@ import { HomeComponent, SetListModule, SetDetailModule, SearchComponent, LoginCo
         BrowserModule,
         FormsModule,
         HttpModule,
-        MaterialModule.forRoot(),
+        MaterialModule,
         StoreModule.provideStore(state.reducer),
         EffectsModule.run(state.FilterEffects),
         EffectsModule.run(state.SetEffects),

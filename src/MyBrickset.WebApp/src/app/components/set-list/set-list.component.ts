@@ -26,12 +26,14 @@ import { AppState, NavigationState, SetListActions, FilterActions } from '../../
             display: block;
         }
 
-        #loadMoreBtn {
-            display: none;
+        .tag-container{
+            margin: 15px 0;
         }
 
-        #loadMoreBtn.show {
-            display: block;
+        md-chip {
+            padding: 3px 5px 3px 8px !important;
+            margin-bottom: 2px;
+            margin-right: 2px;
         }
 
         .mini-button {
@@ -42,9 +44,15 @@ import { AppState, NavigationState, SetListActions, FilterActions } from '../../
             height: 24px;
         }
 
-        md-chip {
-            padding: 3px 5px 3px 8px !important;
+        #loadMoreBtn {
+            display: none;
         }
+
+        #loadMoreBtn.show {
+            display: block;
+        }
+
+        
     `]
 })
 export class SetListComponent implements OnInit {

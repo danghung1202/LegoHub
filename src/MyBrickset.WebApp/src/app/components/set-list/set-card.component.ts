@@ -12,8 +12,7 @@ import { Set } from '../../models';
         }
 
         md-card {
-            margin-bottom: 15px;
-            background-color: #F5F5F5;
+            background-color: #F9FBE7;
         }
 
         md-icon {
@@ -28,6 +27,7 @@ import { Set } from '../../models';
         }
 
         md-chip-list md-chip {
+            background-color: #CDDC39;
             margin-bottom: 2px;
             padding: 5px 8px 5px 8px !important;
         }

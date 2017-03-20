@@ -10,10 +10,10 @@
         <md-option *ngFor="let criteria of sortCriterias | async" [value]="criteria.value">{{criteria.title}}</md-option>
     </md-select>
 
-    <button md-raised-button (click)="openFilter()">Filter</button>
+    <button md-raised-button (click)="openFilter()" style="float: right;">Filter</button>
 </div>
 
-<md-card>
+<div class="tag-container">
     <md-chip-list>
         <md-chip color="accent" selected="true" *ngFor="let theme of selectedThemes">
             {{theme.theme}}
@@ -32,12 +32,14 @@
             </button>
         </md-chip>
     </md-chip-list>
-</md-card>
-<div class="row">
-    <div class="col s12 m6 l4" *ngFor="let set of sets | async">
+</div>
+
+<div class="columns">
+    <div class="item" *ngFor="let set of sets | async">
         <set-card  [set]="set" [routerLink]="['./',set.setID]" [preserveQueryParams]="true"></set-card>
     </div>
 </div>
+
 <button id="loadMoreBtn" md-raised-button (click)="loadMore()" [class.show]="showMore | async" class="full-width">Load more</button>
 <md-spinner [class.show]="loading | async"></md-spinner>
 
