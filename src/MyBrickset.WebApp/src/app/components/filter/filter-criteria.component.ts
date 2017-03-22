@@ -12,7 +12,9 @@ export interface Criteria {
     styles: [`
         .modal-content{
             height:100%;
-            z-index:3
+            z-index:3;
+            max-width:500px;
+            right:0;
         }
 
         md-list{
@@ -31,7 +33,7 @@ export interface Criteria {
             margin: auto;
         }
 
-        md-spinner.show {
+        search-input.show, md-spinner.show {
             display:block;
         }
     `]
@@ -73,6 +75,10 @@ export class FilterCriteriaComponent {
     clearCriterias() {
         this.criterias.forEach(criteria => { criteria.isSelected = false; })
         this.selectedCount = 0;
+    }
+
+    trackByValue(index, item) {
+        return item ? item.value : undefined;
     }
 
     applyCriterias() {

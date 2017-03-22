@@ -10,6 +10,7 @@ import { SetCardComponent } from './set-card.component';
 import { SetListRoutingModule } from './set-list-routing.module';
 import { PipeModule } from '../../pipes';
 import { MasonryModule } from 'angular2-masonry';
+import { SearchInputComponent } from '../shared/search-input.component';
 
 @NgModule({
     imports: [
@@ -23,10 +24,10 @@ import { MasonryModule } from 'angular2-masonry';
     declarations: [
         FilterPanelComponent,
         FilterCriteriaComponent,
+        SearchInputComponent,
         ViewFilterCriteriaComponent,
         SetListComponent,
         SetCardComponent,
-        //StarPipe
     ]
 })
 export class SetListModule { }

@@ -19,6 +19,8 @@ import { AppState, NavigationState, SetListActions, FilterActions } from '../../
         .modal-content{
             height:100%;
             z-index:2;
+            max-width:500px;
+            right:0;
         }
 
         .mini-button {
@@ -121,6 +123,18 @@ export class FilterPanelComponent {
 
     clearFilter() {
 
+    }
+
+    trackByTheme(index, item) {
+        return item ? item.theme : undefined
+    }
+
+    trackBySubtheme(index, item) {
+        return item ? item.subtheme : undefined
+    }
+
+    trackByYear(index, item) {
+        return item ? item.year : undefined
     }
 
     ngOnDestroy() {

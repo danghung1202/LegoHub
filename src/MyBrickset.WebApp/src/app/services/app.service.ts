@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { Theme, Set } from '../models';
 import { AppState, ErrorActions } from '../state-management';
 
-import { sortCriterias } from '../data';
+import { sortCriterias } from '../constant';
 
 class Url {
     static GetThemes = 'api/brickset/themes';

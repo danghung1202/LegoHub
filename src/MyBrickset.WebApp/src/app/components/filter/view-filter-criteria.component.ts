@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 
 import { AppState, FilterActions } from '../../state-management';
-import { CriteriaType } from '../../data';
+import { CriteriaType } from '../../constant';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -43,10 +43,11 @@ export class ViewFilterCriteriaComponent {
                 let criteria = params['id'] || '';
                 switch (criteria) {
                     case "theme": {
-                        this.store.dispatch(this.filterActions.loadThemes());
 
                         this.criteriaName = CriteriaType.Theme;
                         this.criterias = this.store.select(s => s.filter).select(s => s.themes.map(item => ({ isSelected: item.isSelected, value: item.theme })));
+                        this.store.dispatch(this.filterActions.loadThemes());
+                        
                         break;
                     }
                     case "subtheme": {
@@ -69,8 +70,8 @@ export class ViewFilterCriteriaComponent {
     }
 
     applyCriterias(selectedCriterias) {
-        this.store.dispatch(this.filterActions.applyCriteriasSelected(this.criteriaName, selectedCriterias));
         this.location.back();
+        this.store.dispatch(this.filterActions.applyCriteriasSelected(this.criteriaName, selectedCriterias));
     }
 
     ngOnDestroy() {

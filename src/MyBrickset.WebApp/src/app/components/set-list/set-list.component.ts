@@ -14,7 +14,9 @@ import { AppState, NavigationState, SetListActions, FilterActions } from '../../
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: require('./set-list.component.html'),
     styles: [`
-        
+        masonry {
+            margin: 0 -0.6rem;
+        }
         md-spinner {
             display:none;
             height:30px;
@@ -52,6 +54,7 @@ import { AppState, NavigationState, SetListActions, FilterActions } from '../../
             display: block;
         }
 
+
         
     `]
 })
@@ -86,7 +89,7 @@ export class SetListComponent implements OnInit {
         this.sets = this.store.select(s => s.sets).select(s => s.sets);
         this.sortCriterias = this.store.select(s => s.sets).select(s => s.sortCriterias);
         this.loading = this.store.select(s => s.sets).select(s => s.loading);
-        this.showMore =  this.store.select(s => s.sets).select(s => s.showMore);
+        this.showMore = this.store.select(s => s.sets).select(s => s.showMore);
     }
 
     ngOnInit() {
@@ -120,7 +123,7 @@ export class SetListComponent implements OnInit {
     }
 
     openFilter() {
-        
+
         let navigationExtras: NavigationExtras = {
             relativeTo: this.route,
             preserveQueryParams: true
@@ -130,11 +133,15 @@ export class SetListComponent implements OnInit {
         this.router.navigate(["filter"], navigationExtras);
     }
 
+    trackBySetID(index, item: Set) {
+        return item ? item.setID : undefined;
+    }
+
     loadMore() {
         let themes = this.params['themes'];
         let subthemes = this.params['subthemes'];
         let years = this.params['years'];
         this.pageNumber = this.pageNumber + 1;
-        this.store.dispatch(this.setActions.loadMoreSets(themes, subthemes, years,'', this.pageNumber.toString()));
+        this.store.dispatch(this.setActions.loadMoreSets(themes, subthemes, years, '', this.pageNumber.toString()));
     }
 }

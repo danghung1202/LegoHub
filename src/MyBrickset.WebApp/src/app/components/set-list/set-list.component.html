@@ -41,7 +41,7 @@
 </div>-->
 
 <masonry [useImagesLoaded]="true">
-    <masonry-brick class="brick" *ngFor="let set of sets | async">
+    <masonry-brick class="brick" *ngFor="let set of sets | async;trackBy: trackBySetID">
         <set-card [set]="set" [routerLink]="['./',set.setID]" [preserveQueryParams]="true"></set-card>
     </masonry-brick>
 </masonry>

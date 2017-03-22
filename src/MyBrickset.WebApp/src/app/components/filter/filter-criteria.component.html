@@ -15,10 +15,13 @@
         </button>
     </md-toolbar>
     <md-spinner [class.show]="loading"></md-spinner>
-    <md-list>
-        <md-list-item *ngFor="let criteria of criterias" [class.selected]="criteria.isSelected" (click)="selectCriteria(criteria)">
-            {{criteria.value}}
-        </md-list-item>
-    </md-list>
     
+    <search-input #searchInput placeholder="Search in" [class.show]="!loading"></search-input>
+
+    <ul class="criteria-list">
+        <li *ngFor="let criteria of criterias | search: searchInput.value; trackBy: trackByValue" (click)="selectCriteria(criteria)">
+            <a href="javascript:void(0)" [class.active]="criteria.isSelected">{{criteria.value}}</a>
+        </li>
+    </ul>
+
 </div>

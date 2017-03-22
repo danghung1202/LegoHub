@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 
 import { FilterActions } from '../actions';
 import { AppService } from '../../services';
-import { CriteriaType } from '../../data'
+import { CriteriaType } from '../../constant';
 import { AppState } from '../reducers';
 
 @Injectable()

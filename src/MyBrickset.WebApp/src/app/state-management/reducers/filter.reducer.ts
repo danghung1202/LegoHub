@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { SetListActions, FilterActions } from '../actions';
 import { Theme, Subtheme, Year } from '../../models';
-import { CriteriaType } from '../../data'
+import { CriteriaType } from '../../constant';
 
 export interface FilterState {
     themes: Theme[];
@@ -140,10 +140,24 @@ function applyCriteriasSelected(state: FilterState, action: Action) {
         }
         case CriteriaType.Subtheme: {
             state.selectedSubthems = state.subthemes.filter(item => selectedCriterias.findIndex(x => x.value == item.subtheme) >= 0).sort();
+            state.subthemes.forEach(element => {
+                if (state.selectedSubthems.findIndex(x => x.subtheme == element.subtheme) >= 0) {
+                    element.isSelected = true;
+                } else {
+                    element.isSelected = false;
+                }
+            });
             break;
         }
         case CriteriaType.Years: {
             state.selectedYear = state.years.filter(item => selectedCriterias.findIndex(x => x.value == item.year) >= 0).sort();
+            state.years.forEach(element => {
+                if (state.selectedYear.findIndex(x => x.year == element.year) >= 0) {
+                    element.isSelected = true;
+                } else {
+                    element.isSelected = false;
+                }
+            });
             break;
         }
     }

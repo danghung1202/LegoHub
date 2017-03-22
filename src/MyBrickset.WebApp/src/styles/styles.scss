@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-/*@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';*/
 
 body{
     margin: 0px;
@@ -30,7 +29,7 @@ md-sidenav-container .md-sidenav-content {
   margin: 0 auto;
   padding: 15px 0;
   max-width: 1280px;
-  width: 95%;
+  width: 90%;
 }
 
 @media only screen and (min-width: 600px) {
@@ -87,6 +86,32 @@ md-sidenav-container .md-sidenav-content {
       width: 25%;
       display: inline-block;
     }
+}
+
+ul.criteria-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: auto;
+    height: 100%;
+}
+
+ul.criteria-list li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+ul.criteria-list li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+ul.criteria-list li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
 }
 
 .spacer {
@@ -224,3 +249,6 @@ md-sidenav-container .md-sidenav-content {
 .error-template {padding: 40px 15px;text-align: center;}
 .error-actions {margin-top:15px;margin-bottom:15px;}
 .error-actions .btn { margin-right:10px; }
+
+
+
