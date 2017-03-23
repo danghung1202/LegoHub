@@ -1,3 +1,4 @@
 export * from './filter-panel.component';
-export * from './filter-criteria.component';
-export * from './view-filter-criteria.component';
+export * from './criteria-list.component';
+export * from './view-criteria-list.component';
+export * from './criteria.component';

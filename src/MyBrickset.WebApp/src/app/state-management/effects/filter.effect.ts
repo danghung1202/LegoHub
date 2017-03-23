@@ -24,7 +24,6 @@ export class FilterEffects {
             .subscribe(x => {
                 this.selectedThemes = x.selectedThemes.map(i => i.theme).join(',');
                 this.mustToReloadSubthemes = x.mustToReloadSubthemes;
-                console.log(this.selectedThemes);
             });
     }
 

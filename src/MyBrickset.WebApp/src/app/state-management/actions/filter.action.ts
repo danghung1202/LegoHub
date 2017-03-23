@@ -59,4 +59,19 @@ export class FilterActions {
         };
     }
 
+    static REMOVE_SELECTED_CRITERIA = '[Filter] Remove Selected Criteria';
+    removeSelectedCriteria(criteriaType, criteria): Action {
+        return {
+            type: FilterActions.REMOVE_SELECTED_CRITERIA,
+            payload: {criteriaType: criteriaType, criteria: criteria }
+        };
+    }
+
+    static REMOVE_ALL_SELECTED_CRITERIAS = '[Filter] Remove All Selected Criterias';
+    removeAllSelectedCriterias(): Action {
+        return {
+            type: FilterActions.REMOVE_ALL_SELECTED_CRITERIAS,
+        };
+    }
+
 }

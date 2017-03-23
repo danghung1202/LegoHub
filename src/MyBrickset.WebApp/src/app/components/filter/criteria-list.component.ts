@@ -1,25 +1,17 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
+import { Criteria } from '../../models';
 
-export interface Criteria {
-    value: string,
-    isSelected: boolean
-};
 
 @Component({
-    selector: 'filter-criteria',
+    selector: 'criteria-list',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    template: require('./filter-criteria.component.html'),
+    template: require('./criteria-list.component.html'),
     styles: [`
         .modal-content{
             height:100%;
             z-index:3;
             max-width:500px;
             right:0;
-        }
-
-        md-list{
-            height: calc(100% - 64px);
-            overflow: auto;
         }
 
         .selected {
@@ -33,12 +25,16 @@ export interface Criteria {
             margin: auto;
         }
 
+        search-input {
+            display:none;
+        }
+
         search-input.show, md-spinner.show {
             display:block;
         }
     `]
 })
-export class FilterCriteriaComponent {
+export class CriteriaListComponent {
     selectedCount: number;
 
     private _criterias: Criteria[];

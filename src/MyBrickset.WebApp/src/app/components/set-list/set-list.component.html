@@ -15,19 +15,19 @@
 
 <div class="tag-container">
     <md-chip-list>
-        <md-chip color="accent" selected="true" *ngFor="let theme of selectedThemes">
+        <md-chip class="md-tag" color="accent" selected="true" *ngFor="let theme of selectedThemes">
             {{theme.theme}}
-            <button md-icon-button type="button" class="mini-button">
+            <button md-icon-button type="button" class="md-tag-close-button">
                 <md-icon>cancel</md-icon>
             </button>
         </md-chip>
-        <md-chip color="accent" selected="true" *ngFor="let subtheme of selectedSubthemes"> {{subtheme.subtheme}}
-            <button md-icon-button type="button" class="mini-button">
+        <md-chip class="md-tag" color="accent" selected="true" *ngFor="let subtheme of selectedSubthemes"> {{subtheme.subtheme}}
+            <button md-icon-button type="button" class="md-tag-close-button">
                 <md-icon>cancel</md-icon>
             </button>
         </md-chip>
-        <md-chip color="accent" selected="true" *ngFor="let year of selectedYears"> {{year.year}}
-            <button md-icon-button type="button" class="mini-button">
+        <md-chip class="md-tag" color="accent" selected="true" *ngFor="let year of selectedYears"> {{year.year}}
+            <button md-icon-button type="button" class="md-tag-close-button">
                 <md-icon>cancel</md-icon>
             </button>
         </md-chip>

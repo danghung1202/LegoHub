@@ -12,7 +12,7 @@ export interface FilterState {
 
     selectedThemes: Theme[];
     selectedSubthems: Subtheme[];
-    selectedYear: Year[];
+    selectedYears: Year[];
 
     loading: boolean;
     mustToReloadSubthemes?: boolean;
@@ -25,7 +25,7 @@ const initialState: FilterState = {
 
     selectedThemes: [],
     selectedSubthems: [],
-    selectedYear: [],
+    selectedYears: [],
 
     loading: false,
     mustToReloadSubthemes: false
@@ -51,6 +51,14 @@ export function reducer(state = initialState, action: Action): FilterState {
 
         case FilterActions.LOAD_SUBTHEMES_WITH_YEARS_SUCCESS: {
             return loadSubthemesWithYearsSuccess(state, action);
+        }
+
+        case FilterActions.REMOVE_SELECTED_CRITERIA: {
+            return removeSelectedCriteria(state, action);
+        }
+
+        case FilterActions.REMOVE_ALL_SELECTED_CRITERIAS: {
+            return removeAllSelectedCriterias(state, action);
         }
 
         default: {
@@ -109,7 +117,7 @@ function loadSubthemesWithYearsSuccess(state: FilterState, action: Action) {
         if (index >= 0) result.subthemes[index].isSelected = true;
         return index >= 0;
     })
-    state.selectedYear = state.selectedYear.filter(x => {
+    state.selectedYears = state.selectedYears.filter(x => {
         var index = result.years.findIndex(y => y.year == x.year);
         if (index >= 0) result.years[index].isSelected = true;
         return index >= 0;
@@ -132,7 +140,7 @@ function applyCriteriasSelected(state: FilterState, action: Action) {
             state.subthemes = [];
             state.selectedSubthems = [];
             state.years = [];
-            state.selectedYear = [];
+            state.selectedYears = [];
 
             if (state.selectedThemes.length > 0)
                 state.loading = true;
@@ -150,9 +158,9 @@ function applyCriteriasSelected(state: FilterState, action: Action) {
             break;
         }
         case CriteriaType.Years: {
-            state.selectedYear = state.years.filter(item => selectedCriterias.findIndex(x => x.value == item.year) >= 0).sort();
+            state.selectedYears = state.years.filter(item => selectedCriterias.findIndex(x => x.value == item.year) >= 0).sort();
             state.years.forEach(element => {
-                if (state.selectedYear.findIndex(x => x.year == element.year) >= 0) {
+                if (state.selectedYears.findIndex(x => x.year == element.year) >= 0) {
                     element.isSelected = true;
                 } else {
                     element.isSelected = false;
@@ -163,4 +171,40 @@ function applyCriteriasSelected(state: FilterState, action: Action) {
     }
 
     return Object.assign({}, state);
+}
+
+function removeSelectedCriteria(state: FilterState, action: Action) {
+    const criteriaType = action.payload.criteriaType;
+    const criteria = action.payload.criteria;
+
+    switch (criteriaType) {
+        case CriteriaType.Theme: {
+            state.selectedThemes = state.selectedThemes.filter(theme => theme.theme != criteria.value);
+            var index = state.themes.findIndex(item => item.theme == criteria.value);
+            if (index > 0) state.themes[index].isSelected = false;
+            break;
+        }
+        case CriteriaType.Subtheme: {
+            state.selectedSubthems = state.selectedSubthems.filter(subtheme => subtheme.subtheme != criteria.value);
+            var index = state.subthemes.findIndex(item => item.subtheme == criteria.value);
+            if (index > 0) state.subthemes[index].isSelected = false;
+            break;
+        }
+        case CriteriaType.Years: {
+            state.selectedYears = state.selectedYears.filter(year => year.year != criteria.value);
+            var index = state.years.findIndex(item => item.year == criteria.value);
+            if (index > 0) state.years[index].isSelected = false;
+            break;
+        }
+    }
+
+    return Object.assign({}, state);
+}
+
+function removeAllSelectedCriterias(state: FilterState, action: Action) {
+    state.themes.forEach(element => { element.isSelected = false; });
+    state.subthemes.forEach(element => { element.isSelected = false; });
+    state.years.forEach(element => { element.isSelected = false; });
+
+    return Object.assign({}, state, { selectedThemes: [], selectedSubthems: [], selectedYear: [] });
 }

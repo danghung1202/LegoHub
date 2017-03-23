@@ -7,7 +7,8 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { Store } from '@ngrx/store';
 
-import { Set, Theme, Subtheme, Year } from '../../models';
+import { Set, Criteria } from '../../models';
+import { CriteriaType } from '../../constant';
 
 import { AppState, NavigationState, SetListActions, FilterActions } from '../../state-management';
 
@@ -23,30 +24,11 @@ import { AppState, NavigationState, SetListActions, FilterActions } from '../../
             right:0;
         }
 
-        .mini-button {
-            padding: 0;
-            flex-shrink: 0;
-            line-height: 0px;
-            width: 24px;
-            height: 24px;
-        }
-
-        md-chip {
-            padding: 3px 5px 3px 8px !important;
-        }
-
-        .filter-title{
-            flex-grow: 1;
-            text-align: center;
-            margin-right: 24px;
-        }
-
-        .filter-row{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            padding: 0 8px 0 16px;
-            height:42px;
+        .filter-content{
+            display:block;
+            width:100%;
+            height: calc(100% - 64px);
+            overflow: auto;
         }
 
         .filter-button-container{
@@ -62,9 +44,9 @@ import { AppState, NavigationState, SetListActions, FilterActions } from '../../
     `]
 })
 export class FilterPanelComponent {
-    selectedThemes: Observable<Theme[]>;
-    selectedSubthemes: Observable<Subtheme[]>;
-    selectedYears: Observable<Year[]>;
+    selectedThemes: Observable<Criteria[]>;
+    selectedSubthemes: Observable<Criteria[]>;
+    selectedYears: Observable<Criteria[]>;
 
     subParams: Subscription;
     subSelectedFilter: Subscription;
@@ -77,18 +59,18 @@ export class FilterPanelComponent {
         private store: Store<AppState>,
         private filterActions: FilterActions) {
 
-        this.selectedThemes = this.store.select(s => s.filter).select(s => s.selectedThemes);
-        this.selectedSubthemes = this.store.select(s => s.filter).select(s => s.selectedSubthems);
-        this.selectedYears = this.store.select(s => s.filter).select(s => s.selectedYear);
+        this.selectedThemes = this.store.select(s => s.filter).select(s => s.selectedThemes.map(item => ({ isSelected: item.isSelected, value: item.theme })));
+        this.selectedSubthemes = this.store.select(s => s.filter).select(s => s.selectedSubthems.map(item => ({ isSelected: item.isSelected, value: item.subtheme })));
+        this.selectedYears = this.store.select(s => s.filter).select(s => s.selectedYears.map(item => ({ isSelected: item.isSelected, value: item.year })));
     }
 
     ngOnInit() {
         this.subSelectedFilter = Observable.combineLatest(this.selectedThemes, this.selectedSubthemes, this.selectedYears,
             (themes, subthemes, years) =>
                 ({
-                    themes: themes.map(x => x.theme).join(','),
-                    subthemes: subthemes.map(x => x.subtheme).join(','),
-                    years: years.map(x => x.year).join(',')
+                    themes: themes.map(x => x.value).join(','),
+                    subthemes: subthemes.map(x => x.value).join(','),
+                    years: years.map(x => x.value).join(',')
                 }))
             .subscribe(result => {
                 this.params = result;
@@ -104,7 +86,6 @@ export class FilterPanelComponent {
 
                 this.store.dispatch(this.filterActions.loadSubthemesWithYears(themes, subthemes, years));
             });
-
     }
 
     goBack() {
@@ -122,19 +103,28 @@ export class FilterPanelComponent {
     }
 
     clearFilter() {
-
+        this.store.dispatch(this.filterActions.removeAllSelectedCriterias());
     }
 
-    trackByTheme(index, item) {
-        return item ? item.theme : undefined
+    goToCriterias(criteriaType) {
+        switch (criteriaType) {
+            case CriteriaType.Theme: {
+                this.router.navigate(['theme'], { relativeTo: this.route, preserveQueryParams: true })
+                break;
+            }
+            case CriteriaType.Subtheme: {
+                this.router.navigate(['subtheme'], { relativeTo: this.route, preserveQueryParams: true })
+                break;
+            }
+            case CriteriaType.Years: {
+                this.router.navigate(['year'], { relativeTo: this.route, preserveQueryParams: true })
+                break;
+            }
+        }
     }
 
-    trackBySubtheme(index, item) {
-        return item ? item.subtheme : undefined
-    }
-
-    trackByYear(index, item) {
-        return item ? item.year : undefined
+    removeCriteria(event) {
+        this.store.dispatch(this.filterActions.removeSelectedCriteria(event.type, event.criteria));
     }
 
     ngOnDestroy() {

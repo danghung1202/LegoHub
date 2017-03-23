@@ -12,15 +12,15 @@ import { CriteriaType } from '../../constant';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
-    template: `<filter-criteria 
+    template: `<criteria-list 
                     [criterias]="criterias | async" 
                     [loading]="loading | async" 
                     [criteriaName]="criteriaName" 
                     (goBack)="goBack()"
                     (applyClick)="applyCriterias($event)">
-                </filter-criteria>`
+                </criteria-list>`
 })
-export class ViewFilterCriteriaComponent {
+export class ViewCriteriaListComponent {
     subParams: Subscription;
 
     criteriaName: string;
@@ -52,12 +52,12 @@ export class ViewFilterCriteriaComponent {
                     }
                     case "subtheme": {
                         this.criteriaName = CriteriaType.Subtheme;
-                        this.criterias = this.store.select(s => s.filter).select(s => s.subthemes.map(item => ({ isSelected: item.isSelected, value: item.subtheme })))
+                        this.criterias = this.store.select(s => s.filter).select(s => s.subthemes.map(item => ({ isSelected: item.isSelected, value: item.subtheme })));
                         break;
                     }
                     case "year": {
                         this.criteriaName = CriteriaType.Years;
-                        this.criterias = this.store.select(s => s.filter).select(s => s.years.map(item => ({ isSelected: item.isSelected, value: item.year })))
+                        this.criterias = this.store.select(s => s.filter).select(s => s.years.map(item => ({ isSelected: item.isSelected, value: item.year })));
                         break;
                     }
                 }

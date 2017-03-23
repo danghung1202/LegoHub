@@ -17,6 +17,7 @@ import { AppState, NavigationState, SetListActions, FilterActions } from '../../
         masonry {
             margin: 0 -0.6rem;
         }
+
         md-spinner {
             display:none;
             height:30px;
@@ -32,20 +33,6 @@ import { AppState, NavigationState, SetListActions, FilterActions } from '../../
             margin: 15px 0;
         }
 
-        md-chip {
-            padding: 3px 5px 3px 8px !important;
-            margin-bottom: 2px;
-            margin-right: 2px;
-        }
-
-        .mini-button {
-            padding: 0;
-            flex-shrink: 0;
-            line-height: 0px;
-            width: 24px;
-            height: 24px;
-        }
-
         #loadMoreBtn {
             display: none;
         }
@@ -53,9 +40,6 @@ import { AppState, NavigationState, SetListActions, FilterActions } from '../../
         #loadMoreBtn.show {
             display: block;
         }
-
-
-        
     `]
 })
 export class SetListComponent implements OnInit {
