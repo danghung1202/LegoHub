@@ -182,6 +182,12 @@ function removeSelectedCriteria(state: FilterState, action: Action) {
             state.selectedThemes = state.selectedThemes.filter(theme => theme.theme != criteria.value);
             var index = state.themes.findIndex(item => item.theme == criteria.value);
             if (index > 0) state.themes[index].isSelected = false;
+            if(state.selectedThemes.length == 0) {
+                state.subthemes = [];
+                state.years = [];
+                state.selectedSubthems = [];
+                state.selectedYears = [];
+            }
             break;
         }
         case CriteriaType.Subtheme: {
@@ -206,5 +212,5 @@ function removeAllSelectedCriterias(state: FilterState, action: Action) {
     state.subthemes.forEach(element => { element.isSelected = false; });
     state.years.forEach(element => { element.isSelected = false; });
 
-    return Object.assign({}, state, { selectedThemes: [], selectedSubthems: [], selectedYear: [] });
+    return Object.assign({}, state, {subthemes: [], years: [], selectedThemes: [], selectedSubthems: [], selectedYear: [] });
 }

@@ -22,7 +22,7 @@ import { Criteria } from '../../models';
             flex-direction: row;
             align-items: center;
             padding: 0 8px 0 16px;
-            height:42px;
+            height:47px;
             border-bottom: solid 1px #ccc;
             cursor: pointer;
         }

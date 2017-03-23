@@ -55,6 +55,18 @@ export class FilterEffects {
             return empty();
         });
 
+    @Effect() removeSelectedCriteria$ = this.action$
+        .ofType(FilterActions.REMOVE_SELECTED_CRITERIA)
+        .map(action => action.payload)
+        .switchMap(payload => {
+            if (payload.criteriaType == CriteriaType.Theme && this.selectedThemes && this.selectedThemes.trim()) {
+                return this.svc.getSubthemesWithYears(this.selectedThemes)
+                    .map(result => this.filterActions.loadSubthemesWithYearsSuccess(result))
+                    .catch(() => of(this.filterActions.loadSubthemesWithYearsSuccess({ years: [], subthemes: [] })));
+            }
+            return empty();
+        });
+
     @Effect() loadSubthemesWithYears$ = this.action$
         .ofType(FilterActions.LOAD_SUBTHEMES_WITH_YEARS)
         .map(action => action.payload)
