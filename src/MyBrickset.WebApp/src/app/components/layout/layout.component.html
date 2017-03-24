@@ -4,8 +4,8 @@
             <span>Browse</span>
             <span class="spacer"></span>
             <button md-icon-button type="button" (click)="sidenav.close()">
-                <md-icon>chevron_left</md-icon>
-            </button>
+            <md-icon>chevron_left</md-icon>
+        </button>
         </div>
         <div class="sidenav-content">
             <div class="sidenav-title">Themes this year</div>
@@ -19,37 +19,22 @@
             </md-nav-list>
         </div>
     </md-sidenav>
-    <div class="sidenav-container">
-        <md-toolbar color="primary">
-            <button md-icon-button type="button" (click)="sidenav.open()">
-                <md-icon>menu</md-icon>
-            </button>
-
-            <span class="toolbar-title">Brickset</span>
+    <md-sidenav #sortSidenav align="end" [opened]="opened" (close)="closeSortSidenav.emit()">
+        <div class="sidenav-toolbar">
+            <button md-icon-button type="button" (click)="sortSidenav.close()">
+                    <md-icon>chevron_right</md-icon>
+                </button>
+            <span>Sort by</span>
             <span class="spacer"></span>
-
-            <button md-icon-button type="button">
-                <md-icon>search</md-icon>
-            </button>
-
-            <button md-icon-button type="button" [mdMenuTriggerFor]="menu">
-                <md-icon>more_vert</md-icon>
-            </button>
-            <md-menu #menu="mdMenu">
-                <button md-menu-item>
-                    <md-icon>fingerprint</md-icon>
-                    <span>Login</span>
-                </button>
-                <button md-menu-item disabled>
-                    <md-icon>announcement</md-icon>
-                    <span>Issues</span>
-                </button>
-                <button md-menu-item>
-                    <md-icon>notifications_off</md-icon>
-                    <span>Disable alerts</span>
-                </button>
-            </md-menu>
-        </md-toolbar>
+        </div>
+        <div class="sidenav-content">
+            <md-radio-group #sortByRadio class="sort-radio-group" (change)="sortByChange.emit($event)">
+                <md-radio-button class="sort-radio-button" *ngFor="let criteria of sortCriterias" [value]="criteria.value">{{criteria.title}}</md-radio-button>
+            </md-radio-group>
+        </div>
+    </md-sidenav>
+    <div class="sidenav-container">
+        <b-toolbar (openSidenav)="sidenav.open()"></b-toolbar>
 
         <div class="app-content">
             <div class="main-content">

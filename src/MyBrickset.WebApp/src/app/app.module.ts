@@ -18,7 +18,7 @@ import { AppService } from './services';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.router';
 import { PipeModule } from './pipes';
-import { HomeComponent, SetListModule, SetDetailModule, SearchComponent, LoginComponent, LayoutComponent, ModalComponent, ErrorDialogComponent, PageNotFoundComponent } from './components';
+import { HomeComponent, SetListModule, SetDetailModule, SearchComponent, LoginComponent, LayoutComponent, ToolbarComponent, ModalComponent, ErrorDialogComponent, PageNotFoundComponent } from './components';
 
 
 @NgModule({
@@ -43,11 +43,12 @@ import { HomeComponent, SetListModule, SetDetailModule, SearchComponent, LoginCo
         SearchComponent,
         PageNotFoundComponent,
         LayoutComponent,
+        ToolbarComponent,
         ModalComponent,
         ErrorDialogComponent,
         LoginComponent,
     ],
-    providers: [state.FilterActions, state.SetListActions, state.SetActions, state.ErrorActions, AppService],
+    providers: [state.FilterActions, state.SetListActions, state.SetActions,state.NavigationActions, state.ErrorActions, AppService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

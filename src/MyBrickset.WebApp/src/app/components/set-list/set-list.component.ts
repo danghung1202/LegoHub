@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 
 import { Set, Theme, Subtheme, Year } from '../../models';
 
-import { AppState, NavigationState, SetListActions, FilterActions } from '../../state-management';
+import { AppState, NavigationState, SetListActions, FilterActions, NavigationActions } from '../../state-management';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,6 +33,11 @@ import { AppState, NavigationState, SetListActions, FilterActions } from '../../
             margin: 15px 0;
         }
 
+        .button-row{
+            display:flex;
+            justify-content: flex-end;
+        }
+
         #loadMoreBtn {
             display: none;
         }
@@ -46,7 +51,7 @@ export class SetListComponent implements OnInit {
     subParams: Subscription;
 
     sets: Observable<Set[]>;
-    sortCriterias: Observable<any>;
+    
     loading: Observable<boolean>;
     showMore: Observable<boolean>;
 
@@ -54,7 +59,6 @@ export class SetListComponent implements OnInit {
     selectedSubthemes: Subtheme[];
     selectedYears: Year[];
 
-    selectedCriteria: string;
     params: any = {
         themes: '',
         subthemes: '',
@@ -68,10 +72,10 @@ export class SetListComponent implements OnInit {
         private router: Router,
         private store: Store<AppState>,
         private setActions: SetListActions,
-        private filterActions: FilterActions) {
+        private filterActions: FilterActions,
+        private navigationActions: NavigationActions) {
 
         this.sets = this.store.select(s => s.sets).select(s => s.sets);
-        this.sortCriterias = this.store.select(s => s.sets).select(s => s.sortCriterias);
         this.loading = this.store.select(s => s.sets).select(s => s.loading);
         this.showMore = this.store.select(s => s.sets).select(s => s.showMore);
     }
@@ -95,19 +99,13 @@ export class SetListComponent implements OnInit {
                 this.store.dispatch(this.setActions.loadSets(themes, subthemes, years));
             });
 
-        this.store.dispatch(this.setActions.loadSortCriterias());
     }
 
     ngOnDestroy() {
         this.subParams.unsubscribe();
     }
 
-    sortChange() {
-        console.log(this.selectedCriteria);
-    }
-
-    openFilter() {
-
+    openFilterPanel() {
         let navigationExtras: NavigationExtras = {
             relativeTo: this.route,
             preserveQueryParams: true
@@ -115,6 +113,10 @@ export class SetListComponent implements OnInit {
 
         //this.router.navigate([{ outlets: { child: "filter" }}], navigationExtras);
         this.router.navigate(["filter"], navigationExtras);
+    }
+
+    openSortPanel(){
+        this.store.dispatch(this.navigationActions.toggleSortSidenav(true));
     }
 
     trackBySetID(index, item: Set) {

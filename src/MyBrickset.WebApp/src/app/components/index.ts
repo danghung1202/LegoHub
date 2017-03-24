@@ -5,7 +5,7 @@ export * from './modal/modal.component';
 export * from './set-list/set-list.module';
 export * from './set-detail/set-detail.module';
 export * from './set-detail/view-set.component';
-export * from './layout/layout.component';
+export * from './layout';
 export * from './not-found/not-found.component';
 export * from './shared/search-input.component';
 export * from './error-dialog/error-dialog.component';

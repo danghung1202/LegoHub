@@ -4,7 +4,7 @@ import { of } from 'rxjs/observable/of';
 import { empty } from 'rxjs/observable/empty';
 import { Store } from '@ngrx/store';
 
-import { FilterActions } from '../actions';
+import { FilterActions, NavigationActions } from '../actions';
 import { AppService } from '../../services';
 import { CriteriaType } from '../../constant';
 import { AppState } from '../reducers';
@@ -18,6 +18,7 @@ export class FilterEffects {
         private action$: Actions,
         private store: Store<AppState>,
         private filterActions: FilterActions,
+        private navigationActions: NavigationActions,
         private svc: AppService,
     ) {
         this.store.select(s => s.filter)
@@ -36,11 +37,11 @@ export class FilterEffects {
         });
 
     @Effect() loadThemesInThisYear$ = this.action$
-        .ofType(FilterActions.LOAD_THEMES_THIS_YEAR)
+        .ofType(NavigationActions.LOAD_THEMES_THIS_YEAR)
         .switchMap(() => {
             return this.svc.getThemesInThisYear()
-                .map(themes => this.filterActions.loadThemesInThisYearSuccess(themes))
-                .catch(() => of(this.filterActions.loadThemesInThisYearSuccess([])));
+                .map(themes => this.navigationActions.loadThemesInThisYearSuccess(themes))
+                .catch(() => of(this.navigationActions.loadThemesInThisYearSuccess([])));
         });
 
     @Effect() applyCriteriasSelected$ = this.action$

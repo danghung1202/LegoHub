@@ -20,20 +20,7 @@ export class FilterActions {
         };
     }
 
-    static LOAD_THEMES_THIS_YEAR = '[Theme] Load Themes In This Year';
-    loadThemesInThisYear(): Action {
-        return {
-            type: FilterActions.LOAD_THEMES_THIS_YEAR
-        };
-    }
-
-    static LOAD_THEMES_THIS_YEAR_SUCCESS = '[Theme] Load Themes In This Year Success';
-    loadThemesInThisYearSuccess(themes): Action {
-        return {
-            type: FilterActions.LOAD_THEMES_THIS_YEAR_SUCCESS,
-            payload: themes
-        };
-    }
+    
 
     static LOAD_SUBTHEMES_WITH_YEARS = '[Filter] Load Subthemes With Years';
     loadSubthemesWithYears(themes?: string, subthemes?: string, years?: string): Action {

@@ -1,16 +1,7 @@
 <div class="button-row">
-    <!--<button md-raised-button [mdMenuTriggerFor]="sortMenu">Sort By</button>
-    <md-menu #sortMenu="mdMenu">
-        <button md-menu-item *ngFor="let criteria of sortCriterias | async">
-            <span>{{criteria.title}}</span>
-        </button>
-    </md-menu>-->
+    <button md-raised-button (click)="openSortPanel()">Sort By</button>
 
-    <md-select placeholder="Sort By" [(ngModel)]="selectedCriteria" (change)="sortChange()">
-        <md-option *ngFor="let criteria of sortCriterias | async" [value]="criteria.value">{{criteria.title}}</md-option>
-    </md-select>
-
-    <button md-raised-button (click)="openFilter()" style="float: right;">Filter</button>
+    <button md-raised-button (click)="openFilterPanel()">Filter</button>
 </div>
 
 <div class="tag-container">

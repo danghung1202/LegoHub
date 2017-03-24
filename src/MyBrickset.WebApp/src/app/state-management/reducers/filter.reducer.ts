@@ -105,7 +105,7 @@ function loadSubthemesWithYears(state: FilterState, action: Action): FilterState
     return Object.assign({}, state, {
         selectedThemes: selectedThemes,
         selectedSubthems: selectedSubthemes,
-        selectedYear: selectedYears,
+        selectedYears: selectedYears,
     });
 }
 
@@ -212,5 +212,5 @@ function removeAllSelectedCriterias(state: FilterState, action: Action) {
     state.subthemes.forEach(element => { element.isSelected = false; });
     state.years.forEach(element => { element.isSelected = false; });
 
-    return Object.assign({}, state, {subthemes: [], years: [], selectedThemes: [], selectedSubthems: [], selectedYear: [] });
+    return Object.assign({}, state, {subthemes: [], years: [], selectedThemes: [], selectedSubthems: [], selectedYears: [] });
 }

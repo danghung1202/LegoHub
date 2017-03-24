@@ -1,4 +1,10 @@
-<b-layout [themes]="themes | async" [years]="years | async">
+<b-layout 
+  [themes]="themes | async" 
+  [years]="years | async" 
+  [sortCriterias]="sortCriterias | async"
+  [openedSortSidenav]="openedSortSidenav | async"
+  (sortByChange)="sortByChange($event)"
+  (closeSortSidenav)="closeSortSidenav()">
   <router-outlet></router-outlet>
   <router-outlet name="popup"></router-outlet>
 </b-layout>
