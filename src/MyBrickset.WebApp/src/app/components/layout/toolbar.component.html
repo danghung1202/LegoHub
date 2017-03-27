@@ -1,0 +1,30 @@
+<md-toolbar color="primary">
+    <button md-icon-button type="button" (click)="openSidenav()">
+        <md-icon>menu</md-icon>
+    </button>
+
+    <span class="toolbar-title" [routerLink]="['/']">Lego Hub</span>
+    <span class="spacer"></span>
+
+    <button md-icon-button type="button">
+        <md-icon>search</md-icon>
+    </button>
+
+    <button md-icon-button type="button" [mdMenuTriggerFor]="menu">
+        <md-icon>more_vert</md-icon>
+    </button>
+    <md-menu #menu="mdMenu">
+        <button md-menu-item>
+            <md-icon>fingerprint</md-icon>
+            <span>Login</span>
+        </button>
+        <button md-menu-item disabled>
+            <md-icon>announcement</md-icon>
+            <span>Issues</span>
+        </button>
+        <button md-menu-item>
+            <md-icon>notifications_off</md-icon>
+            <span>Disable alerts</span>
+        </button>
+    </md-menu>
+</md-toolbar>

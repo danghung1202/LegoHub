@@ -1,0 +1,27 @@
+<div class="modal-content right-animation">
+    <md-toolbar>
+        <button md-icon-button type="button" (click)="goBack.emit()">
+            <md-icon>chevron_right</md-icon>
+        </button>
+        <span>{{criteriaName}} ({{selectedCount}} selected)</span>
+        <span class="spacer"></span>
+
+        <button md-icon-button type="button" (click)="clearCriterias()">
+            <md-icon>clear</md-icon>
+        </button>
+
+        <button md-icon-button type="button" (click)="applyCriterias()">
+            <md-icon>done</md-icon>
+        </button>
+    </md-toolbar>
+    <md-spinner [class.show]="loading"></md-spinner>
+    
+    <search-input #searchInput placeholder="Search in" [class.show]="!loading"></search-input>
+
+    <ul class="criteria-list">
+        <li *ngFor="let criteria of criterias | search: searchInput.value; trackBy: trackByValue" (click)="selectCriteria(criteria)">
+            <a href="javascript:void(0)" [class.active]="criteria.isSelected">{{criteria.value}}</a>
+        </li>
+    </ul>
+
+</div>

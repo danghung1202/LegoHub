@@ -1,0 +1,27 @@
+<div class="modal">
+    <div class="filter-backdrop" (click)="goBack()"></div>
+    <!-- Modal content -->
+    <div class="modal-content right-animation">
+        <md-toolbar>
+            <button md-icon-button type="button" (click)="goBack()">
+                <md-icon>chevron_right</md-icon>
+            </button>
+            <span>Filter</span>
+            <span class="spacer"></span>
+
+            <button md-icon-button type="button" (click)="clearFilter()">
+                <md-icon>clear</md-icon>
+            </button>
+
+            <button md-icon-button type="button" (click)="applyFilter()">
+                <md-icon>done</md-icon>
+            </button>
+        </md-toolbar>
+        <div class="filter-content">
+            <criteria [criteriaType]="'Themes'" [criterias]="selectedThemes | async" (goToCriterias)="goToCriterias($event)" (removeCriteria)="removeCriteria($event)"></criteria>
+            <criteria [criteriaType]="'Subthemes'" [criterias]="selectedSubthemes | async" (goToCriterias)="goToCriterias($event)" (removeCriteria)="removeCriteria($event)"></criteria>
+            <criteria [criteriaType]="'Years'" [criterias]="selectedYears | async" (goToCriterias)="goToCriterias($event)" (removeCriteria)="removeCriteria($event)"></criteria>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>
