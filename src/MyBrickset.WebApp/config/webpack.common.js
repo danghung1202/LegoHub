@@ -119,7 +119,9 @@ module.exports = {
        */
         new CopyWebpackPlugin([
             { from: 'src/assets', to: 'assets' },
-            { from: 'src/meta' }
+            { from: 'src/meta' },
+            { from: 'src/index.html'},
+            { from: 'src/favicon.ico'},
         ]),
 
         /**
