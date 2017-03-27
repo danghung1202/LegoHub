@@ -1,2 +1,2 @@
-# MyBrickset
-My version of brickset web
+# Lego Hub
+Just lego and lego
