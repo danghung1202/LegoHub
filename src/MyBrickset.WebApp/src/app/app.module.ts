@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +13,7 @@ import { MasonryModule } from 'angular2-masonry';
 
 import * as state from './state-management';
 
-import { AppService } from './services';
+import { AppService, LoggerService, GlobalErrorHandler } from './services';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.router';
@@ -36,7 +36,6 @@ import { HomeComponent, SetListModule, SetDetailModule, SearchComponent, LoginCo
         AppRoutingModule,
         PipeModule.forRoot()
     ],
-    //entryComponents: [FilterPanel],
     declarations: [
         AppComponent,
         HomeComponent,
@@ -48,7 +47,12 @@ import { HomeComponent, SetListModule, SetDetailModule, SearchComponent, LoginCo
         ErrorDialogComponent,
         LoginComponent,
     ],
-    providers: [state.FilterActions, state.SetListActions, state.SetActions,state.NavigationActions, state.ErrorActions, AppService],
+    providers: [
+        AppService,
+        LoggerService,
+        { provide: ErrorHandler, useClass: GlobalErrorHandler },
+        state.FilterActions, state.SetListActions, state.SetActions, state.NavigationActions, state.ErrorActions
+        ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
