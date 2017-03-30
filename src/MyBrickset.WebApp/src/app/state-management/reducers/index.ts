@@ -9,10 +9,12 @@ import * as fromFilter from './filter.reducer';
 import * as fromSetList from './set-list.reducer';
 import * as fromSetDetail from './set.reducer';
 import * as fromError from './error.reducer';
+import * as fromCategory from './category.reducer';
 
 export type NavigationState = fromNavigation.NavigationState;
 export type FilterState = fromFilter.FilterState;
 export type SetListState = fromSetList.SetListState;
+
 
 export interface AppState {
     navigation: fromNavigation.NavigationState;
@@ -20,6 +22,7 @@ export interface AppState {
     sets: fromSetList.SetListState;
     set: fromSetDetail.SetDetailState;
     error: fromError.ErrorState;
+    category: fromCategory.CategoryState;
 };
 
 /**
@@ -34,7 +37,8 @@ const reducers = {
     filter: fromFilter.reducer,
     sets: fromSetList.reducer,
     set: fromSetDetail.reducer,
-    error: fromError.reducer
+    error: fromError.reducer,
+    category: fromCategory.reducer
 };
 
 const developmentReducer: ActionReducer<AppState> = compose(combineReducers)(reducers);

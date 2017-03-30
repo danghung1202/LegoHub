@@ -1,7 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Store, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -18,27 +18,29 @@ import { AppService, LoggerService, GlobalErrorHandler } from './services';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.router';
 import { PipeModule } from './pipes';
-import { HomeComponent, SetListModule, SetDetailModule, SearchComponent, LoginComponent, LayoutComponent, ToolbarComponent, ModalComponent, ErrorDialogComponent, PageNotFoundComponent } from './components';
+import { HomeModule, SetListModule, SettingComponent, SetDetailModule, SearchComponent, LoginComponent, LayoutComponent, ToolbarComponent, ModalComponent, ErrorDialogComponent, PageNotFoundComponent } from './components';
 
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpModule,
         MaterialModule,
         MasonryModule,
         StoreModule.provideStore(state.reducer),
         EffectsModule.run(state.FilterEffects),
         EffectsModule.run(state.SetEffects),
+        EffectsModule.run(state.CategoryEffects),
         SetListModule,
+        HomeModule,
         SetDetailModule,
         AppRoutingModule,
         PipeModule.forRoot()
     ],
     declarations: [
         AppComponent,
-        HomeComponent,
         SearchComponent,
         PageNotFoundComponent,
         LayoutComponent,
@@ -46,12 +48,13 @@ import { HomeComponent, SetListModule, SetDetailModule, SearchComponent, LoginCo
         ModalComponent,
         ErrorDialogComponent,
         LoginComponent,
+        SettingComponent
     ],
     providers: [
         AppService,
         LoggerService,
         { provide: ErrorHandler, useClass: GlobalErrorHandler },
-        state.FilterActions, state.SetListActions, state.SetActions, state.NavigationActions, state.ErrorActions
+        state.FilterActions, state.SetListActions, state.SetActions, state.NavigationActions, state.ErrorActions, state.CategoryActions
         ],
     bootstrap: [AppComponent]
 })

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace MyBrickset.Data.Repositories
     {
         private readonly BricksetAPIv2Soap _service;
         private readonly BricksetConfig _config;
+        public BricksetConfig Config => _config;
         public BricksetRepository(BricksetAPIv2Soap service, IOptions<BricksetConfig> config)
         {
             _service = service;

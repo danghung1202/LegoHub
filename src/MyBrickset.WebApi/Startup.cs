@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using MyBrickset.Data.Repositories;
 using MyBrickset.Data.Config;
 using Microsoft.AspNetCore.Http;
+using MyBrickset.WebApi.Helper;
 
 namespace MyBrickset.WebApi
 {
@@ -52,6 +53,7 @@ namespace MyBrickset.WebApi
 
             services.AddSingleton<BricksetAPIv2Soap>(new BricksetAPIv2SoapClient(BricksetAPIv2SoapClient.EndpointConfiguration.BricksetAPIv2Soap));
             services.AddSingleton<IBricksetRepository, BricksetRepository>();
+            services.AddSingleton<IFileProcessor, FileProcessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline

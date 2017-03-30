@@ -1,4 +1,4 @@
-export * from './home/home.component';
+export * from './home/home.module';
 export * from './login/login.component';
 export * from './search/search.component';
 export * from './modal/modal.component';
@@ -9,3 +9,4 @@ export * from './layout';
 export * from './not-found/not-found.component';
 export * from './shared/search-input.component';
 export * from './error-dialog/error-dialog.component';
+export * from './setting/setting.component';

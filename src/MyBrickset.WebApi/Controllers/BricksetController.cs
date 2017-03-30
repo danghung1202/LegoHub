@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using MyBrickset.Data.Repositories;
+using MyBrickset.WebApi.Helper;
 
 namespace MyBrickset.WebApi.Controllers
 {
@@ -10,9 +11,11 @@ namespace MyBrickset.WebApi.Controllers
     public class BricksetController : Controller
     {
         private readonly IBricksetRepository _bricksetRepo;
-        public BricksetController(IBricksetRepository bricksetRepo)
+        private readonly IFileProcessor _fileProcessor;
+        public BricksetController(IBricksetRepository bricksetRepo, IFileProcessor fileProcessor)
         {
             _bricksetRepo = bricksetRepo;
+            _fileProcessor = fileProcessor;
         }
 
         [Route("themes")]
@@ -90,6 +93,23 @@ namespace MyBrickset.WebApi.Controllers
                 set = set,
                 additionalImages = additionalImages,
                 instructions = instructions
+            });
+        }
+
+        [Route("save-themes")]
+        [HttpPost]
+        public IActionResult SaveThemesWithTeaserImage([FromBody] string jsonContent)
+        {
+            if (string.IsNullOrEmpty(jsonContent))
+            {
+                return BadRequest();
+            }
+
+            _fileProcessor.SaveJsonToWwwFolder("data", _bricksetRepo.Config.CategoryStoreFileName, jsonContent);
+            return new ObjectResult(new
+            {
+                success = true,
+                message = "Success!"
             });
         }
     }

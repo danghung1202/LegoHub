@@ -12,23 +12,23 @@ import { AppState, NavigationState, SetListActions, CategoryActions, NavigationA
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
-    template: require('./home.component.html'),
+    template: require('./category-list.component.html'),
     styles: [`
         
     `]
 })
-export class HomeComponent implements OnInit {
-
+export class CategoryListComponent implements OnInit {
+    categories: Observable<any>;
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private store: Store<AppState>,
         private categoryActions: CategoryActions) {
 
-        
+        this.categories = this.store.select(s=>s.category).select(s=>s.categories);
     }
 
     ngOnInit() {
-        
+        this.store.dispatch(this.categoryActions.loadCategories());
     }
 }

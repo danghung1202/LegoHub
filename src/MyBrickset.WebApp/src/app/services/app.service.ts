@@ -15,13 +15,14 @@ class Url {
     static GetSubthemesWithYears = 'api/brickset/subthemes';
     static GetSets = 'api/brickset/sets';
     static GetSetDetails = 'api/brickset/set';
+    static SaveThemesWithImage = 'api/brickset/save-themes';
 }
 
 @Injectable()
 export class AppService {
     _themes: any = null;
+    _themesThisYear: any = null;
     constructor(private http: Http, private store: Store<AppState>, private errorActions: ErrorActions) { }
-
 
     //using cache in Observable
     getThemes(): Observable<Theme[]> {
@@ -46,7 +47,42 @@ export class AppService {
     }
 
     getThemesInThisYear(): Observable<Theme[]> {
-        return this.http.get(Url.GetThemesInThisYear)
+        if (!this._themesThisYear) {
+            this._themesThisYear = this.http.get(Url.GetThemesInThisYear)
+                .map(res => res.json())
+                .publishReplay(1)
+                .refCount()
+                .catch(error => {
+                    return this.handleError(error);
+                });
+        }
+        return this._themesThisYear;
+    }
+
+    getThemesWithTeaserImage(): Observable<any> {
+        return Observable.forkJoin([
+            this.getThemesInThisYear(),
+            this.http.get('data/categories.json').map(res => res.json())])
+            .map(results => {
+                let themes = results[0];
+                let images = results[1];
+
+                return themes.map(theme => ({ theme: theme.theme, image: images[theme.theme] }))
+            })
+            .catch(error => {
+                return this.handleError(error);
+            });
+    }
+
+    updateThemesWithTeaserImage(themesWithImages): Observable<any> {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+        const body = new URLSearchParams();
+        body.set('jsonContent', themesWithImages);
+        return this.http.post(Url.SaveThemesWithImage, body.toString(), {
+            headers: headers
+        })
             .map(res => res.json())
             .catch(error => {
                 return this.handleError(error);

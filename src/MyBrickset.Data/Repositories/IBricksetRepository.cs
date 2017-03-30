@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BricksetService;
+using MyBrickset.Data.Config;
 
 namespace MyBrickset.Data.Repositories
 {
@@ -9,6 +10,7 @@ namespace MyBrickset.Data.Repositories
     /// </summary>
     public interface IBricksetRepository
     {
+        BricksetConfig Config {get;}
         Task<List<themes>> GetThemesAsync();
         Task<List<subthemes>> GetSubthemesAsync(string theme);
         Task<List<years>> GetYearsAsync(string theme);
