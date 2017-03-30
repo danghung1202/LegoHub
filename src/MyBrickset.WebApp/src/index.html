@@ -15,7 +15,7 @@
   <my-app>
     <center>
       <h2>Welcome to Lego Hub</h2>
-      <img src="./assets/img/lego_loading.gif" alt="Loading..."/>
+      <img src="./assets/images/lego_loading.gif" alt="Loading..."/>
       <div>Loading...</div>
     </center>
   </my-app>
@@ -23,6 +23,15 @@
   <script type="text/javascript" src="./polyfills.js"></script>
   <script type="text/javascript" src="./vendor.js"></script>
   <script type="text/javascript" src="./app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+        console.log('Service Worker registered');
+      }).catch(function(err) {
+        console.log('Service Worker registration failed: ', err);
+      });
+    }
+  </script>
 </body>
 
 </html>

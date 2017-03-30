@@ -122,6 +122,7 @@ module.exports = {
             { from: 'src/meta' },
             { from: 'src/index.html'},
             { from: 'src/favicon.ico'},
+            { from: 'src/service-worker.js'},
         ]),
 
         /**
