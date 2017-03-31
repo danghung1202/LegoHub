@@ -5,7 +5,7 @@ import { Criteria } from '../../models';
 @Component({
     selector: 'criteria',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    template: require('./criteria.component.html'),
+    templateUrl: './criteria.component.html',
     styles: [`
         .filter-title{
             flex-grow: 1;

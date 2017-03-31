@@ -5,7 +5,7 @@ import { Set, SetImage, Instruction, Review } from '../../models';
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'set-detail',
-    template: require('./set-detail.component.html'),
+    templateUrl: './set-detail.component.html',
     styles: [`
         .modal-content{
             height:100%;

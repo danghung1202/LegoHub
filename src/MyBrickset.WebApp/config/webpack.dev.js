@@ -11,8 +11,8 @@ const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
  * Webpack Constants
  */
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
-const METADATA =  {
-  ENV: ENV
+const METADATA = {
+    ENV: ENV
 };
 
 module.exports = webpackMerge(commonConfig, {
@@ -29,12 +29,12 @@ module.exports = webpackMerge(commonConfig, {
         path: helpers.root('dist'),
 
         /**
-       * Specifies the name of each output file on disk.
-       * IMPORTANT: You must not specify an absolute path here!
-       *
-       * See: http://webpack.github.io/docs/configuration.html#output-filename
-       */
-        filename: '[name].js',
+     * Specifies the name of each output file on disk.
+     * IMPORTANT: You must not specify an absolute path here!
+     *
+     * See: http://webpack.github.io/docs/configuration.html#output-filename
+     */
+        filename: '[name].[chunkhash].bundle.js',
 
         /**
        * The filename of the SourceMaps for the JavaScript files.
@@ -42,14 +42,44 @@ module.exports = webpackMerge(commonConfig, {
        *
        * See: http://webpack.github.io/docs/configuration.html#output-sourcemapfilename
        */
-        sourceMapFilename: '[file].map',
+        sourceMapFilename: '[name].[chunkhash].bundle.map',
 
-        /** The filename of non-entry chunks as relative path
-         * inside the output.path directory.
-         *
-         * See: http://webpack.github.io/docs/configuration.html#output-chunkfilename
-         */
-        chunkFilename: '[id].chunk.js',
+        /**
+       * The filename of non-entry chunks as relative path
+       * inside the output.path directory.
+       *
+       * See: http://webpack.github.io/docs/configuration.html#output-chunkfilename
+       */
+        chunkFilename: '[id].[chunkhash].chunk.js'
+    },
+
+    module: {
+
+        rules: [
+            /*
+             * css loader support for *.css files (styles directory only)
+             * Loads external css styles into the DOM, supports HMR
+             *
+             */
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+                include: [helpers.root('src', 'styles')]
+            },
+
+            /*
+             * sass loader support for *.scss files (styles directory only)
+             * Loads external sass styles into the DOM, supports HMR
+             *
+             */
+            {
+                test: /\.(scss|sass)$/,
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+                include: [helpers.root('src', 'styles')]
+            },
+
+        ]
+
     },
 
     plugins: [

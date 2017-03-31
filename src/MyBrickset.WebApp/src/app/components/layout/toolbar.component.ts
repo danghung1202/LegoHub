@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
 @Component({
     selector: 'b-toolbar',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    template: require('./toolbar.component.html'),
+    templateUrl: './toolbar.component.html',
     styles: [`
      
     `]

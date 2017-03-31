@@ -25,7 +25,7 @@ import { Component, Input } from '@angular/core';
 export class ModalComponent {
 
   @Input() visible = false;
-  private visibleAnimate = false;
+  visibleAnimate = false;
 
   public show(): void {
     this.visible = true;

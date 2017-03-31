@@ -65,8 +65,8 @@ import { AppState, ErrorActions } from '../../state-management';
 })
 export class ErrorDialogComponent {
 
-    private visible: Observable<boolean>;
-    private message: Observable<string>;
+    visible: Observable<boolean>;
+    message: Observable<string>;
    
     constructor(private store: Store<AppState>, private errorActions: ErrorActions) {
         this.visible = this.store.select(s => s.error).select(s => s.visible);

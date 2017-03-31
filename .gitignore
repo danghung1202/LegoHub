@@ -3,6 +3,7 @@ src/MyBrickset.Data/bin/
 src/MyBrickset.Data/obj/
 src/MyBrickset.WebApp/node_modules/
 src/MyBrickset.WebApp/dist/
+src/MyBrickset.WebApp/compiled/
 src/MyBrickset.WebApi/bin/
 src/MyBrickset.WebApi/obj/
 src/MyBrickset.WebApi/wwwroot/

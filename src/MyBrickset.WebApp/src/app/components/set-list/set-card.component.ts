@@ -4,7 +4,7 @@ import { Set } from '../../models';
 @Component({
     selector: 'set-card',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    template: require('./set-card.component.html'),
+    templateUrl: './set-card.component.html',
     styles: [`
         .card-label {
             text-transform: uppercase;

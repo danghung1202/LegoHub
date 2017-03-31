@@ -12,7 +12,7 @@ import { AppState, NavigationState, SetListActions, CategoryActions, NavigationA
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
-    template: require('./category-list.component.html'),
+    templateUrl: './category-list.component.html',
     styles: [`
         
     `]
@@ -30,5 +30,9 @@ export class CategoryListComponent implements OnInit {
 
     ngOnInit() {
         this.store.dispatch(this.categoryActions.loadCategories());
+    }
+
+    trackByTheme(index, item) {
+        return item ? item.theme : undefined
     }
 }

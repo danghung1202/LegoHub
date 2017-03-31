@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
 @Component({
     selector: 'b-layout',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    template: require('./layout.component.html'),
+    templateUrl: './layout.component.html',
     styles: [`
        md-nav-list {
            padding-top: 0px;

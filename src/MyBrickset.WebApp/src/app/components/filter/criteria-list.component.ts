@@ -5,7 +5,7 @@ import { Criteria } from '../../models';
 @Component({
     selector: 'criteria-list',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    template: require('./criteria-list.component.html'),
+    templateUrl: './criteria-list.component.html',
     styles: [`
         .modal-content{
             height:100%;

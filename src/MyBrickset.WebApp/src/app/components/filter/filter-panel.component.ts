@@ -15,7 +15,7 @@ import { AppState, NavigationState, SetListActions, FilterActions } from '../../
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
-    template: require('./filter-panel.component.html'),
+    templateUrl: './filter-panel.component.html',
     styles: [`
         .modal-content{
             height:100%;

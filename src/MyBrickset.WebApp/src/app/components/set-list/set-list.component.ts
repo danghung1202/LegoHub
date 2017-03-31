@@ -12,7 +12,7 @@ import { AppState, NavigationState, SetListActions, FilterActions, NavigationAct
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
-    template: require('./set-list.component.html'),
+    templateUrl: './set-list.component.html',
     styles: [`
         masonry {
             margin: 0 -0.6rem;

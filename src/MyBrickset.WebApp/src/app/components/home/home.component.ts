@@ -12,7 +12,7 @@ import { AppState, NavigationState, SetListActions, CategoryActions, NavigationA
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
-    template: require('./home.component.html'),
+    templateUrl: './home.component.html',
     styles: [`
         
     `]

@@ -13,7 +13,7 @@ import { AppState, NavigationState, SetListActions, CategoryActions, NavigationA
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
-    template: require('./setting.component.html'),
+    templateUrl: './setting.component.html',
     styles: [`
         
     `]

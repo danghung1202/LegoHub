@@ -3,9 +3,11 @@ module.exports = {
   stripPrefix: 'dist',
   root: 'dist/',
   staticFileGlobs: [
-    'dist/index.html',
+    
     'dist/**.js',
     'dist/**.css',
-    'dist/assets/images/lego_loading.gif'
+    'dist/assets/img/lego_loading.gif'
   ]
 };
+
+// 'dist/index.html',

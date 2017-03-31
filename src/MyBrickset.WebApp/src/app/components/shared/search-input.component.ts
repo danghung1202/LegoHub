@@ -6,7 +6,7 @@ import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'search-input',
-    template: require('./search-input.component.html'),
+    templateUrl: './search-input.component.html',
     styles: [`
         .search-row{
             display:flex;
