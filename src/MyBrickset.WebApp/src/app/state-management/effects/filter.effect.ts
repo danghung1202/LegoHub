@@ -11,22 +11,13 @@ import { AppState } from '../reducers';
 
 @Injectable()
 export class FilterEffects {
-    private selectedThemes: any;
-    private mustToReloadSubthemes: boolean;
-    
     constructor(
         private action$: Actions,
         private store: Store<AppState>,
         private filterActions: FilterActions,
         private navigationActions: NavigationActions,
         private svc: AppService,
-    ) {
-        this.store.select(s => s.filter)
-            .subscribe(x => {
-                this.selectedThemes = x.selectedThemes.map(i => i.theme).join(',');
-                this.mustToReloadSubthemes = x.mustToReloadSubthemes;
-            });
-    }
+    ) { }
 
     @Effect() loadThemes$ = this.action$
         .ofType(FilterActions.LOAD_THEMES)
@@ -47,9 +38,12 @@ export class FilterEffects {
     @Effect() applyCriteriasSelected$ = this.action$
         .ofType(FilterActions.APPLY_CRITERIAS_SELECTED)
         .map(action => action.payload)
+        .withLatestFrom(this.store)
+        .map((lastest: any[]) => ({ criteriaType: lastest[0].criteriaType, store: lastest[1] }))
         .switchMap(payload => {
-            if (payload.criteriaType == CriteriaType.Theme && this.selectedThemes && this.selectedThemes.trim()) {
-                return this.svc.getSubthemesWithYears(this.selectedThemes)
+            let selectedThemes = payload.store.filter.selectedThemes.map(i => i.theme).join(',');
+            if (payload.criteriaType == CriteriaType.Theme && selectedThemes) {
+                return this.svc.getSubthemesWithYears(selectedThemes)
                     .map(result => this.filterActions.loadSubthemesWithYearsSuccess(result))
                     .catch(() => of(this.filterActions.loadSubthemesWithYearsSuccess({ years: [], subthemes: [] })));
             }
@@ -59,9 +53,12 @@ export class FilterEffects {
     @Effect() removeSelectedCriteria$ = this.action$
         .ofType(FilterActions.REMOVE_SELECTED_CRITERIA)
         .map(action => action.payload)
+        .withLatestFrom(this.store)
+        .map((lastest: any[]) => ({ criteriaType: lastest[0].criteriaType, store: lastest[1] }))
         .switchMap(payload => {
-            if (payload.criteriaType == CriteriaType.Theme && this.selectedThemes && this.selectedThemes.trim()) {
-                return this.svc.getSubthemesWithYears(this.selectedThemes)
+            let selectedThemes = payload.store.filter.selectedThemes.map(i => i.theme).join(',');
+            if (payload.criteriaType == CriteriaType.Theme && selectedThemes) {
+                return this.svc.getSubthemesWithYears(selectedThemes)
                     .map(result => this.filterActions.loadSubthemesWithYearsSuccess(result))
                     .catch(() => of(this.filterActions.loadSubthemesWithYearsSuccess({ years: [], subthemes: [] })));
             }
@@ -71,10 +68,13 @@ export class FilterEffects {
     @Effect() loadSubthemesWithYears$ = this.action$
         .ofType(FilterActions.LOAD_SUBTHEMES_WITH_YEARS)
         .map(action => action.payload)
-        .switchMap((payload) => {
-
-            if (this.selectedThemes && this.selectedThemes.trim() && this.mustToReloadSubthemes) {
-                return this.svc.getSubthemesWithYears(this.selectedThemes)
+        .withLatestFrom(this.store)
+        .map((lastest: any[]) => lastest[1])
+        .switchMap((store: AppState) => {
+            let selectedThemes = store.filter.selectedThemes.map(i => i.theme).join(',');
+            let mustToReloadSubthemes = store.filter.mustToReloadSubthemes;
+            if (selectedThemes && mustToReloadSubthemes) {
+                return this.svc.getSubthemesWithYears(selectedThemes)
                     .map(result => this.filterActions.loadSubthemesWithYearsSuccess(result))
                     .catch(() => of(this.filterActions.loadSubthemesWithYearsSuccess({ years: [], subthemes: [] })));
             }

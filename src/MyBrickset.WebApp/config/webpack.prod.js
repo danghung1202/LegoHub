@@ -104,7 +104,7 @@ module.exports = webpackMerge(commonConfig, {
    *
    * See: https://github.com/webpack/extract-text-webpack-plugin
    */
-    new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin('[name].[contenthash].css'),
 
     /**
    * Webpack plugin to optimize a JavaScript file for faster initial load
