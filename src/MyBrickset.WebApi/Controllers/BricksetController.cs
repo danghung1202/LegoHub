@@ -11,11 +11,9 @@ namespace MyBrickset.WebApi.Controllers
     public class BricksetController : Controller
     {
         private readonly IBricksetRepository _bricksetRepo;
-        private readonly IFileProcessor _fileProcessor;
-        public BricksetController(IBricksetRepository bricksetRepo, IFileProcessor fileProcessor)
+        public BricksetController(IBricksetRepository bricksetRepo)
         {
             _bricksetRepo = bricksetRepo;
-            _fileProcessor = fileProcessor;
         }
 
         [Route("themes")]
@@ -93,23 +91,6 @@ namespace MyBrickset.WebApi.Controllers
                 set = set,
                 additionalImages = additionalImages,
                 instructions = instructions
-            });
-        }
-
-        [Route("save-themes")]
-        [HttpPost]
-        public IActionResult SaveThemesWithTeaserImage([FromBody] string jsonContent)
-        {
-            if (string.IsNullOrEmpty(jsonContent))
-            {
-                return BadRequest();
-            }
-
-            _fileProcessor.SaveJsonToWwwFolder("data", _bricksetRepo.Config.CategoryStoreFileName, jsonContent);
-            return new ObjectResult(new
-            {
-                success = true,
-                message = "Success!"
             });
         }
     }

@@ -1,19 +1,19 @@
 using System.IO;
-using Microsoft.AspNetCore.Hosting;
+using MyBrickset.Data.Config;
 
 namespace MyBrickset.WebApi.Helper
 {
     public class FileProcessor : IFileProcessor
     {
-        private IHostingEnvironment hostingEnvironment;
-        public FileProcessor(IHostingEnvironment env)
+        private IStoragePathResolver _pathResolver;
+        public FileProcessor(IStoragePathResolver pathResolver)
         {
-            hostingEnvironment = env;
+            _pathResolver = pathResolver;
         }
 
-        public void SaveJsonToAppFolder(string appVirtualFolderPath, string fileName, string jsonContent)
+        public void SaveJsonToAppFolder(string virtualFolderPath, string fileName, string jsonContent)
         {
-            var pathToFile = Path.Combine(hostingEnvironment.ContentRootPath, appVirtualFolderPath, fileName);
+            var pathToFile = _pathResolver.ResolveAppRootPath(virtualFolderPath, fileName);
 
             using (StreamWriter s = File.CreateText(pathToFile))
             {
@@ -23,7 +23,7 @@ namespace MyBrickset.WebApi.Helper
 
         public void SaveJsonToWwwFolder(string virtualFolderPath, string fileName, string jsonContent)
         {
-            var pathToFile = Path.Combine(hostingEnvironment.WebRootPath, virtualFolderPath, fileName);
+            var pathToFile = _pathResolver.ResolveWwwRootPath(virtualFolderPath, fileName);
 
             using (StreamWriter s = File.CreateText(pathToFile))
             {

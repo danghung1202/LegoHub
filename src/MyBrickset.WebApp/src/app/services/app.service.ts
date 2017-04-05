@@ -15,7 +15,7 @@ class Url {
     static GetSubthemesWithYears = 'api/brickset/subthemes';
     static GetSets = 'api/brickset/sets';
     static GetSetDetails = 'api/brickset/set';
-    static SaveThemesWithImage = 'api/brickset/save-themes';
+    static SaveThemesWithImage = 'api/storage/save-categories';
 }
 
 @Injectable()

@@ -46,6 +46,7 @@ namespace MyBrickset.WebApi
             });
 
             services.Configure<BricksetConfig>(Configuration.GetSection("Brickset"));
+            services.Configure<StorageConfig>(Configuration.GetSection("Storage"));
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
@@ -54,6 +55,7 @@ namespace MyBrickset.WebApi
             services.AddSingleton<BricksetAPIv2Soap>(new BricksetAPIv2SoapClient(BricksetAPIv2SoapClient.EndpointConfiguration.BricksetAPIv2Soap));
             services.AddSingleton<IBricksetRepository, BricksetRepository>();
             services.AddSingleton<IFileProcessor, FileProcessor>();
+            services.AddSingleton<IStoragePathResolver, StoragePathResolver>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
