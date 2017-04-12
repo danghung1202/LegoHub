@@ -7,7 +7,7 @@
   <title>My Brickset</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
-  <link href="./app.css" rel="stylesheet">
+  <!--<link href="./app.css" rel="stylesheet">-->
   <base href="/">
 </head>
 
@@ -15,14 +15,11 @@
   <my-app>
     <center>
       <h2>Welcome to Lego Hub</h2>
-      <img src="./assets/images/lego_loading.gif" alt="Loading..."/>
+      <img src="./assets/img/lego_loading.gif" alt="Loading..."/>
       <div>Loading...</div>
     </center>
   </my-app>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
-  <script type="text/javascript" src="./polyfills.js"></script>
-  <script type="text/javascript" src="./vendor.js"></script>
-  <script type="text/javascript" src="./app.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
@@ -32,6 +29,6 @@
       });
     }
   </script>
-</body>
+<script type="text/javascript" src="polyfills.e04a309ee498699582cc.bundle.js" defer></script><script type="text/javascript" src="vendor.f6a6f0adaa795032028a.bundle.js" defer></script><script type="text/javascript" src="app.6b01ca935648c56a6a83.bundle.js" defer></script></body>
 
 </html>

@@ -16,6 +16,7 @@ class Url {
     static GetSets = 'api/brickset/sets';
     static GetSetDetails = 'api/brickset/set';
     static SaveThemesWithImage = 'api/storage/save-categories';
+    static GetThemesWithImage = 'api/storage/load-categories';
 }
 
 @Injectable()
@@ -62,7 +63,7 @@ export class AppService {
     getThemesWithTeaserImage(): Observable<any> {
         return Observable.forkJoin([
             this.getThemesInThisYear(),
-            this.http.get('data/categories.json').map(res => res.json())])
+            this.http.get(Url.GetThemesWithImage).map(res => res.json())])
             .map(results => {
                 let themes = results[0];
                 let images = results[1];
@@ -76,12 +77,13 @@ export class AppService {
 
     updateThemesWithTeaserImage(themesWithImages): Observable<any> {
         let headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('Content-Type', 'application/json');
 
-        const body = new URLSearchParams();
-        body.set('jsonContent', themesWithImages);
-        return this.http.post(Url.SaveThemesWithImage, body.toString(), {
-            headers: headers
+        const params = new URLSearchParams();
+        params.set('jsonContent', themesWithImages);
+        return this.http.post(Url.SaveThemesWithImage, null, {
+            //headers: headers,
+            search: params
         })
             .map(res => res.json())
             .catch(error => {

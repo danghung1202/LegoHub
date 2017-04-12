@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Options;
 using MyBrickset.Data.Config;
 
-namespace MyBrickset.WebApi.Helper
+namespace MyBrickset.Data.Storage
 {
     public class StoragePathResolver : IStoragePathResolver
     {
@@ -47,6 +47,5 @@ namespace MyBrickset.WebApi.Helper
 
             return Path.Combine(folderPaths, fileNameWithExtension);
         }
-
     }
 }

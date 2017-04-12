@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using MyBrickset.Data.Repositories;
-using MyBrickset.WebApi.Helper;
 
 namespace MyBrickset.WebApi.Controllers
 {
@@ -37,7 +36,7 @@ namespace MyBrickset.WebApi.Controllers
                 return new ObjectResult(new List<BricksetService.themes>());
             }
 
-            var themesThisYear = themes.Where(x => x.yearTo == thisYear && x.theme != "{Undefined}").OrderBy(x => x.theme).ToList();
+            var themesThisYear = themes.Where(x => x.yearTo == thisYear && x.theme != "{Undefined}" && x.setCount > 0).OrderBy(x => x.theme).ToList();
             return new ObjectResult(themesThisYear);
         }
 

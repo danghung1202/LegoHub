@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using MyBrickset.Data.Config;
-using MyBrickset.WebApi.Helper;
+using MyBrickset.Data.Storage;
 
 namespace MyBrickset.WebApi.Controllers
 {
@@ -18,7 +19,7 @@ namespace MyBrickset.WebApi.Controllers
 
         [Route("save-categories")]
         [HttpPost]
-        public IActionResult SaveThemesWithTeaserImage([FromBody] string jsonContent)
+        public IActionResult SaveCategoriesWithTeaserImage(string jsonContent)
         {
             if (string.IsNullOrEmpty(jsonContent))
             {
@@ -32,5 +33,19 @@ namespace MyBrickset.WebApi.Controllers
                 message = "Success!"
             });
         }
+
+        [Route("load-categories")]
+        public IActionResult LoadCategoriesWithTeaserImage()
+        {
+            var categories = _fileProcessor.LoadObjectFromAppFolder(string.Empty, _config.CategoryFile);
+            if (categories != null)
+            {
+                return new ObjectResult(categories);
+            }
+            return new ObjectResult(new List<BricksetService.themes>());
+        }
+
+
+
     }
 }

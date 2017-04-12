@@ -1,5 +1,5 @@
 using System.IO;
-namespace MyBrickset.Data.Config
+namespace MyBrickset.Data.Storage
 {
     public class StoragePath
     {
