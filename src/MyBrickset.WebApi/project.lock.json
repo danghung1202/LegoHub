@@ -3,6 +3,65 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.0": {
+      "Google.Apis/1.25.0": {
+        "type": "package",
+        "dependencies": {
+          "Google.Apis.Core": "1.25.0",
+          "NETStandard.Library": "1.6.1",
+          "System.Reflection.TypeExtensions": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/Google.Apis.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Google.Apis.dll": {}
+        }
+      },
+      "Google.Apis.Auth/1.25.0": {
+        "type": "package",
+        "dependencies": {
+          "Google.Apis": "1.25.0",
+          "Google.Apis.Core": "1.25.0",
+          "NETStandard.Library": "1.6.1",
+          "System.Diagnostics.Process": "4.3.0",
+          "System.Net.Requests": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/Google.Apis.Auth.PlatformServices.dll": {},
+          "lib/netstandard1.3/Google.Apis.Auth.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Google.Apis.Auth.PlatformServices.dll": {},
+          "lib/netstandard1.3/Google.Apis.Auth.dll": {}
+        }
+      },
+      "Google.Apis.Core/1.25.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "Newtonsoft.Json": "9.0.1",
+          "System.Reflection.TypeExtensions": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/Google.Apis.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Google.Apis.Core.dll": {}
+        }
+      },
+      "Google.Apis.Oauth2.v2/1.25.0.672": {
+        "type": "package",
+        "dependencies": {
+          "Google.Apis": "1.25.0",
+          "Google.Apis.Auth": "1.25.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/Google.Apis.Oauth2.v2.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Google.Apis.Oauth2.v2.dll": {}
+        }
+      },
       "Libuv/1.9.0": {
         "type": "package",
         "dependencies": {
@@ -1320,6 +1379,46 @@
           "lib/netstandard1.0/Microsoft.Extensions.WebEncoders.dll": {}
         }
       },
+      "Microsoft.IdentityModel.Logging/1.1.3": {
+        "type": "package",
+        "dependencies": {
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.IO.FileSystem": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.4/Microsoft.IdentityModel.Logging.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.4/Microsoft.IdentityModel.Logging.dll": {}
+        }
+      },
+      "Microsoft.IdentityModel.Tokens/5.1.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Logging": "1.1.3",
+          "Newtonsoft.Json": "9.0.1",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Tools": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Runtime.InteropServices.RuntimeInformation": "4.3.0",
+          "System.Security.Claims": "4.3.0",
+          "System.Security.Cryptography.Algorithms": "4.3.0",
+          "System.Security.Cryptography.X509Certificates": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Xml.ReaderWriter": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.4/Microsoft.IdentityModel.Tokens.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.4/Microsoft.IdentityModel.Tokens.dll": {}
+        }
+      },
       "Microsoft.Net.Http.Headers/1.1.0": {
         "type": "package",
         "dependencies": {
@@ -1471,17 +1570,17 @@
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
         }
       },
-      "Microsoft.Win32.Registry/4.0.0": {
+      "Microsoft.Win32.Registry/4.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.1",
-          "System.Collections": "4.0.11",
-          "System.Globalization": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Runtime.Handles": "4.0.1",
-          "System.Runtime.InteropServices": "4.1.0"
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Collections": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/Microsoft.Win32.Registry.dll": {}
@@ -2064,38 +2163,46 @@
           }
         }
       },
-      "System.Diagnostics.Process/4.1.0": {
+      "System.Diagnostics.Process/4.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.1",
-          "Microsoft.Win32.Primitives": "4.0.1",
-          "Microsoft.Win32.Registry": "4.0.0",
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Debug": "4.0.11",
-          "System.Globalization": "4.0.11",
-          "System.IO": "4.1.0",
-          "System.IO.FileSystem": "4.0.1",
-          "System.IO.FileSystem.Primitives": "4.0.1",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Runtime.Handles": "4.0.1",
-          "System.Runtime.InteropServices": "4.1.0",
-          "System.Text.Encoding": "4.0.11",
-          "System.Text.Encoding.Extensions": "4.0.11",
-          "System.Threading": "4.0.11",
-          "System.Threading.Tasks": "4.0.11",
-          "System.Threading.Thread": "4.0.0",
-          "System.Threading.ThreadPool": "4.0.10",
-          "runtime.native.System": "4.0.0"
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.Win32.Primitives": "4.3.0",
+          "Microsoft.Win32.Registry": "4.3.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.IO.FileSystem": "4.3.0",
+          "System.IO.FileSystem.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Text.Encoding.Extensions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0",
+          "System.Threading.Thread": "4.3.0",
+          "System.Threading.ThreadPool": "4.3.0",
+          "runtime.native.System": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.4/System.Diagnostics.Process.dll": {}
         },
         "runtimeTargets": {
-          "runtimes/osx/lib/netstandard1.4/_._": {
+          "runtimes/linux/lib/netstandard1.4/System.Diagnostics.Process.dll": {
+            "assetType": "runtime",
+            "rid": "linux"
+          },
+          "runtimes/osx/lib/netstandard1.4/System.Diagnostics.Process.dll": {
             "assetType": "runtime",
             "rid": "osx"
+          },
+          "runtimes/win/lib/netstandard1.4/System.Diagnostics.Process.dll": {
+            "assetType": "runtime",
+            "rid": "win"
           }
         }
       },
@@ -2216,6 +2323,18 @@
             "assetType": "runtime",
             "rid": "win"
           }
+        }
+      },
+      "System.IdentityModel.Tokens.Jwt/5.1.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Tokens": "5.1.3"
+        },
+        "compile": {
+          "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.dll": {}
         }
       },
       "System.IO/4.3.0": {
@@ -2579,22 +2698,22 @@
           "lib/portable-net45+win8+wp8+wpa81/_._": {}
         }
       },
-      "System.Net.Requests/4.0.11": {
+      "System.Net.Requests/4.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.1",
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Debug": "4.0.11",
-          "System.Diagnostics.Tracing": "4.1.0",
-          "System.Globalization": "4.0.11",
-          "System.IO": "4.1.0",
-          "System.Net.Http": "4.1.0",
-          "System.Net.Primitives": "4.0.11",
-          "System.Net.WebHeaderCollection": "4.0.1",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Threading": "4.0.11",
-          "System.Threading.Tasks": "4.0.11"
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.Tracing": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Net.Http": "4.3.0",
+          "System.Net.Primitives": "4.3.0",
+          "System.Net.WebHeaderCollection": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.Requests.dll": {}
@@ -2603,7 +2722,11 @@
           "lib/portable-net45+win8+wp8+wpa81/_._": {}
         },
         "runtimeTargets": {
-          "runtimes/win/lib/netstandard1.3/_._": {
+          "runtimes/unix/lib/netstandard1.3/System.Net.Requests.dll": {
+            "assetType": "runtime",
+            "rid": "unix"
+          },
+          "runtimes/win/lib/netstandard1.3/System.Net.Requests.dll": {
             "assetType": "runtime",
             "rid": "win"
           }
@@ -2669,13 +2792,13 @@
           "ref/netstandard1.3/System.Net.Sockets.dll": {}
         }
       },
-      "System.Net.WebHeaderCollection/4.0.1": {
+      "System.Net.WebHeaderCollection/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.Collections": "4.0.11",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0"
+          "System.Collections": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Net.WebHeaderCollection.dll": {}
@@ -3786,11 +3909,11 @@
           "lib/netstandard1.3/System.Threading.Thread.dll": {}
         }
       },
-      "System.Threading.ThreadPool/4.0.10": {
+      "System.Threading.ThreadPool/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Handles": "4.0.1"
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Handles": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Threading.ThreadPool.dll": {}
@@ -3952,8 +4075,11 @@
         "type": "project",
         "framework": ".NETStandard,Version=v1.6",
         "dependencies": {
+          "Google.Apis.Oauth2.v2": "1.25.0.672",
+          "Microsoft.AspNetCore.Mvc": "1.0.1",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-          "NETStandard.Library": "1.6.0",
+          "NETStandard.Library": "1.6.1",
+          "System.IdentityModel.Tokens.Jwt": "5.1.3",
           "System.ServiceModel.Duplex": "4.0.1",
           "System.ServiceModel.Http": "4.1.0",
           "System.ServiceModel.NetTcp": "4.1.0",
@@ -3970,6 +4096,129 @@
     }
   },
   "libraries": {
+    "Google.Apis/1.25.0": {
+      "sha512": "6F8TcXVYS1dGSC7m4fQsf7wk7TlVmZV6qyMN3e0HIQHOdXOHNvmvMmI7hEOxfKX7xFKakUC98zxhS9j6GLDpwQ==",
+      "type": "package",
+      "path": "Google.Apis/1.25.0",
+      "files": [
+        "Google.Apis.1.25.0.nupkg.sha512",
+        "Google.Apis.nuspec",
+        "License.txt",
+        "lib/net45/Google.Apis.PlatformServices.dll",
+        "lib/net45/Google.Apis.PlatformServices.pdb",
+        "lib/net45/Google.Apis.PlatformServices.xml",
+        "lib/net45/Google.Apis.dll",
+        "lib/net45/Google.Apis.pdb",
+        "lib/net45/Google.Apis.xml",
+        "lib/netstandard1.3/Google.Apis.dll",
+        "lib/netstandard1.3/Google.Apis.pdb",
+        "lib/netstandard1.3/Google.Apis.xml",
+        "lib/portable-net45+sl50+netcore45+wpa81+wp8/Google.Apis.dll",
+        "lib/portable-net45+sl50+netcore45+wpa81+wp8/Google.Apis.pdb",
+        "lib/portable-net45+sl50+netcore45+wpa81+wp8/Google.Apis.xml",
+        "lib/win81/Google.Apis.PlatformServices.dll",
+        "lib/win81/Google.Apis.PlatformServices.pdb",
+        "lib/win81/Google.Apis.PlatformServices.xml",
+        "lib/win81/Google.Apis.dll",
+        "lib/win81/Google.Apis.pdb",
+        "lib/win81/Google.Apis.xml",
+        "lib/wp8/Google.Apis.PlatformServices.dll",
+        "lib/wp8/Google.Apis.PlatformServices.pdb",
+        "lib/wp8/Google.Apis.PlatformServices.xml",
+        "lib/wp8/Google.Apis.dll",
+        "lib/wp8/Google.Apis.pdb",
+        "lib/wp8/Google.Apis.xml",
+        "lib/wpa81/Google.Apis.PlatformServices.dll",
+        "lib/wpa81/Google.Apis.PlatformServices.pdb",
+        "lib/wpa81/Google.Apis.PlatformServices.xml",
+        "lib/wpa81/Google.Apis.dll",
+        "lib/wpa81/Google.Apis.pdb",
+        "lib/wpa81/Google.Apis.xml"
+      ]
+    },
+    "Google.Apis.Auth/1.25.0": {
+      "sha512": "L2mdtqQ1VZxn5v3FLuI3EKsiNQQyaM7rr+tvn1Z1utJ1ZheD1nUyIm9Z6wCM7SL0gImYQWqzWMb6nOtxXKJV7A==",
+      "type": "package",
+      "path": "Google.Apis.Auth/1.25.0",
+      "files": [
+        "Google.Apis.Auth.1.25.0.nupkg.sha512",
+        "Google.Apis.Auth.nuspec",
+        "License.txt",
+        "lib/net45/Google.Apis.Auth.PlatformServices.dll",
+        "lib/net45/Google.Apis.Auth.PlatformServices.pdb",
+        "lib/net45/Google.Apis.Auth.PlatformServices.xml",
+        "lib/net45/Google.Apis.Auth.dll",
+        "lib/net45/Google.Apis.Auth.pdb",
+        "lib/net45/Google.Apis.Auth.xml",
+        "lib/netstandard1.3/Google.Apis.Auth.PlatformServices.dll",
+        "lib/netstandard1.3/Google.Apis.Auth.PlatformServices.pdb",
+        "lib/netstandard1.3/Google.Apis.Auth.PlatformServices.xml",
+        "lib/netstandard1.3/Google.Apis.Auth.dll",
+        "lib/netstandard1.3/Google.Apis.Auth.pdb",
+        "lib/netstandard1.3/Google.Apis.Auth.xml",
+        "lib/portable-net45+sl50+netcore45+wpa81+wp8/Google.Apis.Auth.dll",
+        "lib/portable-net45+sl50+netcore45+wpa81+wp8/Google.Apis.Auth.pdb",
+        "lib/portable-net45+sl50+netcore45+wpa81+wp8/Google.Apis.Auth.xml",
+        "lib/win81/Google.Apis.Auth.PlatformServices.dll",
+        "lib/win81/Google.Apis.Auth.PlatformServices.pdb",
+        "lib/win81/Google.Apis.Auth.PlatformServices.xml",
+        "lib/win81/Google.Apis.Auth.dll",
+        "lib/win81/Google.Apis.Auth.pdb",
+        "lib/win81/Google.Apis.Auth.xml",
+        "lib/wp8/Google.Apis.Auth.PlatformServices.dll",
+        "lib/wp8/Google.Apis.Auth.PlatformServices.pdb",
+        "lib/wp8/Google.Apis.Auth.PlatformServices.xml",
+        "lib/wp8/Google.Apis.Auth.dll",
+        "lib/wp8/Google.Apis.Auth.pdb",
+        "lib/wp8/Google.Apis.Auth.xml",
+        "lib/wpa81/Google.Apis.Auth.PlatformServices.dll",
+        "lib/wpa81/Google.Apis.Auth.PlatformServices.pdb",
+        "lib/wpa81/Google.Apis.Auth.PlatformServices.xml",
+        "lib/wpa81/Google.Apis.Auth.dll",
+        "lib/wpa81/Google.Apis.Auth.pdb",
+        "lib/wpa81/Google.Apis.Auth.xml"
+      ]
+    },
+    "Google.Apis.Core/1.25.0": {
+      "sha512": "GD3N9s6LLv6MNcBh+uE+fq35Mi7keslkcpmdbnO8ZkQs18Oul1PAmyyflKAdKAWTexxEFknjEchI7erLizADkg==",
+      "type": "package",
+      "path": "Google.Apis.Core/1.25.0",
+      "files": [
+        "Google.Apis.Core.1.25.0.nupkg.sha512",
+        "Google.Apis.Core.nuspec",
+        "License.txt",
+        "lib/net45/Google.Apis.Core.dll",
+        "lib/net45/Google.Apis.Core.pdb",
+        "lib/net45/Google.Apis.Core.xml",
+        "lib/netstandard1.3/Google.Apis.Core.dll",
+        "lib/netstandard1.3/Google.Apis.Core.pdb",
+        "lib/netstandard1.3/Google.Apis.Core.xml",
+        "lib/portable-net45+sl50+netcore45+wpa81+wp8/Google.Apis.Core.dll",
+        "lib/portable-net45+sl50+netcore45+wpa81+wp8/Google.Apis.Core.pdb",
+        "lib/portable-net45+sl50+netcore45+wpa81+wp8/Google.Apis.Core.xml"
+      ]
+    },
+    "Google.Apis.Oauth2.v2/1.25.0.672": {
+      "sha512": "BxbqVfJxo46uuc/JENPotzW4U3m617Y4KMhF71y1cWsmIPlGLgYPayr4bmWi7Fdkv5+rheP7IQ8/HY13KJq01Q==",
+      "type": "package",
+      "path": "Google.Apis.Oauth2.v2/1.25.0.672",
+      "files": [
+        "Google.Apis.Oauth2.v2.1.25.0.672.nupkg.sha512",
+        "Google.Apis.Oauth2.v2.nuspec",
+        "lib/net45/Google.Apis.Oauth2.v2.dll",
+        "lib/net45/Google.Apis.Oauth2.v2.pdb",
+        "lib/net45/Google.Apis.Oauth2.v2.xml",
+        "lib/netstandard1.3/Google.Apis.Oauth2.v2.dll",
+        "lib/netstandard1.3/Google.Apis.Oauth2.v2.pdb",
+        "lib/netstandard1.3/Google.Apis.Oauth2.v2.xml",
+        "lib/portable-net40+sl50+netcore45+wpa81+wp8/Google.Apis.Oauth2.v2.dll",
+        "lib/portable-net40+sl50+netcore45+wpa81+wp8/Google.Apis.Oauth2.v2.pdb",
+        "lib/portable-net40+sl50+netcore45+wpa81+wp8/Google.Apis.Oauth2.v2.xml",
+        "lib/portable-net45+netcore45+wpa81+wp8/Google.Apis.Oauth2.v2.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8/Google.Apis.Oauth2.v2.pdb",
+        "lib/portable-net45+netcore45+wpa81+wp8/Google.Apis.Oauth2.v2.xml"
+      ]
+    },
     "Libuv/1.9.0": {
       "sha512": "9Q7AaqtQhS8JDSIvRBt6ODSLWDBI4c8YxNxyCQemWebBFUtBbc6M5Vi5Gz1ZyIUlTW3rZK9bIr5gnVyv0z7a2Q==",
       "type": "package",
@@ -4993,6 +5242,32 @@
         "lib/netstandard1.0/Microsoft.Extensions.WebEncoders.xml"
       ]
     },
+    "Microsoft.IdentityModel.Logging/1.1.3": {
+      "sha512": "2QS51c01mQVcy2Jsx7E3g1A2aXt3HBTN1in4YcBAFbIgfXkVIwquGAlaw1H+UwM2BvPajs5DCeyvMrse6Uxshw==",
+      "type": "package",
+      "path": "Microsoft.IdentityModel.Logging/1.1.3",
+      "files": [
+        "Microsoft.IdentityModel.Logging.1.1.3.nupkg.sha512",
+        "Microsoft.IdentityModel.Logging.nuspec",
+        "lib/net451/Microsoft.IdentityModel.Logging.dll",
+        "lib/net451/Microsoft.IdentityModel.Logging.xml",
+        "lib/netstandard1.4/Microsoft.IdentityModel.Logging.dll",
+        "lib/netstandard1.4/Microsoft.IdentityModel.Logging.xml"
+      ]
+    },
+    "Microsoft.IdentityModel.Tokens/5.1.3": {
+      "sha512": "bmfaPlcQEtYVuu440OSzY8IxSM5dFyyDmFnZ9aLjswtkPilD/NOvCWQDV9krwNsfL/ge7B+s+omaS2xhIYL8TQ==",
+      "type": "package",
+      "path": "Microsoft.IdentityModel.Tokens/5.1.3",
+      "files": [
+        "Microsoft.IdentityModel.Tokens.5.1.3.nupkg.sha512",
+        "Microsoft.IdentityModel.Tokens.nuspec",
+        "lib/net451/Microsoft.IdentityModel.Tokens.dll",
+        "lib/net451/Microsoft.IdentityModel.Tokens.xml",
+        "lib/netstandard1.4/Microsoft.IdentityModel.Tokens.dll",
+        "lib/netstandard1.4/Microsoft.IdentityModel.Tokens.xml"
+      ]
+    },
     "Microsoft.Net.Http.Headers/1.1.0": {
       "sha512": "jeVS60A5qfWNFxs1aZ8UmUclrN6r6AdXkHmNjO0HzyaDmzc0zm7h0F0A/FHSu2i9sj5E7KrxTwaHapeiFBw/DA==",
       "type": "package",
@@ -5193,12 +5468,12 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "Microsoft.Win32.Registry/4.0.0": {
-      "sha512": "q+eLtROUAQ3OxYA5mpQrgyFgzLQxIyrfT2eLpYX5IEPlHmIio2nh4F5bgOaQoGOV865kFKZZso9Oq9RlazvXtg==",
+    "Microsoft.Win32.Registry/4.3.0": {
+      "sha512": "Lw1/VwLH1yxz6SfFEjVRCN0pnflLEsWgnV4qsdJ512/HhTwnKXUG+zDQ4yTO3K/EJQemGoNaBHX5InISNKTzUQ==",
       "type": "package",
-      "path": "Microsoft.Win32.Registry/4.0.0",
+      "path": "Microsoft.Win32.Registry/4.3.0",
       "files": [
-        "Microsoft.Win32.Registry.4.0.0.nupkg.sha512",
+        "Microsoft.Win32.Registry.4.3.0.nupkg.sha512",
         "Microsoft.Win32.Registry.nuspec",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -6268,12 +6543,12 @@
         "runtimes/win/lib/netstandard1.3/System.Diagnostics.FileVersionInfo.dll"
       ]
     },
-    "System.Diagnostics.Process/4.1.0": {
-      "sha512": "mpVZ5bnlSs3tTeJ6jYyDJEIa6tavhAd88lxq1zbYhkkCu0Pno2+gHXcvZcoygq2d8JxW3gojXqNJMTAshduqZA==",
+    "System.Diagnostics.Process/4.3.0": {
+      "sha512": "J0wOX07+QASQblsfxmIMFc9Iq7KTXYL3zs2G/Xc704Ylv3NpuVdo6gij6V3PGiptTxqsK0K7CdXenRvKUnkA2g==",
       "type": "package",
-      "path": "System.Diagnostics.Process/4.1.0",
+      "path": "System.Diagnostics.Process/4.3.0",
       "files": [
-        "System.Diagnostics.Process.4.1.0.nupkg.sha512",
+        "System.Diagnostics.Process.4.3.0.nupkg.sha512",
         "System.Diagnostics.Process.nuspec",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -6712,6 +6987,19 @@
         "runtimes/unix/lib/netstandard1.3/System.Globalization.Extensions.dll",
         "runtimes/win/lib/net46/System.Globalization.Extensions.dll",
         "runtimes/win/lib/netstandard1.3/System.Globalization.Extensions.dll"
+      ]
+    },
+    "System.IdentityModel.Tokens.Jwt/5.1.3": {
+      "sha512": "4vQI+9vjMmcg4GJM2N9udsAc7d+Eu/yEZQgp/henwx3moZUD8PGq2uGo224UNQrVwQuI/YLlBOusZUVqCqdRHA==",
+      "type": "package",
+      "path": "System.IdentityModel.Tokens.Jwt/5.1.3",
+      "files": [
+        "System.IdentityModel.Tokens.Jwt.5.1.3.nupkg.sha512",
+        "System.IdentityModel.Tokens.Jwt.nuspec",
+        "lib/net451/System.IdentityModel.Tokens.Jwt.dll",
+        "lib/net451/System.IdentityModel.Tokens.Jwt.xml",
+        "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.dll",
+        "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.xml"
       ]
     },
     "System.IO/4.3.0": {
@@ -7551,12 +7839,12 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "System.Net.Requests/4.0.11": {
-      "sha512": "vxGt7C0cZixN+VqoSW4Yakc1Y9WknmxauDqzxgpw/FnBdz4kQNN51l4wxdXX5VY1xjqy//+G+4CvJWp1+f+y6Q==",
+    "System.Net.Requests/4.3.0": {
+      "sha512": "OZNUuAs0kDXUzm7U5NZ1ojVta5YFZmgT2yxBqsQ7Eseq5Ahz88LInGRuNLJ/NP2F8W1q7tse1pKDthj3reF5QA==",
       "type": "package",
-      "path": "System.Net.Requests/4.0.11",
+      "path": "System.Net.Requests/4.3.0",
       "files": [
-        "System.Net.Requests.4.0.11.nupkg.sha512",
+        "System.Net.Requests.4.3.0.nupkg.sha512",
         "System.Net.Requests.nuspec",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -7708,12 +7996,12 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "System.Net.WebHeaderCollection/4.0.1": {
-      "sha512": "XX2TIAN+wBSAIV51BU2FvvXMdstUa8b0FBSZmDWjZdwUMmggQSifpTOZ5fNH20z9ZCg2fkV1L5SsZnpO2RQDRQ==",
+    "System.Net.WebHeaderCollection/4.3.0": {
+      "sha512": "XZrXYG3c7QV/GpWeoaRC02rM6LH2JJetfVYskf35wdC/w2fFDFMphec4gmVH2dkll6abtW14u9Rt96pxd9YH2A==",
       "type": "package",
-      "path": "System.Net.WebHeaderCollection/4.0.1",
+      "path": "System.Net.WebHeaderCollection/4.3.0",
       "files": [
-        "System.Net.WebHeaderCollection.4.0.1.nupkg.sha512",
+        "System.Net.WebHeaderCollection.4.3.0.nupkg.sha512",
         "System.Net.WebHeaderCollection.nuspec",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
@@ -10200,12 +10488,12 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "System.Threading.ThreadPool/4.0.10": {
-      "sha512": "IMXgB5Vf/5Qw1kpoVgJMOvUO1l32aC+qC3OaIZjWJOjvcxuxNWOK2ZTWWYXfij22NHxT2j1yWX5vlAeQWld9vA==",
+    "System.Threading.ThreadPool/4.3.0": {
+      "sha512": "k/+g4b7vjdd4aix83sTgC9VG6oXYKAktSfNIJUNGxPEj7ryEOfzHHhfnmsZvjxawwcD9HyWXKCXmPjX8U4zeSw==",
       "type": "package",
-      "path": "System.Threading.ThreadPool/4.0.10",
+      "path": "System.Threading.ThreadPool/4.3.0",
       "files": [
-        "System.Threading.ThreadPool.4.0.10.nupkg.sha512",
+        "System.Threading.ThreadPool.4.3.0.nupkg.sha512",
         "System.Threading.ThreadPool.nuspec",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",

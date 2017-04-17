@@ -88,6 +88,7 @@ namespace MyBrickset.WebApi
             services.AddSingleton<IFileProcessor, FileProcessor>();
             services.AddSingleton<IStringSerializer, StringSerializer>();
             services.AddSingleton<IStoragePathResolver, StoragePathResolver>();
+            services.AddSingleton<IVerifyToken, VerifyToken>();
         }
 
         private void AddConfigures(IServiceCollection services)

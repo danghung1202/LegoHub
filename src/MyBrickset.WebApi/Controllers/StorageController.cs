@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using MyBrickset.Data.Config;
+using MyBrickset.Data.Helper;
 using MyBrickset.Data.Storage;
 
 namespace MyBrickset.WebApi.Controllers
@@ -11,10 +12,13 @@ namespace MyBrickset.WebApi.Controllers
     {
         private readonly StorageConfig _config;
         private readonly IFileProcessor _fileProcessor;
-        public StorageController(IFileProcessor fileProcessor, IOptions<StorageConfig> config)
+        private readonly IVerifyToken _verifyToken;
+        
+        public StorageController(IFileProcessor fileProcessor, IOptions<StorageConfig> config, IVerifyToken verifyToken)
         {
             _config = config.Value;
             _fileProcessor = fileProcessor;
+            _verifyToken = verifyToken;
         }
 
         [Route("save-categories")]

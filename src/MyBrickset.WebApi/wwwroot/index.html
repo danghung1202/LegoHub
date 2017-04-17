@@ -15,20 +15,22 @@
   <my-app>
     <center>
       <h2>Welcome to Lego Hub</h2>
-      <img src="./assets/img/lego_loading.gif" alt="Loading..."/>
+      <img src="./assets/img/lego_loading.gif" alt="Loading..." />
       <div>Loading...</div>
     </center>
   </my-app>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+      navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
         console.log('Service Worker registered');
-      }).catch(function(err) {
+      }).catch(function (err) {
         console.log('Service Worker registration failed: ', err);
       });
     }
   </script>
-<script type="text/javascript" src="polyfills.e04a309ee498699582cc.bundle.js" defer></script><script type="text/javascript" src="vendor.f6a6f0adaa795032028a.bundle.js" defer></script><script type="text/javascript" src="app.6b01ca935648c56a6a83.bundle.js" defer></script></body>
+  <script src="https://apis.google.com/js/platform.js?onload=gapiLoaded" async defer></script>
+
+<script type="text/javascript" src="polyfills.fa70d522b3d2417f1bac.bundle.js" defer></script><script type="text/javascript" src="vendor.394162772426da83faf1.bundle.js" defer></script><script type="text/javascript" src="app.6e29410d81651f8fc35a.bundle.js" defer></script></body>
 
 </html>
