@@ -9,17 +9,19 @@
 
 namespace BricksetService
 {
-
+    using System.Runtime.Serialization;
+    
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfSets", Namespace="http://brickset.com/api/", ItemName="sets")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfSets", Namespace="https://brickset.com/api/", ItemName="sets")]
     public class ArrayOfSets : System.Collections.Generic.List<BricksetService.sets>
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="sets", Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="sets", Namespace="https://brickset.com/api/")]
     public partial class sets : object
     {
         
@@ -626,14 +628,14 @@ namespace BricksetService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfAdditionalImages", Namespace="http://brickset.com/api/", ItemName="additionalImages")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfAdditionalImages", Namespace="https://brickset.com/api/", ItemName="additionalImages")]
     public class ArrayOfAdditionalImages : System.Collections.Generic.List<BricksetService.additionalImages>
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="additionalImages", Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="additionalImages", Namespace="https://brickset.com/api/")]
     public partial class additionalImages : object
     {
         
@@ -685,14 +687,14 @@ namespace BricksetService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfReviews", Namespace="http://brickset.com/api/", ItemName="reviews")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfReviews", Namespace="https://brickset.com/api/", ItemName="reviews")]
     public class ArrayOfReviews : System.Collections.Generic.List<BricksetService.reviews>
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="reviews", Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="reviews", Namespace="https://brickset.com/api/")]
     public partial class reviews : object
     {
         
@@ -849,14 +851,14 @@ namespace BricksetService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfInstructions", Namespace="http://brickset.com/api/", ItemName="instructions")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfInstructions", Namespace="https://brickset.com/api/", ItemName="instructions")]
     public class ArrayOfInstructions : System.Collections.Generic.List<BricksetService.instructions>
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="instructions", Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="instructions", Namespace="https://brickset.com/api/")]
     public partial class instructions : object
     {
         
@@ -893,14 +895,14 @@ namespace BricksetService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfMinifigCollection", Namespace="http://brickset.com/api/", ItemName="minifigCollection")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfMinifigCollection", Namespace="https://brickset.com/api/", ItemName="minifigCollection")]
     public class ArrayOfMinifigCollection : System.Collections.Generic.List<BricksetService.minifigCollection>
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="minifigCollection", Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="minifigCollection", Namespace="https://brickset.com/api/")]
     public partial class minifigCollection : object
     {
         
@@ -982,14 +984,14 @@ namespace BricksetService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfThemes", Namespace="http://brickset.com/api/", ItemName="themes")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfThemes", Namespace="https://brickset.com/api/", ItemName="themes")]
     public class ArrayOfThemes : System.Collections.Generic.List<BricksetService.themes>
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="themes", Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="themes", Namespace="https://brickset.com/api/")]
     public partial class themes : object
     {
         
@@ -1071,14 +1073,14 @@ namespace BricksetService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfSubthemes", Namespace="http://brickset.com/api/", ItemName="subthemes")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfSubthemes", Namespace="https://brickset.com/api/", ItemName="subthemes")]
     public class ArrayOfSubthemes : System.Collections.Generic.List<BricksetService.subthemes>
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="subthemes", Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="subthemes", Namespace="https://brickset.com/api/")]
     public partial class subthemes : object
     {
         
@@ -1160,14 +1162,14 @@ namespace BricksetService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfYears", Namespace="http://brickset.com/api/", ItemName="years")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfYears", Namespace="https://brickset.com/api/", ItemName="years")]
     public class ArrayOfYears : System.Collections.Generic.List<BricksetService.years>
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="years", Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="years", Namespace="https://brickset.com/api/")]
     public partial class years : object
     {
         
@@ -1219,14 +1221,14 @@ namespace BricksetService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfUserNotes", Namespace="http://brickset.com/api/", ItemName="userNotes")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfUserNotes", Namespace="https://brickset.com/api/", ItemName="userNotes")]
     public class ArrayOfUserNotes : System.Collections.Generic.List<BricksetService.userNotes>
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="userNotes", Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="userNotes", Namespace="https://brickset.com/api/")]
     public partial class userNotes : object
     {
         
@@ -1263,7 +1265,7 @@ namespace BricksetService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="collectionTotals", Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="collectionTotals", Namespace="https://brickset.com/api/")]
     public partial class collectionTotals : object
     {
         
@@ -1345,7 +1347,7 @@ namespace BricksetService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="collectionDetails", Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="collectionDetails", Namespace="https://brickset.com/api/")]
     public partial class collectionDetails : object
     {
         
@@ -1622,21 +1624,21 @@ namespace BricksetService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfCollectionDetails", Namespace="http://brickset.com/api/", ItemName="collectionDetails")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfCollectionDetails", Namespace="https://brickset.com/api/", ItemName="collectionDetails")]
     public class ArrayOfCollectionDetails : System.Collections.Generic.List<BricksetService.collectionDetails>
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfConditions", Namespace="http://brickset.com/api/", ItemName="conditions")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfConditions", Namespace="https://brickset.com/api/", ItemName="conditions")]
     public class ArrayOfConditions : System.Collections.Generic.List<BricksetService.conditions>
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="conditions", Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="conditions", Namespace="https://brickset.com/api/")]
     public partial class conditions : object
     {
         
@@ -1657,89 +1659,89 @@ namespace BricksetService
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://brickset.com/api/", ConfigurationName="BricksetService.BricksetAPIv2Soap")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="https://brickset.com/api/", ConfigurationName="BricksetService.BricksetAPIv2Soap")]
     public interface BricksetAPIv2Soap
     {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/getSets", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/getSets", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.getSetsResponse> getSetsAsync(BricksetService.getSetsRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/getSet", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/getSet", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.getSetResponse> getSetAsync(BricksetService.getSetRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/getRecentlyUpdatedSets", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/getRecentlyUpdatedSets", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.getRecentlyUpdatedSetsResponse> getRecentlyUpdatedSetsAsync(BricksetService.getRecentlyUpdatedSetsRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/getAdditionalImages", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/getAdditionalImages", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.getAdditionalImagesResponse> getAdditionalImagesAsync(BricksetService.getAdditionalImagesRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/getReviews", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/getReviews", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.getReviewsResponse> getReviewsAsync(BricksetService.getReviewsRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/getInstructions", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/getInstructions", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.getInstructionsResponse> getInstructionsAsync(BricksetService.getInstructionsRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/getMinifigCollection", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/getMinifigCollection", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.getMinifigCollectionResponse> getMinifigCollectionAsync(BricksetService.getMinifigCollectionRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/getThemes", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/getThemes", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.getThemesResponse> getThemesAsync(BricksetService.getThemesRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/getSubthemes", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/getSubthemes", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.getSubthemesResponse> getSubthemesAsync(BricksetService.getSubthemesRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/getYears", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/getYears", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.getYearsResponse> getYearsAsync(BricksetService.getYearsRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/getThemesForUser", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/getThemesForUser", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.getThemesForUserResponse> getThemesForUserAsync(BricksetService.getThemesForUserRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/getSubthemesForUser", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/getSubthemesForUser", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.getSubthemesForUserResponse> getSubthemesForUserAsync(BricksetService.getSubthemesForUserRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/getYearsForUser", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/getYearsForUser", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.getYearsForUserResponse> getYearsForUserAsync(BricksetService.getYearsForUserRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/getUserNotes", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/getUserNotes", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.getUserNotesResponse> getUserNotesAsync(BricksetService.getUserNotesRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/getCollectionTotals", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/getCollectionTotals", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.getCollectionTotalsResponse> getCollectionTotalsAsync(BricksetService.getCollectionTotalsRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/setCollection", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/setCollection", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.setCollectionResponse> setCollectionAsync(BricksetService.setCollectionRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/setCollection_owns", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/setCollection_owns", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.setCollection_ownsResponse> setCollection_ownsAsync(BricksetService.setCollection_ownsRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/setCollection_wants", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/setCollection_wants", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.setCollection_wantsResponse> setCollection_wantsAsync(BricksetService.setCollection_wantsRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/setCollection_userNotes", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/setCollection_userNotes", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.setCollection_userNotesResponse> setCollection_userNotesAsync(BricksetService.setCollection_userNotesRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/setCollection_qtyOwned", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/setCollection_qtyOwned", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.setCollection_qtyOwnedResponse> setCollection_qtyOwnedAsync(BricksetService.setCollection_qtyOwnedRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/setMinifigCollection", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/setMinifigCollection", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.setMinifigCollectionResponse> setMinifigCollectionAsync(BricksetService.setMinifigCollectionRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/login", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/login", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.loginResponse> loginAsync(BricksetService.loginRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/setCollectionDetail", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/setCollectionDetail", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.setCollectionDetailResponse> setCollectionDetailAsync(BricksetService.setCollectionDetailRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/getCollectionDetail", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/getCollectionDetail", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.getCollectionDetailResponse> getCollectionDetailAsync(BricksetService.getCollectionDetailRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/getCollectionDetailConditions", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/getCollectionDetailConditions", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.getCollectionDetailConditionsResponse> getCollectionDetailConditionsAsync(BricksetService.getCollectionDetailConditionsRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/checkKey", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/checkKey", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.checkKeyResponse> checkKeyAsync(BricksetService.checkKeyRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://brickset.com/api/checkUserHash", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://brickset.com/api/checkUserHash", ReplyAction="*")]
         System.Threading.Tasks.Task<BricksetService.checkUserHashResponse> checkUserHashAsync(BricksetService.checkUserHashRequest request);
     }
     
@@ -1750,7 +1752,7 @@ namespace BricksetService
     public partial class getSetsRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getSets", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getSets", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getSetsRequestBody Body;
         
         public getSetsRequest()
@@ -1766,7 +1768,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getSetsRequestBody
     {
         
@@ -1838,7 +1840,7 @@ namespace BricksetService
     public partial class getSetsResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getSetsResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getSetsResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getSetsResponseBody Body;
         
         public getSetsResponse()
@@ -1854,7 +1856,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getSetsResponseBody
     {
         
@@ -1878,7 +1880,7 @@ namespace BricksetService
     public partial class getSetRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getSet", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getSet", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getSetRequestBody Body;
         
         public getSetRequest()
@@ -1894,7 +1896,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getSetRequestBody
     {
         
@@ -1926,7 +1928,7 @@ namespace BricksetService
     public partial class getSetResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getSetResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getSetResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getSetResponseBody Body;
         
         public getSetResponse()
@@ -1942,7 +1944,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getSetResponseBody
     {
         
@@ -1966,7 +1968,7 @@ namespace BricksetService
     public partial class getRecentlyUpdatedSetsRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getRecentlyUpdatedSets", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getRecentlyUpdatedSets", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getRecentlyUpdatedSetsRequestBody Body;
         
         public getRecentlyUpdatedSetsRequest()
@@ -1982,7 +1984,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getRecentlyUpdatedSetsRequestBody
     {
         
@@ -2010,7 +2012,7 @@ namespace BricksetService
     public partial class getRecentlyUpdatedSetsResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getRecentlyUpdatedSetsResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getRecentlyUpdatedSetsResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getRecentlyUpdatedSetsResponseBody Body;
         
         public getRecentlyUpdatedSetsResponse()
@@ -2026,7 +2028,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getRecentlyUpdatedSetsResponseBody
     {
         
@@ -2050,7 +2052,7 @@ namespace BricksetService
     public partial class getAdditionalImagesRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getAdditionalImages", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getAdditionalImages", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getAdditionalImagesRequestBody Body;
         
         public getAdditionalImagesRequest()
@@ -2066,7 +2068,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getAdditionalImagesRequestBody
     {
         
@@ -2094,7 +2096,7 @@ namespace BricksetService
     public partial class getAdditionalImagesResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getAdditionalImagesResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getAdditionalImagesResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getAdditionalImagesResponseBody Body;
         
         public getAdditionalImagesResponse()
@@ -2110,7 +2112,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getAdditionalImagesResponseBody
     {
         
@@ -2134,7 +2136,7 @@ namespace BricksetService
     public partial class getReviewsRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getReviews", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getReviews", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getReviewsRequestBody Body;
         
         public getReviewsRequest()
@@ -2150,7 +2152,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getReviewsRequestBody
     {
         
@@ -2178,7 +2180,7 @@ namespace BricksetService
     public partial class getReviewsResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getReviewsResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getReviewsResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getReviewsResponseBody Body;
         
         public getReviewsResponse()
@@ -2194,7 +2196,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getReviewsResponseBody
     {
         
@@ -2218,7 +2220,7 @@ namespace BricksetService
     public partial class getInstructionsRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getInstructions", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getInstructions", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getInstructionsRequestBody Body;
         
         public getInstructionsRequest()
@@ -2234,7 +2236,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getInstructionsRequestBody
     {
         
@@ -2262,7 +2264,7 @@ namespace BricksetService
     public partial class getInstructionsResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getInstructionsResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getInstructionsResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getInstructionsResponseBody Body;
         
         public getInstructionsResponse()
@@ -2278,7 +2280,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getInstructionsResponseBody
     {
         
@@ -2302,7 +2304,7 @@ namespace BricksetService
     public partial class getMinifigCollectionRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getMinifigCollection", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getMinifigCollection", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getMinifigCollectionRequestBody Body;
         
         public getMinifigCollectionRequest()
@@ -2318,7 +2320,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getMinifigCollectionRequestBody
     {
         
@@ -2358,7 +2360,7 @@ namespace BricksetService
     public partial class getMinifigCollectionResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getMinifigCollectionResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getMinifigCollectionResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getMinifigCollectionResponseBody Body;
         
         public getMinifigCollectionResponse()
@@ -2374,7 +2376,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getMinifigCollectionResponseBody
     {
         
@@ -2398,7 +2400,7 @@ namespace BricksetService
     public partial class getThemesRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getThemes", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getThemes", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getThemesRequestBody Body;
         
         public getThemesRequest()
@@ -2414,7 +2416,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getThemesRequestBody
     {
         
@@ -2438,7 +2440,7 @@ namespace BricksetService
     public partial class getThemesResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getThemesResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getThemesResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getThemesResponseBody Body;
         
         public getThemesResponse()
@@ -2454,7 +2456,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getThemesResponseBody
     {
         
@@ -2478,7 +2480,7 @@ namespace BricksetService
     public partial class getSubthemesRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getSubthemes", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getSubthemes", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getSubthemesRequestBody Body;
         
         public getSubthemesRequest()
@@ -2494,7 +2496,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getSubthemesRequestBody
     {
         
@@ -2522,7 +2524,7 @@ namespace BricksetService
     public partial class getSubthemesResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getSubthemesResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getSubthemesResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getSubthemesResponseBody Body;
         
         public getSubthemesResponse()
@@ -2538,7 +2540,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getSubthemesResponseBody
     {
         
@@ -2562,7 +2564,7 @@ namespace BricksetService
     public partial class getYearsRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getYears", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getYears", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getYearsRequestBody Body;
         
         public getYearsRequest()
@@ -2578,7 +2580,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getYearsRequestBody
     {
         
@@ -2606,7 +2608,7 @@ namespace BricksetService
     public partial class getYearsResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getYearsResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getYearsResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getYearsResponseBody Body;
         
         public getYearsResponse()
@@ -2622,7 +2624,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getYearsResponseBody
     {
         
@@ -2646,7 +2648,7 @@ namespace BricksetService
     public partial class getThemesForUserRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getThemesForUser", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getThemesForUser", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getThemesForUserRequestBody Body;
         
         public getThemesForUserRequest()
@@ -2662,7 +2664,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getThemesForUserRequestBody
     {
         
@@ -2698,7 +2700,7 @@ namespace BricksetService
     public partial class getThemesForUserResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getThemesForUserResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getThemesForUserResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getThemesForUserResponseBody Body;
         
         public getThemesForUserResponse()
@@ -2714,7 +2716,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getThemesForUserResponseBody
     {
         
@@ -2738,7 +2740,7 @@ namespace BricksetService
     public partial class getSubthemesForUserRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getSubthemesForUser", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getSubthemesForUser", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getSubthemesForUserRequestBody Body;
         
         public getSubthemesForUserRequest()
@@ -2754,7 +2756,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getSubthemesForUserRequestBody
     {
         
@@ -2794,7 +2796,7 @@ namespace BricksetService
     public partial class getSubthemesForUserResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getSubthemesForUserResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getSubthemesForUserResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getSubthemesForUserResponseBody Body;
         
         public getSubthemesForUserResponse()
@@ -2810,7 +2812,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getSubthemesForUserResponseBody
     {
         
@@ -2834,7 +2836,7 @@ namespace BricksetService
     public partial class getYearsForUserRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getYearsForUser", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getYearsForUser", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getYearsForUserRequestBody Body;
         
         public getYearsForUserRequest()
@@ -2850,7 +2852,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getYearsForUserRequestBody
     {
         
@@ -2890,7 +2892,7 @@ namespace BricksetService
     public partial class getYearsForUserResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getYearsForUserResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getYearsForUserResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getYearsForUserResponseBody Body;
         
         public getYearsForUserResponse()
@@ -2906,7 +2908,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getYearsForUserResponseBody
     {
         
@@ -2930,7 +2932,7 @@ namespace BricksetService
     public partial class getUserNotesRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getUserNotes", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getUserNotes", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getUserNotesRequestBody Body;
         
         public getUserNotesRequest()
@@ -2946,7 +2948,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getUserNotesRequestBody
     {
         
@@ -2974,7 +2976,7 @@ namespace BricksetService
     public partial class getUserNotesResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getUserNotesResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getUserNotesResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getUserNotesResponseBody Body;
         
         public getUserNotesResponse()
@@ -2990,7 +2992,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getUserNotesResponseBody
     {
         
@@ -3014,7 +3016,7 @@ namespace BricksetService
     public partial class getCollectionTotalsRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getCollectionTotals", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getCollectionTotals", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getCollectionTotalsRequestBody Body;
         
         public getCollectionTotalsRequest()
@@ -3030,7 +3032,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getCollectionTotalsRequestBody
     {
         
@@ -3058,7 +3060,7 @@ namespace BricksetService
     public partial class getCollectionTotalsResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getCollectionTotalsResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getCollectionTotalsResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getCollectionTotalsResponseBody Body;
         
         public getCollectionTotalsResponse()
@@ -3074,7 +3076,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getCollectionTotalsResponseBody
     {
         
@@ -3098,7 +3100,7 @@ namespace BricksetService
     public partial class setCollectionRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.setCollectionRequestBody Body;
         
         public setCollectionRequest()
@@ -3114,7 +3116,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class setCollectionRequestBody
     {
         
@@ -3154,7 +3156,7 @@ namespace BricksetService
     public partial class setCollectionResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollectionResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollectionResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.setCollectionResponseBody Body;
         
         public setCollectionResponse()
@@ -3170,7 +3172,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class setCollectionResponseBody
     {
         
@@ -3194,7 +3196,7 @@ namespace BricksetService
     public partial class setCollection_ownsRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection_owns", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection_owns", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.setCollection_ownsRequestBody Body;
         
         public setCollection_ownsRequest()
@@ -3210,7 +3212,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class setCollection_ownsRequestBody
     {
         
@@ -3246,7 +3248,7 @@ namespace BricksetService
     public partial class setCollection_ownsResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection_ownsResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection_ownsResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.setCollection_ownsResponseBody Body;
         
         public setCollection_ownsResponse()
@@ -3262,7 +3264,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class setCollection_ownsResponseBody
     {
         
@@ -3286,7 +3288,7 @@ namespace BricksetService
     public partial class setCollection_wantsRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection_wants", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection_wants", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.setCollection_wantsRequestBody Body;
         
         public setCollection_wantsRequest()
@@ -3302,7 +3304,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class setCollection_wantsRequestBody
     {
         
@@ -3338,7 +3340,7 @@ namespace BricksetService
     public partial class setCollection_wantsResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection_wantsResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection_wantsResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.setCollection_wantsResponseBody Body;
         
         public setCollection_wantsResponse()
@@ -3354,7 +3356,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class setCollection_wantsResponseBody
     {
         
@@ -3378,7 +3380,7 @@ namespace BricksetService
     public partial class setCollection_userNotesRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection_userNotes", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection_userNotes", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.setCollection_userNotesRequestBody Body;
         
         public setCollection_userNotesRequest()
@@ -3394,7 +3396,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class setCollection_userNotesRequestBody
     {
         
@@ -3430,7 +3432,7 @@ namespace BricksetService
     public partial class setCollection_userNotesResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection_userNotesResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection_userNotesResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.setCollection_userNotesResponseBody Body;
         
         public setCollection_userNotesResponse()
@@ -3446,7 +3448,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class setCollection_userNotesResponseBody
     {
         
@@ -3470,7 +3472,7 @@ namespace BricksetService
     public partial class setCollection_qtyOwnedRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection_qtyOwned", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection_qtyOwned", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.setCollection_qtyOwnedRequestBody Body;
         
         public setCollection_qtyOwnedRequest()
@@ -3486,7 +3488,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class setCollection_qtyOwnedRequestBody
     {
         
@@ -3522,7 +3524,7 @@ namespace BricksetService
     public partial class setCollection_qtyOwnedResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection_qtyOwnedResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollection_qtyOwnedResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.setCollection_qtyOwnedResponseBody Body;
         
         public setCollection_qtyOwnedResponse()
@@ -3538,7 +3540,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class setCollection_qtyOwnedResponseBody
     {
         
@@ -3562,7 +3564,7 @@ namespace BricksetService
     public partial class setMinifigCollectionRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="setMinifigCollection", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="setMinifigCollection", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.setMinifigCollectionRequestBody Body;
         
         public setMinifigCollectionRequest()
@@ -3578,7 +3580,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class setMinifigCollectionRequestBody
     {
         
@@ -3618,7 +3620,7 @@ namespace BricksetService
     public partial class setMinifigCollectionResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="setMinifigCollectionResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="setMinifigCollectionResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.setMinifigCollectionResponseBody Body;
         
         public setMinifigCollectionResponse()
@@ -3634,7 +3636,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class setMinifigCollectionResponseBody
     {
         
@@ -3658,7 +3660,7 @@ namespace BricksetService
     public partial class loginRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="login", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="login", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.loginRequestBody Body;
         
         public loginRequest()
@@ -3674,7 +3676,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class loginRequestBody
     {
         
@@ -3706,7 +3708,7 @@ namespace BricksetService
     public partial class loginResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="loginResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="loginResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.loginResponseBody Body;
         
         public loginResponse()
@@ -3722,7 +3724,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class loginResponseBody
     {
         
@@ -3746,7 +3748,7 @@ namespace BricksetService
     public partial class setCollectionDetailRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollectionDetail", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollectionDetail", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.setCollectionDetailRequestBody Body;
         
         public setCollectionDetailRequest()
@@ -3762,7 +3764,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class setCollectionDetailRequestBody
     {
         
@@ -3794,7 +3796,7 @@ namespace BricksetService
     public partial class setCollectionDetailResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollectionDetailResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="setCollectionDetailResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.setCollectionDetailResponseBody Body;
         
         public setCollectionDetailResponse()
@@ -3810,7 +3812,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class setCollectionDetailResponseBody
     {
         
@@ -3834,7 +3836,7 @@ namespace BricksetService
     public partial class getCollectionDetailRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getCollectionDetail", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getCollectionDetail", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getCollectionDetailRequestBody Body;
         
         public getCollectionDetailRequest()
@@ -3850,7 +3852,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getCollectionDetailRequestBody
     {
         
@@ -3882,7 +3884,7 @@ namespace BricksetService
     public partial class getCollectionDetailResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getCollectionDetailResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getCollectionDetailResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getCollectionDetailResponseBody Body;
         
         public getCollectionDetailResponse()
@@ -3898,7 +3900,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getCollectionDetailResponseBody
     {
         
@@ -3922,7 +3924,7 @@ namespace BricksetService
     public partial class getCollectionDetailConditionsRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getCollectionDetailConditions", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getCollectionDetailConditions", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getCollectionDetailConditionsRequestBody Body;
         
         public getCollectionDetailConditionsRequest()
@@ -3938,7 +3940,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getCollectionDetailConditionsRequestBody
     {
         
@@ -3966,7 +3968,7 @@ namespace BricksetService
     public partial class getCollectionDetailConditionsResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="getCollectionDetailConditionsResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="getCollectionDetailConditionsResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.getCollectionDetailConditionsResponseBody Body;
         
         public getCollectionDetailConditionsResponse()
@@ -3982,7 +3984,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class getCollectionDetailConditionsResponseBody
     {
         
@@ -4006,7 +4008,7 @@ namespace BricksetService
     public partial class checkKeyRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="checkKey", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="checkKey", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.checkKeyRequestBody Body;
         
         public checkKeyRequest()
@@ -4022,7 +4024,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class checkKeyRequestBody
     {
         
@@ -4046,7 +4048,7 @@ namespace BricksetService
     public partial class checkKeyResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="checkKeyResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="checkKeyResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.checkKeyResponseBody Body;
         
         public checkKeyResponse()
@@ -4062,7 +4064,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class checkKeyResponseBody
     {
         
@@ -4086,7 +4088,7 @@ namespace BricksetService
     public partial class checkUserHashRequest
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="checkUserHash", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="checkUserHash", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.checkUserHashRequestBody Body;
         
         public checkUserHashRequest()
@@ -4102,7 +4104,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class checkUserHashRequestBody
     {
         
@@ -4126,7 +4128,7 @@ namespace BricksetService
     public partial class checkUserHashResponse
     {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="checkUserHashResponse", Namespace="http://brickset.com/api/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="checkUserHashResponse", Namespace="https://brickset.com/api/", Order=0)]
         public BricksetService.checkUserHashResponseBody Body;
         
         public checkUserHashResponse()
@@ -4142,7 +4144,7 @@ namespace BricksetService
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "0.4.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://brickset.com/api/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="https://brickset.com/api/")]
     public partial class checkUserHashResponseBody
     {
         
@@ -4658,7 +4660,7 @@ namespace BricksetService
         {
             if ((endpointConfiguration == EndpointConfiguration.BricksetAPIv2Soap))
             {
-                System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
+                System.ServiceModel.BasicHttpsBinding result = new System.ServiceModel.BasicHttpsBinding();
                 result.MaxBufferSize = int.MaxValue;
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
                 result.MaxReceivedMessageSize = int.MaxValue;
@@ -4671,7 +4673,7 @@ namespace BricksetService
                 System.ServiceModel.Channels.TextMessageEncodingBindingElement textBindingElement = new System.ServiceModel.Channels.TextMessageEncodingBindingElement();
                 textBindingElement.MessageVersion = System.ServiceModel.Channels.MessageVersion.CreateVersion(System.ServiceModel.EnvelopeVersion.Soap12, System.ServiceModel.Channels.AddressingVersion.None);
                 result.Elements.Add(textBindingElement);
-                System.ServiceModel.Channels.HttpTransportBindingElement httpBindingElement = new System.ServiceModel.Channels.HttpTransportBindingElement();
+                System.ServiceModel.Channels.HttpsTransportBindingElement httpBindingElement = new System.ServiceModel.Channels.HttpsTransportBindingElement();
                 httpBindingElement.AllowCookies = true;
                 httpBindingElement.MaxBufferSize = int.MaxValue;
                 httpBindingElement.MaxReceivedMessageSize = int.MaxValue;
@@ -4685,11 +4687,11 @@ namespace BricksetService
         {
             if ((endpointConfiguration == EndpointConfiguration.BricksetAPIv2Soap))
             {
-                return new System.ServiceModel.EndpointAddress("http://brickset.com/api/v2.asmx");
+                return new System.ServiceModel.EndpointAddress("https://brickset.com/api/v2.asmx");
             }
             if ((endpointConfiguration == EndpointConfiguration.BricksetAPIv2Soap12))
             {
-                return new System.ServiceModel.EndpointAddress("http://brickset.com/api/v2.asmx");
+                return new System.ServiceModel.EndpointAddress("https://brickset.com/api/v2.asmx");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
