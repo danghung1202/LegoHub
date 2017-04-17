@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using MyBrickset.Data.Config;
@@ -13,7 +14,7 @@ namespace MyBrickset.WebApi.Controllers
         private readonly StorageConfig _config;
         private readonly IFileProcessor _fileProcessor;
         private readonly IVerifyToken _verifyToken;
-        
+
         public StorageController(IFileProcessor fileProcessor, IOptions<StorageConfig> config, IVerifyToken verifyToken)
         {
             _config = config.Value;
@@ -21,6 +22,7 @@ namespace MyBrickset.WebApi.Controllers
             _verifyToken = verifyToken;
         }
 
+        [Authorize(Roles = "Administrator")]
         [Route("save-categories")]
         [HttpPost]
         public IActionResult SaveCategoriesWithTeaserImage(string jsonContent)

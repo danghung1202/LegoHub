@@ -1,4 +1,4 @@
-﻿namespace MyBrickset.Data.Constant
+﻿namespace MyBrickset.Data.Constants
 {
     public static class SetOrderBy
     {

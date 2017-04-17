@@ -12,6 +12,7 @@ using MyBrickset.Data.Config;
 using MyBrickset.Data.Helper;
 using MyBrickset.Data.Storage;
 using Microsoft.AspNetCore.Http;
+using MyBrickset.Data.Constants;
 
 namespace MyBrickset.WebApi
 {
@@ -63,14 +64,15 @@ namespace MyBrickset.WebApi
             app.UseApplicationInsightsRequestTelemetry();
             app.UseApplicationInsightsExceptionTelemetry();
 
-            AddGlobalExceptionHandler(app);
+            UseCookieAuthentication(app);
+            UseGlobalExceptionHandler(app);
 
             if (env.IsDevelopment())
             {
                 //app.UseDeveloperExceptionPage();
             }
 
-            AddRedirectToAngular2RouterHandler(app);
+            UseRedirectToAngular2RouterHandler(app);
 
             app.UseStaticFiles();
             app.UseMvc(routes =>
@@ -93,11 +95,24 @@ namespace MyBrickset.WebApi
 
         private void AddConfigures(IServiceCollection services)
         {
+            services.Configure<AppConfig>(Configuration.GetSection("App"));
             services.Configure<BricksetConfig>(Configuration.GetSection("Brickset"));
             services.Configure<StorageConfig>(Configuration.GetSection("Storage"));
         }
 
-        private void AddGlobalExceptionHandler(IApplicationBuilder app)
+        private void UseCookieAuthentication(IApplicationBuilder app)
+        {
+            app.UseCookieAuthentication(new CookieAuthenticationOptions()
+            {
+                AuthenticationScheme = MiddlewareInstance.AuthenticationScheme,
+                LoginPath = new PathString("/Account/Login/"),
+                AccessDeniedPath = new PathString("/Account/Forbidden/"),
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = false
+            });
+        }
+
+        private void UseGlobalExceptionHandler(IApplicationBuilder app)
         {
             //http://www.talkingdotnet.com/global-exception-handling-in-aspnet-core-webapi/
             app.UseExceptionHandler(options =>
@@ -117,7 +132,7 @@ namespace MyBrickset.WebApi
             });
         }
 
-        private void AddRedirectToAngular2RouterHandler(IApplicationBuilder app)
+        private void UseRedirectToAngular2RouterHandler(IApplicationBuilder app)
         {
             app.Use(async (context, next) =>
             {

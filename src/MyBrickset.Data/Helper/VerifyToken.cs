@@ -27,6 +27,9 @@ using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
+using MyBrickset.Data.Config;
+using MyBrickset.Data.Models.Auth;
 
 namespace MyBrickset.Data.Helper
 {
@@ -37,22 +40,24 @@ namespace MyBrickset.Data.Helper
     ///    - Access token validation
     /// </summary>
     /// @author class@google.com (Gus Class)
-    public class VerifyToken: IVerifyToken
+    public class VerifyToken : IVerifyToken
     {
-        // Get this from your app at https://code.google.com/apis/console
-        static public string CLIENT_ID = "YOUR_VALID_CLIENT_ID";
-
-        // Values returned in the response
-        private access_token_status ats = new access_token_status();
-
-        private id_token_status its = new id_token_status();
-
+        private AppConfig _config;
+        public VerifyToken(IOptions<AppConfig> config)
+        {
+            _config = config.Value;
+        }
         /// <summary>
         /// Processes the request based on the path.
         /// </summary>
         /// <param name="context">Contains the request and response.</param>
-        public async Task<bool> Verify(string idToken, string accessToken)
+        public async Task<TokenStatusWrapper> Verify(string idToken, string accessToken)
         {
+            // Values returned in the response
+            AccessTokenStatus ats = new AccessTokenStatus();
+
+            IDTokenStatus its = new IDTokenStatus();
+
             // Validate the ID token
             if (idToken != null)
             {
@@ -60,7 +65,7 @@ namespace MyBrickset.Data.Helper
                 JwtSecurityTokenHandler jwtHandler = new JwtSecurityTokenHandler();
 
                 // Configure validation
-                Byte[][] certBytes =await getCertBytes();
+                Byte[][] certBytes = await getCertBytes();
                 Dictionary<String, X509Certificate2> certificates = new Dictionary<String, X509Certificate2>();
 
                 for (int i = 0; i < certBytes.Length; i++)
@@ -74,8 +79,8 @@ namespace MyBrickset.Data.Helper
                     {
                         ValidateActor = false, // check the profile ID
 
-                        ValidateAudience = (CLIENT_ID != "YOUR_VALID_CLIENT_ID"), // check the client ID
-                        ValidAudience = CLIENT_ID,
+                        ValidateAudience = true, // check the client ID
+                        ValidAudience = _config.GoogleClientID,
 
                         ValidateIssuer = true, // check token came from Google
                         ValidIssuers = new List<string> { "accounts.google.com", "https://accounts.google.com" },
@@ -84,7 +89,7 @@ namespace MyBrickset.Data.Helper
                         RequireSignedTokens = true,
                         //CertificateValidator = X509CertificateValidator.None,
                         IssuerSigningKeyResolver = (s, securityToken, identifier, parameters) => new List<X509SecurityKey> { new X509SecurityKey(certificates[identifier.ToUpper()]) },
-                        
+
                         ValidateLifetime = true,
                         RequireExpirationTime = true,
                         ClockSkew = TimeSpan.FromHours(13)
@@ -97,22 +102,21 @@ namespace MyBrickset.Data.Helper
                         ClaimsPrincipal cp = jwtHandler.ValidateToken(idToken, tvp, out validatedToken);
                         if (cp != null)
                         {
-                            its.valid = true;
-                            its.message = "Valid ID Token.";
-                            //return true;
+                            its.Valid = true;
+                            its.Message = "Valid ID Token.";
                         }
                     }
                     catch (Exception e)
                     {
                         // Multiple certificates are tested.
-                        if (its.valid != true)
+                        if (its.Valid != true)
                         {
-                            its.message = "Invalid ID Token.";
-                            return false;
+                            its.Message = "Invalid ID Token.";
                         }
                         if (e.Message.IndexOf("The token is expired") > 0)
                         {
                             // TODO: Check current time in the exception for clock skew.
+                            its.Message = "The Token is expired.";
                         }
                     }
                 }
@@ -123,43 +127,46 @@ namespace MyBrickset.Data.Helper
                 {
                     if (claims[i].Type.Equals("sub"))
                     {
-                        its.gplus_id = claims[i].Value;
+                        its.GPlusID = claims[i].Value;
                     }
                 }
             }
 
             // Use Tokeninfo to validate the user and the client.
-            var tokeninfo_request = new Oauth2Service().Tokeninfo();
-            tokeninfo_request.AccessToken = accessToken;
+            var tokenInfoRequest = new Oauth2Service().Tokeninfo();
+            tokenInfoRequest.AccessToken = accessToken;
 
             // Use Google as a trusted provider to validate the token.
             // Invalid values, including expired tokens, return 400
-            Tokeninfo tokeninfo = null;
+            Tokeninfo tokenInfo = null;
             try
             {
-                tokeninfo = tokeninfo_request.Execute();
-                if (tokeninfo.IssuedTo != CLIENT_ID)
+                tokenInfo = tokenInfoRequest.Execute();
+                if (tokenInfo.IssuedTo != _config.GoogleClientID)
                 {
-                    ats.message = "Access Token not meant for this app.";
+                    ats.Message = "Access Token not meant for this app.";
                 }
                 else
                 {
-                    ats.valid = true;
-                    ats.message = "Valid Access Token.";
-                    ats.gplus_id = tokeninfo.UserId;
+                    ats.Valid = true;
+                    ats.Message = "Valid Access Token.";
+                    ats.GPlusID = tokenInfo.UserId;
                 }
             }
             catch (Exception stve)
             {
-                ats.message = "Invalid Access Token: " + stve.Message;
+                ats.Message = "Invalid Access Token: " + stve.Message;
             }
 
             // Use the wrapper to return JSON
-            token_status_wrapper tsr = new token_status_wrapper();
-            tsr.id_token_status = its;
-            tsr.access_token_status = ats;
-
-            return true;
+            TokenStatusWrapper result = new TokenStatusWrapper{
+                IdTokenStatus = its,
+                AccessTokenStatus = ats,
+                TokenInfo = tokenInfo,
+                IsAdministrator = false
+            };
+            
+            return result;
         }
 
         // Used for string parsing the Certificates from Google
@@ -201,34 +208,6 @@ namespace MyBrickset.Data.Helper
             }
             return certBytes;
         }
-
-        /// <summary>
-        /// Stores the result data for the ID token verification.
-        /// </summary>
-        private class id_token_status
-        {
-            public Boolean valid = false;
-            public String gplus_id = null;
-            public String message = "";
-        }
-
-        /// <summary>
-        /// Stores the result data for the access token verification.
-        /// </summary>
-        private class access_token_status
-        {
-            public Boolean valid = false;
-            public String gplus_id = null;
-            public String message = "";
-        }
-
-        /// <summary>
-        /// Stores the result data for both token status responses.
-        /// </summary>
-        private class token_status_wrapper
-        {
-            public id_token_status id_token_status = null;
-            public access_token_status access_token_status = null;
-        }
+   
     }
 }

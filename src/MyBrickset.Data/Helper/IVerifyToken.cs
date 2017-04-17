@@ -1,9 +1,10 @@
 using System.Threading.Tasks;
+using MyBrickset.Data.Models.Auth;
 
 namespace MyBrickset.Data.Helper
 {
     public interface IVerifyToken
     {
-        Task<bool> Verify(string idToken, string accessToken);
+        Task<TokenStatusWrapper> Verify(string idToken, string accessToken);
     }
 }
