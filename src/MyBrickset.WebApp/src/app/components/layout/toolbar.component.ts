@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { GAuth2 } from '../../services';
 
 @Component({
     selector: 'b-toolbar',
@@ -8,9 +9,18 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
      
     `]
 })
-export class ToolbarComponent { 
+export class ToolbarComponent {
     @Output("openSidenav") openMainSidenav = new EventEmitter();
+
+    constructor(
+        private authorization: GAuth2
+    ) { }
+
     openSidenav() {
         this.openMainSidenav.emit();
+    }
+    
+    signInUser() {
+        this.authorization.signIn();
     }
 }

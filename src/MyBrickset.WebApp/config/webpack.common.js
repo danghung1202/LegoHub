@@ -44,7 +44,7 @@ module.exports = {
                     {
                         loader: 'awesome-typescript-loader',
                         options: {
-                            configFileName: 'tsconfig.webpack.json'
+                            configFileName: AOT ? 'tsconfig.webpack.json' : 'tsconfig.json'
                         }
 
                     },

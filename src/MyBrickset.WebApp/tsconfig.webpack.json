@@ -20,7 +20,9 @@
     ],
     "types": [
       "hammerjs",
-      "node"
+      "node",
+      "gapi",
+      "gapi.auth2"
     ]
   },
   "exclude": [

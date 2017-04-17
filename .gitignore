@@ -7,6 +7,7 @@ src/MyBrickset.WebApp/compiled/
 src/MyBrickset.WebApi/bin/
 src/MyBrickset.WebApi/obj/
 src/MyBrickset.WebApi/wwwroot/
+src/MyBrickset.WebApi/AppData/
 src/MyBrickset.WebApi/Properties/PublishProfiles/
 
 # ReSharper is a .NET coding add-in

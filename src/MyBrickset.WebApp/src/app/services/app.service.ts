@@ -17,6 +17,7 @@ class Url {
     static GetSetDetails = 'api/brickset/set';
     static SaveThemesWithImage = 'api/storage/save-categories';
     static GetThemesWithImage = 'api/storage/load-categories';
+    static Login = 'api/account/login';
 }
 
 @Injectable()
@@ -25,6 +26,13 @@ export class AppService {
     _themesThisYear: any = null;
     constructor(private http: Http, private store: Store<AppState>, private errorActions: ErrorActions) { }
 
+    verifyToken(id_token, access_token): Observable<any> {
+        return this.http.get(`${Url.Login}?idToken=${id_token}&accessToken=${access_token}`)
+            .map(res => res.json())
+            .catch(error => {
+                return this.handleError(error);
+            });
+    }
     //using cache in Observable
     getThemes(): Observable<Theme[]> {
         if (!this._themes) {

@@ -24,12 +24,15 @@
       "node",
       "source-map",
       "uglify-js",
-      "webpack"
+      "webpack",
+      "gapi",
+      "gapi.auth2"
     ]
   },
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "src/main.aot.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,

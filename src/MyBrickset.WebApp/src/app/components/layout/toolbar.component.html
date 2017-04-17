@@ -14,7 +14,7 @@
         <md-icon>more_vert</md-icon>
     </button>
     <md-menu #menu="mdMenu">
-        <button md-menu-item>
+        <button md-menu-item (click)="signInUser()">
             <md-icon>perm_identity</md-icon>
             <span>Login</span>
         </button>
