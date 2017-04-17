@@ -18,6 +18,7 @@ export class GAuth2 {
   private _googleAuth: gapi.auth2.GoogleAuth;
   private _scope = 'profile email https://www.googleapis.com/auth/youtube';
   private _accessToken: string;
+  private _isAdminstrator: boolean;
   private autoSignInTimer: Subscription;
 
   set accessToken(value) {
@@ -92,6 +93,10 @@ export class GAuth2 {
     return this._googleAuth && this._googleAuth.isSignedIn.get();
   }
 
+  isAdminstrator() {
+    return this._googleAuth && this._googleAuth.isSignedIn.get() && this._isAdminstrator;
+  }
+
   signIn() {
     const signOptions: gapi.auth2.SigninOptions = { scope: this._scope };
     if (this._googleAuth) {
@@ -108,13 +113,17 @@ export class GAuth2 {
     const expireTimeInMs = parseInt(authResponse.expires_in, 10) * MILLISECOND;
 
     console.log('User sign in', googleUser);
-    var result = this.appService.verifyToken(authResponse.id_token, authResponse.access_token);
-    result.map(response => console.log(response)).subscribe();
 
-    if (this.autoSignInTimer) {
-      this.autoSignInTimer.unsubscribe();
-    }
-    this.autoSignInTimer = this.startTimerToNextAuth(expireTimeInMs);
+    this.appService.verifyToken(authResponse.id_token, authResponse.access_token)
+      .do(response => console.log(response))
+      .subscribe(response => {
+        this._isAdminstrator = response.isAdministrator ? true : false;
+      });
+
+    // if (this.autoSignInTimer) {
+    //   this.autoSignInTimer.unsubscribe();
+    // }
+    // this.autoSignInTimer = this.startTimerToNextAuth(expireTimeInMs);
   }
 
   startTimerToNextAuth(timeInMs: number): Subscription {
@@ -135,6 +144,12 @@ export class GAuth2 {
   signOut() {
     return Observable.fromPromise(this._googleAuth.signOut())
       .subscribe(response => {
+        console.log('Logout:', response);
+        this.appService.logout()
+          .do(response => console.log(response))
+          .subscribe(response => {
+            this._isAdminstrator = false;
+          });
 
       });
   }

@@ -13,7 +13,7 @@ import { MasonryModule } from 'angular2-masonry';
 
 import * as state from './state-management';
 
-import { AppService, LoggerService, GlobalErrorHandler, GapiLoader, GAuth2 } from './services';
+import { AppService, LoggerService, GlobalErrorHandler, GapiLoader, GAuth2, SettingGuard } from './services';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.router';
@@ -55,6 +55,7 @@ import { HomeModule, SetListModule, SettingComponent, SetDetailModule, SearchCom
         LoggerService,
         GapiLoader,
         GAuth2,
+        SettingGuard,
         { provide: ErrorHandler, useClass: GlobalErrorHandler },
         state.FilterActions, state.SetListActions, state.SetActions, state.NavigationActions, state.ErrorActions, state.CategoryActions
         ],

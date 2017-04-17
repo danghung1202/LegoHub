@@ -18,6 +18,10 @@
             <md-icon>perm_identity</md-icon>
             <span>Login</span>
         </button>
+        <button md-menu-item (click)="signOutUser()">
+            <md-icon>perm_identity</md-icon>
+            <span>Logout</span>
+        </button>
         <button md-menu-item [routerLink]="['/setting']">
             <md-icon>settings</md-icon>
             <span>Settings</span>

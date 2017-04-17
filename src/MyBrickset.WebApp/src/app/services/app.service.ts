@@ -18,6 +18,7 @@ class Url {
     static SaveThemesWithImage = 'api/storage/save-categories';
     static GetThemesWithImage = 'api/storage/load-categories';
     static Login = 'api/account/login';
+    static Logout = 'api/account/logout';
 }
 
 @Injectable()
@@ -33,6 +34,15 @@ export class AppService {
                 return this.handleError(error);
             });
     }
+
+    logout(): Observable<any> {
+        return this.http.get(`${Url.Logout}`)
+            .map(res => res.json())
+            .catch(error => {
+                return this.handleError(error);
+            });
+    }
+
     //using cache in Observable
     getThemes(): Observable<Theme[]> {
         if (!this._themes) {

@@ -23,4 +23,8 @@ export class ToolbarComponent {
     signInUser() {
         this.authorization.signIn();
     }
+
+    signOutUser() {
+        this.authorization.signOut();
+    }
 }

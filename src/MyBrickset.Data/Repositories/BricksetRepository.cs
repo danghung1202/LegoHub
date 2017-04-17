@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using BricksetService;
 using Microsoft.Extensions.Options;
 using MyBrickset.Data.Config;
-using MyBrickset.Data.Constant;
+using MyBrickset.Data.Constants;
 
 namespace MyBrickset.Data.Repositories
 {
