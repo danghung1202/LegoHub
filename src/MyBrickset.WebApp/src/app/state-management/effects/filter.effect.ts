@@ -5,7 +5,7 @@ import { empty } from 'rxjs/observable/empty';
 import { Store } from '@ngrx/store';
 
 import { FilterActions, NavigationActions } from '../actions';
-import { AppService } from '../../services';
+import { BricksetService } from '../../services';
 import { CriteriaType } from '../../constant';
 import { AppState } from '../reducers';
 
@@ -16,7 +16,7 @@ export class FilterEffects {
         private store: Store<AppState>,
         private filterActions: FilterActions,
         private navigationActions: NavigationActions,
-        private svc: AppService,
+        private svc: BricksetService,
     ) { }
 
     @Effect() loadThemes$ = this.action$

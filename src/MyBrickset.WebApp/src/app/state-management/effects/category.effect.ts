@@ -5,7 +5,7 @@ import { empty } from 'rxjs/observable/empty';
 import { Store } from '@ngrx/store';
 
 import { CategoryActions } from '../actions';
-import { AppService } from '../../services';
+import { BricksetService } from '../../services';
 import { CriteriaType } from '../../constant';
 import { AppState } from '../reducers';
 
@@ -15,7 +15,7 @@ export class CategoryEffects {
         private action$: Actions,
         private store: Store<AppState>,
         private categoryActions: CategoryActions,
-        private svc: AppService,
+        private svc: BricksetService,
     ) {
 
     }

@@ -114,7 +114,7 @@ export class GAuth2 {
 
     console.log('User sign in', googleUser);
 
-    this.appService.verifyToken(authResponse.id_token, authResponse.access_token)
+    this.appService.login(authResponse.id_token, authResponse.access_token)
       .do(response => console.log(response))
       .subscribe(response => {
         this._isAdminstrator = response.isAdministrator ? true : false;
