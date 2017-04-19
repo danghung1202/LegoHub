@@ -11,11 +11,13 @@ namespace MyBrickset.WebApi.Controllers
     public class StorageController : Controller
     {
         private readonly StorageConfig _config;
+        private readonly IConfigs<YoutubeConfig> _youtubeConfig;
         private readonly IFileProcessor _fileProcessor;
-        public StorageController(IFileProcessor fileProcessor, IOptions<StorageConfig> config)
+        public StorageController(IFileProcessor fileProcessor, IOptions<StorageConfig> config, IConfigs<YoutubeConfig> youtubeConfig)
         {
             _config = config.Value;
             _fileProcessor = fileProcessor;
+            _youtubeConfig = youtubeConfig;
         }
 
         [Authorize(Roles = "Administrator")]
@@ -31,6 +33,27 @@ namespace MyBrickset.WebApi.Controllers
             _fileProcessor.SaveJsonToAppFolder(string.Empty, _config.CategoryFile, jsonContent);
             return new ObjectResult(new
             {
+                success = true,
+                message = "Success!"
+            });
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [Route("save-youtube-settings")]
+        [HttpPost]
+        public IActionResult SaveYoutubeSettings(string jsonContent)
+        {
+            if (string.IsNullOrEmpty(jsonContent))
+            {
+                return BadRequest();
+            }
+            string fileName = $"{typeof(YoutubeConfig).Name}.json";
+            _fileProcessor.SaveJsonToAppFolder(string.Empty, fileName, jsonContent);
+            _youtubeConfig.ResolveValue();
+
+            return new ObjectResult(new
+            {
+                result = _youtubeConfig.Value,
                 success = true,
                 message = "Success!"
             });

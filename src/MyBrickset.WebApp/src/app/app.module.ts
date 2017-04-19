@@ -12,13 +12,27 @@ import 'hammerjs';
 import { MasonryModule } from 'angular2-masonry';
 
 import * as state from './state-management';
+import { STATE_ACTIONS } from './state-management/actions';
+import { AppEffectModules } from './state-management/effects';
 
 import { APP_SERVICES, GlobalErrorHandler } from './services';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.router';
 import { PipeModule } from './pipes';
-import { HomeModule, SetListModule, SettingComponent, SetDetailModule, SearchComponent, LoginComponent, LayoutComponent, ToolbarComponent, ModalComponent, ErrorDialogComponent, PageNotFoundComponent } from './components';
+import {
+    HomeModule,
+    SetListModule,
+    SettingModule,
+    SetDetailModule,
+    SearchComponent,
+    LoginComponent,
+    LayoutComponent,
+    ToolbarComponent,
+    ModalComponent,
+    ErrorDialogComponent,
+    PageNotFoundComponent
+} from './components';
 
 
 @NgModule({
@@ -30,12 +44,11 @@ import { HomeModule, SetListModule, SettingComponent, SetDetailModule, SearchCom
         MaterialModule,
         MasonryModule,
         StoreModule.provideStore(state.reducer),
-        EffectsModule.run(state.FilterEffects),
-        EffectsModule.run(state.SetEffects),
-        EffectsModule.run(state.CategoryEffects),
-        SetListModule,
+        ...AppEffectModules,
         HomeModule,
+        SetListModule,
         SetDetailModule,
+        SettingModule,
         AppRoutingModule,
         PipeModule.forRoot()
     ],
@@ -48,13 +61,12 @@ import { HomeModule, SetListModule, SettingComponent, SetDetailModule, SearchCom
         ModalComponent,
         ErrorDialogComponent,
         LoginComponent,
-        SettingComponent
     ],
     providers: [
         ...APP_SERVICES,
-        { provide: ErrorHandler, useClass: GlobalErrorHandler },
-        state.FilterActions, state.SetListActions, state.SetActions, state.NavigationActions, state.ErrorActions, state.CategoryActions
-        ],
+        ...STATE_ACTIONS,
+        { provide: ErrorHandler, useClass: GlobalErrorHandler }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

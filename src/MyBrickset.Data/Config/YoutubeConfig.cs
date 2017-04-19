@@ -1,0 +1,15 @@
+using System.Collections.Generic;
+
+namespace MyBrickset.Data.Config
+{
+    public class YoutubeConfig
+    {
+        public string APIKey { get; set; }
+        public string Keyword { get; set; }
+        public List<YoutubeChannel> Channels {get;set;}
+    }
+
+    public class YoutubeChannel {
+        public string Name { get; set; }
+    }
+}

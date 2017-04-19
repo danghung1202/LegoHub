@@ -17,7 +17,6 @@ namespace MyBrickset.WebApi.Controllers
 
         private AppConfig _config;
         private readonly IVerifyToken _verifyToken;
-
         public AccountController(IVerifyToken verifyToken, IOptions<AppConfig> config)
         {
             _verifyToken = verifyToken;

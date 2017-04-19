@@ -91,6 +91,7 @@ namespace MyBrickset.WebApi
             services.AddSingleton<IStringSerializer, StringSerializer>();
             services.AddSingleton<IStoragePathResolver, StoragePathResolver>();
             services.AddSingleton<IVerifyToken, VerifyToken>();
+            services.AddSingleton<IConfigs<YoutubeConfig>, Configs<YoutubeConfig>>();
         }
 
         private void AddConfigures(IServiceCollection services)
@@ -111,7 +112,6 @@ namespace MyBrickset.WebApi
                 AutomaticChallenge = false
             });
         }
-
         private void UseGlobalExceptionHandler(IApplicationBuilder app)
         {
             //http://www.talkingdotnet.com/global-exception-handling-in-aspnet-core-webapi/

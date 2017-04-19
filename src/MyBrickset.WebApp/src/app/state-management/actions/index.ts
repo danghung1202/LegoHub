@@ -3,7 +3,8 @@ import { SetListActions } from './set-list.action';
 import { SetActions } from './set.action';
 import { ErrorActions } from './error.action';
 import { NavigationActions } from './navigation.action';
-import { CategoryActions } from './category.action';
+import { SettingActions } from './setting.action';
+import { YoutubeActions } from './youtube.action';
 
 export {
     FilterActions,
@@ -11,9 +12,15 @@ export {
     ErrorActions,
     SetActions,
     NavigationActions,
-    CategoryActions
+    SettingActions
 };
 
-export default [
-    FilterActions
+export const STATE_ACTIONS = [
+    { provide: FilterActions, useClass: FilterActions },
+    { provide: SetListActions, useClass: SetListActions },
+    { provide: ErrorActions, useClass: ErrorActions },
+    { provide: SetActions, useClass: SetActions },
+    { provide: NavigationActions, useClass: NavigationActions },
+    { provide: SettingActions, useClass: SettingActions },
+    { provide: YoutubeActions, useClass: YoutubeActions }
 ];

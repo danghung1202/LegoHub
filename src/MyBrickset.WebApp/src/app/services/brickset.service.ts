@@ -16,7 +16,6 @@ class Url {
     static GetSubthemesWithYears = 'api/brickset/subthemes';
     static GetSets = 'api/brickset/sets';
     static GetSetDetails = 'api/brickset/set';
-    static SaveThemesWithImage = 'api/storage/save-categories';
     static GetThemesWithImage = 'api/storage/load-categories';
 }
 
@@ -74,22 +73,6 @@ export class BricksetService extends AppService {
 
                 return themes.map(theme => ({ theme: theme.theme, image: images[theme.theme] }))
             })
-            .catch(error => {
-                return this.handleError(error);
-            });
-    }
-
-    updateThemesWithTeaserImage(themesWithImages): Observable<any> {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-
-        const params = new URLSearchParams();
-        params.set('jsonContent', themesWithImages);
-        return this.http.post(Url.SaveThemesWithImage, null, {
-            //headers: headers,
-            search: params
-        })
-            .map(res => res.json())
             .catch(error => {
                 return this.handleError(error);
             });

@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot } from '@angular/router';
 
-import { GAuth2 } from './gauth.service';
+import { GAuth2 } from '../../services';
 
 @Injectable()
 export class SettingGuard implements CanActivate, CanActivateChild {
-  constructor(private authorization: GAuth2, private router: Router) {}
 
-  canActivate (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    // console.log('AuthGuard#canActivate called', { state });
+  constructor(private authorization: GAuth2, private router: Router) { }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     let url: string = state.url;
     return this.checkLogin(url);
   }
 
-  canActivateChild (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.canActivate(route, state);
   }
 
-  checkLogin (url: string): boolean {
+  checkLogin(url: string): boolean {
     if (this.authorization.isAdminstrator()) { return true; }
 
     // Store the attempted URL for redirecting

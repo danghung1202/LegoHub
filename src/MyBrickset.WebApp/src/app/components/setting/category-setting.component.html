@@ -1,0 +1,15 @@
+<div>
+    <h1>Setting image for theme</h1>
+    <form *ngIf="form" (ngSubmit)="onSubmit()" [formGroup]="form">
+        <div>
+            <div *ngFor="let cat of categories;trackBy: trackByTheme">
+                <md-input-container [formGroup]="form">
+                    <input mdInput type="text" [placeholder]="cat.theme" [id]="cat.theme" [formControlName]="cat.theme">
+                </md-input-container>
+            </div>
+        </div>
+        <div>
+            <button type="submit" md-raised-button>Save</button>
+        </div>
+    </form>
+</div>

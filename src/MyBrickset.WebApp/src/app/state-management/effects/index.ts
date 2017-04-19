@@ -1,9 +1,15 @@
+import { EffectsModule } from '@ngrx/effects';
+
 import { FilterEffects } from './filter.effect';
 import { SetEffects } from './set.effect';
-import { CategoryEffects } from './category.effect';
+import { SettingEffects } from './setting.effect';
 
 export {
-    FilterEffects, SetEffects, CategoryEffects
+    FilterEffects, SetEffects, SettingEffects
 };
 
-export default [FilterEffects];
+export const AppEffectModules = [
+  EffectsModule.run(FilterEffects),
+  EffectsModule.run(SetEffects),
+  EffectsModule.run(SettingEffects),
+];

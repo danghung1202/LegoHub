@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 
 import { Set, Theme, Subtheme, Year } from '../../models';
 
-import { AppState, NavigationState, SetListActions, CategoryActions, NavigationActions } from '../../state-management';
+import { AppState, NavigationState, SetListActions, SettingActions, NavigationActions } from '../../state-management';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private store: Store<AppState>,
-        private categoryActions: CategoryActions) {
+        private categoryActions: SettingActions) {
 
         
     }
