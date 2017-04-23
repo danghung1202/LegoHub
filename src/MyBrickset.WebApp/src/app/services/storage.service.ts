@@ -9,6 +9,7 @@ import { AppState, ErrorActions } from '../state-management';
 
 import { sortCriterias } from '../constant';
 import { AppService } from './app.service';
+import { AppConfig } from './app.config';
 
 class Url {
     static SaveCategorySettings = 'api/storage/save-categories';
@@ -19,8 +20,8 @@ class Url {
 @Injectable()
 export class StorageService extends AppService {
 
-    constructor(http: Http, store: Store<AppState>, errorActions: ErrorActions) {
-        super(http, store, errorActions);
+    constructor(http: Http, config: AppConfig, store: Store<AppState>, errorActions: ErrorActions) {
+        super(http, config, store, errorActions);
     }
 
 

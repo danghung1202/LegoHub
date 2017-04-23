@@ -53,7 +53,6 @@ namespace MyBrickset.WebApi.Controllers
 
             return new ObjectResult(new
             {
-                result = _youtubeConfig.Value,
                 success = true,
                 message = "Success!"
             });
@@ -68,6 +67,14 @@ namespace MyBrickset.WebApi.Controllers
                 return new ObjectResult(categories);
             }
             return new ObjectResult(new List<BricksetService.themes>());
+        }
+
+        [Route("configs")]
+        public IActionResult GetAllConfigs()
+        {
+            return new ObjectResult(new {
+                YoutubeConfig = _youtubeConfig.Value
+            });
         }
 
 

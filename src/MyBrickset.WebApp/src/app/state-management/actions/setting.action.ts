@@ -48,4 +48,14 @@ export class SettingActions {
         };
     }
 
+    static LOAD_ALL_SETTINGS_SUCCESS = '[Setting] Load all settings success';
+    loadAllSettingsSuccess(appConfig): Action {
+        return {
+            type: SettingActions.LOAD_ALL_SETTINGS_SUCCESS,
+            payload: appConfig
+        };
+    }
+
+
+
 }

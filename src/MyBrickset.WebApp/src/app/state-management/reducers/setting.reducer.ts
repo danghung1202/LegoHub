@@ -5,15 +5,21 @@ import { SettingActions } from '../actions';
 
 export interface SettingState 
 {
-    categories: any;
-    youtubeSettings: any;
+    categories: Array<any>;
+    youtubeConfig: any;
+    rebrickableConfig: any;
+    pinterestConfig: any;
+    isResolved: boolean;
     loading: boolean;
     saving: boolean;
 };
 
 const initialState: SettingState = {
     categories: [],
-    youtubeSettings: null,
+    youtubeConfig: null,
+    rebrickableConfig: null,
+    pinterestConfig: null,
+    isResolved: false,
     loading: false,
     saving: false
 };
@@ -43,6 +49,11 @@ export function reducer(state = initialState, action: Action): SettingState {
 
         case SettingActions.SAVE_YOUTUBE_SETTINGS_SUCCESS: {
             return Object.assign({}, state, {saving: false});
+        }
+
+        case SettingActions.LOAD_ALL_SETTINGS_SUCCESS: {
+            let appConfig = action.payload;
+            return Object.assign({}, state, {youtubeConfig: appConfig.youtubeConfig, isResolved: true});
         }
         
         default: {

@@ -9,6 +9,7 @@ import { AppState, ErrorActions } from '../state-management';
 
 import { sortCriterias } from '../constant';
 import { AppService } from './app.service';
+import { AppConfig } from './app.config';
 
 class Url {
     static GetThemes = 'api/brickset/themes';
@@ -24,8 +25,8 @@ export class BricksetService extends AppService {
     private _themes: any = null;
     private _themesThisYear: any = null;
 
-    constructor(http: Http, store: Store<AppState>, errorActions: ErrorActions) {
-        super(http, store, errorActions);
+    constructor(http: Http, config: AppConfig, store: Store<AppState>, errorActions: ErrorActions) {
+        super(http, config, store, errorActions);
     }
 
     //using cache in Observable
