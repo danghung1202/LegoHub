@@ -18,6 +18,7 @@ import { AppEffectModules } from './state-management/effects';
 import { APP_SERVICES, GlobalErrorHandler } from './services';
 
 import { AppComponent } from './app.component';
+import { AppResolver } from './app.resolver';
 import { AppRoutingModule } from './app.router';
 import { PipeModule } from './pipes';
 import {
@@ -65,6 +66,7 @@ import {
     providers: [
         ...APP_SERVICES,
         ...STATE_ACTIONS,
+        AppResolver,
         { provide: ErrorHandler, useClass: GlobalErrorHandler }
     ],
     bootstrap: [AppComponent]
