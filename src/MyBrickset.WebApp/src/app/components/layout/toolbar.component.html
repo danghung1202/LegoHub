@@ -3,7 +3,7 @@
         <md-icon>menu</md-icon>
     </button>
 
-    <a [routerLink]="['/']"><span class="toolbar-title">Lego Hub</span></a>
+    <span class="toolbar-title" [routerLink]="['/']">Lego Hub</span>
     <span class="spacer"></span>
 
     <button md-icon-button type="button">
@@ -31,4 +31,10 @@
             <span>About</span>
         </button>
     </md-menu>
+
+    <md-toolbar-row>
+        <span class="toolbar-title">Themes</span>
+        <span class="toolbar-title">Videos</span>
+        <span class="toolbar-title">Pins</span>
+    </md-toolbar-row>
 </md-toolbar>

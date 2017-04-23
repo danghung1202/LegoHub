@@ -1,43 +1,45 @@
-<div class="button-row">
-    <button md-raised-button (click)="openSortPanel()">Sort By</button>
+<div class="main-content">
+    <div class="button-row">
+        <button md-raised-button (click)="openSortPanel()">Sort By</button>
 
-    <button md-raised-button (click)="openFilterPanel()">Filter</button>
-</div>
+        <button md-raised-button (click)="openFilterPanel()">Filter</button>
+    </div>
 
-<div class="tag-container">
-    <md-chip-list>
-        <md-chip class="md-tag" color="accent" selected="true" *ngFor="let theme of selectedThemes">
-            {{theme.theme}}
-            <button md-icon-button type="button" class="md-tag-close-button">
+    <div class="tag-container">
+        <md-chip-list>
+            <md-chip class="md-tag" color="accent" selected="true" *ngFor="let theme of selectedThemes">
+                {{theme.theme}}
+                <button md-icon-button type="button" class="md-tag-close-button">
                 <md-icon>cancel</md-icon>
             </button>
-        </md-chip>
-        <md-chip class="md-tag" color="accent" selected="true" *ngFor="let subtheme of selectedSubthemes"> {{subtheme.subtheme}}
-            <button md-icon-button type="button" class="md-tag-close-button">
+            </md-chip>
+            <md-chip class="md-tag" color="accent" selected="true" *ngFor="let subtheme of selectedSubthemes"> {{subtheme.subtheme}}
+                <button md-icon-button type="button" class="md-tag-close-button">
                 <md-icon>cancel</md-icon>
             </button>
-        </md-chip>
-        <md-chip class="md-tag" color="accent" selected="true" *ngFor="let year of selectedYears"> {{year.year}}
-            <button md-icon-button type="button" class="md-tag-close-button">
+            </md-chip>
+            <md-chip class="md-tag" color="accent" selected="true" *ngFor="let year of selectedYears"> {{year.year}}
+                <button md-icon-button type="button" class="md-tag-close-button">
                 <md-icon>cancel</md-icon>
             </button>
-        </md-chip>
-    </md-chip-list>
-</div>
+            </md-chip>
+        </md-chip-list>
+    </div>
 
-<!--<div class="columns">
+    <!--<div class="columns">
     <div class="item" *ngFor="let set of sets | async">
         <set-card [set]="set" [routerLink]="['./',set.setID]" [preserveQueryParams]="true"></set-card>
     </div>
 </div>-->
 
-<masonry [useImagesLoaded]="true">
-    <masonry-brick class="brick" *ngFor="let set of sets | async;trackBy: trackBySetID">
-        <set-card [set]="set" [routerLink]="['./',set.setID]" [preserveQueryParams]="true"></set-card>
-    </masonry-brick>
-</masonry>
+    <masonry [useImagesLoaded]="true">
+        <masonry-brick class="brick" *ngFor="let set of sets | async;trackBy: trackBySetID">
+            <set-card [set]="set" [routerLink]="['./',set.setID]" [preserveQueryParams]="true"></set-card>
+        </masonry-brick>
+    </masonry>
 
-<button id="loadMoreBtn" md-raised-button (click)="loadMore()" [class.show]="showMore | async" class="full-width">Load more</button>
-<md-spinner [class.show]="loading | async"></md-spinner>
+    <button id="loadMoreBtn" md-raised-button (click)="loadMore()" [class.show]="showMore | async" class="full-width">Load more</button>
+    <md-spinner [class.show]="loading | async"></md-spinner>
 
-<router-outlet></router-outlet>
+    <router-outlet></router-outlet>
+</div>

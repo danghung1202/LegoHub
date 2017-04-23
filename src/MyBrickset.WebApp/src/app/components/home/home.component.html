@@ -1,15 +1,11 @@
 <nav md-tab-nav-bar>
-  <a md-tab-link
-     [routerLink]="['/themes']"
-     routerLinkActive #rla1="routerLinkActive"
-     [active]="rla1.isActive">
+  <a md-tab-link [routerLink]="['/themes']" routerLinkActive #rla1="routerLinkActive" [active]="rla1.isActive">
     THEMES
   </a>
-  <a md-tab-link
-     [routerLink]="['/videos']"
-     routerLinkActive #rla2="routerLinkActive"
-     [active]="rla2.isActive">
+  <a md-tab-link [routerLink]="['/videos']" routerLinkActive #rla2="routerLinkActive" [active]="rla2.isActive">
     VIDEOS
   </a>
 </nav>
-<router-outlet></router-outlet>
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>

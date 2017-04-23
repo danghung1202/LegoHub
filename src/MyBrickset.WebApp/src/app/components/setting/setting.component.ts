@@ -14,15 +14,17 @@ import { AppState, NavigationState, SetListActions, SettingActions, NavigationAc
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
-    <md-tab-group>
-        <md-tab label="Brickset">
-            <category-setting [categories]="categories | async" (onSaveCategories)="onSaveCategories($event)"></category-setting>
-        </md-tab>
-        <md-tab label="Youtube">
-            <youtube-setting (onSaveYoutubeSettings)="onSaveYoutubeSetting($event)"></youtube-setting>
-        </md-tab>
-        <md-tab label="Pinterest"></md-tab>
-    </md-tab-group>
+    <div class="main-content">
+        <md-tab-group>
+            <md-tab label="Brickset">
+                <category-setting [categories]="categories | async" (onSaveCategories)="onSaveCategories($event)"></category-setting>
+            </md-tab>
+            <md-tab label="Youtube">
+                <youtube-setting (onSaveYoutubeSettings)="onSaveYoutubeSetting($event)"></youtube-setting>
+            </md-tab>
+            <md-tab label="Pinterest"></md-tab>
+        </md-tab-group>
+    </div>
     `,
     styles: [`
         

@@ -35,11 +35,8 @@
     </md-sidenav>
     <div class="sidenav-container">
         <b-toolbar (openSidenav)="sidenav.open()"></b-toolbar>
-
         <div class="app-content">
-            <div class="main-content">
-                <ng-content></ng-content>
-            </div>
+            <ng-content></ng-content>
         </div>
     </div>
 </md-sidenav-container>

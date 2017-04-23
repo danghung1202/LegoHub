@@ -6,7 +6,7 @@ import { GAuth2 } from '../../services';
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './toolbar.component.html',
     styles: [`
-     
+        
     `]
 })
 export class ToolbarComponent {
