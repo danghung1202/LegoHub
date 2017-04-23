@@ -22,7 +22,8 @@
       "hammerjs",
       "node",
       "gapi",
-      "gapi.auth2"
+      "gapi.auth2",
+      "gapi.youtube"
     ]
   },
   "exclude": [

@@ -28,6 +28,7 @@
     "@angular/compiler-cli": "~2.4.0",
     "@types/gapi": "0.0.31",
     "@types/gapi.auth2": "0.0.35",
+    "@types/gapi.youtube": "^3.0.31",
     "@types/hammerjs": "^2.0.34",
     "@types/jasmine": "^2.2.34",
     "@types/node": "^7.0.0",
