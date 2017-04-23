@@ -32,7 +32,7 @@ export class RebrickableService extends AppService {
     }
 
     getPartsOfSet(setNumber: string): Observable<any> {
-        return this.http.get(`${Url.Sets}${setNumber}-1/parts/?key=${REBRICKABLE_API_KEY}`, { headers: this.createHeaders() })
+        return this.http.get(`${Url.Sets}${setNumber}-1/parts/?key=${REBRICKABLE_API_KEY}`)
             .map(res => {
                 var results = res.json().results;
                 return results.map(item => ({

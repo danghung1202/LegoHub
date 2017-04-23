@@ -73,7 +73,7 @@ namespace MyBrickset.WebApi.Controllers
         public IActionResult GetAllConfigs()
         {
             return new ObjectResult(new {
-                YoutubeConfig = _youtubeConfig.Value
+                YoutubeConfig = _youtubeConfig.Value ?? new YoutubeConfig()
             });
         }
 

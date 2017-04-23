@@ -47,6 +47,7 @@
     "ncp": "^2.0.0",
     "ng-router-loader": "^2.1.0",
     "ngc-webpack": "1.1.0",
+    "node-sass": "^4.5.2",
     "null-loader": "^0.1.1",
     "optimize-js-plugin": "0.0.4",
     "raw-loader": "^0.5.1",
