@@ -5,4 +5,4 @@ import { Component } from '@angular/core';
        <div>This is video component</div>
     `
 })
-export class VideosComponent { }
+export class VideoListComponent { }

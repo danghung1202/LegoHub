@@ -8,6 +8,7 @@ import { GAuth2 } from './gauth.service';
 import { GapiLoader } from './gapi-loader.service';
 import { AppConfig } from './app.config';
 import { YoutubeService } from './youtube.service';
+import { YoutubeApiService } from './youtube-api.service';
 
 export * from './app.service';
 export * from './brickset.service';
@@ -18,6 +19,8 @@ export * from './logger.service';
 export * from './gauth.service';
 export * from './gapi-loader.service';
 export * from './app.config';
+export * from './youtube-api.service';
+export * from './youtube.service';
 
 export const APP_SERVICES = [
     { provide: AppService, useClass: AppService },
@@ -28,6 +31,7 @@ export const APP_SERVICES = [
     { provide: GAuth2, useClass: GAuth2 },
     { provide: GapiLoader, useClass: GapiLoader },
     { provide: AppConfig, useClass: AppConfig },
-    { provide: YoutubeService, useClass: YoutubeService }
+    { provide: YoutubeService, useClass: YoutubeService },
+    { provide: YoutubeApiService, useClass: YoutubeApiService }
 ];
 

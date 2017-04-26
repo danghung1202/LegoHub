@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import { AppState, NavigationState } from './state-management';
+import { AppState } from './state-management';
 import { FilterActions, SetListActions, NavigationActions } from './state-management';
 
 @Component({
@@ -20,8 +20,8 @@ export class AppComponent implements OnInit {
     constructor(private store: Store<AppState>, private navActions: NavigationActions, private setsActions: SetListActions) {
         this.themes = this.store.select(s => s.navigation).select(s => s.themeNav);
         this.years = this.store.select(s => s.navigation).select(s => s.yearNav);
-        this.sortCriterias = this.store.select(s=>s.sets).select(s=>s.sortCriterias);
-        this.openedSortSidenav = this.store.select(s=>s.navigation).select(s=>s.openedSortSidenav);
+        this.sortCriterias = this.store.select(s => s.sets).select(s => s.sortCriterias);
+        this.openedSortSidenav = this.store.select(s => s.navigation).select(s => s.openedSortSidenav);
     }
 
     ngOnInit() {
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
         this.store.dispatch(this.navActions.loadThemesInThisYear());
     }
 
-    closeSortSidenav(){
+    closeSortSidenav() {
         this.store.dispatch(this.navActions.toggleSortSidenav(false));
     }
 

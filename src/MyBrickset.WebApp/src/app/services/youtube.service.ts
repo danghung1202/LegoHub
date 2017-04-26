@@ -10,9 +10,8 @@ import { AppState, ErrorActions } from '../state-management';
 import { sortCriterias } from '../constant';
 import { AppService } from './app.service';
 import { AppConfig } from './app.config';
+import { YoutubeApiService } from './youtube-api.service';
 import { GAuth2 } from './gauth.service';
-
-import { REBRICKABLE_API_KEY } from './constants';
 
 class Url {
     static Channels = 'https://www.googleapis.com/youtube/v3/channels';
@@ -21,54 +20,96 @@ class Url {
     static Videos = 'https://www.googleapis.com/youtube/v3/videos';
 }
 
+class YoutubeResourceType {
+    static Channel = 'channel';
+    static Playlist = 'playlist';
+    static Video = 'video';
+}
+
 @Injectable()
 export class YoutubeService extends AppService {
-    constructor(http: Http, config: AppConfig, private gauth: GAuth2, store: Store<AppState>, errorActions: ErrorActions) {
+    constructor(private youtubeApi: YoutubeApiService, http: Http, config: AppConfig, store: Store<AppState>, errorActions: ErrorActions) {
         super(http, config, store, errorActions);
     }
 
-    private createHeaders(): Headers {
-        let headers: Headers = new Headers();
-        let accessToken = this.gauth.accessToken;
-        if (accessToken)
-            headers.append('Authorization', `Bearer ${accessToken}`);
-        return headers;
-    }
-
-    getChannels(channelIds: string): Observable<any> {
-
-        return this.http.get(`${Url.Channels}`, { headers: this.createHeaders() })
-            .map(res => {
-                var results = res.json().results;
-                return results.map(item => ({
-                    partId: item.element_id,
-                    partNumber: item.part.part_num,
-                    name: item.part.name,
-                    image: item.part.part_img_url,
-                    quantity: item.quantity,
-                    numSets: item.num_sets,
-                }))
+    getFeaturedChannelsAndVideos(): Observable<YoutubeResponseWrapper> {
+        return Observable.forkJoin([
+            this.getChannelsByIds(this.config.youtubeConfig.channels.map(c => c.id).join(',')),
+            this.getVideosByQuery(this.config.youtubeConfig.keyword)])
+            .map(results => <YoutubeResponseWrapper>{
+                channels: results[0],
+                videos: results[1]
             })
-            .catch(error => {
-                return this.handleError(error);
-            });
     }
 
-    getVideos(): Observable<any> {
-        return this.http.get(`${Url.Videos}`, { headers: this.createHeaders() })
-            .map(res => {
-                var results = res.json().results;
-                return results.map(item => ({
-                    designerName: item.designer_name,
-                    setNum: item.set_num,
-                    name: item.name,
-                    image: item.moc_img_url,
-                    numParts: item.num_parts,
-                    year: item.year,
-                }))
-            })
-            .catch(error => {
-                return this.handleError(error);
-            });
+    getChannelsByIds(channelIds: string): Observable<YoutubeChannelResponse[]> {
+        let channelParams: YoutubeChannelsRequestParameter = {
+            id: channelIds
+        }
+        let result = this.youtubeApi.channels_List(channelParams);
+        return result.map(youtubeInfo => youtubeInfo.items.map(item => {
+            let channels: YoutubeChannelResponse = {
+                id: item.id,
+                title: item.snippet.title,
+                description: item.snippet.description,
+                thumbnail: item.snippet.thumbnails["medium"].url,
+            }
+            return channels;
+        }));
     }
+
+    getChannelsByQuery(query: string): Observable<YoutubeChannelResponse[]> {
+        let channelParams: YoutubeSearchRequestParameter = {
+            q: query,
+            type: YoutubeResourceType.Channel
+        }
+        let result = this.youtubeApi.search(channelParams);
+
+        return result.map(youtubeInfo => youtubeInfo.items.map(item => {
+            let channels: YoutubeChannelResponse = {
+                id: item.id.channelId,
+                title: item.snippet.title,
+                description: item.snippet.description,
+                thumbnail: item.snippet.thumbnails["medium"].url,
+            }
+            return channels;
+        }));
+    }
+
+    getVideosByQuery(query: string): Observable<YoutubeVideoResponse[]> {
+        let channelParams: YoutubeSearchRequestParameter = {
+            q: query,
+            type: YoutubeResourceType.Video
+        }
+        let result = this.youtubeApi.search(channelParams);
+
+        return result.map(youtubeInfo => youtubeInfo.items.map(item => {
+            let channels: YoutubeVideoResponse = {
+                id: item.id.videoId,
+                title: item.snippet.title,
+                description: item.snippet.description,
+                thumbnail: item.snippet.thumbnails["medium"].url,
+            }
+            return channels;
+        }));
+    }
+
+    getVideosByChannelId(channelId: string): Observable<YoutubeVideoResponse[]> {
+        let channelParams: YoutubeSearchRequestParameter = {
+            channelId: channelId,
+            type: YoutubeResourceType.Video
+        }
+        let result = this.youtubeApi.search(channelParams);
+
+        return result.map(youtubeInfo => youtubeInfo.items.map(item => {
+            let channels: YoutubeVideoResponse = {
+                id: item.id.videoId,
+                title: item.snippet.title,
+                description: item.snippet.description,
+                thumbnail: item.snippet.thumbnails["medium"].url,
+            }
+            return channels;
+        }));
+    }
+
 }

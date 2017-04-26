@@ -1,0 +1,33 @@
+<div>
+    <div>
+        <div>
+            <h2>Featured Channels</h2>
+        </div>
+        <div>
+            <md-card *ngFor="let channel of channels">
+                <img md-card-image [src]="channel.thumbnail">
+                <md-card-title md-subheader>{{channel.title}}</md-card-title>
+                <md-card-content>
+                    <div>
+                        {{channel.description}}
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+    </div>
+    <div>
+        <div>Featured Videos</div>
+        <div>
+            <md-card *ngFor="let video of videos">
+                <img md-card-image [src]="video.thumbnail">
+                <md-card-title md-subheader>{{video.title}}</md-card-title>
+                <md-card-content>
+                    <div>
+                        {{video.description}}
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+    </div>
+    <md-spinner [class.show]="loading"></md-spinner>
+</div>

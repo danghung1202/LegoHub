@@ -10,7 +10,7 @@ import { Store } from '@ngrx/store';
 import { Set, Criteria } from '../../models';
 import { CriteriaType } from '../../constant';
 
-import { AppState, NavigationState, SetListActions, FilterActions } from '../../state-management';
+import { AppState, SetListActions, FilterActions } from '../../state-management';
 
 
 @Component({

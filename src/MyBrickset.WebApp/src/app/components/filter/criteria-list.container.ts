@@ -20,7 +20,7 @@ import { CriteriaType } from '../../constant';
                     (applyClick)="applyCriterias($event)">
                 </criteria-list>`
 })
-export class ViewCriteriaListComponent {
+export class CriteriaListContainer {
     subParams: Subscription;
 
     criteriaName: string;

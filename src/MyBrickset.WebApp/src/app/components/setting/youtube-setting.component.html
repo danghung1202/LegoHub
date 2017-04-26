@@ -18,6 +18,9 @@
                 <md-input-container>
                     <input mdInput type="text" placeholder="Channel Name" formControlName="Name">
                 </md-input-container>
+                <md-input-container>
+                    <input mdInput type="text" placeholder="Channel ID" formControlName="ID">
+                </md-input-container>
                 <button md-icon-button type="button" *ngIf="form.controls.Channels.controls.length > 1" (click)="removeChannel(i)">
                     <md-icon>clear</md-icon>
                 </button>

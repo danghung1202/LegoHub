@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 
 import { Set, Theme, Subtheme, Year } from '../../models';
 
-import { AppState, NavigationState, SetListActions, SettingActions, NavigationActions } from '../../state-management';
+import { AppState, SetListActions, SettingActions, NavigationActions } from '../../state-management';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,

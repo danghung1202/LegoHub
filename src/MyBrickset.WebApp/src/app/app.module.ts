@@ -26,6 +26,7 @@ import {
     SetListModule,
     SettingModule,
     SetDetailModule,
+    VideoModule,
     SearchComponent,
     LoginComponent,
     LayoutComponent,
@@ -50,6 +51,7 @@ import {
         SetListModule,
         SetDetailModule,
         SettingModule,
+        VideoModule,
         AppRoutingModule,
         PipeModule.forRoot()
     ],

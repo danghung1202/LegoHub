@@ -10,3 +10,4 @@ export * from './not-found/not-found.component';
 export * from './shared/search-input.component';
 export * from './error-dialog/error-dialog.component';
 export * from './setting';
+export * from './video/video.module';

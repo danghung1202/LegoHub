@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 
 import { SetListComponent } from './set-list.component';
-import { FilterPanelComponent, CriteriaComponent, CriteriaListComponent, ViewCriteriaListComponent } from '../filter';
+import { FilterPanelComponent, CriteriaComponent, CriteriaListComponent, CriteriaListContainer } from '../filter';
 
 import { SetCardComponent } from './set-card.component';
 import { SetListRoutingModule } from './set-list-routing.module';
@@ -26,7 +26,7 @@ import { SearchInputComponent } from '../shared/search-input.component';
         CriteriaListComponent,
         CriteriaComponent,
         SearchInputComponent,
-        ViewCriteriaListComponent,
+        CriteriaListContainer,
         SetListComponent,
         SetCardComponent,
     ]

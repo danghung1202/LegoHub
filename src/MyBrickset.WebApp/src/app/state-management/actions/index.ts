@@ -12,7 +12,8 @@ export {
     ErrorActions,
     SetActions,
     NavigationActions,
-    SettingActions
+    SettingActions,
+    YoutubeActions
 };
 
 export const STATE_ACTIONS = [

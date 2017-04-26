@@ -4,14 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ViewSetComponent } from '../set-detail/view-set.component';
 import { SetListComponent } from './set-list.component';
-import { FilterPanelComponent, ViewCriteriaListComponent } from '../filter';
-import {AppResolver} from '../../app.resolver';
+import { FilterPanelComponent, CriteriaListContainer } from '../filter';
+import { AppResolver } from '../../app.resolver';
 
 const setListRoutes: Routes = [
     {
         path: 'sets',
         component: SetListComponent,
-        resolve: { config: AppResolver},
+        resolve: { config: AppResolver },
         children: [
             {
                 path: 'filter',
@@ -19,7 +19,7 @@ const setListRoutes: Routes = [
                 children: [
                     {
                         path: ':id',
-                        component: ViewCriteriaListComponent
+                        component: CriteriaListContainer
                     }
                 ]
             },

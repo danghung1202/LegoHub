@@ -10,11 +10,7 @@ import * as fromSetList from './set-list.reducer';
 import * as fromSetDetail from './set.reducer';
 import * as fromError from './error.reducer';
 import * as fromSetting from './setting.reducer';
-
-export type NavigationState = fromNavigation.NavigationState;
-export type FilterState = fromFilter.FilterState;
-export type SetListState = fromSetList.SetListState;
-
+import * as fromYoutube from './youtube.reducer';
 
 export interface AppState {
     navigation: fromNavigation.NavigationState;
@@ -23,6 +19,7 @@ export interface AppState {
     set: fromSetDetail.SetDetailState;
     error: fromError.ErrorState;
     setting: fromSetting.SettingState;
+    youtube: fromYoutube.YoutubeState;
 };
 
 /**
@@ -38,7 +35,8 @@ const reducers = {
     sets: fromSetList.reducer,
     set: fromSetDetail.reducer,
     error: fromError.reducer,
-    setting: fromSetting.reducer
+    setting: fromSetting.reducer,
+    youtube: fromYoutube.reducer
 };
 
 const developmentReducer: ActionReducer<AppState> = compose(combineReducers)(reducers);
