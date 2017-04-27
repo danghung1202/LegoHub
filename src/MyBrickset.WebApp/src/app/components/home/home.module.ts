@@ -5,7 +5,7 @@ import { MaterialModule } from '@angular/material';
 
 import { CategoryListComponent } from './category-list.component';
 import { HomeComponent } from './home.component';
-import { HomeRoutingModule } from './home-routing.module';
+import { HomeRoutingModule } from './home.routing';
 import { PipeModule } from '../../pipes';
 
 @NgModule({

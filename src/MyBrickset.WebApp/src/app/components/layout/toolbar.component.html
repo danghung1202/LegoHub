@@ -6,7 +6,7 @@
     <span class="toolbar-title" [routerLink]="['/']">Lego Hub</span>
     <span class="spacer"></span>
 
-    <button md-icon-button type="button">
+    <button md-icon-button type="button" [routerLink]="[{ outlets: { popup: ['search'] } }]">
         <md-icon>search</md-icon>
     </button>
 

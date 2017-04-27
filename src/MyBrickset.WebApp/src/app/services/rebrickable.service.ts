@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, URLSearchParams, RequestOptionsArgs, Headers } from '@angular/http';
+import { Http, Jsonp, Response, URLSearchParams, RequestOptionsArgs, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Store } from '@ngrx/store';
@@ -15,12 +15,13 @@ import { REBRICKABLE_API_KEY } from './constants';
 
 class Url {
     static Sets = 'https://rebrickable.com/api/v3/lego/sets/';
+    static SuggestSearch = 'http://rebrickable.com/search/suggest/';
 }
 
 @Injectable()
 export class RebrickableService extends AppService {
 
-    constructor(http: Http, config: AppConfig, store: Store<AppState>, errorActions: ErrorActions) {
+    constructor(private jsonp: Jsonp, http: Http, config: AppConfig, store: Store<AppState>, errorActions: ErrorActions) {
         super(http, config, store, errorActions);
     }
 
@@ -29,6 +30,28 @@ export class RebrickableService extends AppService {
         headers.append('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Origin, Authorization');
         headers.append('Authorization', `key ${REBRICKABLE_API_KEY}`);
         return headers;
+    }
+
+    suggestMocs(query: string): Observable<any> {
+        if (query && query != '') {
+            let searchConfig: URLSearchParams = new URLSearchParams();
+            let searchParams = {
+                q: query,
+                callback: 'JSONP_CALLBACK'
+            };
+            Object.keys(searchParams).forEach(param => searchConfig.set(param, searchParams[param]));
+            let options: RequestOptionsArgs = {
+                search: searchConfig
+            };
+            return this.jsonp.get(Url.SuggestSearch, options)
+                .map(response => response.json())
+                .map(results => results.map(item => item.name))
+                .catch(error => {
+                    return this.handleError(error);
+                });;
+        }
+
+        return Observable.of([]);
     }
 
     getPartsOfSet(setNumber: string): Observable<any> {
@@ -50,7 +73,7 @@ export class RebrickableService extends AppService {
     }
 
     getAlternateBuildsOfSet(setNumber: string): Observable<any> {
-        return this.http.get(`${Url.Sets}${setNumber}-1/alternates/?key=${REBRICKABLE_API_KEY}`, { headers: this.createHeaders() })
+        return this.http.get(`${Url.Sets}${setNumber}-1/alternates/?key=${REBRICKABLE_API_KEY}`)
             .map(res => {
                 var results = res.json().results;
                 return results.map(item => ({

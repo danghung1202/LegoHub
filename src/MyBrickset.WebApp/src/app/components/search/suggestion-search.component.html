@@ -1,0 +1,8 @@
+<div>
+    <md-spinner [class.show]="loading"></md-spinner>
+    <ul>
+        <li *ngFor="let query of queries">
+            <a>{{query}}</a>
+        </li>
+    </ul>
+</div>

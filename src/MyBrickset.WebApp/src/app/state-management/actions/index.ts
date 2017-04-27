@@ -5,6 +5,7 @@ import { ErrorActions } from './error.action';
 import { NavigationActions } from './navigation.action';
 import { SettingActions } from './setting.action';
 import { YoutubeActions } from './youtube.action';
+import { SearchActions } from './search.action';
 
 export {
     FilterActions,
@@ -13,7 +14,8 @@ export {
     SetActions,
     NavigationActions,
     SettingActions,
-    YoutubeActions
+    YoutubeActions,
+    SearchActions
 };
 
 export const STATE_ACTIONS = [
@@ -23,5 +25,6 @@ export const STATE_ACTIONS = [
     { provide: SetActions, useClass: SetActions },
     { provide: NavigationActions, useClass: NavigationActions },
     { provide: SettingActions, useClass: SettingActions },
-    { provide: YoutubeActions, useClass: YoutubeActions }
+    { provide: YoutubeActions, useClass: YoutubeActions },
+    { provide: SearchActions, useClass: SearchActions }
 ];

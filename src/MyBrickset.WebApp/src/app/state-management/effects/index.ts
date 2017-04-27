@@ -4,9 +4,10 @@ import { FilterEffects } from './filter.effect';
 import { SetEffects } from './set.effect';
 import { SettingEffects } from './setting.effect';
 import { YoutubeEffects } from './youtube.effect';
+import { SearchEffects } from './search.effect';
 
 export {
-  FilterEffects, SetEffects, SettingEffects
+  FilterEffects, SetEffects, SettingEffects, SearchEffects
 };
 
 export const AppEffectModules = [
@@ -14,4 +15,5 @@ export const AppEffectModules = [
   EffectsModule.run(SetEffects),
   EffectsModule.run(SettingEffects),
   EffectsModule.run(YoutubeEffects),
+  EffectsModule.run(SearchEffects),
 ];

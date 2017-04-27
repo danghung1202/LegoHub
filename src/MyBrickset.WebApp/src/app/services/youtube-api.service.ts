@@ -15,6 +15,7 @@ import { GAuth2 } from './gauth.service';
 class Url {
     static Channels = 'https://www.googleapis.com/youtube/v3/channels';
     static Playlists = 'https://www.googleapis.com/youtube/v3/playlists';
+    static PlaylistItems = 'https://www.googleapis.com/youtube/v3/playlistItems';
     static Search = 'https://www.googleapis.com/youtube/v3/search';
     static Videos = 'https://www.googleapis.com/youtube/v3/videos';
 }
@@ -40,8 +41,7 @@ export class YoutubeApiService extends AppService {
 
     private createUrlSearchParams(options): URLSearchParams {
         let params: URLSearchParams = new URLSearchParams();
-        Object.keys(options)
-            .forEach(param => params.set(param, options[param]));
+        Object.keys(options).forEach(param => params.set(param, options[param]));
         return params;
     }
 
@@ -57,7 +57,6 @@ export class YoutubeApiService extends AppService {
     }
 
     channels_List(params: YoutubeChannelsRequestParameter): Observable<GoogleApiYouTubePaginationInfo<GoogleApiYouTubeChannelResource>> {
-
         return this.http.get(`${Url.Channels}`, this.createRequestOptionsArgs(params))
             .map(res => res.json())
             .catch(error => {
@@ -66,7 +65,6 @@ export class YoutubeApiService extends AppService {
     }
 
     search(params: YoutubeSearchRequestParameter): Observable<GoogleApiYouTubePaginationInfo<GoogleApiYouTubeSearchResource>> {
-
         return this.http.get(`${Url.Search}`, this.createRequestOptionsArgs(params))
             .map(res => res.json())
             .catch(error => {
@@ -75,7 +73,6 @@ export class YoutubeApiService extends AppService {
     }
 
     videos_List(params: YoutubeVideosListParameter): Observable<GoogleApiYouTubePaginationInfo<GoogleApiYouTubeVideoResource>> {
-
         return this.http.get(`${Url.Videos}`, this.createRequestOptionsArgs(params))
             .map(res => res.json())
             .catch(error => {
@@ -84,8 +81,15 @@ export class YoutubeApiService extends AppService {
     }
 
     playlists_List(params: YoutubePlaylistsListParameter): Observable<GoogleApiYouTubePaginationInfo<GoogleApiYouTubePlaylistResource>> {
-
         return this.http.get(`${Url.Playlists}`, this.createRequestOptionsArgs(params))
+            .map(res => res.json())
+            .catch(error => {
+                return this.handleError(error);
+            });
+    }
+
+    playlistItems_List(params: YoutubePlaylistItemsListParameter): Observable<GoogleApiYouTubePaginationInfo<GoogleApiYouTubePlaylistItemResource>> {
+        return this.http.get(`${Url.PlaylistItems}`, this.createRequestOptionsArgs(params))
             .map(res => res.json())
             .catch(error => {
                 return this.handleError(error);

@@ -7,10 +7,10 @@ import { SetListComponent } from './set-list.component';
 import { FilterPanelComponent, CriteriaComponent, CriteriaListComponent, CriteriaListContainer } from '../filter';
 
 import { SetCardComponent } from './set-card.component';
-import { SetListRoutingModule } from './set-list-routing.module';
+import { SetListRoutingModule } from './set-list.routing';
 import { PipeModule } from '../../pipes';
 import { MasonryModule } from 'angular2-masonry';
-import { SearchInputComponent } from '../shared/search-input.component';
+import { SearchInputMdComponent } from '../shared/search-input-md.component';
 
 @NgModule({
     imports: [
@@ -25,7 +25,7 @@ import { SearchInputComponent } from '../shared/search-input.component';
         FilterPanelComponent,
         CriteriaListComponent,
         CriteriaComponent,
-        SearchInputComponent,
+        SearchInputMdComponent,
         CriteriaListContainer,
         SetListComponent,
         SetCardComponent,

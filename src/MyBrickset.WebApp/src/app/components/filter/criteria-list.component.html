@@ -16,7 +16,7 @@
     </md-toolbar>
     <md-spinner [class.show]="loading"></md-spinner>
     
-    <search-input #searchInput placeholder="Search in" [class.show]="!loading"></search-input>
+    <search-input-md #searchInput placeholder="Search in" [class.show]="!loading"></search-input-md>
 
     <ul class="criteria-list">
         <li *ngFor="let criteria of criterias | search: searchInput.value; trackBy: trackByValue" (click)="selectCriteria(criteria)">

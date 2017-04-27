@@ -5,8 +5,8 @@ import {
 import { FormControl } from '@angular/forms';
 
 @Component({
-    selector: 'search-input',
-    templateUrl: './search-input.component.html',
+    selector: 'search-input-md',
+    templateUrl: './search-input-md.component.html',
     styles: [`
         .search-row{
             display:flex;
@@ -18,7 +18,7 @@ import { FormControl } from '@angular/forms';
         }
     `]
 })
-export class SearchInputComponent {
+export class SearchInputMdComponent {
 
     value: string;
     @Input('placeholder') placeholder: string;

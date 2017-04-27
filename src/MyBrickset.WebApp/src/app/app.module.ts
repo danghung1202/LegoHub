@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Store, StoreModule } from '@ngrx/store';
@@ -19,7 +19,7 @@ import { APP_SERVICES, GlobalErrorHandler } from './services';
 
 import { AppComponent } from './app.component';
 import { AppResolver } from './app.resolver';
-import { AppRoutingModule } from './app.router';
+import { AppRoutingModule } from './app.routing';
 import { PipeModule } from './pipes';
 import {
     HomeModule,
@@ -27,7 +27,7 @@ import {
     SettingModule,
     SetDetailModule,
     VideoModule,
-    SearchComponent,
+    SearchModule,
     LoginComponent,
     LayoutComponent,
     ToolbarComponent,
@@ -43,6 +43,7 @@ import {
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
+        JsonpModule,
         MaterialModule,
         MasonryModule,
         StoreModule.provideStore(state.reducer),
@@ -52,12 +53,12 @@ import {
         SetDetailModule,
         SettingModule,
         VideoModule,
+        SearchModule,
         AppRoutingModule,
         PipeModule.forRoot()
     ],
     declarations: [
         AppComponent,
-        SearchComponent,
         PageNotFoundComponent,
         LayoutComponent,
         ToolbarComponent,
