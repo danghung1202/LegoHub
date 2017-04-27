@@ -79,7 +79,14 @@ export class BricksetService extends AppService {
             });
     }
 
-    getSets(themes?: string, subthemes?: string, years?: string, query?: string, page?: string, order?: string, show?: string): Observable<Set[]> {
+    suggestSets(query: string): Observable<string[]> {
+        if (query && query != '') {
+            return this.getSets(null, null, null, query, null, null, '10').map(sets=>sets.map(set=>set.name));
+        }
+        return Observable.of([]);
+    }
+
+    getSets(themes?: string, subthemes?: string, years?: string, query?: string, page?: string, order?: string, size?: string): Observable<Set[]> {
         let params: URLSearchParams = new URLSearchParams();
         if (themes) params.set('themes', themes);
         if (subthemes) params.set('subthemes', subthemes);
@@ -87,7 +94,7 @@ export class BricksetService extends AppService {
         if (query) params.set('q', query);
         if (page) params.set('page', page);
         if (order) params.set('order', order);
-        if (show) params.set('show', show);
+        if (size) params.set('size', size);
 
         return this.http.get(Url.GetSets, { search: params })
             .map(res => res.json())

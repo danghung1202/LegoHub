@@ -52,9 +52,9 @@ namespace MyBrickset.WebApi.Controllers
         }
 
         [Route("sets")]
-        public IActionResult GetSets(string q, string themes, string subthemes, string years, string page, string order, string show)
+        public IActionResult GetSets(string q, string themes, string subthemes, string years, string page, string order, string size)
         {
-            var sets = (_bricksetRepo.GetSetsAsync(q, themes, subthemes, years, order, show, page).Result);
+            var sets = (_bricksetRepo.GetSetsAsync(q, themes, subthemes, years, order, size, page).Result);
             if (sets == null)
             {
                 return new ObjectResult(new List<BricksetService.sets>());
