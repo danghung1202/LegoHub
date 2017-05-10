@@ -48,6 +48,21 @@ export class SettingActions {
         };
     }
 
+    static SAVE_PINTEREST_SETTINGS = '[Pinterest] Save Pinterest Settings';
+    savePinterestSettings(jsonPinterestSetting): Action {
+        return {
+            type: SettingActions.SAVE_PINTEREST_SETTINGS,
+            payload: jsonPinterestSetting
+        };
+    }
+
+    static SAVE_PINTEREST_SETTINGS_SUCCESS = '[Youtube] Save Pinterest Settings Success';
+    savePinterestSettingsSuccess(): Action {
+        return {
+            type: SettingActions.SAVE_PINTEREST_SETTINGS_SUCCESS,
+        };
+    }
+
     static LOAD_ALL_SETTINGS_SUCCESS = '[Setting] Load all settings success';
     loadAllSettingsSuccess(appConfig): Action {
         return {

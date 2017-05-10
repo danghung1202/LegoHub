@@ -91,7 +91,9 @@ namespace MyBrickset.WebApi
             services.AddSingleton<IStringSerializer, StringSerializer>();
             services.AddSingleton<IStoragePathResolver, StoragePathResolver>();
             services.AddSingleton<IVerifyToken, VerifyToken>();
+            //Add customize configures
             services.AddSingleton<IConfigs<YoutubeConfig>, Configs<YoutubeConfig>>();
+            services.AddSingleton<IConfigs<PinterestConfig>, Configs<PinterestConfig>>();
         }
 
         private void AddConfigures(IServiceCollection services)

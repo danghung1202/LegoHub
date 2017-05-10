@@ -14,7 +14,6 @@ namespace MyBrickset.WebApi.Controllers
     [Route("api/[controller]")]
     public class AccountController : Controller
     {
-
         private AppConfig _config;
         private readonly IVerifyToken _verifyToken;
         public AccountController(IVerifyToken verifyToken, IOptions<AppConfig> config)

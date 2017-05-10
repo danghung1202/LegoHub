@@ -8,10 +8,7 @@ import { Store } from '@ngrx/store';
 import { Theme, Set } from '../models';
 import { AppState, ErrorActions } from '../state-management';
 
-import { sortCriterias } from '../constant';
 import { AppService } from './app.service';
-
-
 
 @Injectable()
 export class AppConfig {
@@ -19,7 +16,7 @@ export class AppConfig {
 
     public youtubeConfig: YoutubeConfig;
     public rebrickableConfig: any;
-    public pinterestConfig: any;
+    public pinterestConfig: PinterestConfig;
     public isResolved: boolean = false;
 
     constructor(private http: Http, private store: Store<AppState>) {

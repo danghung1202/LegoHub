@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 
-import { SettingRoutingModule } from './setting-routing.module';
+import { SettingRoutingModule } from './setting.routing';
 import { SettingGuard } from './setting.guard';
 import { SettingComponent } from './setting.component';
 import { CategorySettingComponent } from './category-setting.component';

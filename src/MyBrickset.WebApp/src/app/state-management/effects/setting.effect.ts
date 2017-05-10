@@ -5,7 +5,7 @@ import { empty } from 'rxjs/observable/empty';
 import { Store } from '@ngrx/store';
 
 import { SettingActions } from '../actions';
-import { StorageService, BricksetService } from '../../services';
+import { StorageService, BricksetService, PinterestService } from '../../services';
 import { CriteriaType } from '../../constant';
 import { AppState } from '../reducers';
 
@@ -15,6 +15,7 @@ export class SettingEffects {
         private action$: Actions,
         private store: Store<AppState>,
         private settingActions: SettingActions,
+        private svcPinterest: PinterestService,
         private svcStorage: StorageService,
         private svcBrickset: BricksetService,
     ) {
@@ -45,5 +46,21 @@ export class SettingEffects {
             return this.svcStorage.saveYoutubeSettings(payload)
                 .map(results => this.settingActions.saveYoutubeSettingsSuccess())
                 .catch(() => of(this.settingActions.saveYoutubeSettingsSuccess()));
+        });
+
+    @Effect() savePinterestSetting$ = this.action$
+        .ofType(SettingActions.SAVE_PINTEREST_SETTINGS)
+        .do(action=>{console.log(action.payload)})
+        .map(action => action.payload)
+        .switchMap(payload => this.svcPinterest.fetchAllBoardFromAllUserSequence(payload.Token, payload.Users.map(user=>user.Username)))
+        // .switchMap(payload => {
+        //     return this.svcPinterest.fetchAllBoardFromAllUserSequence(payload.Token, payload.Users.map(user=>user.Username))
+        //     .map(results => this.settingActions.savePinterestSettingsSuccess())
+        //         .catch(() => of(this.settingActions.savePinterestSettingsSuccess()));
+        // });
+        .switchMap(response => {
+            return this.svcStorage.savePinterestSettings(JSON.stringify(response))
+                .map(results => this.settingActions.savePinterestSettingsSuccess())
+                .catch(() => of(this.settingActions.savePinterestSettingsSuccess()));
         });
 }

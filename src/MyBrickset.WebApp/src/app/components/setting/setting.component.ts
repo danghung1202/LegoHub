@@ -22,7 +22,9 @@ import { AppState, SetListActions, SettingActions, NavigationActions } from '../
             <md-tab label="Youtube">
                 <youtube-setting (onSaveYoutubeSettings)="onSaveYoutubeSetting($event)"></youtube-setting>
             </md-tab>
-            <md-tab label="Pinterest"></md-tab>
+            <md-tab label="Pinterest">
+                <pinterest-setting (onSavePinterestSettings)="onSavePinterestSetting($event)"></pinterest-setting>
+            </md-tab>
         </md-tab-group>
     </div>
     `,
@@ -52,4 +54,9 @@ export class SettingComponent implements OnInit {
     onSaveYoutubeSetting(payLoad) {
         this.store.dispatch(this.settingActions.saveYoutubeSettings(payLoad));
     }
+
+    onSavePinterestSetting(payLoad) {
+        this.store.dispatch(this.settingActions.savePinterestSettings(payLoad));
+    }
+
 }

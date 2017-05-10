@@ -1,0 +1,28 @@
+<div>
+    <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+        <div>
+            <div>
+                <md-input-container>
+                    <input mdInput type="text" placeholder="Access Token" formControlName="Token">
+                </md-input-container>
+            </div>
+        </div>
+        <div formArrayName="Users">
+            <div>Pinterest Users</div>
+            <div *ngFor="let user of form.controls.Users.controls; let i=index" [formGroupName]="i">
+                <md-input-container>
+                    <input mdInput type="text" placeholder="Username" formControlName="Username">
+                </md-input-container>
+                <button md-icon-button type="button" *ngIf="form.controls.Users.controls.length > 1" (click)="removeUser(i)">
+                    <md-icon>clear</md-icon>
+                </button>
+            </div>
+        </div>
+        <div>
+            <button type="button" md-button (click)="addUser()">Add User</button>
+        </div>
+        <div>
+            <button type="submit" md-raised-button>Save</button>
+        </div>
+    </form>
+</div>
