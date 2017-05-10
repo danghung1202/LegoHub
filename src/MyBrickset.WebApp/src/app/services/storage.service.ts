@@ -15,6 +15,7 @@ class Url {
     static SaveCategorySettings = 'api/storage/save-categories';
     static GetThemesWithImage = 'api/storage/load-categories';
     static SaveYoutubeSettings = 'api/storage/save-youtube-settings';
+    static SavePinterestSettings = 'api/storage/save-pinterest-settings';
 }
 
 @Injectable()
@@ -24,16 +25,17 @@ export class StorageService extends AppService {
         super(http, config, store, errorActions);
     }
 
-
-    saveCategorySettings(categorySettings): Observable<any> {
+    private createHeaders(): Headers {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
+        return headers;
+    }
 
-        const params = new URLSearchParams();
-        params.set('jsonContent', categorySettings);
-        return this.http.post(Url.SaveCategorySettings, null, {
-            //headers: headers,
-            search: params
+    saveCategorySettings(categorySettings): Observable<any> {
+        
+        let body = JSON.stringify({ "jsonContent": categorySettings });
+        return this.http.post(Url.SaveCategorySettings, body, {
+            headers: this.createHeaders()
         })
             .map(res => res.json())
             .catch(error => {
@@ -42,14 +44,22 @@ export class StorageService extends AppService {
     }
 
     saveYoutubeSettings(youtubeSettings): Observable<any> {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
+       
+        let body = JSON.stringify({ "jsonContent": youtubeSettings });
+        return this.http.post(Url.SaveYoutubeSettings, body, {
+           headers: this.createHeaders()
+        })
+            .map(res => res.json())
+            .catch(error => {
+                return this.handleError(error);
+            });
+    }
 
-        const params = new URLSearchParams();
-        params.set('jsonContent', youtubeSettings);
-        return this.http.post(Url.SaveYoutubeSettings, null, {
-            //headers: headers,
-            search: params
+    savePinterestSettings(pinterestSettings): Observable<any> {
+
+        let body = JSON.stringify({ "jsonContent": pinterestSettings });
+        return this.http.post(Url.SavePinterestSettings, body, {
+            headers: this.createHeaders()
         })
             .map(res => res.json())
             .catch(error => {
