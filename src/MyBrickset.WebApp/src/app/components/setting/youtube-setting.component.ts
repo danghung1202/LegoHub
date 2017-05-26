@@ -29,7 +29,7 @@ export class YoutubeSettingComponent {
     }
 
     private initChannels() {
-        const control = <FormArray>this.form.controls['Channels'];
+        const control = <FormArray>this.form['controls']['Channels'];
         this.appCofig.youtubeConfig.channels.forEach(channel => {
             let channelCtrl = this.formBuilder.group({
                 Name: [channel.name],
@@ -40,7 +40,7 @@ export class YoutubeSettingComponent {
     }
 
     addChannel() {
-        const control = <FormArray>this.form.controls['Channels'];
+        const control = <FormArray>this.form['controls']['Channels'];
         const channelCtrl = this.formBuilder.group({
             Name: [''],
             ID: ['']
@@ -50,7 +50,7 @@ export class YoutubeSettingComponent {
     }
 
     removeChannel(index: number) {
-        const control = <FormArray>this.form.controls['Channels'];
+        const control = <FormArray>this.form['controls']['Channels'];
         control.removeAt(index);
     }
 

@@ -28,7 +28,7 @@ export class PinterestSettingComponent {
     }
 
     private initUsers() {
-        const control = <FormArray>this.form.controls['Users'];
+        const control = <FormArray>this.form['controls']['Users'];
         this.appCofig.pinterestConfig.users.forEach((user: PinterestUser) => {
             let userCtrl = this.formBuilder.group({
                 Username: [user.username]
@@ -38,7 +38,7 @@ export class PinterestSettingComponent {
     }
 
     addUser() {
-        const control = <FormArray>this.form.controls['Users'];
+        const control = <FormArray>this.form['controls']['Users'];
         const userCtrl = this.formBuilder.group({
             Username: ['']
         });;
@@ -47,7 +47,7 @@ export class PinterestSettingComponent {
     }
 
     removeUser(index: number) {
-        const control = <FormArray>this.form.controls['Users'];
+        const control = <FormArray>this.form['controls']['Users'];
         control.removeAt(index);
     }
 
