@@ -11,3 +11,4 @@ export * from './shared/search-input-md.component';
 export * from './error-dialog/error-dialog.component';
 export * from './setting';
 export * from './video/video.module';
+export * from './pin-feed/pin-feed.module';

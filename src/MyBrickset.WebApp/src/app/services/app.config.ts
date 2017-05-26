@@ -19,11 +19,15 @@ export class AppConfig {
     public pinterestConfig: PinterestConfig;
     public isResolved: boolean = false;
 
+    public pinterestBoads: Array<PinterestBoard> = [];
+
     constructor(private http: Http, private store: Store<AppState>) {
         this.subscription = this.store.select(s => s.setting).subscribe(setting => {
             this.youtubeConfig = setting.youtubeConfig;
             this.rebrickableConfig = setting.rebrickableConfig;
             this.pinterestConfig = setting.pinterestConfig;
+            if(this.pinterestConfig && this.pinterestConfig.users)
+                this.pinterestConfig.users.forEach(user=>{ this.pinterestBoads = this.pinterestBoads.concat(user.boards); })
             this.isResolved = setting.isResolved;
         });
     }

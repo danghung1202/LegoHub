@@ -23,6 +23,7 @@ import { AppRoutingModule } from './app.routing';
 import { PipeModule } from './pipes';
 import {
     HomeModule,
+    PinFeedModule,
     SetListModule,
     SettingModule,
     SetDetailModule,
@@ -49,6 +50,7 @@ import {
         StoreModule.provideStore(state.reducer),
         ...AppEffectModules,
         HomeModule,
+        PinFeedModule,
         SetListModule,
         SetDetailModule,
         SettingModule,

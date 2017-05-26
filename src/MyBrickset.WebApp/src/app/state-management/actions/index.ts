@@ -6,6 +6,7 @@ import { NavigationActions } from './navigation.action';
 import { SettingActions } from './setting.action';
 import { YoutubeActions } from './youtube.action';
 import { SearchActions } from './search.action';
+import { PinActions } from './pin.action';
 
 export {
     FilterActions,
@@ -15,7 +16,8 @@ export {
     NavigationActions,
     SettingActions,
     YoutubeActions,
-    SearchActions
+    SearchActions,
+    PinActions
 };
 
 export const STATE_ACTIONS = [
@@ -26,5 +28,6 @@ export const STATE_ACTIONS = [
     { provide: NavigationActions, useClass: NavigationActions },
     { provide: SettingActions, useClass: SettingActions },
     { provide: YoutubeActions, useClass: YoutubeActions },
-    { provide: SearchActions, useClass: SearchActions }
+    { provide: SearchActions, useClass: SearchActions },
+    { provide: PinActions, useClass: PinActions }
 ];

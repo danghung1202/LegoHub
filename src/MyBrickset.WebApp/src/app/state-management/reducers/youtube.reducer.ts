@@ -34,7 +34,6 @@ export function reducer(state = initialState, action: Action): YoutubeState {
         case YoutubeActions.GET_VIDEOS_BY_QUERY_SUCCESS: {
             return Object.assign({}, state, {saving: false});
         }
-
         
         default: {
             return state;

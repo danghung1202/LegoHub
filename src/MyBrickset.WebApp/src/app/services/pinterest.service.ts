@@ -14,6 +14,7 @@ import { AppConfig } from './app.config';
 class Url {
     static UserBoards = 'http://pinterestapi.co.uk/';
     static FetchBoards = 'api/storage/fetch-boards';
+    static GetPinsOfBoard = 'https://api.pinterest.com/v1/boards'
 }
 
 @Injectable()
@@ -23,14 +24,14 @@ export class PinterestService extends AppService {
         super(http, config, store, errorActions);
     }
 
+    private _defaultUrlParams: PinterestRequestParameter = {
+        fields: 'id,original_link,note,metadata,image',
+        limit: 20,
+        callback: 'JSONP_CALLBACK'
+    };
+
     getBoardsOfUser(username: string): Observable<any> {
         if (username && username != '') {
-            // return this.http.get(`${Url.UserBoards}${username}/boards`, options)
-            //     .map(response => response.json())
-            //     .map(results => results.map(item => ({ Username: username, boards: item.body })))
-            //     .catch(error => {
-            //         return this.handleError(error);
-            //     });
             return this.http.get(`${Url.FetchBoards}?username=${username}`)
                 .map(response => response.json())
                 .map(results => ({ Username: username, boards: results.boards }))
@@ -53,7 +54,47 @@ export class PinterestService extends AppService {
             })
             .map(response => [response])
             .combineAll()
-            .map(lastestResult=> ({token: token, users: lastestResult}))
+            .map(lastestResult => ({ token: token, users: lastestResult }))
+    }
+
+    getPins(pageNumber?: number): Observable<Pin[]> {
+
+        if(!pageNumber) {
+            this.config.pinterestBoads.forEach(board => {
+                board.cursor = null;
+            })
+        }
+        let availableBoards = this.config.pinterestBoads.filter(x => x.cursor != '');
+        if (availableBoards.length > 0) {
+
+            let board = availableBoards[Math.floor(Math.random() * availableBoards.length)];
+            let params = Object.assign({}, this._defaultUrlParams, <PinterestRequestParameter>{ access_token: this.config.pinterestConfig.token });
+            if (board.cursor) {
+                params.cursor = board.cursor;
+            }
+
+            return this.jsonp.get(`${Url.GetPinsOfBoard}${board.href}pins/`, { search: this.createUrlSearchParams(params) })
+                .map(res => res.json())
+                .map((response: PinterestPinsListResponse) => {
+
+                    board.cursor = response.page.cursor ? response.page.cursor : '';
+
+                    let index = this.config.pinterestBoads.findIndex(b => board.id == b.id);
+                    if (index >= 0) this.config.pinterestBoads[index] = board;
+                    return response.data;
+                })
+                .catch(error => {
+                    return this.handleError(error);
+                });
+        }
+
+        return Observable.of([]);
+    }
+
+    private createUrlSearchParams(options): URLSearchParams {
+        let params: URLSearchParams = new URLSearchParams();
+        Object.keys(options).forEach(param => params.set(param, options[param]));
+        return params;
     }
 
 }

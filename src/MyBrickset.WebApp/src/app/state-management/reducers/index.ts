@@ -12,6 +12,7 @@ import * as fromError from './error.reducer';
 import * as fromSetting from './setting.reducer';
 import * as fromYoutube from './youtube.reducer';
 import * as fromSearch from './search.reducer';
+import * as fromPinterest from './pin.reducer';
 
 export interface AppState {
     navigation: fromNavigation.NavigationState;
@@ -22,6 +23,7 @@ export interface AppState {
     setting: fromSetting.SettingState;
     youtube: fromYoutube.YoutubeState;
     search: fromSearch.SearchState;
+    pinterest: fromPinterest.PinterestState;
 };
 
 /**
@@ -39,7 +41,8 @@ const reducers = {
     error: fromError.reducer,
     setting: fromSetting.reducer,
     youtube: fromYoutube.reducer,
-    search: fromSearch.reducer
+    search: fromSearch.reducer,
+    pinterest: fromPinterest.reducer
 };
 
 const developmentReducer: ActionReducer<AppState> = compose(combineReducers)(reducers);

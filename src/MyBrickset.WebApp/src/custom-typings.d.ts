@@ -144,6 +144,7 @@ interface PinterestBoard {
   id?: string;
   name?: string;
   href?: string;
+  cursor?: string;
 }
 
 interface PinterestUser {
@@ -419,5 +420,81 @@ interface YoutubeResponseWrapper {
   videos: YoutubeVideoResponse[];
   channels: YoutubeChannelResponse[];
 }
+
+interface PinterestRequestParameter {
+  access_token?: string;
+  fields?: string;
+  limit?: number;
+  cursor?: string;
+  callback?: string;
+}
+
+interface PinterestBoard {
+  id?: string;
+  name?: string;
+  url?: string;
+}
+
+interface PinCreator {
+  url?: string;
+  first_name?: string;
+  last_name?: string;
+  id?: string;
+}
+
+interface PinterestImage {
+  url?: string;
+  width?: string;
+  height?: string;
+}
+
+interface PinImage {
+  original?: PinterestImage;
+}
+
+interface ArticleMetadata {
+  published_at?: string;
+  description?: string;
+  name?: string;
+  authors?: Array<any>;
+}
+
+interface LinkMetadata {
+  locale?: string;
+  title?: string;
+  site_name?: string;
+  description?: string;
+  favicon?: string;
+}
+
+interface PinMetadata {
+  article?: ArticleMetadata;
+  link?: LinkMetadata;
+}
+
+interface Pin {
+  id?: string;
+  link?: string;
+  original_link?: string;
+  url?: string;
+  creator?: PinCreator;
+  board?: PinterestBoard;
+  created_at?: string;
+  note?: string;
+  color?: string;
+  image?: PinImage;
+  metadata?: PinMetadata;
+}
+
+interface PinterestPage {
+  cursor?: string;
+  next?: string;
+}
+
+interface PinterestPinsListResponse {
+  data?: Pin[];
+  page?: PinterestPage;
+}
+
 
 

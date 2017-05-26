@@ -1,0 +1,11 @@
+<div class="card-container">
+    <md-card>
+        <img *ngIf="pin.image && pin.image.original"   md-card-image [src]="pin.image.original.url" >
+        <md-card-title md-subheader *ngIf="pin.metadata && pin.metadata.article">{{pin.metadata.article.name}}</md-card-title>
+        <md-card-content>
+            <div>
+                <p *ngIf="pin.note">{{pin.note}}</p>
+            </div>
+        </md-card-content>
+    </md-card>
+</div>
