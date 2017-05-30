@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft​.AspNetCore​.Authentication​.Cookies;
 
 using LegoHub.Data.Repositories;
 using LegoHub.Data.Config;
@@ -56,6 +57,9 @@ namespace LegoHub.WebApi
             AddConfigures(services);
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
+            // Add authentication middleware and inform .NET Core MVC what scheme we'll be using
+            services.AddAuthentication(options => options.SignInScheme = MiddlewareInstance.AuthenticationScheme);
+            
             services.AddMvc();
 
             AddServices(services);
@@ -85,7 +89,7 @@ namespace LegoHub.WebApi
             app.UseMvc();
         }
 
-        
+
         private void AddServices(IServiceCollection services)
         {
             services.AddSingleton<BricksetAPIv2Soap>(new BricksetAPIv2SoapClient(BricksetAPIv2SoapClient.EndpointConfiguration.BricksetAPIv2Soap));
