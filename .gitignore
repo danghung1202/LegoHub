@@ -1,14 +1,14 @@
 # Build result and npm
-src/MyBrickset.Data/bin/
-src/MyBrickset.Data/obj/
-src/MyBrickset.WebApp/node_modules/
-src/MyBrickset.WebApp/dist/
-src/MyBrickset.WebApp/compiled/
-src/MyBrickset.WebApi/bin/
-src/MyBrickset.WebApi/obj/
-src/MyBrickset.WebApi/wwwroot/
-src/MyBrickset.WebApi/AppData/
-src/MyBrickset.WebApi/Properties/PublishProfiles/
+LegoHub.Data/bin/
+LegoHub.Data/obj/
+LegoHub.WebApp/node_modules/
+LegoHub.WebApp/dist/
+LegoHub.WebApp/compiled/
+LegoHub.WebApi/bin/
+LegoHub.WebApi/obj/
+LegoHub.WebApi/wwwroot/
+LegoHub.WebApi/AppData/
+LegoHub.WebApi/Properties/PublishProfiles/
 
 # ReSharper is a .NET coding add-in
 _ReSharper*/
