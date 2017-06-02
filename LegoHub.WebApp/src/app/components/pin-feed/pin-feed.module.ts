@@ -6,8 +6,9 @@ import { MasonryModule } from 'angular2-masonry';
 
 import { PinFeedRoutingModule } from './pin-feed.routing';
 import { PinListComponent } from './pin-list.component';
-import { PinFeaturedContainer } from './pin-featured.container';
+import { PinViewerComponent } from './pin-viewer.component';
 import { PinCardComponent } from './pin-card.component';
+import { PipeModule } from '../../pipes';
 
 @NgModule({
     imports: [
@@ -15,11 +16,12 @@ import { PinCardComponent } from './pin-card.component';
         FormsModule,
         MaterialModule,
         MasonryModule,
-        PinFeedRoutingModule
+        PinFeedRoutingModule,
+        PipeModule.forRoot()
     ],
     declarations: [
         PinListComponent,
-        PinFeaturedContainer,
+        PinViewerComponent,
         PinCardComponent
     ]
 })

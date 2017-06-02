@@ -27,4 +27,11 @@ export class PinActions {
         };
     }
 
+    static GET_PIN_INFO = '[Pinterest] Get pin detail';
+    getPinInfo(pinId: string): Action {
+        return {
+            type: PinActions.GET_PIN_INFO,
+            payload: pinId
+        };
+    }
 }

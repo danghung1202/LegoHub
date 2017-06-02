@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { StarPipe } from './star.pipe';
 import { SearchPipe } from './search.pipe';
+import { SafePipe } from './url-safe.pipe';
 
 @NgModule({
     imports: [],
-    declarations: [StarPipe, SearchPipe],
-    exports: [StarPipe, SearchPipe],
+    declarations: [StarPipe, SearchPipe, SafePipe],
+    exports: [StarPipe, SearchPipe, SafePipe],
 })
 
 export class PipeModule {

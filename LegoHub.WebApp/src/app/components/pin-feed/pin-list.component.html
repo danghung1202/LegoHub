@@ -1,6 +1,6 @@
 <div class="main-content">
 
-    <masonry [useImagesLoaded]="true" (layoutComplete)="layoutComplete($event)">
+    <masonry [useImagesLoaded]="true" >
         <masonry-brick class="brick" *ngFor="let pin of pins | async">
             <pin-card [pin]="pin" [routerLink]="['./',pin.id]"></pin-card>
         </masonry-brick>
