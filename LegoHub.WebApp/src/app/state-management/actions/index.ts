@@ -7,6 +7,7 @@ import { SettingActions } from './setting.action';
 import { YoutubeActions } from './youtube.action';
 import { SearchActions } from './search.action';
 import { PinActions } from './pin.action';
+import { ProgressBarActions } from './progress-bar.action';
 
 export {
     FilterActions,
@@ -17,7 +18,8 @@ export {
     SettingActions,
     YoutubeActions,
     SearchActions,
-    PinActions
+    PinActions,
+    ProgressBarActions
 };
 
 export const STATE_ACTIONS = [
@@ -29,5 +31,6 @@ export const STATE_ACTIONS = [
     { provide: SettingActions, useClass: SettingActions },
     { provide: YoutubeActions, useClass: YoutubeActions },
     { provide: SearchActions, useClass: SearchActions },
-    { provide: PinActions, useClass: PinActions }
+    { provide: PinActions, useClass: PinActions },
+    { provide: ProgressBarActions, useClass: ProgressBarActions }
 ];

@@ -13,6 +13,7 @@ import * as fromSetting from './setting.reducer';
 import * as fromYoutube from './youtube.reducer';
 import * as fromSearch from './search.reducer';
 import * as fromPinterest from './pin.reducer';
+import * as fromProgress from './progress-bar.reducer';
 
 export interface AppState {
     navigation: fromNavigation.NavigationState;
@@ -24,6 +25,7 @@ export interface AppState {
     youtube: fromYoutube.YoutubeState;
     search: fromSearch.SearchState;
     pinterest: fromPinterest.PinterestState;
+    progress: fromProgress.ProgressBarState;
 };
 
 /**
@@ -42,7 +44,8 @@ const reducers = {
     setting: fromSetting.reducer,
     youtube: fromYoutube.reducer,
     search: fromSearch.reducer,
-    pinterest: fromPinterest.reducer
+    pinterest: fromPinterest.reducer,
+    progress: fromProgress.reducer
 };
 
 const developmentReducer: ActionReducer<AppState> = compose(combineReducers)(reducers);

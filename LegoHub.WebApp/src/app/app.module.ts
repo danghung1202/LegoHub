@@ -34,7 +34,8 @@ import {
     ToolbarComponent,
     ModalComponent,
     ErrorDialogComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ProgressBarComponent
 } from './components';
 
 
@@ -67,6 +68,7 @@ import {
         ModalComponent,
         ErrorDialogComponent,
         LoginComponent,
+        ProgressBarComponent
     ],
     providers: [
         ...APP_SERVICES,
