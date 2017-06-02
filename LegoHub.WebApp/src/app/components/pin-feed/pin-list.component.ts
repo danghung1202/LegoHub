@@ -1,4 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+declare var imagesLoaded: any;
+
+import { Component, OnInit, ChangeDetectionStrategy, AfterViewChecked, AfterViewInit, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
@@ -8,7 +10,7 @@ import { Store } from '@ngrx/store';
 
 import { Set, Theme, Subtheme, Year } from '../../models';
 
-import { AppState, PinActions } from '../../state-management';
+import { AppState, PinActions, ProgressBarActions } from '../../state-management';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -55,14 +57,16 @@ export class PinListComponent {
     pageNumber: number = 0;
 
     constructor(
+        private _element: ElementRef,
         private route: ActivatedRoute,
         private router: Router,
         private store: Store<AppState>,
-        private pinActions: PinActions) {
+        private pinActions: PinActions,
+        private progressActions: ProgressBarActions) {
 
         this.pins = this.store.select(s => s.pinterest).select(s => s.pins);
         this.loading = this.store.select(s => s.pinterest).select(s => s.loading);
-        this.showMore = this.store.select(s => s.pinterest).select(s => s.showMore);
+        this.showMore = this.store.select(s => !s.progress.isShow && s.pinterest.showMore);
     }
 
     ngOnInit() {
@@ -74,8 +78,7 @@ export class PinListComponent {
         this.store.dispatch(this.pinActions.getPinList(this.pageNumber));
     }
 
-    layoutComplete(param) {
-        //console.log(param);
+    ngOnDestroy() {
+        this.store.dispatch(this.progressActions.showProgressBar(0));
     }
-
 }

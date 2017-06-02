@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 
 import { Set, Theme, Subtheme, Year } from '../../models';
 
-import { AppState, SetListActions, FilterActions, NavigationActions } from '../../state-management';
+import { AppState, SetListActions, FilterActions, NavigationActions, ProgressBarActions } from '../../state-management';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -51,7 +51,7 @@ export class SetListComponent implements OnInit {
     subParams: Subscription;
 
     sets: Observable<Set[]>;
-    
+
     loading: Observable<boolean>;
     showMore: Observable<boolean>;
 
@@ -72,12 +72,13 @@ export class SetListComponent implements OnInit {
         private router: Router,
         private store: Store<AppState>,
         private setActions: SetListActions,
+        private progressActions: ProgressBarActions,
         private filterActions: FilterActions,
         private navigationActions: NavigationActions) {
 
         this.sets = this.store.select(s => s.sets).select(s => s.sets);
         this.loading = this.store.select(s => s.sets).select(s => s.loading);
-        this.showMore = this.store.select(s => s.sets).select(s => s.showMore);
+        this.showMore = this.store.select(s => !s.progress.isShow && s.sets.showMore);
     }
 
     ngOnInit() {
@@ -103,6 +104,7 @@ export class SetListComponent implements OnInit {
 
     ngOnDestroy() {
         this.subParams.unsubscribe();
+        this.store.dispatch(this.progressActions.showProgressBar(0));
     }
 
     openFilterPanel() {
@@ -115,7 +117,7 @@ export class SetListComponent implements OnInit {
         this.router.navigate(["filter"], navigationExtras);
     }
 
-    openSortPanel(){
+    openSortPanel() {
         this.store.dispatch(this.navigationActions.toggleSortSidenav(true));
     }
 

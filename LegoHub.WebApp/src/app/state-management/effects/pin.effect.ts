@@ -4,7 +4,7 @@ import { of } from 'rxjs/observable/of';
 import { empty } from 'rxjs/observable/empty';
 import { Store } from '@ngrx/store';
 
-import { PinActions } from '../actions';
+import { PinActions, ProgressBarActions } from '../actions';
 import { PinterestService } from '../../services';
 import { CriteriaType } from '../../constant';
 import { AppState } from '../reducers';
@@ -15,6 +15,7 @@ export class PinEffects {
         private action$: Actions,
         private store: Store<AppState>,
         private pinActions: PinActions,
+        private progressActions: ProgressBarActions,
         private svc: PinterestService
     ) { }
 
@@ -24,6 +25,8 @@ export class PinEffects {
         .switchMap(pageNumber => {
             return this.svc.getPins(pageNumber)
                 .map((results: Pin[]) => {
+
+                    this.store.dispatch(this.progressActions.showProgressBar(results.length));
                     if(pageNumber) {
                         return this.pinActions.getMorePinListSuccess(results);
                     }

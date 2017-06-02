@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -11,12 +11,13 @@ import { AppState, ErrorActions } from '../../state-management';
 
 @Component({
     selector: 'error-dialog',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
-  <div class="error-dialog"  [class.show]="visible | async">
-    <span class="error-close" (click)="hide()">&times;</span>
-    <div class="error-content" [innerHTML]="message | async">
-    </div>
-  <div>
+        <div class="error-dialog"  [class.show]="visible | async">
+            <span class="error-close" (click)="hide()">&times;</span>
+            <div class="error-content" [innerHTML]="message | async">
+            </div>
+        <div>
   `,
     styles: [
         `

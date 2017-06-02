@@ -1,5 +1,11 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+declare var imagesLoaded: any;
+
+import { Component, Input, AfterViewInit, ElementRef, ChangeDetectionStrategy } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+
 import { Set } from '../../models';
+import { AppState, ProgressBarActions } from '../../state-management';
 
 @Component({
     selector: 'set-card',
@@ -36,5 +42,19 @@ import { Set } from '../../models';
 })
 export class SetCardComponent {
     @Input() set: any;
+    constructor(
+        private _element: ElementRef,
+        private store: Store<AppState>,
+        private progressActions: ProgressBarActions) { }
 
+    ngAfterViewInit() {
+        // viewChild is set after the view has been initialized
+        var imgLoad = imagesLoaded(this._element.nativeElement, (instance: any) => {
+            this.onAlways();
+        });
+    }
+
+    onAlways() {
+        this.store.dispatch(this.progressActions.addProgressValue(1))
+    }
 }
