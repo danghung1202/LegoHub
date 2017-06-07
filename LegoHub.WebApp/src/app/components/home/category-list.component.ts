@@ -14,7 +14,9 @@ import { AppState, SetListActions, SettingActions, NavigationActions } from '../
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './category-list.component.html',
     styles: [`
-        
+        masonry {
+            margin: 0 -0.6rem;
+        }
     `]
 })
 export class CategoryListComponent implements OnInit {
