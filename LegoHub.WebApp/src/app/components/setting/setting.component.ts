@@ -14,22 +14,35 @@ import { AppState, SetListActions, SettingActions, NavigationActions } from '../
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
-    <div class="main-content">
-        <md-tab-group>
-            <md-tab label="Brickset">
-                <category-setting [categories]="categories | async" (onSaveCategories)="onSaveCategories($event)"></category-setting>
-            </md-tab>
-            <md-tab label="Youtube">
-                <youtube-setting (onSaveYoutubeSettings)="onSaveYoutubeSetting($event)"></youtube-setting>
-            </md-tab>
-            <md-tab label="Pinterest">
-                <pinterest-setting (onSavePinterestSettings)="onSavePinterestSetting($event)"></pinterest-setting>
-            </md-tab>
-        </md-tab-group>
-    </div>
+        <div class="main-content">
+            <md-tab-group>
+                <md-tab label="Brickset">
+                    <div class="setting-component">
+                        <category-setting [categories]="categories | async" (onSaveCategories)="onSaveCategories($event)"></category-setting>
+                    </div>
+                </md-tab>
+                <md-tab label="Youtube">
+                    <div class="setting-component">
+                        <youtube-setting (onSaveYoutubeSettings)="onSaveYoutubeSetting($event)"></youtube-setting>
+                    </div>
+                </md-tab>
+                <md-tab label="Pinterest">
+                    <div class="setting-component">
+                        <pinterest-setting (onSavePinterestSettings)="onSavePinterestSetting($event)"></pinterest-setting>
+                    </div>
+                    <div class="setting-component">
+                        <pinterest-board-upload></pinterest-board-upload>
+                    </div>
+                </md-tab>
+            </md-tab-group>
+        </div>
     `,
     styles: [`
-        
+        .setting-component{
+            margin-bottom: 8px;
+            padding: 3px;
+            padding-top:0px;
+        }
     `]
 })
 export class SettingComponent implements OnInit {

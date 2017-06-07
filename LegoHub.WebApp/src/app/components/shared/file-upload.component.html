@@ -1,0 +1,44 @@
+<div>
+    <!--UPLOAD-->
+    <form #f="ngForm" enctype="multipart/form-data" novalidate>
+        <div>
+            <button color="accent" [disabled]="currentStatus === STATUS_SAVING || chooseFiles.length == 0" type="button" md-raised-button (click)="onUploadFiles()">Upload files</button>
+        </div>
+        <div class="dropbox">
+            <input type="file" multiple [name]="uploadFieldName" title=" " (change)="filesChange($event.target.name, $event.target.files)" [disabled]="currentStatus === STATUS_SAVING"
+                accept=".csv, text/csv" />
+            <p *ngIf="currentStatus !== STATUS_SAVING">
+                Drag your file(s) here to begin<br> or click to browse
+            </p>
+            <p *ngIf="currentStatus === STATUS_SAVING">
+                Uploading {{ chooseFiles.length }} files...
+            </p>
+        </div>
+    </form>
+
+    <!--CHOOSE FILES-->
+    <div>
+        <ul class="choose-files-list">
+            <li *ngFor="let item of chooseFiles; let i=index">
+                {{item.name}}
+                <button md-icon-button type="button" (click)="removeFile(i)" [disabled]="currentStatus === STATUS_SAVING">
+                    <md-icon>clear</md-icon>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="chooseFiles.length > 0">
+        <button [disabled]="currentStatus === STATUS_SAVING || chooseFiles.length == 0" type="button" md-raised-button (click)="reset()">Clear All</button>
+    </div>
+
+    <!--SUCCESS-->
+    <div *ngIf="currentStatus === STATUS_SUCCESS">
+        <h3>Uploaded successfully.</h3>
+    </div>
+    
+    <!--FAILED-->
+    <div *ngIf="currentStatus === STATUS_FAILED">
+        <h2>Uploaded failed.</h2>
+        <pre>{{ uploadError | json }}</pre>
+    </div>
+</div>

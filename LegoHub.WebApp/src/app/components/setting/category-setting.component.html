@@ -1,5 +1,5 @@
-<div>
-    <h1>Setting image for theme</h1>
+<md-card>
+    <md-card-title md-subheader>Configure teaser images for themes</md-card-title>
     <form *ngIf="form" (ngSubmit)="onSubmit()" [formGroup]="form">
         <div>
             <div *ngFor="let cat of categories;trackBy: trackByTheme">
@@ -9,7 +9,7 @@
             </div>
         </div>
         <div>
-            <button type="submit" md-raised-button>Save</button>
+            <button type="submit" color="accent" md-raised-button>Save</button>
         </div>
     </form>
-</div>
+</md-card>

@@ -9,6 +9,8 @@ import { SettingComponent } from './setting.component';
 import { CategorySettingComponent } from './category-setting.component';
 import { YoutubeSettingComponent } from './youtube-setting.component';
 import { PinterestSettingComponent } from './pinterest-setting.component';
+import { PinterestBoardUploadComponent } from './pinterest-board.component';
+import { FileUploadComponent } from '../shared/file-upload.component';
 
 @NgModule({
     imports: [
@@ -22,7 +24,9 @@ import { PinterestSettingComponent } from './pinterest-setting.component';
         SettingComponent,
         CategorySettingComponent,
         YoutubeSettingComponent,
-        PinterestSettingComponent
+        PinterestSettingComponent,
+        PinterestBoardUploadComponent,
+        FileUploadComponent
     ],
     providers: [SettingGuard]
 })

@@ -16,6 +16,7 @@ class Url {
     static GetThemesWithImage = 'api/storage/load-categories';
     static SaveYoutubeSettings = 'api/storage/save-youtube-settings';
     static SavePinterestSettings = 'api/storage/save-pinterest-settings';
+    static SavePinterestBoards = 'api/storage/save-pinterest-boards';
 }
 
 @Injectable()
@@ -32,7 +33,6 @@ export class StorageService extends AppService {
     }
 
     saveCategorySettings(categorySettings): Observable<any> {
-        
         let body = JSON.stringify({ "jsonContent": categorySettings });
         return this.http.post(Url.SaveCategorySettings, body, {
             headers: this.createHeaders()
@@ -44,10 +44,9 @@ export class StorageService extends AppService {
     }
 
     saveYoutubeSettings(youtubeSettings): Observable<any> {
-       
         let body = JSON.stringify({ "jsonContent": youtubeSettings });
         return this.http.post(Url.SaveYoutubeSettings, body, {
-           headers: this.createHeaders()
+            headers: this.createHeaders()
         })
             .map(res => res.json())
             .catch(error => {
@@ -56,7 +55,6 @@ export class StorageService extends AppService {
     }
 
     savePinterestSettings(pinterestSettings): Observable<any> {
-
         let body = JSON.stringify({ "jsonContent": pinterestSettings });
         return this.http.post(Url.SavePinterestSettings, body, {
             headers: this.createHeaders()
@@ -65,5 +63,13 @@ export class StorageService extends AppService {
             .catch(error => {
                 return this.handleError(error);
             });
+    }
+
+    savePinterestBoardSettings(settingData): Observable<any> {
+        return this.http.post(Url.SavePinterestBoards, settingData)
+            .map(x => x.json());
+            // .catch(error => {
+            //     return this.handleError(error);
+            // });
     }
 }

@@ -1,4 +1,5 @@
-<div>
+<md-card>
+    <md-card-title md-subheader>Configure youtube api</md-card-title>
     <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
         <div>
             <div>
@@ -30,7 +31,7 @@
             <button type="button" md-button (click)="addChannel()">Add Channel</button>
         </div>
         <div>
-            <button type="submit" md-raised-button>Save</button>
+            <button type="submit" color="accent" md-raised-button>Save</button>
         </div>
     </form>
-</div>
+</md-card>

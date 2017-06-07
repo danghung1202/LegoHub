@@ -1,4 +1,5 @@
-<div>
+<md-card>
+    <md-card-title md-subheader>Configure Pinterest API</md-card-title>
     <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
         <div>
             <div>
@@ -14,15 +15,15 @@
                     <input mdInput type="text" placeholder="Username" formControlName="Username">
                 </md-input-container>
                 <button md-icon-button type="button" *ngIf="form['controls'].Users['controls'].length > 1" (click)="removeUser(i)">
-                    <md-icon>clear</md-icon>
-                </button>
+                <md-icon>clear</md-icon>
+            </button>
             </div>
         </div>
         <div>
             <button type="button" md-button (click)="addUser()">Add User</button>
         </div>
         <div>
-            <button type="submit" md-raised-button>Save</button>
+            <button type="submit" color="accent" md-raised-button>Save</button>
         </div>
     </form>
-</div>
+</md-card>

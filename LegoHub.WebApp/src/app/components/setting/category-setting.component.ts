@@ -6,6 +6,11 @@ import { FormGroup, FormControl } from '@angular/forms';
     selector: 'category-setting',
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './category-setting.component.html',
+    styles: [`
+        md-input-container{
+            width: 100%;    
+        }
+    `]
 })
 export class CategorySettingComponent {
     form: FormGroup;
