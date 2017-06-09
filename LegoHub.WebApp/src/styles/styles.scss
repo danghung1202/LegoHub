@@ -62,12 +62,6 @@ md-sidenav-container .mat-sidenav-content {
   }
 }
 
-@media only screen and (min-width: 993px) {
-  .main-content  {
-    width: 85%;
-  }
-}
-
 .brick {
   height: auto;
   width: 100%;
@@ -76,7 +70,7 @@ md-sidenav-container .mat-sidenav-content {
 }
 
 .brick md-card:hover {
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 8px 16px 0 rgba(0,0,0,.12);
     cursor: pointer;
 }
 
