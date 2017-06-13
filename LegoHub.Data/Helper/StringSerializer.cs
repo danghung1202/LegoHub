@@ -19,16 +19,15 @@ namespace LegoHub.Data.Helper
                 );
         }
 
-        public dynamic Deserialize(string serializedObject)
+        public T Deserialize<T>(string serializedObject)
         {
             if (string.IsNullOrWhiteSpace(serializedObject)) throw new ArgumentException("must pass in a string");
             var settings = new JsonSerializerSettings
             {
                 DefaultValueHandling = DefaultValueHandling.Include
             };
-            return JsonConvert.DeserializeObject<dynamic>(serializedObject, settings);
+            return JsonConvert.DeserializeObject<T>(serializedObject, settings);
         }
-
 
     }
 }

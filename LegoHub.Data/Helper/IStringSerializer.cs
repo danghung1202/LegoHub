@@ -3,7 +3,7 @@ namespace LegoHub.Data.Helper
     public interface IStringSerializer
     {
         string Serialize(dynamic obj);
-        dynamic Deserialize(string serializedObject);
+        T Deserialize<T>(string serializedObject);
         string ExpectedFileExtension { get; }
     }
 }

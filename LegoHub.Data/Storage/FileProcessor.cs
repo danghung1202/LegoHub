@@ -1,4 +1,5 @@
 using System.IO;
+using System.Linq;
 using LegoHub.Data.Helper;
 
 namespace LegoHub.Data.Storage
@@ -33,23 +34,24 @@ namespace LegoHub.Data.Storage
             }
         }
 
-        public dynamic LoadObjectFromAppFolder(string virtualFolderPath, string fileName){
+        public T LoadObjectFromAppFolder<T>(string virtualFolderPath, string fileName){
             var pathToFile = _pathResolver.ResolveAppRootPath(virtualFolderPath, fileName);
-            return LoadObject(pathToFile);
+            return LoadObject<T>(pathToFile);
         }
 
-        public dynamic LoadObjectFromWwwFolder(string virtualFolderPath, string fileName){
+        public T LoadObjectFromWwwFolder<T>(string virtualFolderPath, string fileName){
             var pathToFile = _pathResolver.ResolveWwwRootPath(virtualFolderPath, fileName);
-            return LoadObject(pathToFile);
+            return LoadObject<T>(pathToFile);
         }
 
-        private dynamic LoadObject(string pathToFile){
-            if (!File.Exists(pathToFile)) return null;
+
+        private T LoadObject<T>(string pathToFile){
+            if (!File.Exists(pathToFile)) return default(T);
 
             using (StreamReader reader = File.OpenText(pathToFile))
             {
                 var payload = reader.ReadToEnd();
-                var result = _serializer.Deserialize(payload);
+                var result = _serializer.Deserialize<T>(payload);
                 return result;
             }
         }

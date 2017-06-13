@@ -4,7 +4,7 @@ namespace LegoHub.Data.Storage
     {
         void SaveJsonToAppFolder(string virtualFolderPath, string fileName, string jsonContent);
         void SaveJsonToWwwFolder(string virtualFolderPath, string fileName, string jsonContent);
-        dynamic LoadObjectFromAppFolder(string virtualFolderPath, string fileName);
-        dynamic LoadObjectFromWwwFolder(string virtualFolderPath, string fileName);
+        T LoadObjectFromAppFolder<T>(string virtualFolderPath, string fileName);
+        T LoadObjectFromWwwFolder<T>(string virtualFolderPath, string fileName);
     }
 }
