@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -35,6 +36,19 @@ namespace LegoHub.WebApi.Controllers
             _youtubeConfig = youtubeConfig;
             _pinterestConfig = pinterestConfig;
             _serializer = serializer;
+        }
+
+        [Route("configs")]
+        public IActionResult GetAllConfigs()
+        {
+            var pinterestConfig = _pinterestConfig.Value ?? new PinterestConfig();
+            pinterestConfig.Keywords = _fileProcessor.GetAllFileNamesFromFolderInAppRoot(_config.PinterestBoardsFolder);
+            
+            return new ObjectResult(new
+            {
+                YoutubeConfig = _youtubeConfig.Value ?? new YoutubeConfig(),
+                PinterestConfig = _pinterestConfig.Value ?? new PinterestConfig(),
+            });
         }
 
         [Authorize(Roles = "Administrator")]
@@ -133,8 +147,7 @@ namespace LegoHub.WebApi.Controllers
                     }
 
                     string fileName = $"{Path.GetFileNameWithoutExtension(formFile.FileName)}.json";
-                    _fileProcessor.SaveJsonToAppFolder("PinterestBoards", fileName, _serializer.Serialize(boards));
-
+                    _fileProcessor.SaveJsonToAppFolder(_config.PinterestBoardsFolder, fileName, _serializer.Serialize(boards));
                 }
 
             }
@@ -191,11 +204,10 @@ namespace LegoHub.WebApi.Controllers
             return string.Empty;
         }
 
-
         [Route("load-categories")]
         public IActionResult LoadCategoriesWithTeaserImage()
         {
-            var categories = _fileProcessor.LoadObjectFromAppFolder(string.Empty, _config.CategoryFile);
+            var categories = _fileProcessor.LoadObjectFromAppFolder<object>(string.Empty, _config.CategoryFile);
             if (categories != null)
             {
                 return new ObjectResult(categories);
@@ -203,14 +215,11 @@ namespace LegoHub.WebApi.Controllers
             return new ObjectResult(new List<BricksetService.themes>());
         }
 
-        [Route("configs")]
-        public IActionResult GetAllConfigs()
+        [Route("get-boards")]
+        public PinterestBoard[] GetPinterestBoards(string keyword)
         {
-            return new ObjectResult(new
-            {
-                YoutubeConfig = _youtubeConfig.Value ?? new YoutubeConfig(),
-                PinterestConfig = _pinterestConfig.Value ?? new PinterestConfig()
-            });
+            var boards = _fileProcessor.LoadObjectFromAppFolder<PinterestBoard[]>(_config.PinterestBoardsFolder, $"{keyword}.json");
+            return boards != null ? boards.Select(b => new PinterestBoard { Href = b.Href }).ToArray() : new PinterestBoard[0];
         }
 
         [Route("fetch-boards")]

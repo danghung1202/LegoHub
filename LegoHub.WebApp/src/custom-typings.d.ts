@@ -156,6 +156,7 @@ interface PinterestUser {
 interface PinterestConfig {
   token: string;
   users: Array<PinterestUser>;
+  keywords: Array<string>;
 }
 
 interface YoutubeChannelsRequestParameter {

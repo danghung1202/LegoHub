@@ -6,7 +6,6 @@ import { Store } from '@ngrx/store';
 
 import { PinActions, ProgressBarActions } from '../actions';
 import { PinterestService } from '../../services';
-import { CriteriaType } from '../../constant';
 import { AppState } from '../reducers';
 
 @Injectable()
@@ -21,13 +20,18 @@ export class PinEffects {
 
     @Effect() getPinList$ = this.action$
         .ofType(PinActions.GET_PINS)
+        .switchMap(action => {
+            return this.svc.getBoardsBasedRandomKeyword().map(results=>{
+                return action;
+            });
+        })
         .map(action => action.payload)
         .switchMap(pageNumber => {
             return this.svc.getPins(pageNumber)
                 .map((results: Pin[]) => {
 
                     this.store.dispatch(this.progressActions.showProgressBar(results.length));
-                    if(pageNumber) {
+                    if (pageNumber) {
                         return this.pinActions.getMorePinListSuccess(results);
                     }
                     return this.pinActions.getPinListSuccess(results)

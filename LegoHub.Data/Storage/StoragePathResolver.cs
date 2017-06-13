@@ -45,7 +45,8 @@ namespace LegoHub.Data.Storage
                 Directory.CreateDirectory(folderPaths);
             }
 
-            return Path.Combine(folderPaths, fileNameWithExtension);
+
+            return string.IsNullOrEmpty(fileNameWithExtension) ? folderPaths : Path.Combine(folderPaths, fileNameWithExtension);
         }
     }
 }

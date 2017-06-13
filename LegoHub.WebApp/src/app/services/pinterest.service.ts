@@ -14,6 +14,7 @@ import { AppConfig } from './app.config';
 class Url {
     static UserBoards = 'http://pinterestapi.co.uk/';
     static FetchBoards = 'api/storage/fetch-boards';
+    static GetBoardsBasedKeyword = 'api/storage/get-boards';
     static GetPinsOfBoard = 'https://api.pinterest.com/v1/boards'
 }
 
@@ -43,6 +44,38 @@ export class PinterestService extends AppService {
         return Observable.of([]);
     }
 
+
+
+    getBoardsBasedRandomKeyword(): Observable<PinterestBoard[]> {
+        let keywords = this.config.pinterestConfig.keywords.filter(key => this.config.pinterestBoardDict[key] == null);
+        if (keywords.length > 0) {
+            let selectedKeyword = keywords[Math.floor(Math.random() * keywords.length)];
+            return this.getBoardsBasedKeyword(selectedKeyword).map(boards => {
+                this.config.pinterestBoardDict[selectedKeyword] = boards;
+                boards.forEach(board => {
+                    if (this.config.pinterestBoads.findIndex(b => board.href == b.href) == -1) {
+                        this.config.pinterestBoads.push(board);
+                    }
+                })
+                return boards;
+            })
+        }
+
+        return Observable.of([]);
+    }
+
+    getBoardsBasedKeyword(keyword: string): Observable<PinterestBoard[]> {
+        if (keyword && keyword != '') {
+            return this.http.get(`${Url.GetBoardsBasedKeyword}?keyword=${keyword}`)
+                .map(response => response.json())
+                .catch(error => {
+                    return this.handleError(error);
+                });
+        }
+
+        return Observable.of([]);
+    }
+
     fetchAllBoardFromAllUserSequence(token: string, usernames: string[]): Observable<any> {
         let count: number = 0;
         return Observable.from(usernames)
@@ -58,8 +91,7 @@ export class PinterestService extends AppService {
     }
 
     getPins(pageNumber?: number): Observable<Pin[]> {
-
-        if(!pageNumber) {
+        if (!pageNumber) {
             this.config.pinterestBoads.forEach(board => {
                 board.cursor = null;
             })

@@ -68,14 +68,14 @@ export class SetEffects {
             return this.svcRebrickable.getPartsOfSet(setNumber)
                 .map(result => this.setActions.getPartsSuccess(result))
                 .catch(() => of(this.setActions.getPartsSuccess(null)));
-        }); 
+        });
 
-        @Effect() getAltBuildssOfSet$ = this.action$
+    @Effect() getAltBuildssOfSet$ = this.action$
         .ofType(SetActions.GET_ALTERNATE_BUILDS)
         .map(action => action.payload)
         .switchMap(setNumber => {
             return this.svcRebrickable.getAlternateBuildsOfSet(setNumber)
                 .map(result => this.setActions.getAlternateBuildsSuccess(result))
                 .catch(() => of(this.setActions.getAlternateBuildsSuccess(null)));
-        }); 
+        });
 }

@@ -20,6 +20,10 @@ const initialState: PinterestState = {
 export function reducer(state = initialState, action: Action): PinterestState {
     switch (action.type) {
         case PinActions.GET_PINS: {
+            let pageNumber = action.payload;
+            if(pageNumber) {
+                return Object.assign({}, state, {loading: true, showMore: false });
+            }
             return Object.assign({}, state, {pins: [], loading: true, showMore: false });
         }
 

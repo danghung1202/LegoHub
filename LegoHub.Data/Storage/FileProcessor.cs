@@ -44,6 +44,11 @@ namespace LegoHub.Data.Storage
             return LoadObject<T>(pathToFile);
         }
 
+        public string[] GetAllFileNamesFromFolderInAppRoot(string folder){
+            return Directory.GetFiles(_pathResolver.ResolveAppRootPath(folder, string.Empty), "*.json")
+                                     .Select(Path.GetFileNameWithoutExtension)
+                                     .ToArray();
+        }
 
         private T LoadObject<T>(string pathToFile){
             if (!File.Exists(pathToFile)) return default(T);

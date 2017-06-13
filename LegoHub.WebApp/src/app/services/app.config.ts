@@ -19,6 +19,7 @@ export class AppConfig {
     public pinterestConfig: PinterestConfig;
     public isResolved: boolean = false;
 
+    public pinterestBoardDict = {};
     public pinterestBoads: Array<PinterestBoard> = [];
 
     constructor(private http: Http, private store: Store<AppState>) {
@@ -26,8 +27,15 @@ export class AppConfig {
             this.youtubeConfig = setting.youtubeConfig;
             this.rebrickableConfig = setting.rebrickableConfig;
             this.pinterestConfig = setting.pinterestConfig;
-            if(this.pinterestConfig && this.pinterestConfig.users)
-                this.pinterestConfig.users.forEach(user=>{ this.pinterestBoads = this.pinterestBoads.concat(user.boards); })
+
+            if (this.pinterestConfig && this.pinterestConfig.users) {
+                this.pinterestConfig.users.forEach(user => { this.pinterestBoads = this.pinterestBoads.concat(user.boards); });
+            }
+
+            if (this.pinterestConfig && this.pinterestConfig.keywords) {
+                this.pinterestConfig.keywords.forEach(keyword => { this.pinterestBoardDict[keyword] = null });
+            }
+
             this.isResolved = setting.isResolved;
         });
     }
