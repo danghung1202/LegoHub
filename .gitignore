@@ -8,6 +8,7 @@ LegoHub.WebApi/bin/
 LegoHub.WebApi/obj/
 LegoHub.WebApi/wwwroot/
 LegoHub.WebApi/AppData/
+LegoHub.WebApi/Properties/
 LegoHub.WebApi/Properties/PublishProfiles/
 
 # ReSharper is a .NET coding add-in
@@ -31,3 +32,4 @@ $RECYCLE.BIN/
 # Visual Studio 2015 settings folder
 .vs/
 .vscode/
+*.user
