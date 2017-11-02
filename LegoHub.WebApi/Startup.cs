@@ -24,25 +24,12 @@ namespace LegoHub.WebApi
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-
-            if (env.IsEnvironment("Development"))
-            {
-                // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
-                builder.AddApplicationInsightsSettings(developerMode: true);
-            }
-
-            builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -58,8 +45,14 @@ namespace LegoHub.WebApi
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
             // Add authentication middleware and inform .NET Core MVC what scheme we'll be using
-            services.AddAuthentication(options => options.SignInScheme = MiddlewareInstance.AuthenticationScheme);
-            
+            services.AddAuthentication(MiddlewareInstance.AuthenticationScheme)
+                    .AddCookie(MiddlewareInstance.AuthenticationScheme, options =>
+                    {
+                        options.LoginPath = "/Account/LogIn";
+                        options.LogoutPath = "/Account/LogOff";
+                        options.AccessDeniedPath = "/Account/Forbidden/";
+                    });
+
             services.AddMvc();
 
             AddServices(services);
@@ -70,9 +63,6 @@ namespace LegoHub.WebApi
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
-            // app.UseApplicationInsightsRequestTelemetry();
-            // app.UseApplicationInsightsExceptionTelemetry();
 
             UseCookieAuthentication(app);
             UseGlobalExceptionHandler(app);
@@ -112,14 +102,7 @@ namespace LegoHub.WebApi
 
         private void UseCookieAuthentication(IApplicationBuilder app)
         {
-            app.UseCookieAuthentication(new CookieAuthenticationOptions()
-            {
-                AuthenticationScheme = MiddlewareInstance.AuthenticationScheme,
-                LoginPath = new PathString("/Account/Login/"),
-                AccessDeniedPath = new PathString("/Account/Forbidden/"),
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = false
-            });
+            app.UseAuthentication();
         }
         private void UseGlobalExceptionHandler(IApplicationBuilder app)
         {
