@@ -1,0 +1,37 @@
+<md-card>
+    <md-card-title md-subheader>Configure youtube api</md-card-title>
+    <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+        <div>
+            <div>
+                <md-input-container>
+                    <input mdInput type="text" placeholder="API Key" formControlName="APIKey">
+                </md-input-container>
+            </div>
+            <div>
+                <md-input-container>
+                    <input mdInput type="text" placeholder="Keyword" formControlName="Keyword">
+                </md-input-container>
+            </div>
+        </div>
+        <div formArrayName="Channels">
+            <div>Youtube Channels</div>
+            <div *ngFor="let channel of form['controls'].Channels['controls']; let i=index" [formGroupName]="i">
+                <md-input-container>
+                    <input mdInput type="text" placeholder="Channel Name" formControlName="Name">
+                </md-input-container>
+                <md-input-container>
+                    <input mdInput type="text" placeholder="Channel ID" formControlName="ID">
+                </md-input-container>
+                <button md-icon-button type="button" *ngIf="form['controls'].Channels['controls'].length > 1" (click)="removeChannel(i)">
+                    <md-icon>clear</md-icon>
+                </button>
+            </div>
+        </div>
+        <div>
+            <button type="button" md-button (click)="addChannel()">Add Channel</button>
+        </div>
+        <div>
+            <button type="submit" color="accent" md-raised-button>Save</button>
+        </div>
+    </form>
+</md-card>

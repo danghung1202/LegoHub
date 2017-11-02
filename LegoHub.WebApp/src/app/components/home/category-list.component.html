@@ -1,0 +1,10 @@
+<div class="theme-list">
+    <div class="theme-card" *ngFor="let cat of categories | async;trackBy: trackByTheme">
+        <div class="theme-content">
+            <md-card [routerLink]="['/sets']" [queryParams]="{themes: cat.theme, years: 2017}">
+                <div class="theme-image mat-card-image" *ngIf="cat.image" [style.background-image]="'url(' + cat.image + ')'" ></div>
+                <md-card-title>{{cat.theme}}</md-card-title>
+            </md-card>
+        </div>
+    </div>
+</div>

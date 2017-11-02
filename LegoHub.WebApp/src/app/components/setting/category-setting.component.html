@@ -1,0 +1,15 @@
+<md-card>
+    <md-card-title md-subheader>Configure teaser images for themes</md-card-title>
+    <form *ngIf="form" (ngSubmit)="onSubmit()" [formGroup]="form">
+        <div>
+            <div *ngFor="let cat of categories;trackBy: trackByTheme">
+                <md-input-container [formGroup]="form">
+                    <input mdInput type="text" [placeholder]="cat.theme" [id]="cat.theme" [formControlName]="cat.theme">
+                </md-input-container>
+            </div>
+        </div>
+        <div>
+            <button type="submit" color="accent" md-raised-button>Save</button>
+        </div>
+    </form>
+</md-card>

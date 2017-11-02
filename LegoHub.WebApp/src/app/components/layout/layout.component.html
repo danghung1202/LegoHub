@@ -1,0 +1,44 @@
+<md-sidenav-container>
+    <md-sidenav #sidenav>
+        <div class="sidenav-toolbar">
+            <span>Browse</span>
+            <span class="spacer"></span>
+            <button md-icon-button type="button" (click)="sidenav.close()">
+                <md-icon>chevron_left</md-icon>
+            </button>
+        </div>
+        <div class="sidenav-content">
+            <div class="sidenav-title">Themes this year</div>
+            <md-nav-list>
+                <a md-list-item *ngFor="let theme of themes" (click)="sidenav.close()" [routerLink]="['/sets']" [queryParams]="{themes: theme.theme, years: thisYear}"> {{ theme.theme }} </a>
+            </md-nav-list>
+            <md-divider></md-divider>
+            <div class="sidenav-title">Years</div>
+            <md-nav-list>
+                <a md-list-item *ngFor="let year of years" (click)="sidenav.close()" [routerLink]="['/sets']" [queryParams]="{years: year.year}"> {{ year.year }} </a>
+            </md-nav-list>
+        </div>
+    </md-sidenav>
+    <md-sidenav #sortSidenav align="end" [opened]="opened" (close)="closeSortSidenav.emit()">
+        <div class="sidenav-toolbar">
+            <button md-icon-button type="button" (click)="sortSidenav.close()">
+                    <md-icon>chevron_right</md-icon>
+                </button>
+            <span>Sort by</span>
+            <span class="spacer"></span>
+        </div>
+        <div class="sidenav-content">
+            <md-radio-group #sortByRadio class="sort-radio-group" (change)="sortByChange.emit($event)">
+                <md-radio-button class="sort-radio-button" *ngFor="let criteria of sortCriterias" [value]="criteria.value">{{criteria.title}}</md-radio-button>
+            </md-radio-group>
+        </div>
+    </md-sidenav>
+    <div class="sidenav-container">
+        <b-toolbar (openSidenav)="sidenav.open()"></b-toolbar>
+        <div class="app-content">
+            <lh-progress-bar></lh-progress-bar>
+            <ng-content></ng-content>
+        </div>
+    </div>
+</md-sidenav-container>
+<error-dialog></error-dialog>

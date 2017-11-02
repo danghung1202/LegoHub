@@ -1,0 +1,12 @@
+<div class="main-content">
+
+    <masonry [useImagesLoaded]="true" >
+        <masonry-brick class="brick" *ngFor="let pin of pins | async">
+            <pin-card [pin]="pin" [routerLink]="['./',pin.id]"></pin-card>
+        </masonry-brick>
+    </masonry>
+
+    <button id="loadMoreBtn" md-raised-button (click)="loadMore()" [class.show]="showMore | async"  class="full-width">Load more</button>
+    <md-spinner [class.show]="loading | async"></md-spinner>
+    <router-outlet></router-outlet>
+</div>

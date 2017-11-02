@@ -1,0 +1,15 @@
+<div>
+  <div class="sidenav-toolbar">
+      <span  [routerLink]="['/videos']">Videos</span>
+      <span  [routerLink]="['/pins']">Gallery</span>
+      <span  [routerLink]="['/mocs']">MOCs</span>
+      <span class="spacer"></span>
+  </div>
+
+  <div class="main-content">
+    <div class="sub-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  
+</div>
