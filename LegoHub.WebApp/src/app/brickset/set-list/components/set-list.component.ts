@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
@@ -49,12 +49,6 @@ import { AppState, SetListActions, FilterActions, NavigationActions, ProgressBar
     `]
 })
 export class SetListComponent implements OnInit {
-
-    sets: Observable<Set[]>;
-
-    loading: Observable<boolean>;
-    showMore: Observable<boolean>;
-
     selectedThemes: Theme[];
     selectedSubthemes: Subtheme[];
     selectedYears: Year[];
@@ -66,6 +60,9 @@ export class SetListComponent implements OnInit {
         years: ''
     };
 
+    @Input() sets: Set[];
+    @Input() loading: boolean;
+    @Input() showMore: boolean;
     @Input()
     set queryParams(newParams) {
         let themes = newParams['themes'] || '';
@@ -77,66 +74,42 @@ export class SetListComponent implements OnInit {
         this.selectedYears = years.split(',').filter(item => item.trim() != '').map(year => ({ year: year, isSelected: true }));
 
         this.pageNumber = 1;
+        this._queryParams = newParams;
         this.store.dispatch(this.setActions.loadSets(themes, subthemes, years));
     }
-
     get queryParams() {
         return this._queryParams;
     }
 
+    @Output() openFilterPanelEvent = new EventEmitter();
+    @Output() openSortPanelEvent = new EventEmitter();
+    @Output() loadMoreEvent = new EventEmitter();
+
     constructor(
-        private route: ActivatedRoute,
-        private router: Router,
         private store: Store<AppState>,
         private setActions: SetListActions,
         private progressActions: ProgressBarActions,
         private filterActions: FilterActions,
         private navigationActions: NavigationActions) {
-
-        this.sets = this.store.select(s => s.sets).select(s => s.sets);
-        this.loading = this.store.select(s => s.sets).select(s => s.loading);
-        this.showMore = this.store.select(s => !s.progress.isShow && s.sets.showMore);
-    }
-
-    ngOnInit() {
-        this.subParams = this.route
-            .queryParams
-            .subscribe(params => {
-                this.pageNumber = 1;
-                this.params = params;
-                
-            });
-
-    }
-
-    ngOnDestroy() {
-        this.subParams.unsubscribe();
-        this.store.dispatch(this.progressActions.showProgressBar(0));
     }
 
     openFilterPanel() {
-        let navigationExtras: NavigationExtras = {
-            relativeTo: this.route,
-            preserveQueryParams: true
-        };
-
-        //this.router.navigate([{ outlets: { child: "filter" }}], navigationExtras);
-        this.router.navigate(["filter"], navigationExtras);
+        this.openFilterPanelEvent.emit();
     }
 
     openSortPanel() {
-        this.store.dispatch(this.navigationActions.toggleSortSidenav(true));
+        this.openSortPanelEvent.emit();
     }
-
+    
     trackBySetID(index, item: Set) {
         return item ? item.setID : undefined;
     }
 
     loadMore() {
-        let themes = this.params['themes'];
-        let subthemes = this.params['subthemes'];
-        let years = this.params['years'];
+        let themes = this.queryParams['themes'];
+        let subthemes = this.queryParams['subthemes'];
+        let years = this.queryParams['years'];
         this.pageNumber = this.pageNumber + 1;
-        this.store.dispatch(this.setActions.loadMoreSets(themes, subthemes, years, '', this.pageNumber.toString()));
+        this.loadMoreEvent.emit({themes, subthemes, years, pageNumber: this.pageNumber});
     }
 }
