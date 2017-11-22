@@ -1,0 +1,19 @@
+<div>
+    <div class="filter-row" (click)="goToCriteriaList()">
+        <span>{{criteriaType}}</span>
+        <span class="spacer"></span>
+        <button md-icon-button type="button">
+            <md-icon>chevron_right</md-icon>
+        </button>
+    </div>
+    <div [ngClass]="{'criteria-row': hasCriteria}">
+        <md-chip-list>
+            <md-chip class="md-tag" color="accent" selected="true" *ngFor="let criteria of criterias; trackBy: trackByValue">
+                {{criteria.value}}
+                <button md-icon-button type="button" class="md-tag-close-button" (click)="removeSelectedCriteria(criteria)">
+                    <md-icon>cancel</md-icon>
+                </button>
+            </md-chip>
+        </md-chip-list>
+    </div>
+</div>
