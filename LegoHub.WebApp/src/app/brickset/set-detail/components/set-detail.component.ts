@@ -60,8 +60,6 @@ import { Set, SetImage, Instruction, Review } from '../../models';
 
 })
 export class SetDetailComponent {
-
-
     @Input() set: any;
     @Input() additionalImages: SetImage[];
     @Input() intructions: Instruction[];

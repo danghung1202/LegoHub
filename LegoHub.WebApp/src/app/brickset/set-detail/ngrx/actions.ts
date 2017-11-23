@@ -83,6 +83,4 @@ export class SetActions {
             payload: setId
         };
     }
-
-
 }

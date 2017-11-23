@@ -22,7 +22,7 @@ import { AppState, SetListActions, FilterActions, NavigationActions, ProgressBar
                     (loadMoreEvent)="loadMore($event)">
                 </set-list>`
 })
-export class SetListComponent implements OnInit {
+export class SetListContainer implements OnInit {
     queryParams: Observable<any>;
     sets: Observable<Set[]>;
     loading: Observable<boolean>;

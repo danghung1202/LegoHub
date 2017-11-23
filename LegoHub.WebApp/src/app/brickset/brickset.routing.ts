@@ -2,20 +2,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ViewSetComponent } from './set-detail/view-set.component';
-import { SetListComponent } from './set-list/set-list.component';
-import { FilterPanelComponent, CriteriaListContainer } from '../filter';
-import { AppResolver } from '../../app.resolver';
+import { SetDetailContainer } from './set-detail/set-detail.container';
+import { SetListContainer } from './set-list/set-list.container';
+import { FilterPanelContainer, CriteriaListContainer } from './set-filter';
+import { AppResolver } from '../app.resolver';
 
-const setListRoutes: Routes = [
+const bricksetRoutes: Routes = [
     {
         path: 'sets',
-        component: SetListComponent,
+        component: SetListContainer,
         resolve: { config: AppResolver },
         children: [
             {
                 path: 'filter',
-                component: FilterPanelComponent,
+                component: FilterPanelContainer,
                 children: [
                     {
                         path: ':id',
@@ -25,7 +25,7 @@ const setListRoutes: Routes = [
             },
             {
                 path: ':id',
-                component: ViewSetComponent,
+                component: SetDetailContainer,
             },
         ]
     },
@@ -33,7 +33,7 @@ const setListRoutes: Routes = [
 
 @NgModule({
     imports: [
-        RouterModule.forChild(setListRoutes)
+        RouterModule.forChild(bricksetRoutes)
     ],
     exports: [
         RouterModule

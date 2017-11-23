@@ -28,7 +28,7 @@ import { AppState, SetListActions, SetActions } from '../../state-management';
         </set-detail>
     `
 })
-export class ViewSetComponent {
+export class SetDetailContainer {
     idSub: Subscription;
     set: Observable<Set>;
     additionalImages: Observable<SetImage[]>;

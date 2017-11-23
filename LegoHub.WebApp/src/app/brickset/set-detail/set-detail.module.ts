@@ -2,22 +2,29 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
+import { EffectsModule } from '@ngrx/effects';
 
-import { ViewSetComponent } from './view-set.component';
-import { SetDetailComponent } from './set-detail.component';
+import { SetDetailContainer } from './set-detail.container';
+import { SetDetailComponent } from './components/set-detail.component';
 import { PipeModule } from '../../pipes';
+import { SetEffects } from './ngrx/effects'
+import { SetActions } from './ngrx/actions';
+
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         MaterialModule.forRoot(),
-        PipeModule.forRoot()
+        PipeModule.forRoot(),
+        EffectsModule.run(SetEffects),
     ],
     declarations: [
-        ViewSetComponent,
+        SetDetailContainer,
         SetDetailComponent,
-        //StarPipe
+    ],
+    providers: [
+        { provide: SetActions, useClass: SetActions }
     ]
 })
 export class SetDetailModule { }

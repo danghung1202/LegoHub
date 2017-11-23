@@ -1,16 +1,17 @@
+
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
-
-import { SetListComponent } from './set-list.component';
-import { FilterPanelComponent, CriteriaComponent, CriteriaListComponent, CriteriaListContainer } from '../filter';
-
-import { SetCardComponent } from './set-card.component';
-import { SetListRoutingModule } from './set-list.routing';
-import { PipeModule } from '../../pipes';
 import { MasonryModule } from 'angular2-masonry';
-import { SearchInputMdComponent } from '../shared/search-input-md.component';
+
+import { PipeModule } from '../../pipes';
+
+import { BricksetRoutingModule } from './brickset.routing';
+
+import { SetDetailModule } from './set-detail/set-detail.module';
+import { SetFilterModule } from './set-filter/set-filter.module';
+import { SetListModule } from './set-list/set-list.module';
 
 @NgModule({
     imports: [
@@ -18,17 +19,13 @@ import { SearchInputMdComponent } from '../shared/search-input-md.component';
         FormsModule,
         MaterialModule,
         MasonryModule,
-        SetListRoutingModule,
+        BricksetRoutingModule,
         PipeModule.forRoot()
     ],
     declarations: [
-        FilterPanelComponent,
-        CriteriaListComponent,
-        CriteriaComponent,
-        SearchInputMdComponent,
-        CriteriaListContainer,
-        SetListComponent,
-        SetCardComponent,
+        SetListModule,
+        SetFilterModule,
+        SetDetailModule
     ]
 })
 export class BricksetModule { }
