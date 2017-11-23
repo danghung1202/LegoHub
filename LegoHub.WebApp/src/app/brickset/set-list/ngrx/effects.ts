@@ -8,7 +8,7 @@ import { SetListActions, SetActions, ProgressBarActions } from '../actions';
 import { BricksetService, RebrickableService } from '../../services';
 
 @Injectable()
-export class SetEffects {
+export class SetListEffects {
     constructor(
         private store: Store<AppState>,
         private action$: Actions,
@@ -50,32 +50,5 @@ export class SetEffects {
                     return this.setListActions.loadMoreSetsSuccess(sets)
                 })
                 .catch(() => of(this.setListActions.loadMoreSetsSuccess([])));
-        });
-
-    @Effect() getDetailSet$ = this.action$
-        .ofType(SetActions.GET_SET)
-        .map(action => action.payload)
-        .switchMap(setId => {
-            return this.svcBrickset.getSetDetails(setId)
-                .map(result => this.setActions.getSetSuccess(result))
-                .catch(() => of(this.setActions.getSetSuccess(null)));
-        });
-
-    @Effect() getPartsOfSet$ = this.action$
-        .ofType(SetActions.GET_PARTS)
-        .map(action => action.payload)
-        .switchMap(setNumber => {
-            return this.svcRebrickable.getPartsOfSet(setNumber)
-                .map(result => this.setActions.getPartsSuccess(result))
-                .catch(() => of(this.setActions.getPartsSuccess(null)));
-        });
-
-    @Effect() getAltBuildssOfSet$ = this.action$
-        .ofType(SetActions.GET_ALTERNATE_BUILDS)
-        .map(action => action.payload)
-        .switchMap(setNumber => {
-            return this.svcRebrickable.getAlternateBuildsOfSet(setNumber)
-                .map(result => this.setActions.getAlternateBuildsSuccess(result))
-                .catch(() => of(this.setActions.getAlternateBuildsSuccess(null)));
         });
 }
