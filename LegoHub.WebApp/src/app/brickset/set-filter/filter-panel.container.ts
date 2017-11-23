@@ -12,45 +12,25 @@ import { CriteriaType } from '../../constant';
 
 import { AppState, SetListActions, FilterActions } from '../../state-management';
 
-
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: './filter-panel.component.html',
-    styles: [`
-        .modal-content{
-            height:100%;
-            z-index:2;
-            max-width:500px;
-            right:0;
-        }
-
-        .filter-content{
-            display:block;
-            width:100%;
-            height: calc(100% - 64px);
-            overflow: auto;
-        }
-
-        .filter-button-container{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-
-        .filter-button{
-            flex-grow: 1;
-        }
-
-    `]
+    template: `<filter-panel 
+                    [selectedThemes]="selectedThemes | async" 
+                    [selectedThemes]="selectedThemes | async" 
+                    [selectedYears]="selectedYears | async" 
+                    (applyFilterEvent)="applyFilter($event)"
+                    (clearFilterEvent)="clearFilter()"
+                    (goToCriteriasEvent)="goToCriterias($event)"
+                    (removeCriteriaEvent)="removeCriteria($event)"
+                    (goBackEvent)="goBack()">
+                </filter-panel>`
 })
-export class FilterPanelComponent {
+export class FilterPanelContainer implements OnInit {
     selectedThemes: Observable<Criteria[]>;
     selectedSubthemes: Observable<Criteria[]>;
     selectedYears: Observable<Criteria[]>;
 
     subParams: Subscription;
-    subSelectedFilter: Subscription;
-    params: any;
 
     constructor(
         private location: Location,
@@ -65,21 +45,9 @@ export class FilterPanelComponent {
     }
 
     ngOnInit() {
-        this.subSelectedFilter = Observable.combineLatest(this.selectedThemes, this.selectedSubthemes, this.selectedYears,
-            (themes, subthemes, years) =>
-                ({
-                    themes: themes.map(x => x.value).join(','),
-                    subthemes: subthemes.map(x => x.value).join(','),
-                    years: years.map(x => x.value).join(',')
-                }))
-            .subscribe(result => {
-                this.params = result;
-            });
-
         this.subParams = this.route
             .queryParams
             .subscribe(params => {
-                this.params = params;
                 let themes = params['themes'] || '';
                 let subthemes = params['subthemes'] || '';
                 let years = params['years'] || '';
@@ -92,13 +60,7 @@ export class FilterPanelComponent {
         this.location.back();
     }
 
-    applyFilter() {
-
-        let queryParams: any = {};
-        if (this.params.themes) queryParams["themes"] = this.params.themes;
-        if (this.params.subthemes) queryParams["subthemes"] = this.params.subthemes;
-        if (this.params.years) queryParams["years"] = this.params.years;
-
+    applyFilter(queryParams) {
         this.router.navigate(['/sets'], { queryParams: queryParams, replaceUrl: true })
     }
 
@@ -129,6 +91,5 @@ export class FilterPanelComponent {
 
     ngOnDestroy() {
         this.subParams.unsubscribe();
-        this.subSelectedFilter.unsubscribe();
     }
 }
