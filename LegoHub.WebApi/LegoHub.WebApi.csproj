@@ -7,7 +7,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Google.Apis.Oauth2.v2" Version="1.26.2.859" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LegoHub.Data\LegoHub.Data.csproj" />
